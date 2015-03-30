@@ -2,7 +2,7 @@ package codequiz;
   
 public class Question {
       /**
-       * hej alla!
+       * Andra versionen
        * GIT <3
        */
     private String question;
