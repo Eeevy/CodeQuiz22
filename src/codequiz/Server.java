@@ -7,4 +7,8 @@ public class Server {
 private String hufflepuff;
 private int nbrOfWizards;
 private String[] namesOfWizards;//ändring Emma
+
+public static void main(String[] args){
+	
+}
 }
