@@ -6,4 +6,8 @@ public class Server {
 	 */
 private String hufflepuff;
 private int nbrOfWizards;
+
+	public Server(){
+		
+	}
 }
