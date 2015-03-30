@@ -2,8 +2,7 @@ package codequiz;
   
 public class Question {
       /**
-       * Andra versionen
-       * GIT <3
+       * NEEEEEEJ!
        */
     private String question;
     private String answer1;
