@@ -3,6 +3,7 @@ package codequiz;
 public class Question {
       /**
        * hej alla!
+       * GIT <3
        */
     private String question;
     private String answer1;
