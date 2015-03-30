@@ -6,4 +6,5 @@ public class Server {
 	 */
 private String hufflepuff;
 private int nbrOfWizards;
+private String[] namesOfWizards;//ändring Emma
 }
