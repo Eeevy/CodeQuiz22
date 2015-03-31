@@ -3,7 +3,11 @@ package codequiz;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.io.File;
 
+import javax.sound.sampled.AudioInputStream;
+import javax.sound.sampled.AudioSystem;
+import javax.sound.sampled.Clip;
 import javax.swing.*;
 
 /**
@@ -17,6 +21,7 @@ public class MainUI {
 
 	public MainUI() {
 		showGUI();
+//		playSoundClip();
 	}
 
 	public void showGUI() {
@@ -27,6 +32,24 @@ public class MainUI {
 		mainFrame.add(mainGUI);
 		mainFrame.pack();
 		mainFrame.setVisible(true);
+	}
+	
+	/**
+	 * Ska spela upp en ljudfil. Fungerar ej i nuläget.
+	 */
+	public void playSoundClip() {
+	    try {
+	        AudioInputStream audioInputStream = AudioSystem.getAudioInputStream(new File("C:/Code Quiz/devilmaycare.wav").getAbsoluteFile());
+//	        AudioInputStream audioInputStream = AudioSystem.getAudioInputStream(new File("C:/Code Quiz/brilliant.wav").getAbsoluteFile());
+//	        AudioInputStream audioInputStream = AudioSystem.getAudioInputStream(new File("C:/Code Quiz/dare.mp3").getAbsoluteFile());
+	        
+	        Clip clip = AudioSystem.getClip();
+	        clip.open(audioInputStream);
+	        clip.start();
+	    } catch(Exception ex) {
+	        System.out.println("Ljudfilen kunde inte spelas upp.");
+	        ex.printStackTrace();
+	    }
 	}
 
 	private class MainGUI extends JPanel {
@@ -39,7 +62,7 @@ public class MainUI {
 		private JLabel lblTitle = new JLabel("Code Quiz");
 		// Lite gay slogan, men har kvar den sålänge..
 		private JLabel lblSlogan = new JLabel(
-				"- Ett magsikt sätt att lära sig om programmering");
+				"- Ett magiskt sätt att lära sig programmering");
 		private JLabel lblMenu = new JLabel("Meny");
 		// Några osynliga labels som inte ska finnas egentligen...
 		private JLabel lblInvisible = new JLabel();
@@ -47,8 +70,6 @@ public class MainUI {
 		private JLabel lblInvisible3 = new JLabel();
 		private JLabel lblInvisible4 = new JLabel();
 		private JLabel lblInvisible5 = new JLabel();
-		// Bildens placering visas som en label sålänge.
-		private JLabel lblHogwarts = new JLabel("Här ska bilden visas!");
 
 		// Knappar
 		private JButton btnPlay = new JButton("Spela");
@@ -57,6 +78,9 @@ public class MainUI {
 		private JButton btnHowToPlay = new JButton("Om spelet");
 		private JButton btnHighScore = new JButton("High score");
 		// private ButtonGroup btnGroup = new ButtonGroup();
+		
+		// Image
+		private ImageIcon iconHogwarts;
 
 		public MainGUI() {
 			setLayout(new BorderLayout());
@@ -91,8 +115,7 @@ public class MainUI {
 		}
 
 		/**
-		 * Ska visa en bild på Hogwarts logga (inte än dock), men jag tror att jag
-		 * har hittat den "perfekta" bilden i alla fall! ^^
+		 * Visar en bild på Hogwarts logga. Bilden finns på Dropbox.
 		 * 
 		 * @return
 		 */
@@ -100,11 +123,10 @@ public class MainUI {
 			centerPanel = new JPanel(new FlowLayout());
 			centerPanel.setPreferredSize(new Dimension(400, 150));
 			centerPanel.setBackground(Color.BLACK);
-
-			centerPanel.add(Box.createRigidArea(new Dimension(100, 100)));
-			centerPanel.add(lblHogwarts);
-			lblHogwarts.setForeground(Color.GREEN);
-			lblHogwarts.setFont(new Font("SansSerif", Font.BOLD, 20));
+			
+			centerPanel.add(Box.createRigidArea(new Dimension(500, 25)));
+			iconHogwarts = new ImageIcon("C:/Code Quiz/Hogwarts.png");
+			centerPanel.add(new JLabel(iconHogwarts));
 
 			return centerPanel;
 		}
@@ -148,7 +170,7 @@ public class MainUI {
 
 			return eastPanel;
 		}
-
+		
 		private class MenuListener implements ActionListener {
 			public void actionPerformed(ActionEvent e) {
 
