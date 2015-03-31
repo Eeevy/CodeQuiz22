@@ -3,20 +3,22 @@ package codequiz;
 import java.awt.BorderLayout;
 import java.awt.Dimension;
  
+
+
 import javax.swing.*;
- 
+
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
  
-public class QuestionUI {
+public class QuizUI {
     private UI ui;
     private QuizController controller = new QuizController();
  
-    public QuestionUI() {
+    public QuizUI() {
         showUI();
     }
- 
+
     public void showUI() {
         ui = new UI();
         JFrame frame = new JFrame("QuestionUI");
@@ -118,7 +120,6 @@ public class QuestionUI {
                 rb3.setText(question.getAnswer3());
                 rb4.setText(question.getAnswer4());
             }
- 
         }
  
         private class SubmitListener implements ActionListener {
@@ -158,13 +159,16 @@ public class QuestionUI {
             this.question = controller.getQuestion();
             this.id = question.getID();
         }
- 
     }
+    
+//    public void showImage() {
+//    	ImageIcon backgroundImage = new ImageIcon("C:/Code Quiz/Tom Riddle's Diary.jpg");
+//	}
  
     public static void main(String[] args) {
         SwingUtilities.invokeLater(new Runnable() {
             public void run() {
-                new QuestionUI();
+                new QuizUI();
             }
         });
     }
