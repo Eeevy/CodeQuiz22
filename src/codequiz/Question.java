@@ -1,9 +1,7 @@
 package codequiz;
   
 public class Question {
-      /**
-       * NEEEEEEJ!
-       */
+
     private String question;
     private String answer1;
     private String answer2;
