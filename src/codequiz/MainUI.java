@@ -4,10 +4,11 @@ import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.io.File;
-
+import javax.sound.sampled.AudioFormat;
 import javax.sound.sampled.AudioInputStream;
 import javax.sound.sampled.AudioSystem;
 import javax.sound.sampled.Clip;
+import javax.sound.sampled.DataLine;
 import javax.swing.*;
 
 /**
@@ -21,7 +22,7 @@ public class MainUI {
 
 	public MainUI() {
 		showGUI();
-//		playSoundClip();
+		playSoundClip();
 	}
 
 	public void showGUI() {
@@ -35,20 +36,26 @@ public class MainUI {
 	}
 	
 	/**
-	 * Ska spela upp en ljudfil. Fungerar ej i nuläget.
+	 * Spelar upp en ljudfil. Hittas på Dropbox.
 	 */
 	public void playSoundClip() {
 	    try {
-	        AudioInputStream audioInputStream = AudioSystem.getAudioInputStream(new File("C:/Code Quiz/devilmaycare.wav").getAbsoluteFile());
-//	        AudioInputStream audioInputStream = AudioSystem.getAudioInputStream(new File("C:/Code Quiz/brilliant.wav").getAbsoluteFile());
-//	        AudioInputStream audioInputStream = AudioSystem.getAudioInputStream(new File("C:/Code Quiz/dare.mp3").getAbsoluteFile());
-	        
-	        Clip clip = AudioSystem.getClip();
-	        clip.open(audioInputStream);
-	        clip.start();
-	    } catch(Exception ex) {
+	    	File filename = new File("C:/Code Quiz/HarryPotterThemeSong.wav");
+	    	AudioInputStream audioInputStream;
+	    	AudioFormat audioFormat;
+	    	DataLine.Info info;
+	    	Clip clip;
+	    	
+	    	audioInputStream = AudioSystem.getAudioInputStream(filename);
+	    	audioFormat = audioInputStream.getFormat();
+	    	info = new DataLine.Info(Clip.class, audioFormat);
+	    	clip = (Clip) AudioSystem.getLine(info);
+	    	clip.open(audioInputStream);
+	    	clip.start();
+	    	
+	    } catch(Exception e) {
 	        System.out.println("Ljudfilen kunde inte spelas upp.");
-	        ex.printStackTrace();
+	        e.printStackTrace();
 	    }
 	}
 
