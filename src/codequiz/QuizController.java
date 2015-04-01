@@ -1,11 +1,22 @@
 package codequiz;
 
+import java.io.*;
+import java.net.Socket;
 import java.util.LinkedList;
+
+import javax.swing.JFrame;
 
 public class QuizController {
 
 	private LinkedList<Question> list = new LinkedList<Question>();
 	private Question question, question2;
+	private JFrame ui;
+	private QuizServer server;
+	private User user;
+	private HogwartsHouse house;
+	private Socket socket;
+	private ObjectInputStream ois;
+	private ObjectOutputStream oos;
 
 	public QuizController() {
 		question = new Question(
@@ -34,5 +45,12 @@ public class QuizController {
 	public Question getQuestion() {
 		return list.pop();
 	}
-
+	
+	public void showUI() {
+		
+	}
+	
+	public void setUI(JFrame ui) {
+		
+	}
 }
