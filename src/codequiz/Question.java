@@ -1,11 +1,7 @@
 package codequiz;
   
 public class Question {
-      /**
-       * Andra versionen
-       * GIT <3
-       * 
-       */
+    
     private String question;
     private String answer1;
     private String answer2;
