@@ -51,5 +51,4 @@ public class Game {
 	public QuizScenario getScenario(){
 		return scenariolist.pop();
 	}
-	
 }
