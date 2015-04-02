@@ -4,6 +4,7 @@ import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.io.File;
+
 import javax.sound.sampled.AudioFormat;
 import javax.sound.sampled.AudioInputStream;
 import javax.sound.sampled.AudioSystem;
@@ -19,45 +20,65 @@ import javax.swing.*;
  */
 public class MainUI {
 	private MainGUI mainGUI;
+	private JPanel panel;
+	private JFrame mainFrame;
+	private Clip clip;
+	private File musicFilename;
 
 	public MainUI() {
+		mainGUI = new MainGUI();
+		panel = (JPanel) mainGUI;
+		musicFilename = new File("C:/Code Quiz/HarryPotterThemeSong.wav");
 		showGUI();
 		playSoundClip();
 	}
 
 	public void showGUI() {
-		mainGUI = new MainGUI();
-		JFrame mainFrame = new JFrame("MainUI");
+		mainFrame = new JFrame("");
 		mainFrame.setTitle("Code Quiz");
 		mainFrame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		mainFrame.add(mainGUI);
+		mainFrame.add(panel);
 		mainFrame.pack();
 		mainFrame.setVisible(true);
+
 	}
-	
+
+	/**
+	 * Metoden tar bort det aktuella fönstret och skapar ett nytt fönster
+	 * 
+	 * @param panel
+	 */
+	public void setPanel(JPanel panel) {
+		mainFrame.dispose();
+		this.panel = panel;
+		clip.stop();
+		playSoundClip();
+		showGUI();
+
+	}
+
 	/**
 	 * Spelar upp en ljudfil. Hittas på Dropbox.
 	 */
 	public void playSoundClip() {
-	    try {
-	    	File filename = new File("C:/Code Quiz/HarryPotterThemeSong.wav");
-//	    	File filename = new File("C:/Code Quiz/curious.wav");
-	    	AudioInputStream audioInputStream;
-	    	AudioFormat audioFormat;
-	    	DataLine.Info info;
-	    	Clip clip;
-	    	
-	    	audioInputStream = AudioSystem.getAudioInputStream(filename);
-	    	audioFormat = audioInputStream.getFormat();
-	    	info = new DataLine.Info(Clip.class, audioFormat);
-	    	clip = (Clip) AudioSystem.getLine(info);
-	    	clip.open(audioInputStream);
-	    	clip.start();
-	    	
-	    } catch(Exception e) {
-	        System.out.println("Ljudfilen kunde inte spelas upp.");
-	        e.printStackTrace();
-	    }
+		try {
+			File filename = new File("C:/Code Quiz/HarryPotterThemeSong.wav");
+
+			AudioInputStream audioInputStream;
+			AudioFormat audioFormat;
+			DataLine.Info info;
+
+			audioInputStream = AudioSystem.getAudioInputStream(musicFilename);
+			audioFormat = audioInputStream.getFormat();
+			info = new DataLine.Info(Clip.class, audioFormat);
+			clip = (Clip) AudioSystem.getLine(info);
+			clip.open(audioInputStream);
+			clip.start();
+
+		} catch (Exception e) {
+			System.out.println("Ljudfilen kunde inte spelas upp.");
+			e.printStackTrace();
+		}
 	}
 
 	private class MainGUI extends JPanel {
@@ -86,10 +107,9 @@ public class MainUI {
 		private JButton btnHowToPlay = new JButton("Om spelet");
 		private JButton btnHighScore = new JButton("High score");
 		// private ButtonGroup btnGroup = new ButtonGroup();
-		
+
 		// Image
 		private ImageIcon iconHogwarts;
-		private ImageIcon iconFont;
 
 		public MainGUI() {
 			setLayout(new BorderLayout());
@@ -98,6 +118,7 @@ public class MainUI {
 			add(northPanel(), BorderLayout.NORTH);
 			add(centerPanel(), BorderLayout.CENTER);
 			add(eastPanel(), BorderLayout.EAST);
+			addActionListeners();
 		}
 
 		/**
@@ -132,15 +153,14 @@ public class MainUI {
 			centerPanel = new JPanel(new FlowLayout());
 			centerPanel.setPreferredSize(new Dimension(400, 150));
 			centerPanel.setBackground(Color.BLACK);
-			
+
 			centerPanel.add(Box.createRigidArea(new Dimension(500, 25)));
 			iconHogwarts = new ImageIcon("C:/Code Quiz/Hogwarts.png");
 			centerPanel.add(new JLabel(iconHogwarts));
-//			iconFont = new ImageIcon("C:/Code Quiz/HP.png");
-//			iconFont = new ImageIcon("C:/Code Quiz/Ron.gif");
-			
-			centerPanel.add(new JLabel(iconFont));
-			
+			// iconFont = new ImageIcon("C:/Code Quiz/HP.png");
+			// iconFont = new ImageIcon("C:/Code Quiz/Ron.gif");
+
+			// centerPanel.add(new JLabel(iconFont));
 
 			return centerPanel;
 		}
@@ -184,10 +204,30 @@ public class MainUI {
 
 			return eastPanel;
 		}
-		
-		private class MenuListener implements ActionListener {
-			public void actionPerformed(ActionEvent e) {
 
+		/**
+		 * Metod som lägger till lyssnare till klassen
+		 */
+		public void addActionListeners() {
+			MenuListener menuListener = new MenuListener();
+			btnPlay.addActionListener(menuListener);
+			btnSignIn.addActionListener(menuListener);
+			btnCreateAccount.addActionListener(menuListener);
+			btnHowToPlay.addActionListener(menuListener);
+			btnHighScore.addActionListener(menuListener);
+
+		}
+
+		public class MenuListener implements ActionListener {
+			public void actionPerformed(ActionEvent e) {
+				if (e.getSource() == btnPlay) {
+					QuizUI quizPanel = new QuizUI();
+					// musicFilename = new
+					// File("C:/Code Quiz/MagicWandNoice.mp3");
+					setPanel(quizPanel);
+					// playSoundClip();
+
+				}
 			}
 		}
 	}
