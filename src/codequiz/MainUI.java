@@ -41,6 +41,7 @@ public class MainUI {
 	public void playSoundClip() {
 	    try {
 	    	File filename = new File("C:/Code Quiz/HarryPotterThemeSong.wav");
+//	    	File filename = new File("C:/Code Quiz/curious.wav");
 	    	AudioInputStream audioInputStream;
 	    	AudioFormat audioFormat;
 	    	DataLine.Info info;
@@ -88,6 +89,7 @@ public class MainUI {
 		
 		// Image
 		private ImageIcon iconHogwarts;
+		private ImageIcon iconFont;
 
 		public MainGUI() {
 			setLayout(new BorderLayout());
@@ -134,6 +136,11 @@ public class MainUI {
 			centerPanel.add(Box.createRigidArea(new Dimension(500, 25)));
 			iconHogwarts = new ImageIcon("C:/Code Quiz/Hogwarts.png");
 			centerPanel.add(new JLabel(iconHogwarts));
+//			iconFont = new ImageIcon("C:/Code Quiz/HP.png");
+//			iconFont = new ImageIcon("C:/Code Quiz/Ron.gif");
+			
+			centerPanel.add(new JLabel(iconFont));
+			
 
 			return centerPanel;
 		}
