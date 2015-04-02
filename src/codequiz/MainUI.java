@@ -24,9 +24,11 @@ public class MainUI {
 	private JFrame mainFrame;
 	private Clip clip;
 	private File musicFilename;
-
-	public MainUI() {
+	private QuizController cont;
+	
+	public MainUI(QuizController inController) {
 		mainGUI = new MainGUI();
+		cont = inController;
 		panel = (JPanel) mainGUI;
 		musicFilename = new File("C:/Code Quiz/HarryPotterThemeSong.wav");
 		showGUI();
@@ -222,6 +224,7 @@ public class MainUI {
 			public void actionPerformed(ActionEvent e) {
 				if (e.getSource() == btnPlay) {
 					QuizUI quizPanel = new QuizUI();
+//					cont.play();
 					// musicFilename = new
 					// File("C:/Code Quiz/MagicWandNoice.mp3");
 					setPanel(quizPanel);
@@ -235,7 +238,7 @@ public class MainUI {
 	public static void main(String[] args) {
 		SwingUtilities.invokeLater(new Runnable() {
 			public void run() {
-				new MainUI();
+				new MainUI(new QuizController());
 			}
 		});
 	}
