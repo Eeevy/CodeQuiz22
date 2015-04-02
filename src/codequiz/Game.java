@@ -13,6 +13,9 @@ public class Game {
 	private ImageIcon storypic, correctpic,incorrectpic; 
 	
 	public Game(){
+		
+		}
+	public void CreateQuestions(){
 		question = new Question(
 				"Vilket av följande påståenden är korrekta?",
 				"Ett subsystem är en del av ett system som kan fungera som ett eget system.",
@@ -28,12 +31,11 @@ public class Game {
 				"Alla objekt måste ha någon operation som utför en matematisk beräkning",
 				"Inkapsling betyder att ett attribut inte kan ändra värde efter det att objektet skapats.",
 				"Alla objekt har ett tillstånd.", 2);
-		setQuestion();
-		scenario = new QuizScenario(storypic,correctpic,incorrectpic);
-		setScenario();
-		}
-	public void CreateGame(){
-		
+				setQuestion();
+	}
+	public void CreateScenario(){
+	scenario = new QuizScenario(storypic,correctpic,incorrectpic);
+	setScenario();
 	}
 	public void setQuestion() {
 		questionlist.add(question);
