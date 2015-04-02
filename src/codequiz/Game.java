@@ -14,11 +14,15 @@ public class Game {
 	
 	public Game(){
 		
+<<<<<<< HEAD
 		setQuestion();
 		scenario = new QuizScenario(storypic,correctpic,incorrectpic);
 		setScenario();
 		}
 	
+=======
+		}
+>>>>>>> 50c58f59be219aa956abd5f88d1ba35bc96aa543
 	public void CreateQuestions(){
 		question = new Question(
 				"Vilket av följande påståenden är korrekta?",
@@ -35,7 +39,15 @@ public class Game {
 				"Alla objekt måste ha någon operation som utför en matematisk beräkning",
 				"Inkapsling betyder att ett attribut inte kan ändra värde efter det att objektet skapats.",
 				"Alla objekt har ett tillstånd.", 2);
+<<<<<<< HEAD
 		
+=======
+				setQuestion();
+	}
+	public void CreateScenario(){
+	scenario = new QuizScenario(storypic,correctpic,incorrectpic);
+	setScenario();
+>>>>>>> 50c58f59be219aa956abd5f88d1ba35bc96aa543
 	}
 	
 	public void setQuestion() {
@@ -52,6 +64,7 @@ public class Game {
 	public QuizScenario getScenario(){
 		return scenariolist.pop();
 	}
+<<<<<<< HEAD
 	
 	public LinkedList<Question> getQuestions(){
 		return questionlist;
@@ -61,4 +74,6 @@ public class Game {
 		return scenariolist;
 	}
 	
+=======
+>>>>>>> 50c58f59be219aa956abd5f88d1ba35bc96aa543
 }

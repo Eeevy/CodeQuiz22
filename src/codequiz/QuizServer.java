@@ -63,7 +63,9 @@ public class QuizServer {
 		}
 		public void newGame(){
 			game = new Game();
-			
+
+			game.CreateQuestions();
+
 		}
 
 		public void run() {
@@ -71,8 +73,10 @@ public class QuizServer {
 				while(true){
 					try{
 						newGame();
-						
-					}catch(IOException ioe){
+						oos.writeObject(game);
+						oos.flush();
+						game = (Game) ois.readObject();
+					}catch(Exception ioe){
 						System.out.println(ioe);
 					}
 				}
