@@ -55,10 +55,6 @@ public class MainUI {
 		clip.stop();
 		playSoundClip();
 		showGUI();
-
-
-		
-		
 	}
 	
 	/**

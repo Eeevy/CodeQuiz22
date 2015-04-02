@@ -63,7 +63,7 @@ public class QuizServer {
 		}
 		public void newGame(){
 			game = new Game();
-			game.CreateGame();
+			
 		}
 
 		public void run() {
