@@ -9,9 +9,11 @@ public class Game implements Serializable {
 	
 	private LinkedList<Question> questionlist = new LinkedList<Question>();
 	private LinkedList<QuizScenario> scenariolist = new LinkedList<QuizScenario>();
-	private Question question, question2;
+	private Question question, question2, question3;
 	private QuizScenario scenario;
 	private ImageIcon storypic, correctpic,incorrectpic; 
+	private int index = 0;
+
 	
 	public Game(){
 		System.out.println("Game: Konstruktor");
@@ -25,8 +27,9 @@ public class Game implements Serializable {
 		
 
 	public void createQuestions(){
+		System.out.println("Game: createQuestions()");
 		question = new Question(
-				"Vilket av följande påståenden är korrekta?",
+				"Vilket av följande påståenden är korrekta?FUNKA NU!",
 				"Ett subsystem är en del av ett system som kan fungera som ett eget system.",
 				"Ett subsystem kan inte bestå av andra subsystem",
 				"Vattenfallsmodellen är en agil modell.",
@@ -40,6 +43,14 @@ public class Game implements Serializable {
 				"Alla objekt måste ha någon operation som utför en matematisk beräkning",
 				"Inkapsling betyder att ett attribut inte kan ändra värde efter det att objektet skapats.",
 				"Alla objekt har ett tillstånd.", 2);
+		question3 = new Question(
+				"Vilket av följande påståenden är korrekta?FUNKA NU!",
+				"Ett subsystem är en del av ett system som kan fungera som ett eget system.",
+				"Ett subsystem kan inte bestå av andra subsystem",
+				"Vattenfallsmodellen är en agil modell.",
+				"Man måste använda ett informationssystem i lösningen som byggs medvattenfallsmodellen",
+				"Ett subsystem är en del av ett system som kan fungera som ett eget system.",
+				1);
 		
 				setQuestion();
 	}
@@ -51,16 +62,22 @@ public class Game implements Serializable {
 	public void setQuestion() {
 		questionlist.add(question);
 		questionlist.add(question2);
+		questionlist.add(question3);
 	}
 
-	public Question getQuestion() {
-		return questionlist.pop();
+	public Question getQuestion(int index) {
+		return questionlist.get(index);//funkar som peek
+		
 	}
 	public void setScenario(){
 		scenariolist.add(scenario);
 	}
 	public QuizScenario getScenario(){
-		return scenariolist.pop();
+		return scenariolist.peek();
+	}
+	
+	public int getSize(){
+		return questionlist.size();
 	}
 	
 

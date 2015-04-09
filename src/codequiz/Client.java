@@ -39,7 +39,7 @@ public class Client {
 				oos.writeUTF("Welcome");
 				oos.flush();
 				game = (Game)ois.readObject();
-					System.out.println(game.getQuestion().getQuestion());
+					//System.out.println(game.getQuestion().getQuestion());
 
 					controller.setGame(game);
 

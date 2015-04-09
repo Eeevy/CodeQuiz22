@@ -12,11 +12,9 @@ import java.net.Socket;
  */
 public class QuizServer {
 
-	private QuizController controller;
 
-	public QuizServer(QuizController controller, int port) {
+	public QuizServer(int port) {
 		System.out.println("QuizServer: konstruktor");
-		this.controller = controller;
 		new Connection(port).start();
 	}
 
@@ -100,7 +98,7 @@ public class QuizServer {
 	}
 
 	public static void main(String[] args) throws IOException {
-		new QuizServer(new QuizController(), 3453);
+		new QuizServer(3453);
 	}
 
 }

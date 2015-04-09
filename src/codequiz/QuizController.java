@@ -12,33 +12,38 @@ import javax.swing.SwingUtilities;
 public class QuizController extends Thread {
 
 	private Game game;
+	private Question question = null;
 	private JPanel panel;
 	private User user;
 	private HogwartsHouse house;
 	private Client client;
 	private MainUI ui;
 	private QuizUI quizUI;
+	private int i = 0;
 
 	public QuizController() {
 		
 		System.out.println("QuizController: Konstruktor");
 		ui = new MainUI(this);
 		quizUI = new QuizUI();
+		quizUI.setController(this);
 		
 
 	}
 
 	public void getQuestion() {
-		game = new Game();//kommer sedan tas emot av servern
-		Question question;
-		question = game.getQuestion();
+	//	game = new Game();//kommer sedan tas emot av servern
+		
+		//Question question;
+		this.question = game.getQuestion(i);
 		quizUI.setQuestion(question.getQuestion());
 		quizUI.setAlternatives(question.getAnswer1(), question.getAnswer2(), question.getAnswer3(), question.getAnswer4());
+		i++;
 
 	}
 	
 	public String getCorrectAnswer(){
-		return game.getQuestion().getCorrectanswer(); 
+		return question.getCorrectanswer(); //ändrat till instansvariabeln
 	}
 
 	public void play() {
