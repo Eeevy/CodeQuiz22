@@ -11,17 +11,16 @@ import java.awt.event.ActionListener;
 
 public class QuizUI extends JPanel {
 	private QuizController controller;
-	
+
 	private JPanel gamePanel;
 	private JPanel questionPanel;
 	private JPanel eastPanel;
 	private JPanel westPanel;
 	private JPanel southPanel;
 	private JPanel northPanel;
-	//private JTextField tfQuestion = new JTextField();
 	private JLabel lblQuestion = new JLabel();
 
-	private JTextField tfAnswers = new JTextField();
+//	private JTextField tfAnswers = new JTextField();
 	private JButton btnSubmit = new JButton("OK");
 	private JButton btnNewQuestion = new JButton("Ny fråga");
 	private ButtonGroup buttonGroup = new ButtonGroup();
@@ -32,76 +31,78 @@ public class QuizUI extends JPanel {
 	private JLabel lblPoints;
 	private JLabel lblLives;
 	private JLabel lblResult = new JLabel("");
-	private JLabel lblBackground = new JLabel(new ImageIcon("src/media/diary.jpg"));
+	private JLabel lblBackground = new JLabel(new ImageIcon(
+			"src/media/diary.jpg"));
 	private int lives = 5;
 	private int points = 0;
 	private int id;
 
 	public QuizUI() {
-		
+
 		setBackground(Color.BLACK);
 		setPreferredSize(new Dimension(800, 600));
 		lblBackground.setLayout(new BorderLayout());
 		add(lblBackground);
-		
+
 		lblBackground.add(questionPanel(), BorderLayout.CENTER);
 		lblBackground.add(eastPanel(), BorderLayout.EAST);
 		lblBackground.add(westPanel(), BorderLayout.WEST);
 		lblBackground.add(southPanel(), BorderLayout.SOUTH);
 		lblBackground.add(northPanel(), BorderLayout.NORTH);
-		
-
-		
 	}
-	
-		/**
-		 * opaque panel
-		 * @return
-		 */
+
+	/**
+	 * opaque panel
+	 * 
+	 * @return
+	 */
 	public JPanel northPanel() {
 		northPanel = new JPanel(new FlowLayout());
 		northPanel.setPreferredSize(new Dimension(30, 20));
 		northPanel.setOpaque(false);
-		
+
 		return northPanel;
 	}
+
 	/**
 	 * opaque panel
+	 * 
 	 * @return
 	 */
 	public JPanel westPanel() {
 		westPanel = new JPanel(new FlowLayout());
 		westPanel.setPreferredSize(new Dimension(30, 20));
 		westPanel.setOpaque(false);
-		
+
 		return westPanel;
 	}
+
 	/**
 	 * opaque panel
+	 * 
 	 * @return
 	 */
 	public JPanel eastPanel() {
 		eastPanel = new JPanel(new FlowLayout());
 		eastPanel.setPreferredSize(new Dimension(430, 150));
 		eastPanel.setOpaque(false);
-		
+
 		return eastPanel;
 	}
 
 	/**
 	 * Contains game questions
+	 * 
 	 * @return
 	 */
 	public JPanel questionPanel() {
 		questionPanel = new JPanel(new GridLayout(8, 1));
 		questionPanel.setPreferredSize(new Dimension(420, 20));
 		questionPanel.setOpaque(false);
-
-		//questionPanel.setBorder(BorderFactory.createLineBorder(Color.BLACK));
 		questionPanel.add(lblQuestion);
-		
+
 		lblQuestion.setPreferredSize(new Dimension(300, 50));
-		lblQuestion.setOpaque(false);	
+		lblQuestion.setOpaque(false);
 
 		buttonGroup.add(rb1);
 		buttonGroup.add(rb2);
@@ -114,7 +115,7 @@ public class QuizUI extends JPanel {
 
 		btnSubmit.setEnabled(false);
 		btnSubmit.setOpaque(false);
-		
+
 		questionPanel.add(new JLabel("Välj ett svar:"));
 		questionPanel.add(rb1);
 		questionPanel.add(rb2);
@@ -123,10 +124,10 @@ public class QuizUI extends JPanel {
 		questionPanel.add(lblResult);
 		questionPanel.add(btnSubmit);
 		btnSubmit.addActionListener(new SubmitListener());
-		
+
 		return questionPanel;
 	}
-	
+
 	public JPanel southPanel() {
 		southPanel = new JPanel(new GridLayout(2, 2));
 		southPanel.setPreferredSize(new Dimension(100, 50));
@@ -139,24 +140,22 @@ public class QuizUI extends JPanel {
 		btnNewQuestion.addActionListener(new QuestionListener());
 
 		return southPanel;
-
 	}
-	
-	public void setController(QuizController controller){
+
+	public void setController(QuizController controller) {
 		this.controller = controller;
 	}
-
 
 	private class QuestionListener implements ActionListener {
 		public void actionPerformed(ActionEvent e) {
 			controller.getQuestion();
 			btnSubmit.setEnabled(true);
-			 lblResult.setText("");
-			
+			lblResult.setText("");
 		}
 	}
 
 	private class SubmitListener implements ActionListener {
+
 		public void actionPerformed(ActionEvent e) {
 			btnSubmit.setEnabled(false);
 			String answer = null;
@@ -176,7 +175,7 @@ public class QuizUI extends JPanel {
 			}
 
 			if (answer.equals(correctAnswer)) {
-				points += 10;//skall skapas en metod i Controllern
+				points += 10;// skall skapas en metod i Controllern
 				lblResult.setText("RÄTT");
 				lblPoints.setText("POÄNG: " + points);
 
@@ -195,11 +194,9 @@ public class QuizUI extends JPanel {
 	}
 
 	public void setAlternatives(String al1, String al2, String al3, String al4) {
-			rb1.setText(al1);
-			rb2.setText(al2);
-			rb3.setText(al3);
-			rb4.setText(al4);
-		
+		rb1.setText(al1);
+		rb2.setText(al2);
+		rb3.setText(al3);
+		rb4.setText(al4);
 	}
-
 }

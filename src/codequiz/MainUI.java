@@ -31,7 +31,7 @@ public class MainUI {
 		mainGUI = new MainGUI();
 		cont = inController;
 		panel = (JPanel) mainGUI;
-		musicFilename = new File("C:/Code Quiz/HarryPotterThemeSong.wav");
+		musicFilename = new File("src/media/HarryPotterThemeSong.wav");
 		showGUI();
 		playSoundClip();
 	}
@@ -43,7 +43,6 @@ public class MainUI {
 		mainFrame.add(panel);
 		mainFrame.pack();
 		mainFrame.setVisible(true);
-
 	}
 
 	/**
@@ -54,19 +53,15 @@ public class MainUI {
 	public void setPanel(JPanel panel) {
 		mainFrame.dispose();
 		this.panel = panel;
-		// clip.stop();
-		// playSoundClip();
+		clip.stop();
 		showGUI();
-
 	}
 
 	/**
-	 * Spelar upp en ljudfil. Hittas på Dropbox.
+	 * Spelar upp en ljudfil.
 	 */
 	public void playSoundClip() {
 		try {
-			File filename = new File("C:/Code Quiz/HarryPotterThemeSong.wav");
-
 			AudioInputStream audioInputStream;
 			AudioFormat audioFormat;
 			DataLine.Info info;
@@ -109,7 +104,6 @@ public class MainUI {
 		private JButton btnCreateAccount = new JButton("Skapa ett nytt konto");
 		private JButton btnHowToPlay = new JButton("Om spelet");
 		private JButton btnHighScore = new JButton("High score");
-		// private ButtonGroup btnGroup = new ButtonGroup();
 
 		// Image
 		private ImageIcon iconHogwarts;
@@ -158,13 +152,8 @@ public class MainUI {
 			centerPanel.setBackground(Color.BLACK);
 
 			centerPanel.add(Box.createRigidArea(new Dimension(500, 25)));
-			iconHogwarts = new ImageIcon("C:/Code Quiz/Hogwarts.png");
+			iconHogwarts = new ImageIcon("src/media/Hogwarts.png");
 			centerPanel.add(new JLabel(iconHogwarts));
-			// iconFont = new ImageIcon("C:/Code Quiz/HP.png");
-			// iconFont = new ImageIcon("C:/Code Quiz/Ron.gif");
-
-			// centerPanel.add(new JLabel(iconFont));
-
 			return centerPanel;
 		}
 
@@ -218,15 +207,15 @@ public class MainUI {
 			btnCreateAccount.addActionListener(menuListener);
 			btnHowToPlay.addActionListener(menuListener);
 			btnHighScore.addActionListener(menuListener);
-
 		}
 
 		public class MenuListener implements ActionListener {
+			
 			public void actionPerformed(ActionEvent e) {
 				if (e.getSource() == btnPlay) {
 					mainFrame.dispose();
+					clip.stop();
 					cont.play();
-
 				}
 			}
 		}
@@ -235,9 +224,7 @@ public class MainUI {
 	public static void main(String[] args) {
 		SwingUtilities.invokeLater(new Runnable() {
 			public void run() {
-
 				new MainUI(new QuizController());
-
 			}
 		});
 	}
