@@ -7,7 +7,6 @@ import javax.swing.ImageIcon;
 
 public class QuizScenario implements Serializable {
 	
-	private ArrayList<QuizScenario> scenario = new ArrayList<QuizScenario>();
 	private ImageIcon storyPic;
 	private ImageIcon correctPic;
 	private ImageIcon incorrectPic;

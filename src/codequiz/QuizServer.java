@@ -44,6 +44,7 @@ public class QuizServer {
 						if (socket != null) {
 							socket.close();
 						}
+						System.out.println("Server avslutad");
 					}
 				}
 			} catch (Exception e) {
