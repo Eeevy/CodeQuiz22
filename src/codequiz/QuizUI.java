@@ -40,7 +40,6 @@ public class QuizUI extends JPanel {
 		add(eastPanel(), BorderLayout.EAST);
 		add(westPanel(), BorderLayout.WEST);
 		add(southPanel(), BorderLayout.SOUTH);
-	
 		
 
 		
@@ -102,7 +101,7 @@ public class QuizUI extends JPanel {
 		public void actionPerformed(ActionEvent e) {
 			controller.getQuestion();
 			btnSubmit.setEnabled(true);
-			// lblResult.setText("");
+			 lblResult.setText("");
 			
 		}
 	}
@@ -112,6 +111,7 @@ public class QuizUI extends JPanel {
 			btnSubmit.setEnabled(false);
 			String answer = null;
 			String correctAnswer = controller.getCorrectAnswer();
+			System.out.println(correctAnswer);
 			if (rb1.isSelected()) {
 				answer = rb1.getText();
 			}
