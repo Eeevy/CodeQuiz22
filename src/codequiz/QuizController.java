@@ -8,13 +8,16 @@ import java.util.LinkedList;
 import javax.swing.ImageIcon;
 import javax.swing.JFrame;
 
-public class QuizController {
+public class QuizController extends Thread {
 
+<<<<<<< HEAD
 	private JFrame ui;
 	private User user;
 	private HogwartsHouse house;
 	private QuizServer server;
-	
+/**
+ * hej	
+ */
 
 	public QuizController() {
 		
@@ -23,13 +26,61 @@ public class QuizController {
 	
 	public void play(){
 		
+=======
+	// private LinkedList<Question> list = new LinkedList<Question>();
+	private Game game;
+	private ArrayList<Question> question;
+	private JFrame ui;
+	private User user;
+	private HogwartsHouse house;
+	private Socket socket;
+	private ObjectInputStream ois;
+	private ObjectOutputStream oos;
+	private String ip = "127.0.0.1";
+
+	public QuizController(String ip, int port) throws IOException {
+		socket = new Socket(ip, port);
+		ois = new ObjectInputStream(new BufferedInputStream(socket.getInputStream()));// läser från denna socket
+		oos = new ObjectOutputStream(new BufferedOutputStream(socket.getOutputStream()));// skriver på denna socket
+		new Listener().start();
+
 	}
 	
-	public void showUI() {
+	public Question getQuestion() {			
+		return game.getQuestion();
+>>>>>>> ba8b21f8e0611370957d187076414b8a85286c66
+	}
+	
+	public void play(){
 		
 	}
 	
-	public void setUI(JFrame ui) {
+
+	private class Listener extends Thread {
+		public void run() {
+			try {
+				while (true) {
+					game = (Game) ois.readObject();
+					
+				}
+			} catch (IOException | ClassNotFoundException e) {
+			}
+			try {
+				socket.close();
+			} catch (IOException e) {
+			}
+		}
+		
+//		public void showUI() {
+//
+//		}
+//
+//		public void setUI(JFrame ui) {
+//
+//		}
+
 		
 	}
+
+	
 }

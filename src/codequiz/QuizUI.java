@@ -10,7 +10,7 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
 public class QuizUI extends JPanel {
-	private QuizController controller = new QuizController();
+	private QuizController controller;
 
 	private JPanel westPanel;
 	private JPanel eastPanel;
