@@ -11,11 +11,16 @@ import java.awt.event.ActionListener;
 
 public class QuizUI extends JPanel {
 	private QuizController controller;
-
-	private JPanel westPanel;
+	
+	private JPanel gamePanel;
+	private JPanel questionPanel;
 	private JPanel eastPanel;
+	private JPanel westPanel;
 	private JPanel southPanel;
-	private JTextField tfQuestion = new JTextField();
+	private JPanel northPanel;
+	//private JTextField tfQuestion = new JTextField();
+	private JLabel lblQuestion = new JLabel();
+
 	private JTextField tfAnswers = new JTextField();
 	private JButton btnSubmit = new JButton("OK");
 	private JButton btnNewQuestion = new JButton("Ny fråga");
@@ -27,75 +32,120 @@ public class QuizUI extends JPanel {
 	private JLabel lblPoints;
 	private JLabel lblLives;
 	private JLabel lblResult = new JLabel("");
+	private JLabel lblBackground = new JLabel(new ImageIcon("C:/Code Quiz/bilder/diary.jpg"));
 	private int lives = 5;
 	private int points = 0;
-	private Question question;
 	private int id;
 
 	public QuizUI() {
-
-		setLayout(new BorderLayout());
-		setPreferredSize(new Dimension(900, 500));
-
-		add(eastPanel(), BorderLayout.EAST);
-		add(westPanel(), BorderLayout.WEST);
-		add(southPanel(), BorderLayout.SOUTH);
+		
+		setBackground(Color.BLACK);
+		setPreferredSize(new Dimension(800, 600));
+		lblBackground.setLayout(new BorderLayout());
+		add(lblBackground);
+		
+		lblBackground.add(questionPanel(), BorderLayout.CENTER);
+		lblBackground.add(eastPanel(), BorderLayout.EAST);
+		lblBackground.add(westPanel(), BorderLayout.WEST);
+		lblBackground.add(southPanel(), BorderLayout.SOUTH);
+		lblBackground.add(northPanel(), BorderLayout.NORTH);
 		
 
 		
+	}
+	
+		/**
+		 * opaque panel
+		 * @return
+		 */
+	public JPanel northPanel() {
+		northPanel = new JPanel(new FlowLayout());
+		northPanel.setPreferredSize(new Dimension(30, 20));
+		northPanel.setOpaque(false);
+		
+		return northPanel;
+	}
+	/**
+	 * opaque panel
+	 * @return
+	 */
+	public JPanel westPanel() {
+		westPanel = new JPanel(new FlowLayout());
+		westPanel.setPreferredSize(new Dimension(30, 20));
+		westPanel.setOpaque(false);
+		
+		return westPanel;
+	}
+	/**
+	 * opaque panel
+	 * @return
+	 */
+	public JPanel eastPanel() {
+		eastPanel = new JPanel(new FlowLayout());
+		eastPanel.setPreferredSize(new Dimension(430, 150));
+		eastPanel.setOpaque(false);
+		
+		return eastPanel;
+	}
+
+	/**
+	 * Contains game questions
+	 * @return
+	 */
+	public JPanel questionPanel() {
+		questionPanel = new JPanel(new GridLayout(8, 1));
+		questionPanel.setPreferredSize(new Dimension(420, 20));
+		questionPanel.setOpaque(false);
+
+		//questionPanel.setBorder(BorderFactory.createLineBorder(Color.BLACK));
+		questionPanel.add(lblQuestion);
+		
+		lblQuestion.setPreferredSize(new Dimension(300, 50));
+		lblQuestion.setOpaque(false);	
+
+		buttonGroup.add(rb1);
+		buttonGroup.add(rb2);
+		buttonGroup.add(rb3);
+		buttonGroup.add(rb4);
+		rb1.setOpaque(false);
+		rb2.setOpaque(false);
+		rb3.setOpaque(false);
+		rb4.setOpaque(false);
+
+		btnSubmit.setEnabled(false);
+		btnSubmit.setOpaque(false);
+		
+		questionPanel.add(new JLabel("Välj ett svar:"));
+		questionPanel.add(rb1);
+		questionPanel.add(rb2);
+		questionPanel.add(rb3);
+		questionPanel.add(rb4);
+		questionPanel.add(lblResult);
+		questionPanel.add(btnSubmit);
+		btnSubmit.addActionListener(new SubmitListener());
+		
+		return questionPanel;
+	}
+	
+	public JPanel southPanel() {
+		southPanel = new JPanel(new GridLayout(2, 2));
+		southPanel.setPreferredSize(new Dimension(100, 50));
+		southPanel.setBorder(BorderFactory.createLineBorder(Color.BLACK));
+		southPanel.add(lblPoints = new JLabel("POÄNG: " + points));
+		southPanel.add(lblLives = new JLabel("Liv: " + lives));
+		southPanel.add(btnNewQuestion);
+		btnNewQuestion.setOpaque(false);
+		southPanel.setOpaque(false);
+		btnNewQuestion.addActionListener(new QuestionListener());
+
+		return southPanel;
+
 	}
 	
 	public void setController(QuizController controller){
 		this.controller = controller;
 	}
 
-	public JPanel westPanel() {
-		westPanel = new JPanel(new GridLayout(7, 1));
-		westPanel.setPreferredSize(new Dimension(420, 20));
-		westPanel.setBorder(BorderFactory.createLineBorder(Color.BLACK));
-		buttonGroup.add(rb1);
-		buttonGroup.add(rb2);
-		buttonGroup.add(rb3);
-		buttonGroup.add(rb4);
-		btnSubmit.setEnabled(false);
-		westPanel.add(new JLabel("Välj ett svar:"));
-		westPanel.add(rb1);
-		westPanel.add(rb2);
-		westPanel.add(rb3);
-		westPanel.add(rb4);
-		westPanel.add(lblResult);
-		westPanel.add(btnSubmit);
-
-		btnSubmit.addActionListener(new SubmitListener());
-
-		return westPanel;
-	}
-
-	public JPanel eastPanel() {
-		eastPanel = new JPanel(new FlowLayout());
-		eastPanel.setPreferredSize(new Dimension(420, 150));
-		eastPanel.setBorder(BorderFactory.createLineBorder(Color.BLACK));
-		eastPanel.add(new JLabel("Fråga"));
-		tfQuestion.setPreferredSize(new Dimension(400, 250));
-		tfQuestion.setEnabled(false);
-		eastPanel.add(tfQuestion);
-		eastPanel.add(btnNewQuestion);
-		tfQuestion.addActionListener(new QuestionListener());
-		btnNewQuestion.addActionListener(new QuestionListener());
-
-		return eastPanel;
-
-	}
-
-	public JPanel southPanel() {
-		southPanel = new JPanel(new GridLayout(2, 1));
-		southPanel.setPreferredSize(new Dimension(100, 50));
-		southPanel.setBorder(BorderFactory.createLineBorder(Color.BLACK));
-		southPanel.add(lblPoints = new JLabel("POÄNG: " + points));
-		southPanel.add(lblLives = new JLabel("Liv: " + lives));
-		return southPanel;
-
-	}
 
 	private class QuestionListener implements ActionListener {
 		public void actionPerformed(ActionEvent e) {
@@ -141,7 +191,7 @@ public class QuizUI extends JPanel {
 	}
 
 	public void setQuestion(String question) {
-		tfQuestion.setText(question);
+		lblQuestion.setText(question);
 	}
 
 	public void setAlternatives(String al1, String al2, String al3, String al4) {

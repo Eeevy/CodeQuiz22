@@ -36,8 +36,8 @@ public class Client {
 			System.out.println("Listener: run()");
 			Game game;
 			try {
-				oos.writeUTF("Welcome");
-				oos.flush();
+				oos.writeUTF("Welcome");//onödig?
+				oos.flush();//onödig?
 				game = (Game)ois.readObject();
 					//System.out.println(game.getQuestion().getQuestion());
 

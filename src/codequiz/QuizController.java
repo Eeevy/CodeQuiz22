@@ -32,9 +32,9 @@ public class QuizController extends Thread {
 	}
 
 	public void getQuestion() {
-	//	game = new Game();//kommer sedan tas emot av servern
+	//	game = new Game();//ta bort
 		
-		//Question question;
+		//Question question;//ta bort
 		this.question = game.getQuestion(i);
 		quizUI.setQuestion(question.getQuestion());
 		quizUI.setAlternatives(question.getAnswer1(), question.getAnswer2(), question.getAnswer3(), question.getAnswer4());

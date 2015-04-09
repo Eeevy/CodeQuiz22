@@ -13,14 +13,14 @@ public class Question implements Serializable {
     private int ID;
       
     public Question(String inQuestion, String inAnswer1, String inAnswer2, String inAnswer3, String inAnswer4, 
-            String inCorrectAnswer, int inID) {
+            String correctAnswer, int inID) {
           
         this.question = inQuestion;
         this.answer1 = inAnswer1;
         this.answer2 = inAnswer2;
         this.answer3 = inAnswer3;
         this.answer4 = inAnswer4;
-        this.correctanswer = inCorrectAnswer;//Emma was here
+        this.correctanswer = correctAnswer;//Emma was here
         this.ID = inID;
     }
   
