@@ -11,8 +11,11 @@ public class QuizScenario implements Serializable {
 	private ImageIcon correctPic;
 	private ImageIcon incorrectPic;
 	
+	
 	public QuizScenario(ImageIcon storyPic, ImageIcon correctPic, ImageIcon incorrectPic) {
-		
+		this.storyPic = storyPic;
+		this.correctPic = correctPic;
+		this.incorrectPic = incorrectPic;
 	}
 	
 	public ImageIcon getStoryPic(int index) {
