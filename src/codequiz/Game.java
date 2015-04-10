@@ -10,8 +10,7 @@ public class Game implements Serializable {
 	private LinkedList<Question> questionlist = new LinkedList<Question>();
 	private LinkedList<QuizScenario> scenariolist = new LinkedList<QuizScenario>();
 	private Question question, question2, question3;
-	private QuizScenario scenario;
-	private ImageIcon storypic, correctpic,incorrectpic; 
+	private QuizScenario  scenario;
 	private int index = 0;
 
 	
@@ -55,7 +54,9 @@ public class Game implements Serializable {
 				setQuestion();
 	}
 	public void CreateScenario(){
-	scenario = new QuizScenario(storypic,correctpic,incorrectpic);
+	scenario = new QuizScenario(new ImageIcon("/CodeQuiz22/src/media/diary.jpg"),
+			new ImageIcon("/CodeQuiz22/src/media/Correct.jpg"), 
+			new ImageIcon("/CodeQuiz22/src/media/Incorrect.jpg"));
 	setScenario();
 	}
 	
@@ -72,8 +73,8 @@ public class Game implements Serializable {
 	public void setScenario(){
 		scenariolist.add(scenario);
 	}
-	public QuizScenario getScenario(){
-		return scenariolist.peek();
+	public QuizScenario getScenario(int index){
+		return scenariolist.get(index);
 	}
 	
 	public int getSize(){
