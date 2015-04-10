@@ -11,8 +11,8 @@ public class Game implements Serializable {
 	private LinkedList<QuizScenario> scenariolist = new LinkedList<QuizScenario>();
 	private Question question, question2, question3;
 	private QuizScenario  scenario;
-	private int index = 0;
-
+	
+	
 	
 	public Game(){
 		System.out.println("Game: Konstruktor");
