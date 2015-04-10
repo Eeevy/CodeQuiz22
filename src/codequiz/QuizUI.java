@@ -182,6 +182,8 @@ public class QuizUI extends JPanel {
 				lblPoints.setText("POÄNG: " + points);
 
 			} else {
+				ImageIcon icon = controller.setIncorrectScenario();
+				setBackground(icon);
 				lblResult.setText("FEL");
 				points -= 10;
 				lives -= 1;
