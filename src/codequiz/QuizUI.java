@@ -148,6 +148,9 @@ public class QuizUI extends JPanel {
 
 	private class QuestionListener implements ActionListener {
 		public void actionPerformed(ActionEvent e) {
+			//controller.nextQuestion();
+			ImageIcon icon = controller.setQuestionScenario();
+			setBackground(icon);
 			controller.getQuestion();
 			btnSubmit.setEnabled(true);
 			lblResult.setText("");
