@@ -54,9 +54,9 @@ public class Game implements Serializable {
 				setQuestion();
 	}
 	public void CreateScenario(){
-	scenario = new QuizScenario(new ImageIcon("/CodeQuiz22/src/media/diary.jpg"),
-			new ImageIcon("/CodeQuiz22/src/media/Correct.jpg"), 
-			new ImageIcon("/CodeQuiz22/src/media/Incorrect.jpg"));
+	scenario = new QuizScenario(new ImageIcon("src/media/diary.jpg"),
+			new ImageIcon("src/media/Correct.jpg"), 
+			new ImageIcon("src/media/Incorrect.jpg"));
 	setScenario();
 	}
 	
@@ -76,5 +76,5 @@ public class Game implements Serializable {
 	public QuizScenario getScenario(int index){
 		return scenariolist.get(index);
 	}
-
+	
 }
