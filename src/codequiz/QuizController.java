@@ -5,6 +5,7 @@ import java.net.Socket;
 import java.util.ArrayList;
 import java.util.LinkedList;
 
+import javax.swing.ImageIcon;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.SwingUtilities;
@@ -13,6 +14,7 @@ public class QuizController extends Thread {
 
 	private Game game;
 	private Question question = null;
+	private QuizScenario scenario;
 	private JPanel panel;
 	private User user;
 	private HogwartsHouse house;
@@ -20,6 +22,7 @@ public class QuizController extends Thread {
 	private MainUI ui;
 	private QuizUI quizUI;
 	private int i = 0;
+	private int index = 0;
 
 	public QuizController() {
 		
@@ -57,6 +60,25 @@ public class QuizController extends Thread {
 		}
 		
 
+	}
+	
+	public ImageIcon setCorrectScenario(){
+		scenario = game.getScenario();
+		ImageIcon CPic = scenario.getCorrectPic(index);
+		return CPic;
+	}
+	
+	public ImageIcon setIncorrectScenario(){
+		scenario = game.getScenario();
+		ImageIcon IPic = scenario.getCorrectPic(index);
+		return IPic;
+	}
+	
+	public ImageIcon setQuestionScenario(){
+		scenario = game.getScenario();
+		ImageIcon QPic = scenario.getCorrectPic(index);
+		index++;
+		return QPic;
 	}
 	
 	
