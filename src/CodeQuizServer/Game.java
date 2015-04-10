@@ -1,9 +1,11 @@
-package codequiz;
+package CodeQuizServer;
 
 import java.io.Serializable;
 import java.util.LinkedList;
 
 import javax.swing.ImageIcon;
+
+import codequiz.Question;
 
 public class Game implements Serializable {
 	

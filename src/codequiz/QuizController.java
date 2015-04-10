@@ -10,6 +10,9 @@ import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.SwingUtilities;
 
+import CodeQuizServer.Game;
+import CodeQuizServer.QuizScenario;
+
 public class QuizController extends Thread {
 
 	private Game game;

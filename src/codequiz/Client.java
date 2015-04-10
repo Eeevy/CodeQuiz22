@@ -3,6 +3,8 @@ package codequiz;
 import java.net.*;
 import java.io.*;
 
+import CodeQuizServer.Game;
+
 public class Client {
 	private QuizController controller;
 	private Socket socket;

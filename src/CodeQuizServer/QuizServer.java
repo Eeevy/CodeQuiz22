@@ -1,4 +1,4 @@
-package codequiz;
+package CodeQuizServer;
 
 import java.io.*;
 import java.net.ServerSocket;
