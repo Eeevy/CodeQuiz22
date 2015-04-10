@@ -175,6 +175,7 @@ public class QuizUI extends JPanel {
 			}
 
 			if (answer.equals(correctAnswer)) {
+				controller.setCorrectScenario();
 				points += 10;// skall skapas en metod i Controllern
 				lblResult.setText("RÄTT");
 				lblPoints.setText("POÄNG: " + points);
@@ -191,6 +192,10 @@ public class QuizUI extends JPanel {
 
 	public void setQuestion(String question) {
 		lblQuestion.setText(question);
+	}
+	
+	public void setBackground(ImageIcon inIcon) {
+		lblBackground.setIcon(inIcon);
 	}
 
 	public void setAlternatives(String al1, String al2, String al3, String al4) {
