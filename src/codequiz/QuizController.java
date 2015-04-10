@@ -83,7 +83,7 @@ public class QuizController extends Thread {
 //		scenario = game.getScenario();
 //		ImageIcon IPic = scenario.getCorrectPic(index);
 //		return IPic;
-		ImageIcon IPic = new ImageIcon("src/media/Diary.jpg");
+		ImageIcon IPic = new ImageIcon("src/media/Incorrect.jpg");
 		return IPic;
 	}
 	
