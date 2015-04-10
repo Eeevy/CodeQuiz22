@@ -18,15 +18,15 @@ public class QuizScenario implements Serializable {
 		this.incorrectPic = incorrectPic;
 	}
 	
-	public ImageIcon getStoryPic(int index) {
+	public ImageIcon getStoryPic() {
 		return storyPic;
 	}
 	
-	public ImageIcon getCorrectPic(int index) {
+	public ImageIcon getCorrectPic() {
 		return correctPic;
 	}
 	
-	public ImageIcon getIncorrectPic(int index) {
+	public ImageIcon getIncorrectPic() {
 		return incorrectPic;
 	}
 }

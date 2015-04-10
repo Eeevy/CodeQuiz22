@@ -63,28 +63,28 @@ public class QuizController extends Thread {
 	}
 	
 	public ImageIcon setQuestionScenario(){
-//		scenario = game.getScenario();
-//		ImageIcon QPic = scenario.getCorrectPic(index);
-//		index++;
-	//return QPic;
-		ImageIcon QPic = new ImageIcon("src/media/Incorrect.jpg");
+		scenario = game.getScenario(index);
+		ImageIcon QPic = scenario.getCorrectPic();
+		index++;
 		return QPic;
+		// ImageIcon QPic = new ImageIcon("src/media/Incorrect.jpg");
+		// return QPic;
 	}
 	
 	public ImageIcon setCorrectScenario(){
-//		scenario = game.getScenario();
-//		ImageIcon CPic = scenario.getCorrectPic(index);
-		//return CPic;
-		ImageIcon CPic = new ImageIcon("src/media/Correct.jpg");
+		scenario = game.getScenario(index);
+		ImageIcon CPic = scenario.getCorrectPic();
 		return CPic;
+//		ImageIcon CPic = new ImageIcon("src/media/Correct.jpg");
+//		return CPic;
 	}
 	
 	public ImageIcon setIncorrectScenario(){
-//		scenario = game.getScenario();
-//		ImageIcon IPic = scenario.getCorrectPic(index);
-//		return IPic;
-		ImageIcon IPic = new ImageIcon("src/media/Incorrect.jpg");
+		scenario = game.getScenario(index);
+		ImageIcon IPic = scenario.getCorrectPic();
 		return IPic;
+//		ImageIcon IPic = new ImageIcon("src/media/Incorrect.jpg");
+//		return IPic;
 	}
 	
 	
