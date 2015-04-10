@@ -17,7 +17,7 @@ public class Game implements Serializable {
 	public Game(){
 		System.out.println("Game: Konstruktor");
 		createQuestions();
-		
+		CreateScenario();
 //		setQuestion();
 //		scenario = new QuizScenario(storypic,correctpic,incorrectpic);
 //		setScenario();
@@ -76,10 +76,5 @@ public class Game implements Serializable {
 	public QuizScenario getScenario(int index){
 		return scenariolist.get(index);
 	}
-	
-	public int getSize(){
-		return questionlist.size();
-	}
-	
 
 }
