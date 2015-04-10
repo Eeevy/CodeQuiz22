@@ -54,9 +54,9 @@ public class Game implements Serializable {
 				setQuestion();
 	}
 	public void CreateScenario(){
-	scenario = new QuizScenario(new ImageIcon("src/media/diary.jpg"),
-			new ImageIcon("src/media/Correct.jpg"), 
-			new ImageIcon("src/media/Incorrect.jpg"));
+	scenario = new QuizScenario(new ImageIcon("src/media/Story1.jpg"),
+			new ImageIcon("src/media/Correct1.jpg"), 
+			new ImageIcon("src/media/Incorrect1.jpg"));
 	setScenario();
 	}
 	

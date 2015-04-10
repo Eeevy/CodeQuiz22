@@ -32,7 +32,7 @@ public class QuizUI extends JPanel {
 	private JLabel lblLives;
 	private JLabel lblResult = new JLabel("");
 	private JLabel lblBackground = new JLabel(new ImageIcon(
-			"src/media/diary.jpg"));
+			"src/media/Story1.jpg"));
 	private int lives = 5;
 	private int points = 0;
 	private int id;
