@@ -153,6 +153,7 @@ public class QuizUI extends JPanel {
 			ImageIcon icon = controller.setQuestionScenario();
 			setBackground(icon);
 			controller.getQuestion();
+			buttonGroup.clearSelection();
 			btnSubmit.setEnabled(true);
 			lblResult.setText("");
 		}
