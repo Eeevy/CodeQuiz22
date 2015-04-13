@@ -22,7 +22,7 @@ public class QuizUI extends JPanel {
 
 //	private JTextField tfAnswers = new JTextField();
 	private JButton btnSubmit = new JButton("OK");
-	private JButton btnNewQuestion = new JButton("Ny fråga");
+	private JButton btnNewQuestion = new JButton("Starta spelet");
 	private ButtonGroup buttonGroup = new ButtonGroup();
 	private JRadioButton rb1 = new JRadioButton(" Alternativ 1");
 	private JRadioButton rb2 = new JRadioButton(" Alternativ 2");
@@ -33,7 +33,7 @@ public class QuizUI extends JPanel {
 	private JLabel lblLives;
 	private JLabel lblResult = new JLabel("");
 	private JLabel lblBackground = new JLabel(new ImageIcon(
-			"src/media/Story1.jpg"));
+			"src/media/howToPlay.png"));
 	private int lives = 1;
 	private int points = 0;
 	private int id;
@@ -50,6 +50,8 @@ public class QuizUI extends JPanel {
 		lblBackground.add(westPanel(), BorderLayout.WEST);
 		lblBackground.add(southPanel(), BorderLayout.SOUTH);
 		lblBackground.add(northPanel(), BorderLayout.NORTH);
+		questionPanel.setVisible(false);
+
 		
 	}
 
@@ -152,9 +154,12 @@ public class QuizUI extends JPanel {
 	private class QuestionListener implements ActionListener {
 		public void actionPerformed(ActionEvent e) {
 			//controller.nextQuestion();
+			questionPanel.setVisible(true);
+			btnNewQuestion.setText("Nästa fråga");
+			btnNewQuestion.setEnabled(false);
 			controller.increaseIndex();
-	//		ImageIcon icon = controller.setQuestionScenario();
-	//		setBackground(icon);
+			ImageIcon icon = controller.setQuestionScenario();
+			setBackground(icon);
 			controller.getQuestion();
 			buttonGroup.clearSelection();
 			btnSubmit.setEnabled(true);
@@ -183,28 +188,34 @@ public class QuizUI extends JPanel {
 			}
 
 			if (answer.equals(correctAnswer)) {
-			//	ImageIcon icon = controller.setCorrectScenario();
-			//	setBackground(icon);
+				ImageIcon icon = controller.setCorrectScenario();
+				setBackground(icon);
 				points += 10;// skall skapas en metod i Controllern
 				lblResult.setText("RÄTT!");
 				lblResult.setForeground(Color.GREEN);
 				lblPoints.setText("POÄNG: " + points);
+				btnNewQuestion.setEnabled(true);
+
 
 			} else {
-			//	ImageIcon icon = controller.setIncorrectScenario();
-			//	setBackground(icon);
+				ImageIcon icon = controller.setIncorrectScenario();
+				setBackground(icon);
 				lblResult.setText("FEL!");
 				lblResult.setForeground(Color.RED);
 				points -= 10;
 				lives -= 1;
 				lblPoints.setText("POÄNG: " + points);
 				lblLives.setText("LIV: " + lives);
+				btnNewQuestion.setEnabled(true);
+
 			}
 			if(lives==0){
 				setBackground(new ImageIcon("src/media/dead.jpeg"));
 				questionPanel.setVisible(false);
 				btnNewQuestion.setVisible(false);
 				btnback.setVisible(true);
+				btnNewQuestion.setEnabled(true);
+
 			}
 		}
 	}
