@@ -14,6 +14,7 @@ import javax.sound.sampled.DataLine;
 import javax.swing.*;
 
 /**
+ * Hej Gustav! :D
  * Visar ett startfönster med huvudmeny.
  * 
  * @author Evelyn Gustavsson
