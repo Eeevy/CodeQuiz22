@@ -25,7 +25,7 @@ public class QuizController extends Thread {
 	private MainUI ui;
 	private QuizUI quizUI;
 	private int i = 0;
-	private int index = 0;
+	private int index = -1;
 
 	public QuizController() {
 		
@@ -39,8 +39,6 @@ public class QuizController extends Thread {
 
 	public void getQuestion() {
 	//	game = new Game();//ta bort
-		
-		//Question question;//ta bort
 		this.question = game.getQuestion(i);
 		quizUI.setQuestion(question.getQuestion());
 		quizUI.setAlternatives(question.getAnswer1(), question.getAnswer2(), question.getAnswer3(), question.getAnswer4());
@@ -72,7 +70,6 @@ public class QuizController extends Thread {
 	public ImageIcon setQuestionScenario(){
 		scenario = game.getScenario(index);
 		ImageIcon QPic = scenario.getStoryPic();
-		//index++;
 		return QPic;
 //		 ImageIcon QPic = new ImageIcon("src/media/diary.jpg");//fusk
 //		 return QPic;

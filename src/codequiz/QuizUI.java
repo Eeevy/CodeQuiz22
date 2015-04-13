@@ -149,6 +149,7 @@ public class QuizUI extends JPanel {
 	private class QuestionListener implements ActionListener {
 		public void actionPerformed(ActionEvent e) {
 			//controller.nextQuestion();
+			controller.increaseIndex();
 			ImageIcon icon = controller.setQuestionScenario();
 			setBackground(icon);
 			controller.getQuestion();

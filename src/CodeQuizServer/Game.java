@@ -100,8 +100,8 @@ public class Game implements Serializable {
 						"src/media/Incorrect1.jpg"));
 		scenario1 = new QuizScenario(new ImageIcon("src/media/dementorer.jpeg"), new ImageIcon("src/media/Dementorerb.jpeg"), 
 				new ImageIcon("src/media/dementorerv.jpeg"));
-		scenario2 = new QuizScenario(new ImageIcon("src/media/Scenario2intro.jpeg"), new ImageIcon("src/media/Scenario2correct.jpeg"), 
-				new ImageIcon("src/media/Scenario2inCorrect.jpeg"));
+//		scenario2 = new QuizScenario(new ImageIcon("src/media/Scenario2intro.jpeg"), new ImageIcon("src/media/Scenario2correct.jpeg"), 
+//				new ImageIcon("src/media/Scenario2inCorrect.jpeg"));
 		setScenario();
 	}
 
