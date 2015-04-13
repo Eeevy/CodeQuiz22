@@ -100,8 +100,8 @@ public class Game implements Serializable {
 						"src/media/Incorrect1.jpg"));
 		scenario1 = new QuizScenario(new ImageIcon("src/media/dementorer.jpeg"), new ImageIcon("src/media/Dementorerb.jpeg"), 
 				new ImageIcon("src/media/dementorerv.jpeg"));
-//		scenario2 = new QuizScenario(new ImageIcon("src/media/Scenario2intro.jpeg"), new ImageIcon("src/media/Scenario2correct.jpeg"), 
-//				new ImageIcon("src/media/Scenario2inCorrect.jpeg"));
+		scenario2 = new QuizScenario(new ImageIcon("src/media/Scenario2intro.jpg"), new ImageIcon("src/media/Scenario2correct.jpg"), 
+				new ImageIcon("src/media/Scenario2inCorrect.jpg"));
 		setScenario();
 	}
 
@@ -125,6 +125,7 @@ public class Game implements Serializable {
 	public void setScenario() {
 		scenariolist.add(scenario);
 		scenariolist.add(scenario1);
+		scenariolist.add(scenario2);
 	}
 
 	public QuizScenario getScenario(int index) {
