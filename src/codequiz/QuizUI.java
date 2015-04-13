@@ -150,8 +150,8 @@ public class QuizUI extends JPanel {
 		public void actionPerformed(ActionEvent e) {
 			//controller.nextQuestion();
 			controller.increaseIndex();
-			ImageIcon icon = controller.setQuestionScenario();
-			setBackground(icon);
+	//		ImageIcon icon = controller.setQuestionScenario();
+	//		setBackground(icon);
 			controller.getQuestion();
 			buttonGroup.clearSelection();
 			btnSubmit.setEnabled(true);
@@ -180,22 +180,26 @@ public class QuizUI extends JPanel {
 			}
 
 			if (answer.equals(correctAnswer)) {
-				ImageIcon icon = controller.setCorrectScenario();
-				setBackground(icon);
+			//	ImageIcon icon = controller.setCorrectScenario();
+			//	setBackground(icon);
 				points += 10;// skall skapas en metod i Controllern
 				lblResult.setText("RÄTT!");
 				lblResult.setForeground(Color.GREEN);
 				lblPoints.setText("POÄNG: " + points);
 
 			} else {
-				ImageIcon icon = controller.setIncorrectScenario();
-				setBackground(icon);
+			//	ImageIcon icon = controller.setIncorrectScenario();
+			//	setBackground(icon);
 				lblResult.setText("FEL!");
 				lblResult.setForeground(Color.RED);
 				points -= 10;
 				lives -= 1;
 				lblPoints.setText("POÄNG: " + points);
 				lblLives.setText("LIV: " + lives);
+			}
+			if(lives==0){
+				setBackground(new ImageIcon("src/media/dead.jpeg"));
+				questionPanel.setVisible(false);
 			}
 		}
 	}

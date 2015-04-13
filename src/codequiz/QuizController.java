@@ -99,6 +99,7 @@ public class QuizController extends Thread {
 		this.game = game;
 	}
 
+	
 	 public void showUI() {
 	
 	 }
