@@ -14,7 +14,7 @@ import javax.sound.sampled.DataLine;
 import javax.swing.*;
 
 /**
- * Visar ett startfönster med huvudmeny. To be continued...
+ * Visar ett startfönster med huvudmeny.
  * 
  * @author Evelyn Gustavsson
  *

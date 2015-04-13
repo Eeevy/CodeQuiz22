@@ -181,13 +181,15 @@ public class QuizUI extends JPanel {
 				ImageIcon icon = controller.setCorrectScenario();
 				setBackground(icon);
 				points += 10;// skall skapas en metod i Controllern
-				lblResult.setText("RÄTT");
+				lblResult.setText("RÄTT!");
+				lblResult.setForeground(Color.GREEN);
 				lblPoints.setText("POÄNG: " + points);
 
 			} else {
 				ImageIcon icon = controller.setIncorrectScenario();
 				setBackground(icon);
-				lblResult.setText("FEL");
+				lblResult.setText("FEL!");
+				lblResult.setForeground(Color.RED);
 				points -= 10;
 				lives -= 1;
 				lblPoints.setText("POÄNG: " + points);

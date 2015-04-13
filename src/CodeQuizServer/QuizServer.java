@@ -12,7 +12,6 @@ import java.net.Socket;
  */
 public class QuizServer {
 
-
 	public QuizServer(int port) {
 		System.out.println("QuizServer: konstruktor");
 		new Connection(port).start();
@@ -33,9 +32,9 @@ public class QuizServer {
 			try (ServerSocket serversocket = new ServerSocket(port)) {
 				while (!Thread.interrupted()) {
 					try {
-						System.out.println("Servern: väntar på klient...");
+						System.out.println("Servern: Väntar på klient...");
 						socket = serversocket.accept();
-						System.out.println("Servern: uppkopplad...");
+						System.out.println("Servern: Uppkopplad...");
 						new ClientHandler(socket);
 					} catch (IOException ioe) {
 						System.out.println(ioe);
@@ -61,15 +60,14 @@ public class QuizServer {
 			System.out.println("ClientHandler: Konstruktor");
 			this.socket = socket;
 			System.out.println("En socket");
-			
-			oos = new ObjectOutputStream(
-					socket.getOutputStream());
-			ois = new ObjectInputStream(
-					socket.getInputStream());
+
+			oos = new ObjectOutputStream(socket.getOutputStream());
+			ois = new ObjectInputStream(socket.getInputStream());
 			System.out.println("Fel på strömmarna");
 			start();
 		}
-		public void newGame(){
+
+		public void newGame() {
 			System.out.println("ClientHandler: newGame()");
 			game = new Game();
 
@@ -77,21 +75,19 @@ public class QuizServer {
 
 		public void run() {
 			System.out.println("ClientHandler: run()");
-			try{
+			try {
 				String mess = ois.readUTF();
 				System.out.println("Servern säger:" + mess);
 
-				//while(){
-					try{
-						newGame();
-						System.out.println("nu skickar vi objekt!");
-						oos.writeObject(game);
-						oos.flush();
-					}catch(Exception ioe){
-						System.out.println(ioe);
-					}
-				//}
-			}catch(Exception e){
+				try {
+					newGame();
+					System.out.println("Nu skickar vi objekt!");
+					oos.writeObject(game);
+					oos.flush();
+				} catch (Exception ioe) {
+					System.out.println(ioe);
+				}
+			} catch (Exception e) {
 				System.out.println(e);
 			}
 		}
