@@ -28,12 +28,13 @@ public class QuizUI extends JPanel {
 	private JRadioButton rb2 = new JRadioButton(" Alternativ 2");
 	private JRadioButton rb3 = new JRadioButton(" Alternativ 3");
 	private JRadioButton rb4 = new JRadioButton(" Alternativ 4");
+	private JButton btnback = new JButton("Huvudmeny");
 	private JLabel lblPoints;
 	private JLabel lblLives;
 	private JLabel lblResult = new JLabel("");
 	private JLabel lblBackground = new JLabel(new ImageIcon(
 			"src/media/Story1.jpg"));
-	private int lives = 5;
+	private int lives = 1;
 	private int points = 0;
 	private int id;
 
@@ -49,6 +50,7 @@ public class QuizUI extends JPanel {
 		lblBackground.add(westPanel(), BorderLayout.WEST);
 		lblBackground.add(southPanel(), BorderLayout.SOUTH);
 		lblBackground.add(northPanel(), BorderLayout.NORTH);
+		
 	}
 
 	/**
@@ -73,7 +75,6 @@ public class QuizUI extends JPanel {
 		westPanel = new JPanel(new FlowLayout());
 		westPanel.setPreferredSize(new Dimension(30, 20));
 		westPanel.setOpaque(false);
-
 		return westPanel;
 	}
 
@@ -86,7 +87,9 @@ public class QuizUI extends JPanel {
 		eastPanel = new JPanel(new FlowLayout());
 		eastPanel.setPreferredSize(new Dimension(430, 150));
 		eastPanel.setOpaque(false);
-
+		btnback.setVisible(false);
+		eastPanel.add(btnback);
+		
 		return eastPanel;
 	}
 
@@ -138,7 +141,7 @@ public class QuizUI extends JPanel {
 		btnNewQuestion.setOpaque(false);
 		southPanel.setOpaque(false);
 		btnNewQuestion.addActionListener(new QuestionListener());
-
+	
 		return southPanel;
 	}
 
@@ -200,6 +203,8 @@ public class QuizUI extends JPanel {
 			if(lives==0){
 				setBackground(new ImageIcon("src/media/dead.jpeg"));
 				questionPanel.setVisible(false);
+				btnNewQuestion.setVisible(false);
+				btnback.setVisible(true);
 			}
 		}
 	}
