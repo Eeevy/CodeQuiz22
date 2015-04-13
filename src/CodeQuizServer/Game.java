@@ -13,7 +13,7 @@ public class Game implements Serializable {
 	private LinkedList<QuizScenario> scenariolist = new LinkedList<QuizScenario>();
 	private Question question1, question2, question3, question4, question5,
 			question6, question7, question8, question9;
-	private QuizScenario scenario;
+	private QuizScenario scenario, scenario1, scenario2;
 
 	public Game() {
 		System.out.println("Game: Konstruktor");
@@ -98,6 +98,8 @@ public class Game implements Serializable {
 		scenario = new QuizScenario(new ImageIcon("src/media/Story1.jpg"),
 				new ImageIcon("src/media/Correct1.jpg"), new ImageIcon(
 						"src/media/Incorrect1.jpg"));
+		scenario1 = new QuizScenario(new ImageIcon("src/media/dementorer.jpeg"), new ImageIcon("src/media/Dementorerb.jpeg"), 
+				new ImageIcon("src/media/dementorerv.jpeg"));
 		setScenario();
 	}
 
@@ -120,6 +122,7 @@ public class Game implements Serializable {
 
 	public void setScenario() {
 		scenariolist.add(scenario);
+		scenariolist.add(scenario1);
 	}
 
 	public QuizScenario getScenario(int index) {
