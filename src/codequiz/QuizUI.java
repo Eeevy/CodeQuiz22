@@ -34,9 +34,8 @@ public class QuizUI extends JPanel {
 	private JLabel lblResult = new JLabel("");
 	private JLabel lblBackground = new JLabel(new ImageIcon(
 			"src/media/howToPlay.png"));
-	private int lives = 1;
+	private int lives = 2;
 	private int points = 0;
-	private int id;
 
 	public QuizUI() {
 
@@ -53,6 +52,10 @@ public class QuizUI extends JPanel {
 		questionPanel.setVisible(false);
 
 		
+	}
+	
+	public void setController(QuizController controller) {
+		this.controller = controller;
 	}
 
 	/**
@@ -145,10 +148,6 @@ public class QuizUI extends JPanel {
 		btnNewQuestion.addActionListener(new QuestionListener());
 	
 		return southPanel;
-	}
-
-	public void setController(QuizController controller) {
-		this.controller = controller;
 	}
 
 	private class QuestionListener implements ActionListener {
