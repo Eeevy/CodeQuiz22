@@ -43,6 +43,7 @@ public class MainUI {
 		mainFrame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		mainFrame.add(panel);
 		mainFrame.pack();
+		mainFrame.setResizable(false);
 		mainFrame.setVisible(true);
 	}
 
