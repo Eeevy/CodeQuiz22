@@ -11,7 +11,7 @@ class ResultUI extends JPanel {
 	private JLabel labelImageGryff = new JLabel(new ImageIcon("/Users/gustavbodestad/Documents/Skola/Eclipse/JavaP/Filer/Gryffindor.png"));
 	private JLabel labelImageHuff = new JLabel(new ImageIcon("/Users/gustavbodestad/Documents/Skola/Eclipse/JavaP/Filer/hufflepuff.png"));
 	private JLabel labelImageRav = new JLabel(new ImageIcon("/Users/gustavbodestad/Documents/Skola/Eclipse/JavaP/Filer/Ravenclaw.png"));
-	private JLabel background = new JLabel(new ImageIcon("/Users/gustavbodestad/Documents/Skola/Eclipse/JavaP/Filer/bakgrund4.jpg"));
+	private JLabel background = new JLabel(new ImageIcon("/Users/gustavbodestad/Documents/Skola/Eclipse/CodeQuiz/src/media/bakgrund7.jpg"));
 	
 	private JLabel lblGryff = new JLabel("Gryffindor: 1500");
 	private JLabel lblRav = new JLabel("Ravenclaw: 1500");
@@ -41,6 +41,7 @@ class ResultUI extends JPanel {
 		lblSly.setForeground(Color.WHITE);
 		lblSly.setHorizontalAlignment(SwingConstants.CENTER);
 		lblSly.setVerticalAlignment(SwingConstants.CENTER);
+		lblSly.setOpaque(false);
 		pnl1.add(lblSly, BorderLayout.SOUTH);
 		
 		
