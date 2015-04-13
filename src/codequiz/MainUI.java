@@ -14,7 +14,7 @@ import javax.sound.sampled.DataLine;
 import javax.swing.*;
 
 /**
- * Hej Gustav! :D Visar ett startfönster med huvudmeny.
+ * Klassen består av en panel bestående av huvudmeny
  * 
  * @author Evelyn Gustavsson
  *
