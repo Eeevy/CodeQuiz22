@@ -128,15 +128,15 @@ public class MainUI extends JPanel {
 		eastPanel.add(btnHighScore);
 
 		btnPlay.setBackground(Color.BLACK);
-		btnPlay.setForeground(Color.WHITE);
+		btnPlay.setForeground(Color.GRAY);
 		btnSignIn.setBackground(Color.BLACK);
-		btnSignIn.setForeground(Color.WHITE);
+		btnSignIn.setForeground(Color.GRAY);
 		btnCreateAccount.setBackground(Color.BLACK);
-		btnCreateAccount.setForeground(Color.WHITE);
+		btnCreateAccount.setForeground(Color.GRAY);
 		btnHowToPlay.setBackground(Color.BLACK);
-		btnHowToPlay.setForeground(Color.WHITE);
+		btnHowToPlay.setForeground(Color.GRAY);
 		btnHighScore.setBackground(Color.BLACK);
-		btnHighScore.setForeground(Color.WHITE);
+		btnHighScore.setForeground(Color.GRAY);
 
 		return eastPanel;
 	}

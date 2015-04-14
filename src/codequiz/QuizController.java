@@ -157,6 +157,14 @@ public class QuizController extends Thread {
 //		return IPic;
 	}
 	
+	public JPanel getMainUI() {
+		return mainUI;
+	}
+	
+	public JPanel getQuizUI() {
+		return quizUI;
+	}
+	
 	
 	
 	

@@ -149,6 +149,16 @@ public class QuizUI extends JPanel {
 	
 		return southPanel;
 	}
+	
+	private class ButtonBackListener implements ActionListener {
+
+		@Override
+		public void actionPerformed(ActionEvent e) {
+			controller.setPanel(controller.getMainUI());
+			lives = 2;
+			}
+		
+	}
 
 	private class QuestionListener implements ActionListener {
 		public void actionPerformed(ActionEvent e) {
@@ -213,6 +223,7 @@ public class QuizUI extends JPanel {
 				questionPanel.setVisible(false);
 				btnNewQuestion.setVisible(false);
 				btnback.setVisible(true);
+				btnback.addActionListener(new ButtonBackListener());
 				btnNewQuestion.setEnabled(true);
 
 			}
