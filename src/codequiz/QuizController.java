@@ -71,6 +71,11 @@ public class QuizController extends Thread {
 		this.panel = panel;
 		clip.stop();
 		showGUI();
+		resetLives();
+	}
+	
+	public void resetLives() {
+		quizUI.setLives();
 	}
 	
 	public void closeWindow(){

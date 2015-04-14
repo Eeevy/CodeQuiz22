@@ -151,11 +151,10 @@ public class QuizUI extends JPanel {
 	}
 	
 	private class ButtonBackListener implements ActionListener {
-
-		@Override
 		public void actionPerformed(ActionEvent e) {
 			controller.setPanel(controller.getMainUI());
-			lives = 2;
+			
+			
 			}
 		
 	}
@@ -236,6 +235,10 @@ public class QuizUI extends JPanel {
 	
 	public void setBackground(ImageIcon inIcon) {
 		lblBackground.setIcon(inIcon);
+	}
+	
+	public void setLives() {
+		lives = 2;
 	}
 
 	public void setAlternatives(String al1, String al2, String al3, String al4) {
