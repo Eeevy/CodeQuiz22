@@ -47,13 +47,6 @@ public class QuizController extends Thread {
 		mainUI.setController(this);
 		showGUI();
 		playSoundClip();
-//		try {
-//			client = new Client("127.0.0.1", 3453, this);
-//			System.out.println("klient skapad");
-//		} catch (IOException e) {
-//			System.out.println("Klienten kunde intekoppla upp");
-//		}
-		
 
 	}
 	
@@ -184,22 +177,10 @@ public class QuizController extends Thread {
 		System.out.print(index);
 	}
 	
-	
-	
-	
 	public void setGame(Game game) {
 		System.out.println("QuizController: setGame()");
 		this.game = game;
 	}
-
-	
-	 public void showUI() {
-	
-	 }
-	//
-	// public void setUI(JFrame ui) {
-	//
-	// }
 	 
 	 public static void main(String[] args) {
 			SwingUtilities.invokeLater(new Runnable() {

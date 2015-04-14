@@ -155,10 +155,7 @@ public class QuizUI extends JPanel {
 		public void actionPerformed(ActionEvent e) {
 			controller.setPanel(controller.getMainUI());
 			controller.newGame();
-			
-			
 			}
-		
 	}
 
 	private class QuestionListener implements ActionListener {
