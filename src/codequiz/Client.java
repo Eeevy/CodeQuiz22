@@ -42,7 +42,7 @@ public class Client {
 				oos.flush();//onödig?
 				game = (Game)ois.readObject();
 					//System.out.println(game.getQuestion().getQuestion());
-
+					System.out.print("klientObj");
 					controller.setGame(game);
 
 			} catch (IOException e) {

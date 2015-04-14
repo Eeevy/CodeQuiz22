@@ -178,6 +178,7 @@ public class QuizController extends Thread {
 	
 	public void newGame () {
 		quizUI = new QuizUI();
+		quizUI.setController(this);
 		index = -1;
 		i = 0;
 		System.out.print(index);
