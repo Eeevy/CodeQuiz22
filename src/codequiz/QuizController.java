@@ -47,6 +47,12 @@ public class QuizController extends Thread {
 		mainUI.setController(this);
 		showGUI();
 		playSoundClip();
+//		try {
+//			client = new Client("127.0.0.1", 3453, this);
+//			System.out.println("klient skapad");
+//		} catch (IOException e) {
+//			System.out.println("Klienten kunde intekoppla upp");
+//		}
 		
 
 	}
@@ -134,7 +140,7 @@ public class QuizController extends Thread {
 
 	}
 	
-	public void increaseIndex(){
+	public void increaseIndex() {
 		index++;
 	}
 	
@@ -168,6 +174,13 @@ public class QuizController extends Thread {
 	
 	public JPanel getQuizUI() {
 		return quizUI;
+	}
+	
+	public void newGame () {
+		quizUI = new QuizUI();
+		index = -1;
+		i = 0;
+		System.out.print(index);
 	}
 	
 	

@@ -63,6 +63,7 @@ public class QuizUI extends JPanel {
 	 * 
 	 * @return
 	 */
+	
 	public JPanel northPanel() {
 		northPanel = new JPanel(new FlowLayout());
 		northPanel.setPreferredSize(new Dimension(30, 20));
@@ -153,6 +154,7 @@ public class QuizUI extends JPanel {
 	private class ButtonBackListener implements ActionListener {
 		public void actionPerformed(ActionEvent e) {
 			controller.setPanel(controller.getMainUI());
+			controller.newGame();
 			
 			
 			}
