@@ -266,6 +266,9 @@ public class QuizUI extends JPanel {
 			}
 			if(lives==0){
 				setBackground(new ImageIcon("src/media/dead.jpeg"));
+				JLabel lbldead = new JLabel(new ImageIcon("src/media/DropDead.gif"));
+				eastPanel.add(Box.createRigidArea(new Dimension(60,150)));
+				eastPanel.add(lbldead, BorderLayout.SOUTH);
 				questionPanel.setVisible(false);
 				btnNewQuestion.setVisible(false);
 				btnback.setVisible(true);
