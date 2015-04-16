@@ -28,6 +28,8 @@ class ResultUI extends JPanel {
 	
 	private int slytherin = 0, gryffindor = 0, hufflepuff = 0, ravenclaw = 0;
 	
+	private QuizController controller;
+	
 	public int getSlytherin() {
 		return slytherin;
 	}
@@ -122,6 +124,9 @@ class ResultUI extends JPanel {
 		background.add(mainPanel);
 		
 		
+	}
+	public void setController(QuizController controller){
+		this.controller = controller;
 	}
 	
 	public static void main(String[] args) {
