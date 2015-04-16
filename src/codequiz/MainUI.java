@@ -14,7 +14,7 @@ import javax.sound.sampled.DataLine;
 import javax.swing.*;
 
 /**
- * Klassen består av en panel bestående av huvudmeny
+ * Klassen består av en panel med en huvudmeny.
  * 
  * @author Evelyn Gustavsson
  *
