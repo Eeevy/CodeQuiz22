@@ -26,6 +26,8 @@ class ResultUI extends JPanel {
 	private JPanel mainPanel = new JPanel(new BorderLayout());
 	private JPanel gridPanel = new JPanel(new GridLayout(2, 2)); 
 	
+	private QuizController controller;
+	
 	public ResultUI() {
 		background.setLayout(new BorderLayout());
 		add(background);
@@ -84,6 +86,9 @@ class ResultUI extends JPanel {
 		background.add(mainPanel);
 		
 		
+	}
+	public void setController(QuizController controller){
+		this.controller = controller;
 	}
 	
 	public static void main(String[] args) {

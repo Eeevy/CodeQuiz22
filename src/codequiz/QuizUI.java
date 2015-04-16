@@ -29,6 +29,7 @@ public class QuizUI extends JPanel {
 	private JRadioButton rb3 = new JRadioButton(" Alternativ 3");
 	private JRadioButton rb4 = new JRadioButton(" Alternativ 4");
 	private JButton btnback = new JButton("Huvudmeny");
+	private JButton btnresult = new JButton("Resultat");
 	private JLabel lblPoints;
 	private JLabel lblLives;
 	private JLabel lblResult = new JLabel("");
@@ -95,6 +96,8 @@ public class QuizUI extends JPanel {
 		eastPanel.setOpaque(false);
 		btnback.setVisible(false);
 		eastPanel.add(btnback);
+		btnresult.setVisible(false);
+		eastPanel.add(btnresult);
 		
 		return eastPanel;
 	}
@@ -205,6 +208,12 @@ public class QuizUI extends JPanel {
 			controller.newGame();
 			}
 	}
+	private class ButtonResultListener implements ActionListener {
+		public void actionPerformed(ActionEvent e){
+			controller.setPanel(controller.getResultUI());
+			controller.newResultUI();
+		}
+	}
 
 	private class QuestionListener implements ActionListener {
 		public void actionPerformed(ActionEvent e) {
@@ -274,7 +283,8 @@ public class QuizUI extends JPanel {
 				btnback.setVisible(true);
 				btnback.addActionListener(new ButtonBackListener());
 				btnNewQuestion.setEnabled(true);
-
+				btnresult.setVisible(true);
+				btnresult.addActionListener(new ButtonResultListener());
 			}
 		}
 	}
