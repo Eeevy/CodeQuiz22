@@ -27,7 +27,7 @@ public class Game implements Serializable {
 	public void createQuestions() {
 		System.out.println("Game: createQuestions()");
 		question1 = new Question(
-				"Vilket av följande påståenden är korrekta?",
+				"Vilket av följande påståenden är korrekt?",
 				"Ett subsystem är en del av ett system som kan fungera som ett eget system.",
 				"Ett subsystem kan inte bestå av andra subsystem",
 				"Vattenfallsmodellen är en agil modell.",

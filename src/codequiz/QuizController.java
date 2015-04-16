@@ -26,7 +26,6 @@ public class QuizController extends Thread {
 	private JPanel panel;
 	private JFrame mainFrame;
 	private Clip clip;
-
 	private User user;
 	private HogwartsHouse house;
 	private Client client;
@@ -37,7 +36,7 @@ public class QuizController extends Thread {
 	private int index = -1;
 
 	public QuizController() {
-		
+
 		System.out.println("QuizController: Konstruktor");
 		musicFilename = new File("src/media/HarryPotterThemeSong.wav");
 		quizUI = new QuizUI();
@@ -47,9 +46,8 @@ public class QuizController extends Thread {
 		mainUI.setController(this);
 		showGUI();
 		playSoundClip();
-
 	}
-	
+
 	public void showGUI() {
 		mainFrame = new JFrame("");
 		mainFrame.setTitle("Code Quiz");
@@ -59,7 +57,7 @@ public class QuizController extends Thread {
 		mainFrame.setResizable(false);
 		mainFrame.setVisible(true);
 	}
-	
+
 	/**
 	 * Metoden tar bort det aktuella fönstret och skapar ett nytt fönster
 	 * 
@@ -72,16 +70,16 @@ public class QuizController extends Thread {
 		showGUI();
 		resetLives();
 	}
-	
+
 	public void resetLives() {
 		quizUI.setLives();
 	}
-	
-	public void closeWindow(){
+
+	public void closeWindow() {
 		mainFrame.dispose();
 	}
-	
-	public void stopMusic(){
+
+	public void stopMusic() {
 		clip.stop();
 	}
 
@@ -108,16 +106,16 @@ public class QuizController extends Thread {
 	}
 
 	public void getQuestion() {
-	//	game = new Game();//ta bort
+		// game = new Game();//ta bort
 		this.question = game.getQuestion(i);
 		quizUI.setQuestion(question.getQuestion());
-		quizUI.setAlternatives(question.getAnswer1(), question.getAnswer2(), question.getAnswer3(), question.getAnswer4());
+		quizUI.setAlternatives(question.getAnswer1(), question.getAnswer2(),
+				question.getAnswer3(), question.getAnswer4());
 		i++;
-
 	}
-	
-	public String getCorrectAnswer(){
-		return question.getCorrectanswer(); //ändrat till instansvariabeln
+
+	public String getCorrectAnswer() {
+		return question.getCorrectanswer(); // ändrat till instansvariabeln
 	}
 
 	public void play() {
@@ -125,69 +123,67 @@ public class QuizController extends Thread {
 		setPanel(quizUI);
 		try {
 			client = new Client("127.0.0.1", 3453, this);
-			System.out.println("klient skapad");
+			System.out.println("Klient skapad");
 		} catch (IOException e) {
 			System.out.println("Klienten kunde intekoppla upp");
 		}
-		
-
 	}
-	
+
 	public void increaseIndex() {
 		index++;
 	}
-	
-	public ImageIcon setQuestionScenario(){
+
+	public ImageIcon setQuestionScenario() {
 		scenario = game.getScenario(index);
 		ImageIcon QPic = scenario.getStoryPic();
 		return QPic;
-//		 ImageIcon QPic = new ImageIcon("src/media/diary.jpg");//fusk
-//		 return QPic;
+		// ImageIcon QPic = new ImageIcon("src/media/diary.jpg");//fusk
+		// return QPic;
 	}
-	
-	public ImageIcon setCorrectScenario(){
+
+	public ImageIcon setCorrectScenario() {
 		scenario = game.getScenario(index);
 		ImageIcon CPic = scenario.getCorrectPic();
 		return CPic;
-//		ImageIcon CPic = new ImageIcon("src/media/Correct.jpg");
-//		return CPic;
+		// ImageIcon CPic = new ImageIcon("src/media/Correct.jpg");
+		// return CPic;
 	}
-	
-	public ImageIcon setIncorrectScenario(){
+
+	public ImageIcon setIncorrectScenario() {
 		scenario = game.getScenario(index);
 		ImageIcon IPic = scenario.getIncorrectPic();
 		return IPic;
-//		ImageIcon IPic = new ImageIcon("src/media/Incorrect.jpg");
-//		return IPic;
+		// ImageIcon IPic = new ImageIcon("src/media/Incorrect.jpg");
+		// return IPic;
 	}
-	
+
 	public JPanel getMainUI() {
 		return mainUI;
 	}
-	
+
 	public JPanel getQuizUI() {
 		return quizUI;
 	}
-	
-	public void newGame () {
+
+	public void newGame() {
 		quizUI = new QuizUI();
 		quizUI.setController(this);
 		index = -1;
 		i = 0;
 		System.out.print(index);
+		playSoundClip();
 	}
-	
+
 	public void setGame(Game game) {
 		System.out.println("QuizController: setGame()");
 		this.game = game;
 	}
-	 
-	 public static void main(String[] args) {
-			SwingUtilities.invokeLater(new Runnable() {
-				public void run() {
-					new QuizController();
-				}
-			});
-		}
 
+	public static void main(String[] args) {
+		SwingUtilities.invokeLater(new Runnable() {
+			public void run() {
+				new QuizController();
+			}
+		});
+	}
 }
