@@ -7,11 +7,11 @@ import java.awt.event.*;
 
 class ResultUI extends JPanel {
 
-	private JLabel labelImageSly = new JLabel(new ImageIcon("/Users/gustavbodestad/Documents/Skola/Eclipse/JavaP/Filer/Slytherin.png"));
-	private JLabel labelImageGryff = new JLabel(new ImageIcon("/Users/gustavbodestad/Documents/Skola/Eclipse/JavaP/Filer/Gryffindor.png"));
-	private JLabel labelImageHuff = new JLabel(new ImageIcon("/Users/gustavbodestad/Documents/Skola/Eclipse/JavaP/Filer/hufflepuff.png"));
-	private JLabel labelImageRav = new JLabel(new ImageIcon("/Users/gustavbodestad/Documents/Skola/Eclipse/JavaP/Filer/Ravenclaw.png"));
-	private JLabel background = new JLabel(new ImageIcon("/Users/gustavbodestad/Documents/Skola/Eclipse/CodeQuiz/src/media/bakgrund7.jpg"));
+	private JLabel labelImageSly = new JLabel(new ImageIcon("src/media/Slytherin.png"));
+	private JLabel labelImageGryff = new JLabel(new ImageIcon("src/media/Gryffindor.png"));
+	private JLabel labelImageHuff = new JLabel(new ImageIcon("src/media/hufflepuff.png"));
+	private JLabel labelImageRav = new JLabel(new ImageIcon("src/media/Ravenclaw.png"));
+	private JLabel background = new JLabel(new ImageIcon("src/media/bakgrund7.jpg"));
 	
 	private JLabel lblGryff = new JLabel("Gryffindor: 1500");
 	private JLabel lblRav = new JLabel("Ravenclaw: 1500");
