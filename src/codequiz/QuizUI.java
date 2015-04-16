@@ -105,13 +105,53 @@ public class QuizUI extends JPanel {
 	 * @return
 	 */
 	public JPanel questionPanel() {
-		questionPanel = new JPanel(new GridLayout(8, 1));
-		questionPanel.setPreferredSize(new Dimension(420, 20));
+//		questionPanel = new JPanel(new GridLayout(8, 1));
+//		questionPanel = new JPanel(new GridBagLayout());
+		
+		questionPanel = new JPanel(new GridLayout(9, 1));
+//		questionPanel.setLayout(new GridBagLayout());
+//		questionPanel.setPreferredSize(new Dimension(420, 20));
+
+		questionPanel.setPreferredSize(new Dimension(420, 400));
 		questionPanel.setOpaque(false);
 		questionPanel.add(lblQuestion);
 
 		lblQuestion.setPreferredSize(new Dimension(300, 50));
 		lblQuestion.setOpaque(false);
+		lblQuestion.setFont((new Font("Serif", Font.BOLD, 16)));
+		lblQuestion.setForeground(Color.GRAY);
+		
+		
+		// TESTA NÅGOT LIKNANDE - IGNORERA TILLS VIDARE...
+		// http://tutiez.com/multiline-text-for-swing-components-tutorial.html
+		
+//		String text = " This is how we can achieve <br>multiline text ";
+		
+//		JRadioButton radioEx = new JRadioButton("<font face="\"Arial\"" size="\"3\"">Radio button<br>text example</font>");"
+		
+//		JRadioButton radioEx = new JRadioButton("Radio button text example LALALALALALALALALALALALALALALALALA");
+//		multiLineFrame.getContentPane().setLayout(new GridBagLayout());
+		
+//		questionPanel.setLayout(new GridBagLayout());
+		
+//		int y = 0;
+		 
+//		JLabel radioLabel = new JLabel("Radio Button with multiline text");
+		 
+//		multiLineFrame.getContentPane().add(radioLabel, new GridBagConstraints(0,y,1,1,0,0,
+//		                GridBagConstraints.WEST, GridBagConstraints.WEST,new Insets(25,25,5,5),0,0));
+		
+//		questionPanel.add(radioLabel, new GridBagConstraints(0,y,1,1,0,0,
+//                GridBagConstraints.WEST, GridBagConstraints.WEST,new Insets(25,25,5,5),0,0));
+//		
+//		y++;
+		
+//		multiLineFrame.getContentPane().add(radioEx, new GridBagConstraints(0,y,1,1,0,0,
+//		                GridBagConstraints.WEST, GridBagConstraints.WEST,new Insets(5,25,5,5),0,0));
+//		
+//		questionPanel.add(radioEx, new GridBagConstraints(0,y,1,1,0,0,
+//                GridBagConstraints.WEST, GridBagConstraints.WEST,new Insets(5,25,5,5),0,0));
+		 
 
 		buttonGroup.add(rb1);
 		buttonGroup.add(rb2);
@@ -125,28 +165,36 @@ public class QuizUI extends JPanel {
 		btnSubmit.setEnabled(false);
 		btnSubmit.setOpaque(false);
 
-		questionPanel.add(new JLabel("Välj ett svar:"));
-		questionPanel.add(rb1);
+//		questionPanel.add(new JLabel("Välj ett svar:"));
+		
+//		rb1.setLayout(new FlowLayout());
+		questionPanel.add(rb1);	
 		questionPanel.add(rb2);
 		questionPanel.add(rb3);
 		questionPanel.add(rb4);
 		questionPanel.add(lblResult);
 		questionPanel.add(btnSubmit);
+		
 		btnSubmit.addActionListener(new SubmitListener());
 
 		return questionPanel;
 	}
 
 	public JPanel southPanel() {
-		southPanel = new JPanel(new GridLayout(2, 2));
+//		southPanel = new JPanel(new GridLayout(2, 2));
+		southPanel = new JPanel(new FlowLayout(FlowLayout.LEFT));
 		southPanel.setPreferredSize(new Dimension(100, 50));
-		southPanel.setBorder(BorderFactory.createLineBorder(Color.BLACK));
-		southPanel.add(lblPoints = new JLabel("POÄNG: " + points));
+		southPanel.add(Box.createRigidArea(new Dimension(20, 20)));
+		southPanel.add(lblPoints = new JLabel("Poäng: " + points));
+		southPanel.add(Box.createRigidArea(new Dimension(60, 20)));
 		southPanel.add(lblLives = new JLabel("Liv: " + lives));
+		southPanel.add(Box.createRigidArea(new Dimension(60, 20)));
 		southPanel.add(btnNewQuestion);
 		btnNewQuestion.setOpaque(false);
 		southPanel.setOpaque(false);
 		btnNewQuestion.addActionListener(new QuestionListener());
+		lblPoints.setForeground(Color.GREEN);
+		lblLives.setForeground(Color.RED);
 	
 		return southPanel;
 	}
@@ -200,7 +248,7 @@ public class QuizUI extends JPanel {
 				points += 10;// skall skapas en metod i Controllern
 				lblResult.setText("RÄTT!");
 				lblResult.setForeground(Color.GREEN);
-				lblPoints.setText("POÄNG: " + points);
+				lblPoints.setText("Poäng: " + points);
 				btnNewQuestion.setEnabled(true);
 
 
@@ -211,8 +259,8 @@ public class QuizUI extends JPanel {
 				lblResult.setForeground(Color.RED);
 				points -= 10;
 				lives -= 1;
-				lblPoints.setText("POÄNG: " + points);
-				lblLives.setText("LIV: " + lives);
+				lblPoints.setText("Poäng: " + points);
+				lblLives.setText("Liv: " + lives);
 				btnNewQuestion.setEnabled(true);
 
 			}

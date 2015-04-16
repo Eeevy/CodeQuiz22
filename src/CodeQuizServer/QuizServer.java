@@ -70,7 +70,6 @@ public class QuizServer {
 		public void newGame() {
 			System.out.println("ClientHandler: newGame()");
 			game = new Game();
-
 		}
 
 		public void run() {
@@ -96,5 +95,4 @@ public class QuizServer {
 	public static void main(String[] args) throws IOException {
 		new QuizServer(3453);
 	}
-
 }
