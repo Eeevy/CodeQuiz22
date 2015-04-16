@@ -29,6 +29,7 @@ public class QuizController extends Thread {
 	private User user;
 	private HogwartsHouse house;
 	private Client client;
+	private ResultUI resultui;
 	private File musicFilename;
 	private MainUI mainUI;
 	private QuizUI quizUI;
@@ -177,6 +178,13 @@ public class QuizController extends Thread {
 	public void setGame(Game game) {
 		System.out.println("QuizController: setGame()");
 		this.game = game;
+	}
+	public JPanel getResultUI(){
+		return resultui;
+	}
+	public void newResultUI(){
+		resultui = new ResultUI();
+		resultui.setController(this);
 	}
 
 	public static void main(String[] args) {
