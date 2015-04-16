@@ -17,7 +17,7 @@ class ResultUI extends JPanel {
 	private JLabel lblRav = new JLabel("0");
 	private JLabel lblHuff = new JLabel("0");
 	private JLabel lblSly = new JLabel("0");
-	private JLabel lblTitle = new JLabel("Poängställning");
+	private JLabel lblTitle = new JLabel(" - Poängställning - ");
 	
 	private JPanel pnl1 = new JPanel(new BorderLayout());
 	private JPanel pnl2 = new JPanel(new BorderLayout());
