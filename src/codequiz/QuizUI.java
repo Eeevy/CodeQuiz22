@@ -49,9 +49,6 @@ public class QuizUI extends JPanel {
 		lblBackground.add(southPanel(), BorderLayout.SOUTH);
 		lblBackground.add(northPanel(), BorderLayout.NORTH);
 		questionPanel.setVisible(false);
-		
-		setLives();
-		setPoints();
 
 		
 	}
@@ -189,9 +186,9 @@ public class QuizUI extends JPanel {
 		southPanel = new JPanel(new FlowLayout(FlowLayout.LEFT));
 		southPanel.setPreferredSize(new Dimension(100, 50));
 		southPanel.add(Box.createRigidArea(new Dimension(20, 20)));
-		southPanel.add(lblPoints = new JLabel("Poäng: " + controller.getPoints()));
+		southPanel.add(lblPoints = new JLabel("Poäng: " + Integer.toString(controller.getPoints())));
 		southPanel.add(Box.createRigidArea(new Dimension(60, 20)));
-		southPanel.add(lblLives = new JLabel("Liv: " + controller.getlives()));
+		southPanel.add(lblLives = new JLabel("Liv: " + Integer.toString(controller.getlives())));
 		southPanel.add(Box.createRigidArea(new Dimension(60, 20)));
 		southPanel.add(btnNewQuestion);
 		btnNewQuestion.setOpaque(false);
@@ -258,7 +255,7 @@ public class QuizUI extends JPanel {
 				controller.increasePoints();
 				lblResult.setText("RÄTT!");
 				lblResult.setForeground(Color.GREEN);
-				lblPoints.setText("Poäng: " + controller.getPoints());
+				lblPoints.setText("Poäng: " + Integer.toString(controller.getPoints()));
 				btnNewQuestion.setEnabled(true);
 
 
@@ -269,7 +266,7 @@ public class QuizUI extends JPanel {
 				lblResult.setForeground(Color.RED);
 				controller.decreasePoints();
 				controller.decreaseLives();
-				lblPoints.setText("Poäng: " + controller.getPoints());
+				lblPoints.setText("Poäng: " + Integer.toString(controller.getPoints()));
 				lblLives.setText("Liv: " + controller.getlives());
 				btnNewQuestion.setEnabled(true);
 
@@ -296,14 +293,6 @@ public class QuizUI extends JPanel {
 	
 	public void setBackground(ImageIcon inIcon) {
 		lblBackground.setIcon(inIcon);
-	}
-	
-	public void setLives() {
-		lblLives.setText("" + controller.getlives());
-	}
-	
-	public void setPoints() {
-		lblPoints.setText("" + controller.getPoints());
 	}
 
 	public void setAlternatives(String al1, String al2, String al3, String al4) {

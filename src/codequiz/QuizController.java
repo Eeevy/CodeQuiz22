@@ -40,7 +40,8 @@ public class QuizController extends Thread {
 	 */
 
 	public QuizController() {
-
+		user = new User();
+		System.out.println("" + getlives());
 		System.out.println("QuizController: Konstruktor");
 		musicFilename = new File("src/media/HarryPotterThemeSong.wav");
 		quizUI = new QuizUI();
@@ -120,7 +121,6 @@ public class QuizController extends Thread {
 
 	public void play() {
 		System.out.println("Controller: play()");
-		user = new User();
 		setPanel(quizUI);
 		try {
 			client = new Client("127.0.0.1", 3453, this);
