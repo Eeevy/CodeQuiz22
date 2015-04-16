@@ -35,9 +35,7 @@ public class QuizUI extends JPanel {
 	private JLabel lblResult = new JLabel("");
 	private JLabel lblBackground = new JLabel(new ImageIcon(
 			"src/media/howToPlay.png"));
-	private int lives = 2;
-	private int points = 0;
-
+	
 	public QuizUI() {
 
 		setBackground(Color.BLACK);
@@ -254,7 +252,7 @@ public class QuizUI extends JPanel {
 			if (answer.equals(correctAnswer)) {
 				ImageIcon icon = controller.setCorrectScenario();
 				setBackground(icon);
-				points += 10;// skall skapas en metod i Controllern
+				controller.increasePoints();
 				lblResult.setText("RÄTT!");
 				lblResult.setForeground(Color.GREEN);
 				lblPoints.setText("Poäng: " + points);
@@ -266,14 +264,14 @@ public class QuizUI extends JPanel {
 				setBackground(icon);
 				lblResult.setText("FEL!");
 				lblResult.setForeground(Color.RED);
-				points -= 10;
-				lives -= 1;
-				lblPoints.setText("Poäng: " + points);
-				lblLives.setText("Liv: " + lives);
+				controller.decreasePoints();
+				controller.decreaseLives();
+				lblPoints.setText("Poäng: " + controller.getPoints);
+				lblLives.setText("Liv: " + controller.getlives);
 				btnNewQuestion.setEnabled(true);
 
 			}
-			if(lives==0){
+			if(controller.getlives==0){
 				setBackground(new ImageIcon("src/media/dead.jpeg"));
 				JLabel lbldead = new JLabel(new ImageIcon("src/media/DropDead.gif"));
 				eastPanel.add(Box.createRigidArea(new Dimension(60,150)));
@@ -297,9 +295,9 @@ public class QuizUI extends JPanel {
 		lblBackground.setIcon(inIcon);
 	}
 	
-	public void setLives() {
-		lives = 2;
-	}
+//	public void setLives() {
+//		lives = 2;
+//	}
 
 	public void setAlternatives(String al1, String al2, String al3, String al4) {
 		rb1.setText(al1);

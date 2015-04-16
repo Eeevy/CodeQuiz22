@@ -10,6 +10,9 @@ public class User {
 	private HogwartsHouse house;
 	
 	public User(String name, String password, int userID) {
+		}
+	
+	public User() {
 		
 	}
 	

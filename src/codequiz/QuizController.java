@@ -121,6 +121,7 @@ public class QuizController extends Thread {
 
 	public void play() {
 		System.out.println("Controller: play()");
+		user = new User();
 		setPanel(quizUI);
 		try {
 			client = new Client("127.0.0.1", 3453, this);
