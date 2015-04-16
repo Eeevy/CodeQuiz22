@@ -129,15 +129,15 @@ class ResultUI extends JPanel {
 		this.controller = controller;
 	}
 	
-	public static void main(String[] args) {
-		JFrame frame = new JFrame();
-		frame.setTitle("Background Color for JFrame");
-		frame.setSize(400, 400);
-		frame.setLocationRelativeTo(null);
-		frame.add(new ResultUI());
-		frame.pack();
-		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		frame.setVisible(true);
-		
-	}
+//	public static void main(String[] args) {
+//		JFrame frame = new JFrame();
+//		frame.setTitle("Background Color for JFrame");
+//		frame.setSize(400, 400);
+//		frame.setLocationRelativeTo(null);
+//		frame.add(new ResultUI());
+//		frame.pack();
+//		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+//		frame.setVisible(true);
+//		
+//	}
 }

@@ -35,6 +35,8 @@ public class QuizController extends Thread {
 	private QuizUI quizUI;
 	private int i = 0;
 	private int index = -1;
+	private long points = 0;
+	private int lives = 5;
 
 	public QuizController() {
 
@@ -70,10 +72,6 @@ public class QuizController extends Thread {
 		clip.stop();
 		showGUI();
 		resetLives();
-	}
-
-	public void resetLives() {
-		quizUI.setLives();
 	}
 
 	public void closeWindow() {
@@ -187,6 +185,25 @@ public class QuizController extends Thread {
 		resultui = new ResultUI();
 		resultui.setController(this);
 	}
+	public void increasePoints(){
+		user.setUserPoints(user.getUserPoints()+10);
+	}
+	public void decreasePoints(){
+		user.removeUserPoints(user.getUserPoints()-10);
+	}
+	public void getlives(){
+		user.getLives();
+	}
+	public void getPoints(){
+		user.getUserPoints();
+	}
+	public void decreaseLives(){
+		user.setLives(user.getLives()-1);
+	}
+	public void resetLives() {
+		user.setLives(0);
+	}
+
 
 	public static void main(String[] args) {
 		SwingUtilities.invokeLater(new Runnable() {

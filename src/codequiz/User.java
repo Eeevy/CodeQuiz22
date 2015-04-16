@@ -6,7 +6,7 @@ public class User {
 	private String name;
 	private String password;
 	private int userID;
-	private long userPoints;
+	private int userPoints;
 	private HogwartsHouse house;
 	
 	public User(String name, String password, int userID) {
@@ -35,8 +35,11 @@ public class User {
 	public void setLives(int lives) {
 		this.lives = lives;
 	}
+	public int getLives(){
+		return lives;
+	}
 	
-	public long getUserPoints() {
+	public int getUserPoints() {
 		return userPoints;
 	}
 	
