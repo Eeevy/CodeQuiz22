@@ -7,16 +7,16 @@ import java.awt.event.*;
 
 class ResultUI extends JPanel {
 
-	private JLabel labelImageSly = new JLabel(new ImageIcon("src/media/Slytherin.png"));
-	private JLabel labelImageGryff = new JLabel(new ImageIcon("src/media/Gryffindor.png"));
-	private JLabel labelImageHuff = new JLabel(new ImageIcon("src/media/hufflepuff.png"));
-	private JLabel labelImageRav = new JLabel(new ImageIcon("src/media/Ravenclaw.png"));
+	private JLabel labelImageSly = new JLabel(new ImageIcon("src/media/Slytherin1.png"));
+	private JLabel labelImageGryff = new JLabel(new ImageIcon("src/media/Gryffindor1.png"));
+	private JLabel labelImageHuff = new JLabel(new ImageIcon("src/media/hufflepuff1.png"));
+	private JLabel labelImageRav = new JLabel(new ImageIcon("src/media/Ravenclaw1.png"));
 	private JLabel background = new JLabel(new ImageIcon("src/media/bakgrund7.jpg"));
 	
-	private JLabel lblGryff = new JLabel("Gryffindor: 1500");
-	private JLabel lblRav = new JLabel("Ravenclaw: 1500");
-	private JLabel lblHuff = new JLabel("Hufflepuff: 1500");
-	private JLabel lblSly = new JLabel("Slytherin: 1500");
+	private JLabel lblGryff = new JLabel("0");
+	private JLabel lblRav = new JLabel("0");
+	private JLabel lblHuff = new JLabel("0");
+	private JLabel lblSly = new JLabel("0");
 	private JLabel lblTitle = new JLabel("Poängställning");
 	
 	private JPanel pnl1 = new JPanel(new BorderLayout());
@@ -24,8 +24,46 @@ class ResultUI extends JPanel {
 	private JPanel pnl3 = new JPanel(new BorderLayout());
 	private JPanel pnl4 = new JPanel(new BorderLayout());
 	private JPanel mainPanel = new JPanel(new BorderLayout());
-	private JPanel gridPanel = new JPanel(new GridLayout(2, 2)); 
+	private JPanel gridPanel = new JPanel(new GridLayout(2, 2));
 	
+	private int slytherin = 0, gryffindor = 0, hufflepuff = 0, ravenclaw = 0;
+	
+	public int getSlytherin() {
+		return slytherin;
+	}
+
+	public void setSlytherin(int slytherin) {
+		this.slytherin = slytherin;
+		lblSly.setText("" + slytherin);
+	}
+
+	public int getGryffindor() {
+		return gryffindor;
+	}
+
+	public void setGryffindor(int gryffindor) {
+		this.gryffindor = gryffindor;
+		lblGryff.setText("" + gryffindor);
+	}
+
+	public int getHufflepuff() {
+		return hufflepuff;
+	}
+
+	public void setHufflepuff(int hufflepuff) {
+		this.hufflepuff = hufflepuff;
+		lblHuff.setText("" + hufflepuff);
+	}
+
+	public int getRavenclaw() {
+		return ravenclaw;
+	}
+
+	public void setRavenclaw(int ravenclaw) {
+		this.ravenclaw = ravenclaw;
+		lblRav.setText("" + ravenclaw);
+	}
+
 	public ResultUI() {
 		background.setLayout(new BorderLayout());
 		add(background);
