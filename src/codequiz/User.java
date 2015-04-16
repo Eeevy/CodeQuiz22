@@ -2,11 +2,11 @@ package codequiz;
 
 public class User {
 	
-	private int lives;
+	private int lives = 2;
 	private String name;
 	private String password;
 	private int userID;
-	private int userPoints;
+	private int userPoints = 0;
 	private HogwartsHouse house;
 	
 	public User(String name, String password, int userID) {

@@ -35,8 +35,6 @@ public class QuizController extends Thread {
 	private QuizUI quizUI;
 	private int i = 0;
 	private int index = -1;
-	private long points = 0;
-	private int lives = 5;
 
 	public QuizController() {
 
@@ -191,11 +189,11 @@ public class QuizController extends Thread {
 	public void decreasePoints(){
 		user.removeUserPoints(user.getUserPoints()-10);
 	}
-	public void getlives(){
-		user.getLives();
+	public int getlives(){
+		return user.getLives();
 	}
-	public void getPoints(){
-		user.getUserPoints();
+	public int getPoints(){
+		return user.getUserPoints();
 	}
 	public void decreaseLives(){
 		user.setLives(user.getLives()-1);
