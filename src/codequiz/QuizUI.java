@@ -185,9 +185,9 @@ public class QuizUI extends JPanel {
 		southPanel = new JPanel(new FlowLayout(FlowLayout.LEFT));
 		southPanel.setPreferredSize(new Dimension(100, 50));
 		southPanel.add(Box.createRigidArea(new Dimension(20, 20)));
-		southPanel.add(lblPoints = new JLabel("Poäng: "));
+		southPanel.add(lblPoints = new JLabel());
 		southPanel.add(Box.createRigidArea(new Dimension(60, 20)));
-		southPanel.add(lblLives = new JLabel("Liv: "));
+		southPanel.add(lblLives = new JLabel());
 		southPanel.add(Box.createRigidArea(new Dimension(60, 20)));
 		southPanel.add(btnNewQuestion);
 		btnNewQuestion.setOpaque(false);
@@ -215,6 +215,8 @@ public class QuizUI extends JPanel {
 	private class QuestionListener implements ActionListener {
 		public void actionPerformed(ActionEvent e) {
 			//controller.nextQuestion();
+			lblPoints.setText("Poäng: " + controller.getPoints() );
+			lblLives.setText("Liv: " + controller.getlives());
 			questionPanel.setVisible(true);
 			btnNewQuestion.setText("Nästa fråga");
 			btnNewQuestion.setEnabled(false);
