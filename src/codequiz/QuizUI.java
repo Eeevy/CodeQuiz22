@@ -20,7 +20,7 @@ public class QuizUI extends JPanel {
 	private JPanel northPanel;
 	private JLabel lblQuestion = new JLabel();
 
-//	private JTextField tfAnswers = new JTextField();
+	// private JTextField tfAnswers = new JTextField();
 	private JButton btnSubmit = new JButton("OK");
 	private JButton btnNewQuestion = new JButton("Starta spelet");
 	private ButtonGroup buttonGroup = new ButtonGroup();
@@ -35,7 +35,7 @@ public class QuizUI extends JPanel {
 	private JLabel lblResult = new JLabel("");
 	private JLabel lblBackground = new JLabel(new ImageIcon(
 			"src/media/howToPlay.png"));
-	
+
 	public QuizUI() {
 		setBackground(Color.BLACK);
 		setPreferredSize(new Dimension(800, 600));
@@ -49,9 +49,8 @@ public class QuizUI extends JPanel {
 		lblBackground.add(northPanel(), BorderLayout.NORTH);
 		questionPanel.setVisible(false);
 
-		
 	}
-	
+
 	public void setController(QuizController controller) {
 		this.controller = controller;
 	}
@@ -61,7 +60,7 @@ public class QuizUI extends JPanel {
 	 * 
 	 * @return
 	 */
-	
+
 	public JPanel northPanel() {
 		northPanel = new JPanel(new FlowLayout());
 		northPanel.setPreferredSize(new Dimension(30, 20));
@@ -95,7 +94,7 @@ public class QuizUI extends JPanel {
 		eastPanel.add(btnback);
 		btnresult.setVisible(false);
 		eastPanel.add(btnresult);
-		
+
 		return eastPanel;
 	}
 
@@ -105,12 +104,12 @@ public class QuizUI extends JPanel {
 	 * @return
 	 */
 	public JPanel questionPanel() {
-//		questionPanel = new JPanel(new GridLayout(8, 1));
-//		questionPanel = new JPanel(new GridBagLayout());
-		
+		// questionPanel = new JPanel(new GridLayout(8, 1));
+		// questionPanel = new JPanel(new GridBagLayout());
+
 		questionPanel = new JPanel(new GridLayout(9, 1));
-//		questionPanel.setLayout(new GridBagLayout());
-//		questionPanel.setPreferredSize(new Dimension(420, 20));
+		// questionPanel.setLayout(new GridBagLayout());
+		// questionPanel.setPreferredSize(new Dimension(420, 20));
 
 		questionPanel.setPreferredSize(new Dimension(420, 400));
 		questionPanel.setOpaque(false);
@@ -120,38 +119,44 @@ public class QuizUI extends JPanel {
 		lblQuestion.setOpaque(false);
 		lblQuestion.setFont((new Font("Serif", Font.BOLD, 16)));
 		lblQuestion.setForeground(Color.GRAY);
-		
-		
+
 		// TESTA NÅGOT LIKNANDE - IGNORERA TILLS VIDARE...
 		// http://tutiez.com/multiline-text-for-swing-components-tutorial.html
-		
-//		String text = " This is how we can achieve <br>multiline text ";
-		
-//		JRadioButton radioEx = new JRadioButton("<font face="\"Arial\"" size="\"3\"">Radio button<br>text example</font>");"
-		
-//		JRadioButton radioEx = new JRadioButton("Radio button text example LALALALALALALALALALALALALALALALALA");
-//		multiLineFrame.getContentPane().setLayout(new GridBagLayout());
-		
-//		questionPanel.setLayout(new GridBagLayout());
-		
-//		int y = 0;
-		 
-//		JLabel radioLabel = new JLabel("Radio Button with multiline text");
-		 
-//		multiLineFrame.getContentPane().add(radioLabel, new GridBagConstraints(0,y,1,1,0,0,
-//		                GridBagConstraints.WEST, GridBagConstraints.WEST,new Insets(25,25,5,5),0,0));
-		
-//		questionPanel.add(radioLabel, new GridBagConstraints(0,y,1,1,0,0,
-//                GridBagConstraints.WEST, GridBagConstraints.WEST,new Insets(25,25,5,5),0,0));
-//		
-//		y++;
-		
-//		multiLineFrame.getContentPane().add(radioEx, new GridBagConstraints(0,y,1,1,0,0,
-//		                GridBagConstraints.WEST, GridBagConstraints.WEST,new Insets(5,25,5,5),0,0));
-//		
-//		questionPanel.add(radioEx, new GridBagConstraints(0,y,1,1,0,0,
-//                GridBagConstraints.WEST, GridBagConstraints.WEST,new Insets(5,25,5,5),0,0));
-		 
+
+		// String text = " This is how we can achieve <br>multiline text ";
+
+		// JRadioButton radioEx = new JRadioButton("<font face="\"Arial\""
+		// size="\"3\"">Radio button<br>text example</font>");"
+
+		// JRadioButton radioEx = new
+		// JRadioButton("Radio button text example LALALALALALALALALALALALALALALALALA");
+		// multiLineFrame.getContentPane().setLayout(new GridBagLayout());
+
+		// questionPanel.setLayout(new GridBagLayout());
+
+		// int y = 0;
+
+		// JLabel radioLabel = new JLabel("Radio Button with multiline text");
+
+		// multiLineFrame.getContentPane().add(radioLabel, new
+		// GridBagConstraints(0,y,1,1,0,0,
+		// GridBagConstraints.WEST, GridBagConstraints.WEST,new
+		// Insets(25,25,5,5),0,0));
+
+		// questionPanel.add(radioLabel, new GridBagConstraints(0,y,1,1,0,0,
+		// GridBagConstraints.WEST, GridBagConstraints.WEST,new
+		// Insets(25,25,5,5),0,0));
+		//
+		// y++;
+
+		// multiLineFrame.getContentPane().add(radioEx, new
+		// GridBagConstraints(0,y,1,1,0,0,
+		// GridBagConstraints.WEST, GridBagConstraints.WEST,new
+		// Insets(5,25,5,5),0,0));
+		//
+		// questionPanel.add(radioEx, new GridBagConstraints(0,y,1,1,0,0,
+		// GridBagConstraints.WEST, GridBagConstraints.WEST,new
+		// Insets(5,25,5,5),0,0));
 
 		buttonGroup.add(rb1);
 		buttonGroup.add(rb2);
@@ -165,23 +170,23 @@ public class QuizUI extends JPanel {
 		btnSubmit.setEnabled(false);
 		btnSubmit.setOpaque(false);
 
-//		questionPanel.add(new JLabel("Välj ett svar:"));
-		
-//		rb1.setLayout(new FlowLayout());
-		questionPanel.add(rb1);	
+		// questionPanel.add(new JLabel("Välj ett svar:"));
+
+		// rb1.setLayout(new FlowLayout());
+		questionPanel.add(rb1);
 		questionPanel.add(rb2);
 		questionPanel.add(rb3);
 		questionPanel.add(rb4);
 		questionPanel.add(lblResult);
 		questionPanel.add(btnSubmit);
-		
+
 		btnSubmit.addActionListener(new SubmitListener());
 
 		return questionPanel;
 	}
 
 	public JPanel southPanel() {
-//		southPanel = new JPanel(new GridLayout(2, 2));
+		// southPanel = new JPanel(new GridLayout(2, 2));
 		southPanel = new JPanel(new FlowLayout(FlowLayout.LEFT));
 		southPanel.setPreferredSize(new Dimension(100, 50));
 		southPanel.add(Box.createRigidArea(new Dimension(20, 20)));
@@ -195,18 +200,19 @@ public class QuizUI extends JPanel {
 		btnNewQuestion.addActionListener(new QuestionListener());
 		lblPoints.setForeground(Color.GREEN);
 		lblLives.setForeground(Color.RED);
-	
+
 		return southPanel;
 	}
-	
+
 	private class ButtonBackListener implements ActionListener {
 		public void actionPerformed(ActionEvent e) {
 			controller.setPanel(controller.getMainUI());
 			controller.newGame();
-			}
+		}
 	}
+
 	private class ButtonResultListener implements ActionListener {
-		public void actionPerformed(ActionEvent e){
+		public void actionPerformed(ActionEvent e) {
 			controller.newResultUI();
 			controller.setPanel(controller.getResultUI());
 		}
@@ -214,8 +220,8 @@ public class QuizUI extends JPanel {
 
 	private class QuestionListener implements ActionListener {
 		public void actionPerformed(ActionEvent e) {
-			//controller.nextQuestion();
-			lblPoints.setText("Poäng: " + controller.getPoints() );
+			// controller.nextQuestion();
+			lblPoints.setText("Poäng: " + controller.getPoints());
 			lblLives.setText("Liv: " + controller.getlives());
 			questionPanel.setVisible(true);
 			btnNewQuestion.setText("Nästa fråga");
@@ -236,6 +242,7 @@ public class QuizUI extends JPanel {
 			btnSubmit.setEnabled(false);
 			String answer = null;
 			String correctAnswer = controller.getCorrectAnswer();
+			System.out.println(controller.maxScenario());
 			System.out.println(correctAnswer);
 			if (rb1.isSelected()) {
 				answer = rb1.getText();
@@ -256,9 +263,8 @@ public class QuizUI extends JPanel {
 				controller.increasePoints();
 				lblResult.setText("RÄTT!");
 				lblResult.setForeground(Color.GREEN);
-				lblPoints.setText("Poäng: " + controller.getPoints() );
+				lblPoints.setText("Poäng: " + controller.getPoints());
 				btnNewQuestion.setEnabled(true);
-
 
 			} else {
 				ImageIcon icon = controller.setIncorrectScenario();
@@ -267,16 +273,17 @@ public class QuizUI extends JPanel {
 				lblResult.setForeground(Color.RED);
 				controller.decreasePoints();
 				controller.decreaseLives();
-				lblPoints.setText("Poäng: " + controller.getPoints() );
+				lblPoints.setText("Poäng: " + controller.getPoints());
 				lblLives.setText("Liv: " + controller.getlives());
 				btnNewQuestion.setEnabled(true);
-
 			}
-			if(controller.getlives()==0){
-				controller.setScore(controller.getPoints());
+
+			if (controller.getlives() == 0) {
+//				controller.setScore(controller.getPoints());
 				setBackground(new ImageIcon("src/media/dead.jpeg"));
-				JLabel lbldead = new JLabel(new ImageIcon("src/media/DropDead.gif"));
-				eastPanel.add(Box.createRigidArea(new Dimension(60,150)));
+				JLabel lbldead = new JLabel(new ImageIcon(
+						"src/media/DropDead.gif"));
+				eastPanel.add(Box.createRigidArea(new Dimension(60, 150)));
 				eastPanel.add(lbldead, BorderLayout.SOUTH);
 				questionPanel.setVisible(false);
 				btnNewQuestion.setVisible(false);
@@ -287,30 +294,31 @@ public class QuizUI extends JPanel {
 				btnresult.addActionListener(new ButtonResultListener());
 			}
 			
-			if(controller.maxScenario()) {
-				controller.setScore(controller.getPoints());
-				
-				// ÄNDRA BILDSÖKVÄGAR
-				setBackground(new ImageIcon("src/media/background.jpg"));
-				JLabel lbldead = new JLabel(new ImageIcon("src/media/beatrixCorrect.png"));
-				
-				eastPanel.add(Box.createRigidArea(new Dimension(60,150)));
-				eastPanel.add(lbldead, BorderLayout.SOUTH);
-				questionPanel.setVisible(false);
-				btnNewQuestion.setVisible(false);
-				btnback.setVisible(true);
-				btnback.addActionListener(new ButtonBackListener());
-				btnNewQuestion.setEnabled(true);
-				btnresult.setVisible(true);
-				btnresult.addActionListener(new ButtonResultListener());
-			}
+//			if (controller.maxScenario() == true) {
+//				controller.setScore(controller.getPoints());
+//
+//				// ÄNDRA BILDSÖKVÄGAR
+//				setBackground(new ImageIcon("src/media/background.jpg"));
+//				JLabel lbldead = new JLabel(new ImageIcon(
+//						"src/media/beatrixCorrect.png"));
+//
+//				eastPanel.add(Box.createRigidArea(new Dimension(60, 150)));
+//				eastPanel.add(lbldead, BorderLayout.SOUTH);
+//				questionPanel.setVisible(false);
+//				btnNewQuestion.setVisible(false);
+//				btnback.setVisible(true);
+//				btnback.addActionListener(new ButtonBackListener());
+//				btnNewQuestion.setEnabled(true);
+//				btnresult.setVisible(true);
+//				btnresult.addActionListener(new ButtonResultListener());
+//			}
 		}
 	}
 
 	public void setQuestion(String question) {
 		lblQuestion.setText(question);
 	}
-	
+
 	public void setBackground(ImageIcon inIcon) {
 		lblBackground.setIcon(inIcon);
 	}

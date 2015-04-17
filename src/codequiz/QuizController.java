@@ -216,7 +216,7 @@ public class QuizController extends Thread {
 	}
 
 	public boolean maxScenario() {	
-		return index == game.getScenarioListSize();
+		return (index+1) == game.getScenarioListSize();
 	}
 
 	public static void main(String[] args) {
