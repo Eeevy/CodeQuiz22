@@ -13,7 +13,7 @@ public class User {
 		}
 	
 	public User() {
-		this.lives = 2;
+		this.lives = 5;
 		this.userPoints = 0;
 	}
 	

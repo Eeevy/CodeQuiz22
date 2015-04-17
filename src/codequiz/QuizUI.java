@@ -215,6 +215,7 @@ public class QuizUI extends JPanel {
 		public void actionPerformed(ActionEvent e) {
 			controller.newResultUI();
 			controller.setPanel(controller.getResultUI());
+			controller.setScore(controller.getPoints());
 		}
 	}
 
@@ -279,7 +280,7 @@ public class QuizUI extends JPanel {
 			}
 
 			if (controller.getlives() == 0) {
-//				controller.setScore(controller.getPoints());
+
 				setBackground(new ImageIcon("src/media/dead.jpeg"));
 				JLabel lbldead = new JLabel(new ImageIcon(
 						"src/media/DropDead.gif"));
