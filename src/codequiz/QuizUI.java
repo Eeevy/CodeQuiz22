@@ -207,8 +207,8 @@ public class QuizUI extends JPanel {
 	}
 	private class ButtonResultListener implements ActionListener {
 		public void actionPerformed(ActionEvent e){
-			controller.setPanel(controller.getResultUI());
 			controller.newResultUI();
+			controller.setPanel(controller.getResultUI());
 		}
 	}
 
