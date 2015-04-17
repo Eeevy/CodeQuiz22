@@ -41,7 +41,9 @@ public class QuizController extends Thread {
 
 	public QuizController() {
 		user = new User();
-		System.out.println("" + getlives());
+		int temp = getlives();
+		System.out.println(temp);
+//		System.out.println("" + getlives());
 		System.out.println("QuizController: Konstruktor");
 		musicFilename = new File("src/media/HarryPotterThemeSong.wav");
 		quizUI = new QuizUI();
@@ -190,19 +192,23 @@ public class QuizController extends Thread {
 		user.setUserPoints(user.getUserPoints()+10);
 	}
 	public void decreasePoints(){
-		user.removeUserPoints(user.getUserPoints()-10);
+		user.setUserPoints(user.getUserPoints()-10);
 	}
 	public int getlives(){
-		return user.getLives();
+		int temp = user.getLives();
+		Integer.toString(temp);
+		return temp;
 	}
 	public int getPoints(){
-		return user.getUserPoints();
+		int temp1 = user.getUserPoints();
+		Integer.toString(temp1);
+		return temp1;
 	}
 	public void decreaseLives(){
 		user.setLives(user.getLives()-1);
 	}
 	public void resetLives() {
-		user.setLives(0);
+		user.setLives(2);
 	}
 
 

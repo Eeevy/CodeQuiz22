@@ -37,7 +37,6 @@ public class QuizUI extends JPanel {
 			"src/media/howToPlay.png"));
 	
 	public QuizUI() {
-
 		setBackground(Color.BLACK);
 		setPreferredSize(new Dimension(800, 600));
 		lblBackground.setLayout(new BorderLayout());
@@ -186,9 +185,9 @@ public class QuizUI extends JPanel {
 		southPanel = new JPanel(new FlowLayout(FlowLayout.LEFT));
 		southPanel.setPreferredSize(new Dimension(100, 50));
 		southPanel.add(Box.createRigidArea(new Dimension(20, 20)));
-		southPanel.add(lblPoints = new JLabel("Poäng: " + Integer.toString(controller.getPoints())));
+		southPanel.add(lblPoints = new JLabel("Poäng: "));
 		southPanel.add(Box.createRigidArea(new Dimension(60, 20)));
-		southPanel.add(lblLives = new JLabel("Liv: " + Integer.toString(controller.getlives())));
+		southPanel.add(lblLives = new JLabel("Liv: "));
 		southPanel.add(Box.createRigidArea(new Dimension(60, 20)));
 		southPanel.add(btnNewQuestion);
 		btnNewQuestion.setOpaque(false);
@@ -255,7 +254,7 @@ public class QuizUI extends JPanel {
 				controller.increasePoints();
 				lblResult.setText("RÄTT!");
 				lblResult.setForeground(Color.GREEN);
-				lblPoints.setText("Poäng: " + Integer.toString(controller.getPoints()));
+				lblPoints.setText("Poäng: " + controller.getPoints() );
 				btnNewQuestion.setEnabled(true);
 
 
@@ -266,7 +265,7 @@ public class QuizUI extends JPanel {
 				lblResult.setForeground(Color.RED);
 				controller.decreasePoints();
 				controller.decreaseLives();
-				lblPoints.setText("Poäng: " + Integer.toString(controller.getPoints()));
+				lblPoints.setText("Poäng: " + controller.getPoints() );
 				lblLives.setText("Liv: " + controller.getlives());
 				btnNewQuestion.setEnabled(true);
 
