@@ -94,7 +94,7 @@ public class Game implements Serializable {
 		setQuestion();
 	}
 
-	public void CreateScenario() {
+	public void CreateScenario() { // Ändra till liten begynnelsebokstav.
 		scenario = new QuizScenario(new ImageIcon("src/media/Story1.jpg"),
 				new ImageIcon("src/media/Correct1.jpg"), new ImageIcon(
 						"src/media/Incorrect1.jpg"));
@@ -105,7 +105,6 @@ public class Game implements Serializable {
 		scenario3 = new QuizScenario(new ImageIcon("src/media/beatrixQuestion.png"), new ImageIcon("src/media/beatrixCorrect.png"), 
 				new ImageIcon("src/media/beatrixIncorrect.png"));
 		setScenario();
-
 	}
 
 	public void setQuestion() {
@@ -121,8 +120,7 @@ public class Game implements Serializable {
 	}
 
 	public Question getQuestion(int index) {
-		return questionlist.get(index); // Funkar som peek.
-
+		return questionlist.get(index);
 	}
 
 	public void setScenario() {
@@ -130,11 +128,13 @@ public class Game implements Serializable {
 		scenariolist.add(scenario1);
 		scenariolist.add(scenario2);
 		scenariolist.add(scenario3);
-
 	}
 
 	public QuizScenario getScenario(int index) {
 		return scenariolist.get(index);
 	}
-
+	
+	public int getScenarioListSize() {
+		return scenariolist.size();
+	}
 }

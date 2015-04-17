@@ -286,6 +286,24 @@ public class QuizUI extends JPanel {
 				btnresult.setVisible(true);
 				btnresult.addActionListener(new ButtonResultListener());
 			}
+			
+			if(controller.maxScenario()) {
+				controller.setScore(controller.getPoints());
+				
+				// ÄNDRA BILDSÖKVÄGAR
+				setBackground(new ImageIcon("src/media/background.jpg"));
+				JLabel lbldead = new JLabel(new ImageIcon("src/media/beatrixCorrect.png"));
+				
+				eastPanel.add(Box.createRigidArea(new Dimension(60,150)));
+				eastPanel.add(lbldead, BorderLayout.SOUTH);
+				questionPanel.setVisible(false);
+				btnNewQuestion.setVisible(false);
+				btnback.setVisible(true);
+				btnback.addActionListener(new ButtonBackListener());
+				btnNewQuestion.setEnabled(true);
+				btnresult.setVisible(true);
+				btnresult.addActionListener(new ButtonResultListener());
+			}
 		}
 	}
 

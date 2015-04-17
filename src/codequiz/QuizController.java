@@ -213,9 +213,11 @@ public class QuizController extends Thread {
 	
 	public void setScore(int inScore) {
 		resultui.setSlytherin(inScore);
-		
 	}
 
+	public boolean maxScenario() {	
+		return index == game.getScenarioListSize();
+	}
 
 	public static void main(String[] args) {
 		SwingUtilities.invokeLater(new Runnable() {
