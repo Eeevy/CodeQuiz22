@@ -210,6 +210,11 @@ public class QuizController extends Thread {
 	public void resetLives() {
 		user.setLives(2);
 	}
+	
+	public void setScore(int inScore) {
+		resultui.setSlytherin(inScore);
+		
+	}
 
 
 	public static void main(String[] args) {

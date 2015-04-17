@@ -273,6 +273,7 @@ public class QuizUI extends JPanel {
 
 			}
 			if(controller.getlives()==0){
+				controller.setScore(controller.getPoints());
 				setBackground(new ImageIcon("src/media/dead.jpeg"));
 				JLabel lbldead = new JLabel(new ImageIcon("src/media/DropDead.gif"));
 				eastPanel.add(Box.createRigidArea(new Dimension(60,150)));
