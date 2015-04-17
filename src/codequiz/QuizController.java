@@ -195,14 +195,14 @@ public class QuizController extends Thread {
 		user.setUserPoints(user.getUserPoints()-10);
 	}
 	public int getlives(){
-		int temp = user.getLives();
-		Integer.toString(temp);
-		return temp;
+		int lives = user.getLives();
+		Integer.toString(lives);
+		return lives;
 	}
 	public int getPoints(){
-		int temp1 = user.getUserPoints();
-		Integer.toString(temp1);
-		return temp1;
+		int points = user.getUserPoints();
+		Integer.toString(points);
+		return points;
 	}
 	public void decreaseLives(){
 		user.setLives(user.getLives()-1);
