@@ -33,8 +33,10 @@ public class QuizUI extends JPanel {
 	private JLabel lblPoints;
 	private JLabel lblLives;
 	private JLabel lblResult = new JLabel("");
+//	private JLabel lblBackground = new JLabel(new ImageIcon(
+//			"src/media/howToPlay.png"));
 	private JLabel lblBackground = new JLabel(new ImageIcon(
-			"src/media/howToPlay.png"));
+			"src/media/background.jpg"));
 
 	public QuizUI() {
 		setBackground(Color.BLACK);
@@ -179,7 +181,7 @@ public class QuizUI extends JPanel {
 		questionPanel.add(rb4);
 		questionPanel.add(lblResult);
 		questionPanel.add(btnSubmit);
-
+		
 		btnSubmit.addActionListener(new SubmitListener());
 
 		return questionPanel;
@@ -199,7 +201,7 @@ public class QuizUI extends JPanel {
 		southPanel.setOpaque(false);
 		btnNewQuestion.addActionListener(new QuestionListener());
 		lblPoints.setForeground(Color.GREEN);
-		lblLives.setForeground(Color.RED);
+		lblLives.setForeground(Color.GREEN);
 
 		return southPanel;
 	}
@@ -280,19 +282,27 @@ public class QuizUI extends JPanel {
 			}
 
 			if (controller.getlives() == 0) {
-
 				setBackground(new ImageIcon("src/media/dead.jpeg"));
 				JLabel lbldead = new JLabel(new ImageIcon(
-						"src/media/DropDead.gif"));
-				eastPanel.add(Box.createRigidArea(new Dimension(60, 150)));
-				eastPanel.add(lbldead, BorderLayout.SOUTH);
+						"src/media/DropDead.gif"));	
+				eastPanel.add(Box.createRigidArea(new Dimension(20, 130)));
 				questionPanel.setVisible(false);
-				btnNewQuestion.setVisible(false);
+				btnNewQuestion.setVisible(false);		
+				eastPanel.add(btnback);
+				eastPanel.add(Box.createRigidArea(new Dimension(10, 30)));
+				eastPanel.add(btnresult);
 				btnback.setVisible(true);
 				btnback.addActionListener(new ButtonBackListener());
 				btnNewQuestion.setEnabled(true);
 				btnresult.setVisible(true);
 				btnresult.addActionListener(new ButtonResultListener());
+				btnback.setPreferredSize(new Dimension(100, 30));
+				btnresult.setPreferredSize(new Dimension(100, 30));
+				btnback.setForeground(Color.GREEN);
+				btnresult.setForeground(Color.GREEN);
+				btnback.setBackground(Color.BLACK);
+				btnresult.setBackground(Color.BLACK);
+				eastPanel.add(lbldead, BorderLayout.SOUTH);		
 			}
 			
 //			if (controller.maxScenario() == true) {

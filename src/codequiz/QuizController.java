@@ -35,9 +35,6 @@ public class QuizController extends Thread {
 	private QuizUI quizUI;
 	private int i = 0;
 	private int index = -1;
-	/**
-	 * hej
-	 */
 
 	public QuizController() {
 		user = new User();

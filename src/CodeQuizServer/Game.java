@@ -28,11 +28,11 @@ public class Game implements Serializable {
 		System.out.println("Game: createQuestions()");
 		question1 = new Question(
 				"Vilket av följande påståenden är korrekt?",
-				"<html>Ett subsystem är en del av ett system<br>som kan fungera som ett eget system.</html>",
+				"<html>Ett subsystem är en del av ett system <br> som kan fungera som ett eget system.</html>",
 				"Ett subsystem kan inte bestå av andra subsystem",
 				"Vattenfallsmodellen är en agil modell.",
 				"Man måste använda ett informationssystem i lösningen som byggs medvattenfallsmodellen",
-				"Ett subsystem är en del av ett system som kan fungera som ett eget system.",
+				"<html>Ett subsystem är en del av ett system <br> som kan fungera som ett eget system.</html>",
 				1);
 		question2 = new Question(
 				"Vilket av följande påståenden om objekt är korrekt?",
@@ -98,12 +98,18 @@ public class Game implements Serializable {
 		scenario = new QuizScenario(new ImageIcon("src/media/Story1.jpg"),
 				new ImageIcon("src/media/Correct1.jpg"), new ImageIcon(
 						"src/media/Incorrect1.jpg"));
-		scenario1 = new QuizScenario(new ImageIcon("src/media/dementorer.jpeg"), new ImageIcon("src/media/Dementorerb.jpeg"), 
-				new ImageIcon("src/media/dementorerv.jpeg"));
-		scenario2 = new QuizScenario(new ImageIcon("src/media/Scenario2intro.jpg"), new ImageIcon("src/media/Scenario2correct.jpg"), 
-				new ImageIcon("src/media/Scenario2inCorrect.jpg"));
-		scenario3 = new QuizScenario(new ImageIcon("src/media/beatrixQuestion.png"), new ImageIcon("src/media/beatrixCorrect.png"), 
-				new ImageIcon("src/media/beatrixIncorrect.png"));
+		scenario1 = new QuizScenario(
+				new ImageIcon("src/media/dementorer.jpeg"), new ImageIcon(
+						"src/media/Dementorerb.jpeg"), new ImageIcon(
+						"src/media/dementorerv.jpeg"));
+		scenario2 = new QuizScenario(new ImageIcon(
+				"src/media/Scenario2intro.jpg"), new ImageIcon(
+				"src/media/Scenario2correct.jpg"), new ImageIcon(
+				"src/media/Scenario2inCorrect.jpg"));
+		scenario3 = new QuizScenario(new ImageIcon(
+				"src/media/beatrixQuestion.png"), new ImageIcon(
+				"src/media/beatrixCorrect.png"), new ImageIcon(
+				"src/media/beatrixIncorrect.png"));
 		setScenario();
 	}
 
@@ -133,10 +139,10 @@ public class Game implements Serializable {
 	public QuizScenario getScenario(int index) {
 		return scenariolist.get(index);
 	}
-	
+
 	public int getScenarioListSize() {
-			int Scenariolist = 0;
-		for(int i = 0; i < scenariolist.size(); i++){
+		int Scenariolist = 0;
+		for (int i = 0; i < scenariolist.size(); i++) {
 			Scenariolist = i;
 		}
 		return Scenariolist;
