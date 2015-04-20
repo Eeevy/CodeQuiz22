@@ -28,7 +28,7 @@ public class Game implements Serializable {
 		System.out.println("Game: createQuestions()");
 		question1 = new Question(
 				"Vilket av följande påståenden är korrekt?",
-				"Ett subsystem är en del av ett system som kan fungera som ett eget system.",
+				"<html>Ett subsystem är en del av ett system<br>som kan fungera som ett eget system.</html>",
 				"Ett subsystem kan inte bestå av andra subsystem",
 				"Vattenfallsmodellen är en agil modell.",
 				"Man måste använda ett informationssystem i lösningen som byggs medvattenfallsmodellen",
@@ -135,6 +135,10 @@ public class Game implements Serializable {
 	}
 	
 	public int getScenarioListSize() {
-		return scenariolist.size();
+			int Scenariolist = 0;
+		for(int i = 0; i < scenariolist.size(); i++){
+			Scenariolist = i;
+		}
+		return Scenariolist;
 	}
 }
