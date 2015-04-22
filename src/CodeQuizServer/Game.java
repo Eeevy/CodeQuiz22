@@ -7,23 +7,32 @@ import javax.swing.ImageIcon;
 
 import codequiz.Question;
 
+/**
+ * Klassen består av ett objekt som innehåller samtliga frågor och scenarion för
+ * ett spel som sedan skickas från server till klient vid spelets start
+ * Frågorna skall i en senare version hämtas från databasen och ett 30 tal slumpas innan de skickas till klient 
+ */
 public class Game implements Serializable {
 
 	private LinkedList<Question> questionlist = new LinkedList<Question>();
 	private LinkedList<QuizScenario> scenariolist = new LinkedList<QuizScenario>();
 	private Question question1, question2, question3, question4, question5,
 			question6, question7, question8, question9;
-	private QuizScenario scenario, scenario1, scenario2, scenario3, scenario4, scenario5;
-
+	private QuizScenario scenario, scenario1, scenario2, scenario3, scenario4,
+			scenario5;
+/**
+ * Konstruerar frågor och scenarion
+ */
 	public Game() {
 		System.out.println("Game: Konstruktor");
 		createQuestions();
 		CreateScenario();
-		// setQuestion();
-		// scenario = new QuizScenario(storypic,correctpic,incorrectpic);
-		// setScenario();
 	}
 
+	/**
+	 * Metoden skapar Question objekt som sedan läggs in i linkedList
+	 * (questionList) 
+	 */
 	public void createQuestions() {
 		System.out.println("Game: createQuestions()");
 		question1 = new Question(
@@ -94,6 +103,10 @@ public class Game implements Serializable {
 		setQuestion();
 	}
 
+	/**
+	 * Metoden skapar scenarion, bestående av tre bilder vardera; bild vid
+	 * fråga, bild vid rätt svar, bild vid fel svar
+	 */
 	public void CreateScenario() { // Ändra till liten begynnelsebokstav.
 		scenario = new QuizScenario(new ImageIcon("src/media/Story1.jpg"),
 				new ImageIcon("src/media/Correct1.jpg"), new ImageIcon(
@@ -122,6 +135,9 @@ public class Game implements Serializable {
 		setScenario();
 	}
 
+	/**
+	 * Metoden lägger till Question objekten till LinkedList (questionList)
+	 */
 	public void setQuestion() {
 		questionlist.add(question1);
 		questionlist.add(question2);
@@ -134,10 +150,19 @@ public class Game implements Serializable {
 		questionlist.add(question9);
 	}
 
+	/**
+	 * 
+	 * @param index
+	 *            position vars fråga skall hämtas
+	 * @return det Question objekt vars position efterfrågas
+	 */
 	public Question getQuestion(int index) {
 		return questionlist.get(index);
 	}
 
+	/**
+	 * Metoden lägger in scenarion i LinkedList (sceanriolist)
+	 */
 	public void setScenario() {
 		scenariolist.add(scenario);
 		scenariolist.add(scenario1);
@@ -147,15 +172,21 @@ public class Game implements Serializable {
 		scenariolist.add(scenario5);
 	}
 
+	/**
+	 * 
+	 * @param index
+	 *            position vars scenario skall hämtas
+	 * @return det QuizScenario objekt vars position efterfrågas
+	 */
 	public QuizScenario getScenario(int index) {
 		return scenariolist.get(index);
 	}
 
+	/**
+	 * 
+	 * @return antal element i scenariolist
+	 */
 	public int getScenarioListSize() {
-		int Scenariolist = 0;
-		for (int i = 0; i < scenariolist.size(); i++) {
-			Scenariolist = i;
-		}
-		return Scenariolist;
+		return scenariolist.size();
 	}
 }
