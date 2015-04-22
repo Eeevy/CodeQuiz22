@@ -9,8 +9,10 @@ import codequiz.Question;
 
 /**
  * Klassen består av ett objekt som innehåller samtliga frågor och scenarion för
- * ett spel som sedan skickas från server till klient vid spelets start
- * Frågorna skall i en senare version hämtas från databasen och ett 30 tal slumpas innan de skickas till klient 
+ * ett spel som sedan skickas från server till klient vid spelets start.
+ * 
+ * Frågorna skall i en senare version hämtas från databasen och ett 30 tal slumpas innan
+ * de skickas till klient. (I den ordningen om dessa inte kan slumpas från databasen)
  */
 public class Game implements Serializable {
 
@@ -20,18 +22,19 @@ public class Game implements Serializable {
 			question6, question7, question8, question9;
 	private QuizScenario scenario, scenario1, scenario2, scenario3, scenario4,
 			scenario5;
-/**
- * Konstruerar frågor och scenarion
- */
+
+	/**
+	 * Konstruerar frågor och scenarion
+	 */
 	public Game() {
 		System.out.println("Game: Konstruktor");
 		createQuestions();
-		CreateScenario();
+		createScenario();
 	}
 
 	/**
 	 * Metoden skapar Question objekt som sedan läggs in i linkedList
-	 * (questionList) 
+	 * (questionList)
 	 */
 	public void createQuestions() {
 		System.out.println("Game: createQuestions()");
@@ -107,7 +110,7 @@ public class Game implements Serializable {
 	 * Metoden skapar scenarion, bestående av tre bilder vardera; bild vid
 	 * fråga, bild vid rätt svar, bild vid fel svar
 	 */
-	public void CreateScenario() { // Ändra till liten begynnelsebokstav.
+	public void createScenario() {
 		scenario = new QuizScenario(new ImageIcon("src/media/Story1.jpg"),
 				new ImageIcon("src/media/Correct1.jpg"), new ImageIcon(
 						"src/media/Incorrect1.jpg"));
