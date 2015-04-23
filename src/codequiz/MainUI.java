@@ -63,8 +63,8 @@ public class MainUI extends JPanel {
 		btnPlay.setVisible(false);
 	}
 	
-	public void enableMenu(){
-		btnPlay.setVisible(true);
+	public void enableMenu(boolean tof){
+		btnPlay.setVisible(tof);
 	}
 
 	/**

@@ -46,7 +46,6 @@ public class QuizController extends Thread {
 	private Hashtable logininformation = new Hashtable();
 
 	public QuizController() {
-		play();//kopplar upp till servern här istället
 
 		user = new User();
 		int temp = getlives();
@@ -63,6 +62,8 @@ public class QuizController extends Thread {
 		howToUI.setController(this);
 		showGUI();
 		playSoundClip();
+		play();//kopplar upp till servern här istället
+
 	}
 
 	/**
@@ -199,6 +200,7 @@ public class QuizController extends Thread {
 	public void play() {
 		System.out.println("Controller: play()");
 //		setPanel(quizUI);
+		enablePlayBtn(false);
 		try {
 			client = new Client("127.0.0.1", 3453, this);
 			System.out.println("Klient skapad");
@@ -280,6 +282,7 @@ public class QuizController extends Thread {
 	 * Metoden startar ett nytt spel, återställer index och spelar ljudklipp
 	 */
 	public void newGame() {
+		play();
 		quizUI = new QuizUI();
 		quizUI.setController(this);
 		index = -1;
@@ -296,8 +299,15 @@ public class QuizController extends Thread {
 	public void setGame(Game game) {
 		System.out.println("QuizController: setGame()");
 		this.game = game;
-		mainUI.enableMenu();
+		enablePlayBtn(true);
 	}
+	
+	public void enablePlayBtn(boolean tof){
+		mainUI.enableMenu(tof);
+
+	}
+	
+	
 
 	/**
 	 * 
