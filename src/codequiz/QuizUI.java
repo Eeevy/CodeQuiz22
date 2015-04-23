@@ -36,7 +36,7 @@ public class QuizUI extends JPanel {
 //	private JLabel lblBackground = new JLabel(new ImageIcon(
 //			"src/media/howToPlay.png"));
 	private JLabel lblBackground = new JLabel(new ImageIcon(
-			"src/media/background.jpg"));
+			"src/media/howToPlay.png"));
 
 	public QuizUI() {
 		setBackground(Color.BLACK);
