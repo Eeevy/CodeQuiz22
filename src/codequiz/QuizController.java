@@ -1,9 +1,12 @@
 package codequiz;
 
+import java.awt.GridLayout;
 import java.io.*;
 import java.net.Socket;
 import java.util.ArrayList;
 import java.util.LinkedList;
+
+import javafx.scene.shape.Box;
 
 import javax.sound.sampled.AudioFormat;
 import javax.sound.sampled.AudioInputStream;
@@ -12,8 +15,14 @@ import javax.sound.sampled.Clip;
 import javax.sound.sampled.DataLine;
 import javax.swing.ImageIcon;
 import javax.swing.JFrame;
+import javax.swing.JLabel;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
+import javax.swing.JPasswordField;
+import javax.swing.JTextField;
 import javax.swing.SwingUtilities;
+
+import com.sun.org.apache.xalan.internal.xsltc.runtime.Hashtable;
 
 import CodeQuizServer.Game;
 import CodeQuizServer.QuizScenario;
@@ -35,12 +44,13 @@ public class QuizController extends Thread {
 	private QuizUI quizUI;
 	private int i = 0;
 	private int index = -1;
+	private Hashtable logininformation = new Hashtable();
 
 	public QuizController() {
 		user = new User();
 		int temp = getlives();
 		System.out.println(temp);
-//		System.out.println("" + getlives());
+		// System.out.println("" + getlives());
 		System.out.println("QuizController: Konstruktor");
 		musicFilename = new File("src/media/HarryPotterThemeSong.wav");
 		quizUI = new QuizUI();
@@ -81,6 +91,31 @@ public class QuizController extends Thread {
 
 	public void stopMusic() {
 		clip.stop();
+	}
+
+	public void newUser(String name, String password, String passConf) {
+		if (!(password.equals(passConf))) {
+			mainUI.newUser(name, "Dina angivna lösenord matchar inte");
+		} else if ((name.isEmpty()) || (password.isEmpty()) || (passConf.isEmpty())) {
+			mainUI.newUser(name, "Det saknas uppgifter");
+		} else {
+			System.out.print(password + name);
+			logininformation.put(name, password);
+		}
+			}
+
+	public void login(String inName, String inPass) {
+		if (!(logininformation.containsKey(inName))) {
+			mainUI.login(inName, "Användarnamnet saknas");
+		} else if ((inName.isEmpty()) || (inPass.isEmpty())) {
+			mainUI.login(inName, "Det saknas uppgifter");
+		} else {
+			if(inPass.equals(logininformation.get(inName))) {
+				System.out.println(logininformation.get(inName));
+			} else {
+				mainUI.login(inName, "Fel lösenord");
+			}
+		}
 	}
 
 	/**
@@ -178,42 +213,50 @@ public class QuizController extends Thread {
 		System.out.println("QuizController: setGame()");
 		this.game = game;
 	}
-	public JPanel getResultUI(){
+
+	public JPanel getResultUI() {
 		return resultui;
 	}
-	public void newResultUI(){
+
+	public void newResultUI() {
 		resultui = new ResultUI();
 		resultui.setController(this);
 	}
-	public void increasePoints(){
-		user.setUserPoints(user.getUserPoints()+10);
+
+	public void increasePoints() {
+		user.setUserPoints(user.getUserPoints() + 10);
 	}
-	public void decreasePoints(){
-		user.setUserPoints(user.getUserPoints()-10);
+
+	public void decreasePoints() {
+		user.setUserPoints(user.getUserPoints() - 10);
 	}
-	public int getlives(){
+
+	public int getlives() {
 		int lives = user.getLives();
 		Integer.toString(lives);
 		return lives;
 	}
-	public int getPoints(){
+
+	public int getPoints() {
 		int points = user.getUserPoints();
 		Integer.toString(points);
 		return points;
 	}
-	public void decreaseLives(){
-		user.setLives(user.getLives()-1);
+
+	public void decreaseLives() {
+		user.setLives(user.getLives() - 1);
 	}
+
 	public void resetLives() {
 		user.setLives(2);
 	}
-	
+
 	public void setScore(int inScore) {
 		resultui.setSlytherin(inScore);
 	}
 
-	public boolean maxScenario() {	
-		return (index+1) == game.getScenarioListSize();
+	public boolean maxScenario() {
+		return (index + 1) == game.getScenarioListSize();
 	}
 
 	public static void main(String[] args) {

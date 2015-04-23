@@ -140,6 +140,47 @@ public class MainUI extends JPanel {
 
 		return eastPanel;
 	}
+	public void login(String inName, String inText) {
+		String name, password;
+		JTextField nameField = new JTextField(5);
+		JPasswordField passwordField = new JPasswordField(5);
+		nameField.setText(inName);
+
+		JPanel panel = new JPanel();
+		panel.setLayout(new GridLayout(3, 1));
+		panel.add(new JLabel("Namn:"));
+		panel.add(nameField);
+		panel.add(new JLabel("Lösenord:"));
+		panel.add(passwordField);
+
+		JOptionPane.showConfirmDialog(null, panel, inText, JOptionPane.OK_CANCEL_OPTION);
+		name = nameField.getText();
+		password = passwordField.getText();
+		cont.login(name, password);
+	}
+	
+	public void newUser(String inName, String inText) {
+		String name, password, passwordConf;
+		JTextField nameField = new JTextField(5);
+		JPasswordField passwordField = new JPasswordField(5);
+		JPasswordField passwordFieldConf = new JPasswordField(5);
+		nameField.setText(inName);
+
+		JPanel panel = new JPanel();
+		panel.setLayout(new GridLayout(3, 1));
+		panel.add(new JLabel("Namn:"));
+		panel.add(nameField);
+		panel.add(new JLabel("Lösenord:"));
+		panel.add(passwordField);
+		panel.add(new JLabel("Upprepa lösenord:"));
+		panel.add(passwordFieldConf);
+
+		JOptionPane.showConfirmDialog(null, panel, inText, JOptionPane.OK_CANCEL_OPTION);
+		name = nameField.getText();
+		password = passwordField.getText();
+		passwordConf = passwordFieldConf.getText();
+		cont.newUser(name, password, passwordConf);
+	}
 
 	/**
 	 * Metod som lägger till lyssnare till klassen
@@ -160,6 +201,12 @@ public class MainUI extends JPanel {
 				cont.closeWindow();
 				cont.stopMusic();
 				cont.play();
+			}
+			if (e.getSource() == btnCreateAccount) {
+				newUser(null, "Mata in namn och lösenord");
+			}
+			if (e.getSource() == btnSignIn) {
+				login(null, "Mata in namn och lösenord");
 			}
 		}
 	}
