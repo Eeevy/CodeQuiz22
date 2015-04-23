@@ -142,12 +142,12 @@ public class MainUI extends JPanel {
 	}
 	public void login(String inName, String inText) {
 		String name, password;
-		JTextField nameField = new JTextField(5);
-		JPasswordField passwordField = new JPasswordField(5);
+		JTextField nameField = new JTextField(8);
+		JPasswordField passwordField = new JPasswordField(8);
 		nameField.setText(inName);
 
 		JPanel panel = new JPanel();
-		panel.setLayout(new GridLayout(3, 1));
+		panel.setLayout(new GridLayout(2, 1));
 		panel.add(new JLabel("Namn:"));
 		panel.add(nameField);
 		panel.add(new JLabel("Lösenord:"));
@@ -162,8 +162,8 @@ public class MainUI extends JPanel {
 	public void newUser(String inName, String inText) {
 		String name, password, passwordConf;
 		JTextField nameField = new JTextField(5);
-		JPasswordField passwordField = new JPasswordField(5);
-		JPasswordField passwordFieldConf = new JPasswordField(5);
+		JPasswordField passwordField = new JPasswordField(7);
+		JPasswordField passwordFieldConf = new JPasswordField(7);
 		nameField.setText(inName);
 
 		JPanel panel = new JPanel();
