@@ -3,6 +3,7 @@ package codequiz;
 import java.io.*;
 import java.net.Socket;
 import java.util.ArrayList;
+import java.util.Hashtable;
 import java.util.LinkedList;
 
 import javax.sound.sampled.AudioFormat;
@@ -41,6 +42,7 @@ public class QuizController extends Thread {
 	private QuizUI quizUI;
 	private int i = 0;
 	private int index = -1;
+	private Hashtable logininformation = new Hashtable();
 
 	public QuizController() {
 		user = new User();
@@ -132,6 +134,45 @@ public class QuizController extends Thread {
 				question.getAnswer3(), question.getAnswer4());
 		i++;
 	}
+	
+	/**
+	 * Sköter registrering av nya användare.
+	 * @param name
+	 * @param password
+	 * @param passConf
+	 */
+	public void newUser(String name, String password, String passConf) {
+
+		if (!(password.equals(passConf))) {
+			mainUI.newUser(name, "Dina angivna lösenord matchar inte");
+			} else if ((name.isEmpty()) || (password.isEmpty()) || (passConf.isEmpty())) {
+				mainUI.newUser(name, "Det saknas uppgifter");
+				} else {	
+					System.out.print(password + name);
+					logininformation.put(name, password);
+				}
+		}
+
+
+		/**
+		 * Sköter inloggning.
+		 * @param inName
+		 * @param inPass
+		 */
+		public void login(String inName, String inPass) {
+
+		if (!(logininformation.containsKey(inName))) {
+			mainUI.login(inName, "Användarnamnet saknas");
+			} else if ((inName.isEmpty()) || (inPass.isEmpty())) {
+				mainUI.login(inName, "Det saknas uppgifter");
+				} else {
+					if(inPass.equals(logininformation.get(inName))) {
+						System.out.println(logininformation.get(inName));
+					} else {
+						mainUI.login(inName, "Fel lösenord");
+						}
+				}
+		}
 
 	/**
 	 * 
