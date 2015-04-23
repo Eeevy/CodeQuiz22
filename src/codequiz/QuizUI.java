@@ -228,7 +228,7 @@ public class QuizUI extends JPanel {
 		public void actionPerformed(ActionEvent e) {
 			// controller.nextQuestion();
 			lblPoints.setVisible(true);
-			lblPoints.setText("Poäng " + controller.getPoints());
+			lblPoints.setText("Poäng: " + controller.getPoints());
 			lblLives.setVisible(true);
 			lblLives.setText(" " + controller.getlives());
 			questionPanel.setVisible(true);
@@ -282,7 +282,7 @@ public class QuizUI extends JPanel {
 				controller.decreasePoints();
 				controller.decreaseLives();
 				lblPoints.setText(" Poäng: " + controller.getPoints());
-				lblLives.setText("Liv: " + controller.getlives());
+				lblLives.setText(" " + controller.getlives());
 				btnNewQuestion.setEnabled(true);
 			}
 
