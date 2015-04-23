@@ -18,6 +18,12 @@ import javax.swing.SwingUtilities;
 import CodeQuizServer.Game;
 import CodeQuizServer.QuizScenario;
 
+/**
+ * Klassen hanterar programmets logik och hanterar bland annat UI
+ * 
+ * @author CodeQuiz team
+ *
+ */
 public class QuizController extends Thread {
 
 	private Game game;
@@ -40,7 +46,7 @@ public class QuizController extends Thread {
 		user = new User();
 		int temp = getlives();
 		System.out.println(temp);
-//		System.out.println("" + getlives());
+		// System.out.println("" + getlives());
 		System.out.println("QuizController: Konstruktor");
 		musicFilename = new File("src/media/HarryPotterThemeSong.wav");
 		quizUI = new QuizUI();
@@ -52,6 +58,9 @@ public class QuizController extends Thread {
 		playSoundClip();
 	}
 
+	/**
+	 * Metoden skapar ett fönster
+	 */
 	public void showGUI() {
 		mainFrame = new JFrame("");
 		mainFrame.setTitle("Code Quiz");
@@ -75,10 +84,16 @@ public class QuizController extends Thread {
 		resetLives();
 	}
 
+	/**
+	 * Stänger aktuellt fönster
+	 */
 	public void closeWindow() {
 		mainFrame.dispose();
 	}
 
+	/**
+	 * avbryter musik-klipp
+	 */
 	public void stopMusic() {
 		clip.stop();
 	}
@@ -105,6 +120,10 @@ public class QuizController extends Thread {
 		}
 	}
 
+	/**
+	 * Metoden hämtar en fråga ur ett game objekt, skickar denna samt
+	 * svarsalternativ till quizUI där de visas för användaren
+	 */
 	public void getQuestion() {
 		// game = new Game();//ta bort
 		this.question = game.getQuestion(i);
@@ -114,10 +133,17 @@ public class QuizController extends Thread {
 		i++;
 	}
 
+	/**
+	 * 
+	 * @return - rätt svar på aktuell fråga
+	 */
 	public String getCorrectAnswer() {
 		return question.getCorrectanswer(); // ändrat till instansvariabeln
 	}
 
+	/**
+	 * Metoden skapar ett Client-objekt som i sin tur kopplar upp med servern.
+	 */
 	public void play() {
 		System.out.println("Controller: play()");
 		setPanel(quizUI);
@@ -129,10 +155,18 @@ public class QuizController extends Thread {
 		}
 	}
 
+	/**
+	 * Ökar index för scenario
+	 */
 	public void increaseIndex() {
 		index++;
 	}
 
+	/**
+	 * Metoden returnerar en fråge-bild
+	 * 
+	 * @return - en bild på en fråga
+	 */
 	public ImageIcon setQuestionScenario() {
 		scenario = game.getScenario(index);
 		ImageIcon QPic = scenario.getStoryPic();
@@ -141,6 +175,11 @@ public class QuizController extends Thread {
 		// return QPic;
 	}
 
+	/**
+	 * Metoden returnerar en bild
+	 * 
+	 * @return - en om-rätt-svar-bild
+	 */
 	public ImageIcon setCorrectScenario() {
 		scenario = game.getScenario(index);
 		ImageIcon CPic = scenario.getCorrectPic();
@@ -149,6 +188,11 @@ public class QuizController extends Thread {
 		// return CPic;
 	}
 
+	/**
+	 * Metoden returnerar en bild
+	 * 
+	 * @return - en om-fel-bild
+	 */
 	public ImageIcon setIncorrectScenario() {
 		scenario = game.getScenario(index);
 		ImageIcon IPic = scenario.getIncorrectPic();
@@ -157,14 +201,25 @@ public class QuizController extends Thread {
 		// return IPic;
 	}
 
+	/**
+	 * 
+	 * @return - huvudpanel
+	 */
 	public JPanel getMainUI() {
 		return mainUI;
 	}
 
+	/**
+	 * 
+	 * @return - frågepanel
+	 */
 	public JPanel getQuizUI() {
 		return quizUI;
 	}
 
+	/**
+	 * Metoden startar ett nytt spel, återställer index och spelar ljudklipp
+	 */
 	public void newGame() {
 		quizUI = new QuizUI();
 		quizUI.setController(this);
@@ -174,46 +229,97 @@ public class QuizController extends Thread {
 		playSoundClip();
 	}
 
+	/**
+	 * 
+	 * @param game
+	 *            - ett spel-objekt
+	 */
 	public void setGame(Game game) {
 		System.out.println("QuizController: setGame()");
 		this.game = game;
 	}
-	public JPanel getResultUI(){
+
+	/**
+	 * 
+	 * @return - panel, visar resultat
+	 */
+	public JPanel getResultUI() {
 		return resultui;
 	}
-	public void newResultUI(){
+
+	/**
+	 * Initierar resultUI (JPanel), och anger vilket objekt som skall hantera
+	 * logiken.
+	 */
+	public void newResultUI() {
 		resultui = new ResultUI();
 		resultui.setController(this);
 	}
-	public void increasePoints(){
-		user.setUserPoints(user.getUserPoints()+10);
+
+	/**
+	 * Ökar användarens poäng
+	 */
+	public void increasePoints() {
+		user.setUserPoints(user.getUserPoints() + 10);
 	}
-	public void decreasePoints(){
-		user.setUserPoints(user.getUserPoints()-10);
+
+	/**
+	 * Minskar spelares poäng
+	 */
+	public void decreasePoints() {
+		user.setUserPoints(user.getUserPoints() - 10);
 	}
-	public int getlives(){
+
+	/**
+	 * 
+	 * @return - en spelares aktuella mängd liv
+	 */
+	public int getlives() {
 		int lives = user.getLives();
 		Integer.toString(lives);
 		return lives;
 	}
-	public int getPoints(){
+
+	/**
+	 * 
+	 * @return - en spelares aktuella mängd poäng
+	 */
+	public int getPoints() {
 		int points = user.getUserPoints();
 		Integer.toString(points);
 		return points;
 	}
-	public void decreaseLives(){
-		user.setLives(user.getLives()-1);
+
+	/**
+	 * minskar en spelares mängd liv
+	 */
+	public void decreaseLives() {
+		user.setLives(user.getLives() - 1);
 	}
+
+	/**
+	 * Återställer en spelares liv till initiell mängd
+	 */
 	public void resetLives() {
 		user.setLives(2);
 	}
-	
+
+	/**
+	 * Visar aktuell poäng i resultatpanelen
+	 * 
+	 * @param inScore
+	 *            - poäng som skall visas
+	 */
 	public void setScore(int inScore) {
 		resultui.setSlytherin(inScore);
 	}
 
-	public boolean maxScenario() {	
-		return (index+1) == game.getScenarioListSize();
+	/**
+	 * 
+	 * @return- returnerar true om max antal scenarion är uppnådda
+	 */
+	public boolean maxScenario() {
+		return (index + 1) == game.getScenarioListSize();
 	}
 
 	public static void main(String[] args) {
