@@ -141,6 +141,7 @@ public class MainUI extends JPanel {
 		return eastPanel;
 	}
 	public void login(String inName, String inText) {
+		int result = 0;
 		String name, password;
 		JTextField nameField = new JTextField(8);
 		JPasswordField passwordField = new JPasswordField(8);
@@ -153,13 +154,15 @@ public class MainUI extends JPanel {
 		panel.add(new JLabel("Lösenord:"));
 		panel.add(passwordField);
 
-		JOptionPane.showConfirmDialog(null, panel, inText, JOptionPane.OK_CANCEL_OPTION);
+		result = JOptionPane.showConfirmDialog(null, panel, inText, JOptionPane.OK_CANCEL_OPTION);
+		if(result == JOptionPane.OK_OPTION) {
 		name = nameField.getText();
 		password = passwordField.getText();
 		cont.login(name, password);
-	}
+	}}
 	
 	public void newUser(String inName, String inText) {
+		int result = 0;
 		String name, password, passwordConf;
 		JTextField nameField = new JTextField(5);
 		JPasswordField passwordField = new JPasswordField(7);
@@ -175,12 +178,13 @@ public class MainUI extends JPanel {
 		panel.add(new JLabel("Upprepa lösenord:"));
 		panel.add(passwordFieldConf);
 
-		JOptionPane.showConfirmDialog(null, panel, inText, JOptionPane.OK_CANCEL_OPTION);
+		result = JOptionPane.showConfirmDialog(null, panel, inText, JOptionPane.OK_CANCEL_OPTION);
+		if(result == JOptionPane.OK_OPTION) {
 		name = nameField.getText();
 		password = passwordField.getText();
 		passwordConf = passwordFieldConf.getText();
 		cont.newUser(name, password, passwordConf);
-	}
+	}}
 
 	/**
 	 * Metod som lägger till lyssnare till klassen
