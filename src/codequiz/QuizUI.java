@@ -9,6 +9,12 @@ import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
+/**
+ * Klassen består av en panel som visar spelet och dess händelser
+ * 
+ * @author CodeQuiz team
+ *
+ */
 public class QuizUI extends JPanel {
 	private QuizController controller;
 
@@ -33,11 +39,14 @@ public class QuizUI extends JPanel {
 	private JLabel lblPoints;
 	private JLabel lblLives;
 	private JLabel lblResult = new JLabel("");
-//	private JLabel lblBackground = new JLabel(new ImageIcon(
-//			"src/media/howToPlay.png"));
+	// private JLabel lblBackground = new JLabel(new ImageIcon(
+	// "src/media/howToPlay.png"));
 	private JLabel lblBackground = new JLabel(new ImageIcon(
 			"src/media/howToPlay.png"));
 
+	/**
+	 * Konstruerar en bakgrund
+	 */
 	public QuizUI() {
 		setBackground(Color.BLACK);
 		setPreferredSize(new Dimension(800, 600));
@@ -53,6 +62,11 @@ public class QuizUI extends JPanel {
 
 	}
 
+	/**
+	 * 
+	 * @param controller
+	 *            - det objekt som hanterar logiken
+	 */
 	public void setController(QuizController controller) {
 		this.controller = controller;
 	}
@@ -84,9 +98,8 @@ public class QuizUI extends JPanel {
 	}
 
 	/**
-	 * opaque panel
 	 * 
-	 * @return
+	 * @return - panel med huvudmenyknapp, resutatknapp
 	 */
 	public JPanel eastPanel() {
 		eastPanel = new JPanel(new FlowLayout());
@@ -101,9 +114,8 @@ public class QuizUI extends JPanel {
 	}
 
 	/**
-	 * Contains game questions
 	 * 
-	 * @return
+	 * @return - panel som innehåller information om frågan
 	 */
 	public JPanel questionPanel() {
 		// questionPanel = new JPanel(new GridLayout(8, 1));
@@ -181,21 +193,27 @@ public class QuizUI extends JPanel {
 		questionPanel.add(rb4);
 		questionPanel.add(lblResult);
 		questionPanel.add(btnSubmit);
-		
+
 		btnSubmit.addActionListener(new SubmitListener());
 
 		return questionPanel;
 	}
 
+	/**
+	 * 
+	 * @return - panelen innehållande poäng, liv och nästa fråga-knappen
+	 */
 	public JPanel southPanel() {
 		// southPanel = new JPanel(new GridLayout(2, 2));
 		southPanel = new JPanel(new FlowLayout(FlowLayout.LEFT));
 		southPanel.setPreferredSize(new Dimension(100, 80));
 		southPanel.add(Box.createRigidArea(new Dimension(20, 20)));
-		southPanel.add(lblPoints = new JLabel(new ImageIcon("src/media/EmblemSml.png")));
+		southPanel.add(lblPoints = new JLabel(new ImageIcon(
+				"src/media/EmblemSml.png")));
 		lblPoints.setVisible(false);
 		southPanel.add(Box.createRigidArea(new Dimension(60, 20)));
-		southPanel.add(lblLives = new JLabel(new ImageIcon("src/media/heartSml.png")));
+		southPanel.add(lblLives = new JLabel(new ImageIcon(
+				"src/media/heartSml.png")));
 		lblLives.setVisible(false);
 
 		southPanel.add(Box.createRigidArea(new Dimension(30, 20)));
@@ -209,6 +227,10 @@ public class QuizUI extends JPanel {
 		return southPanel;
 	}
 
+	/**
+	 * 
+	 * Händelse då huvudmenyknappen aktiveras
+	 */
 	private class ButtonBackListener implements ActionListener {
 		public void actionPerformed(ActionEvent e) {
 			controller.setPanel(controller.getMainUI());
@@ -216,6 +238,10 @@ public class QuizUI extends JPanel {
 		}
 	}
 
+	/**
+	 * 
+	 * Händelse då resultatknappen aktiveras
+	 */
 	private class ButtonResultListener implements ActionListener {
 		public void actionPerformed(ActionEvent e) {
 			controller.newResultUI();
@@ -224,6 +250,10 @@ public class QuizUI extends JPanel {
 		}
 	}
 
+	/**
+	 * 
+	 * Händelse då Nästa fråga knappen aktiveras
+	 */
 	private class QuestionListener implements ActionListener {
 		public void actionPerformed(ActionEvent e) {
 			// controller.nextQuestion();
@@ -244,6 +274,10 @@ public class QuizUI extends JPanel {
 		}
 	}
 
+	/**
+	 * 
+	 * Händelse då Ok knappen aktiveras
+	 */
 	private class SubmitListener implements ActionListener {
 
 		public void actionPerformed(ActionEvent e) {
@@ -289,10 +323,10 @@ public class QuizUI extends JPanel {
 			if (controller.getlives() == 0) {
 				setBackground(new ImageIcon("src/media/dead.jpeg"));
 				JLabel lbldead = new JLabel(new ImageIcon(
-						"src/media/DropDead.gif"));	
+						"src/media/DropDead.gif"));
 				eastPanel.add(Box.createRigidArea(new Dimension(20, 130)));
 				questionPanel.setVisible(false);
-				btnNewQuestion.setVisible(false);		
+				btnNewQuestion.setVisible(false);
 				eastPanel.add(btnback);
 				eastPanel.add(Box.createRigidArea(new Dimension(10, 30)));
 				eastPanel.add(btnresult);
@@ -307,38 +341,60 @@ public class QuizUI extends JPanel {
 				btnresult.setForeground(Color.GREEN);
 				btnback.setBackground(Color.BLACK);
 				btnresult.setBackground(Color.BLACK);
-				eastPanel.add(lbldead, BorderLayout.SOUTH);		
+				eastPanel.add(lbldead, BorderLayout.SOUTH);
 			}
-			
-//			if (controller.maxScenario() == true) {
-//				controller.setScore(controller.getPoints());
-//
-//				// ÄNDRA BILDSÖKVÄGAR
-//				setBackground(new ImageIcon("src/media/background.jpg"));
-//				JLabel lbldead = new JLabel(new ImageIcon(
-//						"src/media/beatrixCorrect.png"));
-//
-//				eastPanel.add(Box.createRigidArea(new Dimension(60, 150)));
-//				eastPanel.add(lbldead, BorderLayout.SOUTH);
-//				questionPanel.setVisible(false);
-//				btnNewQuestion.setVisible(false);
-//				btnback.setVisible(true);
-//				btnback.addActionListener(new ButtonBackListener());
-//				btnNewQuestion.setEnabled(true);
-//				btnresult.setVisible(true);
-//				btnresult.addActionListener(new ButtonResultListener());
-//			}
+
+			// if (controller.maxScenario() == true) {
+			// controller.setScore(controller.getPoints());
+			//
+			// // ÄNDRA BILDSÖKVÄGAR
+			// setBackground(new ImageIcon("src/media/background.jpg"));
+			// JLabel lbldead = new JLabel(new ImageIcon(
+			// "src/media/beatrixCorrect.png"));
+			//
+			// eastPanel.add(Box.createRigidArea(new Dimension(60, 150)));
+			// eastPanel.add(lbldead, BorderLayout.SOUTH);
+			// questionPanel.setVisible(false);
+			// btnNewQuestion.setVisible(false);
+			// btnback.setVisible(true);
+			// btnback.addActionListener(new ButtonBackListener());
+			// btnNewQuestion.setEnabled(true);
+			// btnresult.setVisible(true);
+			// btnresult.addActionListener(new ButtonResultListener());
+			// }
 		}
 	}
 
+	/**
+	 * 
+	 * @param question
+	 *            - den fråga som skall visas för användaren
+	 */
 	public void setQuestion(String question) {
 		lblQuestion.setText(question);
 	}
 
+	/**
+	 * 
+	 * @param inIcon
+	 *            - den bakgrund som skall visas
+	 */
 	public void setBackground(ImageIcon inIcon) {
 		lblBackground.setIcon(inIcon);
 	}
 
+	/**
+	 * Visar svarsalternativ
+	 * 
+	 * @param al1
+	 *            -svarsalternativ1
+	 * @param al2
+	 *            -svarsalternativ2
+	 * @param al3
+	 *            -svarsalternativ3
+	 * @param al4
+	 *            -svarsalternativ4
+	 */
 	public void setAlternatives(String al1, String al2, String al3, String al4) {
 		rb1.setText(al1);
 		rb2.setText(al2);
