@@ -20,7 +20,7 @@ import CodeQuizServer.Game;
 import CodeQuizServer.QuizScenario;
 
 /**
- * Klassen hanterar programmets logik och hanterar bland annat UI
+ * Klassen hanterar programmets logik i bland annat UIs
  * 
  * @author CodeQuiz team
  *
@@ -40,11 +40,14 @@ public class QuizController extends Thread {
 	private File musicFilename;
 	private MainUI mainUI;
 	private QuizUI quizUI;
+	private HowToPlayUI howToUI;
 	private int i = 0;
 	private int index = -1;
 	private Hashtable logininformation = new Hashtable();
 
 	public QuizController() {
+		play();//kopplar upp till servern här istället
+
 		user = new User();
 		int temp = getlives();
 		System.out.println(temp);
@@ -53,9 +56,11 @@ public class QuizController extends Thread {
 		musicFilename = new File("src/media/HarryPotterThemeSong.wav");
 		quizUI = new QuizUI();
 		mainUI = new MainUI();
+		howToUI = new HowToPlayUI();
 		panel = mainUI;
 		quizUI.setController(this);
 		mainUI.setController(this);
+		howToUI.setController(this);
 		showGUI();
 		playSoundClip();
 	}
@@ -152,6 +157,9 @@ public class QuizController extends Thread {
 					mainUI.newUser(name, "Det saknas uppgifter");
 					} else {	
 						System.out.print(password + name);
+						setPanel(howToUI);//Emma was here
+						howToUI.setWelcome(name);/////////////////////////////////////////
+						
 						logininformation.put(name, password);
 					}
 		}
@@ -190,7 +198,7 @@ public class QuizController extends Thread {
 	 */
 	public void play() {
 		System.out.println("Controller: play()");
-		setPanel(quizUI);
+//		setPanel(quizUI);
 		try {
 			client = new Client("127.0.0.1", 3453, this);
 			System.out.println("Klient skapad");
@@ -260,6 +268,13 @@ public class QuizController extends Thread {
 	public JPanel getQuizUI() {
 		return quizUI;
 	}
+	/**
+	 * 
+	 * @return - hur spelar man-panelen
+	 */
+	public JPanel getHowToPlayUI(){
+		return howToUI;
+	}
 
 	/**
 	 * Metoden startar ett nytt spel, återställer index och spelar ljudklipp
@@ -281,6 +296,7 @@ public class QuizController extends Thread {
 	public void setGame(Game game) {
 		System.out.println("QuizController: setGame()");
 		this.game = game;
+		mainUI.enableMenu();
 	}
 
 	/**

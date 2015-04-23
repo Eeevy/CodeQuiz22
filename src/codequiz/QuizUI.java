@@ -39,10 +39,9 @@ public class QuizUI extends JPanel {
 	private JLabel lblPoints;
 	private JLabel lblLives;
 	private JLabel lblResult = new JLabel("");
-	// private JLabel lblBackground = new JLabel(new ImageIcon(
-	// "src/media/howToPlay.png"));
+
 	private JLabel lblBackground = new JLabel(new ImageIcon(
-			"src/media/howToPlay.png"));
+			"src/media/background.jpg"));//bör ej vara denna bild
 
 	/**
 	 * Konstruerar en bakgrund

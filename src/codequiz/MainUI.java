@@ -60,6 +60,11 @@ public class MainUI extends JPanel {
 		add(centerPanel(), BorderLayout.CENTER);
 		add(eastPanel(), BorderLayout.EAST);
 		addActionListeners();
+		btnPlay.setVisible(false);
+	}
+	
+	public void enableMenu(){
+		btnPlay.setVisible(true);
 	}
 
 	/**
@@ -202,15 +207,19 @@ public class MainUI extends JPanel {
 
 		public void actionPerformed(ActionEvent e) {
 			if (e.getSource() == btnPlay) {
-				cont.closeWindow();
-				cont.stopMusic();
-				cont.play();
+//				cont.closeWindow();
+//				cont.stopMusic();
+//				cont.play();
+				cont.setPanel(cont.getQuizUI());
 			}
 			if (e.getSource() == btnCreateAccount) {
 				newUser(null, "Mata in namn och lösenord");
 			}
 			if (e.getSource() == btnSignIn) {
 				login(null, "Mata in namn och lösenord");
+			}
+			if (e.getSource() == btnHowToPlay){
+				cont.setPanel(cont.getHowToPlayUI());
 			}
 		}
 	}
