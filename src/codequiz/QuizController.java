@@ -70,6 +70,7 @@ public class QuizController extends Thread {
 		mainFrame.add(panel);
 		mainFrame.pack();
 		mainFrame.setResizable(false);
+		mainFrame.setLocationRelativeTo(null);
 		mainFrame.setVisible(true);
 	}
 
