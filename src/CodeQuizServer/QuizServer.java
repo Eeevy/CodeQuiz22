@@ -6,8 +6,6 @@ import java.net.Socket;
 
 /**
  * Hanterar kommunikationen med databasen.
- * 
- * @author
  *
  */
 public class QuizServer {
@@ -17,6 +15,10 @@ public class QuizServer {
 		new Connection(port).start();
 	}
 
+	/**
+	 * Inre klass, skapar en serverSocket som väntar på att klient skall ansluta
+	 *
+	 */
 	private class Connection extends Thread {
 		private int port;
 
@@ -35,7 +37,8 @@ public class QuizServer {
 						System.out.println("Servern: Väntar på klient...");
 						socket = serversocket.accept();
 						System.out.println("Servern: Uppkopplad...");
-						new ClientHandler(socket);
+						new ClientHandler(socket);// Tråd skapas för varje
+													// klient
 					} catch (IOException ioe) {
 						System.out.println(ioe);
 						if (socket != null) {
@@ -50,12 +53,24 @@ public class QuizServer {
 		}
 	}
 
+	/**
+	 * Tråd som hanterar kommunikationen med uppkopplad klient och skickar denne
+	 * objekt
+	 *
+	 */
 	private class ClientHandler extends Thread {
 		private Socket socket;
 		private ObjectInputStream ois;
 		private ObjectOutputStream oos;
 		private Game game;
 
+		/**
+		 * Konstruerar socket och objektströmmar
+		 * 
+		 * @param socket
+		 *            - kommunikatione mellan klient och server
+		 * @throws IOException
+		 */
 		public ClientHandler(Socket socket) throws IOException {
 			System.out.println("ClientHandler: Konstruktor");
 			this.socket = socket;
@@ -63,15 +78,20 @@ public class QuizServer {
 
 			oos = new ObjectOutputStream(socket.getOutputStream());
 			ois = new ObjectInputStream(socket.getInputStream());
-			System.out.println("Fel på strömmarna");
 			start();
 		}
 
+		/**
+		 * Metoden skapar ett nytt game objekt
+		 */
 		public void newGame() {
 			System.out.println("ClientHandler: newGame()");
 			game = new Game();
 		}
 
+		/**
+		 * Metoden skickar objekt till klienten
+		 */
 		public void run() {
 			System.out.println("ClientHandler: run()");
 			try {
@@ -92,6 +112,12 @@ public class QuizServer {
 		}
 	}
 
+	/**
+	 * Startar servern
+	 * 
+	 * @param args
+	 * @throws IOException
+	 */
 	public static void main(String[] args) throws IOException {
 		new QuizServer(3453);
 	}

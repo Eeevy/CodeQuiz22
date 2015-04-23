@@ -4,13 +4,23 @@ import java.net.*;
 import java.io.*;
 
 import CodeQuizServer.Game;
-
+/**
+ * Klassen hanterar kommunikation med servern. 
+ *
+ */
 public class Client {
 	private QuizController controller;
 	private Socket socket;
 	private ObjectInputStream ois;
 	private ObjectOutputStream oos;
-
+/**
+ * Konstruerar ett Client - objekt med strömmar och socket för kommunikation med servern samt
+ * instansierar det objekt (controller) som hanterar logiken
+ * @param ip - server ip 
+ * @param port - server port
+ * @param controller - Controller klassen som hanterar logik
+ * @throws IOException
+ */
 	public Client(String ip, int port, QuizController controller) throws IOException {
 		System.out.println("client konstruktor");
 		socket = new Socket(ip, port);
@@ -22,17 +32,27 @@ public class Client {
 		
 		new Listener().start();
 	}
-
+/**
+ * 
+ * @param controller - referens till det objekt som hanterar logiken
+ */
 	public void setClientController(QuizController controller) {
 		this.controller = controller;
 	}
-
+/**
+ * Metoden avslutar kommunikationen med servern
+ * @throws IOException
+ */
 	public void exit() throws IOException {
 		if (socket != null) {
 			socket.close();
 		}
 	}
-
+/**
+ * 
+ *Klassen hanterar kommunikationen med servern och tar emot objekt.
+ *Dessa skickas vidare till controller för att hanteras vidare
+ */
 	private class Listener extends Thread {
 		public void run() {
 			System.out.println("Listener: run()");

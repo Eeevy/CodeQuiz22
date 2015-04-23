@@ -10,7 +10,6 @@ import codequiz.Question;
 /**
  * Klassen består av ett objekt som innehåller samtliga frågor och scenarion för
  * ett spel som sedan skickas från server till klient vid spelets start.
- * 
  * Frågorna skall i en senare version hämtas från databasen och ett 30 tal slumpas innan
  * de skickas till klient. (I den ordningen om dessa inte kan slumpas från databasen)
  */
@@ -21,7 +20,7 @@ public class Game implements Serializable {
 	private Question question1, question2, question3, question4, question5,
 			question6, question7, question8, question9;
 	private QuizScenario scenario, scenario1, scenario2, scenario3, scenario4,
-			scenario5;
+			scenario5, scenario6;
 
 	/**
 	 * Konstruerar frågor och scenarion
@@ -134,7 +133,10 @@ public class Game implements Serializable {
 				"src/media/ScenarioDumbledoreIntro.jpg"), new ImageIcon(
 				"src/media/ScenarioDumbledoreCorrect.jpg"), new ImageIcon(
 				"src/media/ScenarioDumbledoreIncorrect.jpg"));
-
+		scenario6 = new QuizScenario(new ImageIcon(
+				"src/media/ScenarioOakOwl.jpg"), new ImageIcon(
+				"src/media/ScenarioOwlCorrect.jpg"), new ImageIcon(
+				"src/media/ScenarioOwlIncorrect.jpg"));
 		setScenario();
 	}
 
@@ -173,6 +175,7 @@ public class Game implements Serializable {
 		scenariolist.add(scenario3);
 		scenariolist.add(scenario4);
 		scenariolist.add(scenario5);
+		scenariolist.add(scenario6);
 	}
 
 	/**
