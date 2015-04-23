@@ -4,13 +4,22 @@ import java.net.*;
 import java.io.*;
 
 import CodeQuizServer.Game;
-
+/**
+ * Klassen hanterar kommunikation med servern. 
+ *
+ */
 public class Client {
 	private QuizController controller;
 	private Socket socket;
 	private ObjectInputStream ois;
 	private ObjectOutputStream oos;
-
+/**
+ * 
+ * @param ip - server ip 
+ * @param port - server port
+ * @param controller - Controller klassen som hanterar logik
+ * @throws IOException
+ */
 	public Client(String ip, int port, QuizController controller) throws IOException {
 		System.out.println("client konstruktor");
 		socket = new Socket(ip, port);

@@ -190,18 +190,21 @@ public class QuizUI extends JPanel {
 	public JPanel southPanel() {
 		// southPanel = new JPanel(new GridLayout(2, 2));
 		southPanel = new JPanel(new FlowLayout(FlowLayout.LEFT));
-		southPanel.setPreferredSize(new Dimension(100, 50));
+		southPanel.setPreferredSize(new Dimension(100, 80));
 		southPanel.add(Box.createRigidArea(new Dimension(20, 20)));
-		southPanel.add(lblPoints = new JLabel());
+		southPanel.add(lblPoints = new JLabel(new ImageIcon("src/media/EmblemSml.png")));
+		lblPoints.setVisible(false);
 		southPanel.add(Box.createRigidArea(new Dimension(60, 20)));
-		southPanel.add(lblLives = new JLabel());
-		southPanel.add(Box.createRigidArea(new Dimension(60, 20)));
+		southPanel.add(lblLives = new JLabel(new ImageIcon("src/media/heartSml.png")));
+		lblLives.setVisible(false);
+
+		southPanel.add(Box.createRigidArea(new Dimension(30, 20)));
 		southPanel.add(btnNewQuestion);
 		btnNewQuestion.setOpaque(false);
 		southPanel.setOpaque(false);
 		btnNewQuestion.addActionListener(new QuestionListener());
-		lblPoints.setForeground(Color.GREEN);
-		lblLives.setForeground(Color.GREEN);
+		lblPoints.setForeground(Color.BLACK);
+		lblLives.setForeground(Color.BLACK);
 
 		return southPanel;
 	}
@@ -224,8 +227,10 @@ public class QuizUI extends JPanel {
 	private class QuestionListener implements ActionListener {
 		public void actionPerformed(ActionEvent e) {
 			// controller.nextQuestion();
-			lblPoints.setText("Poäng: " + controller.getPoints());
-			lblLives.setText("Liv: " + controller.getlives());
+			lblPoints.setVisible(true);
+			lblPoints.setText("Poäng " + controller.getPoints());
+			lblLives.setVisible(true);
+			lblLives.setText(" " + controller.getlives());
 			questionPanel.setVisible(true);
 			btnNewQuestion.setText("Nästa fråga");
 			btnNewQuestion.setEnabled(false);
@@ -276,7 +281,7 @@ public class QuizUI extends JPanel {
 				lblResult.setForeground(Color.RED);
 				controller.decreasePoints();
 				controller.decreaseLives();
-				lblPoints.setText("Poäng: " + controller.getPoints());
+				lblPoints.setText(" Poäng: " + controller.getPoints());
 				lblLives.setText("Liv: " + controller.getlives());
 				btnNewQuestion.setEnabled(true);
 			}
