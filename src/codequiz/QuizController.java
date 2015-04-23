@@ -146,12 +146,14 @@ public class QuizController extends Thread {
 
 		if (!(password.equals(passConf))) {
 			mainUI.newUser(name, "Dina angivna lösenord matchar inte");
-			} else if ((name.isEmpty()) || (password.isEmpty()) || (passConf.isEmpty())) {
-				mainUI.newUser(name, "Det saknas uppgifter");
-				} else {	
-					System.out.print(password + name);
-					logininformation.put(name, password);
-				}
+			} else if(logininformation.contains(name)) {
+				mainUI.newUser(name, "Användarnamnet är upptaget");
+				} else if ((name.isEmpty()) || (password.isEmpty()) || (passConf.isEmpty())) {
+					mainUI.newUser(name, "Det saknas uppgifter");
+					} else {	
+						System.out.print(password + name);
+						logininformation.put(name, password);
+					}
 		}
 
 
