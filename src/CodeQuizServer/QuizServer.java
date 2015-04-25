@@ -6,6 +6,7 @@ import java.net.Socket;
 
 /**
  * Hanterar kommunikationen med databasen.
+ * 
  *
  */
 public class QuizServer {
