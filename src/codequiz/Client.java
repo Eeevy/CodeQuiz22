@@ -6,7 +6,7 @@ import java.io.*;
 import CodeQuizServer.Game;
 /**
  * Klassen hanterar kommunikation med servern. 
- * @author CodeQuiz team
+ *
  */
 public class Client {
 	private QuizController controller;
