@@ -203,19 +203,19 @@ public class QuizUI extends JPanel {
 	 * @return - panelen innehållande poäng, liv och nästa fråga-knappen
 	 */
 	public JPanel southPanel() {
-		// southPanel = new JPanel(new GridLayout(2, 2));
+//		southPanel = new JPanel(new GridLayout(2, 2));
 		southPanel = new JPanel(new FlowLayout(FlowLayout.LEFT));
 		southPanel.setPreferredSize(new Dimension(100, 80));
 		southPanel.add(Box.createRigidArea(new Dimension(20, 20)));
 		southPanel.add(lblPoints = new JLabel(new ImageIcon(
 				"src/media/EmblemSml.png")));
 		lblPoints.setVisible(false);
-		southPanel.add(Box.createRigidArea(new Dimension(60, 20)));
+		southPanel.add(Box.createRigidArea(new Dimension(20, 20)));
 		southPanel.add(lblLives = new JLabel(new ImageIcon(
 				"src/media/heartSml.png")));
 		lblLives.setVisible(false);
 
-		southPanel.add(Box.createRigidArea(new Dimension(30, 20)));
+		southPanel.add(Box.createRigidArea(new Dimension(10, 20)));
 		southPanel.add(btnNewQuestion);
 		btnNewQuestion.setOpaque(false);
 		southPanel.setOpaque(false);
@@ -320,12 +320,8 @@ public class QuizUI extends JPanel {
 			}
 
 			if (controller.getlives() == 0) {
-				setBackground(new ImageIcon("src/media/dead.jpeg"));
-				JLabel lbldead = new JLabel(new ImageIcon(
-						"src/media/DropDead.gif"));
+				setBackground(new ImageIcon("src/media/dead.jpg"));
 				eastPanel.add(Box.createRigidArea(new Dimension(20, 130)));
-				questionPanel.setVisible(false);
-				btnNewQuestion.setVisible(false);
 				eastPanel.add(btnback);
 				eastPanel.add(Box.createRigidArea(new Dimension(10, 30)));
 				eastPanel.add(btnresult);
@@ -336,11 +332,7 @@ public class QuizUI extends JPanel {
 				btnresult.addActionListener(new ButtonResultListener());
 				btnback.setPreferredSize(new Dimension(100, 30));
 				btnresult.setPreferredSize(new Dimension(100, 30));
-				btnback.setForeground(Color.GREEN);
-				btnresult.setForeground(Color.GREEN);
-				btnback.setBackground(Color.BLACK);
-				btnresult.setBackground(Color.BLACK);
-				eastPanel.add(lbldead, BorderLayout.SOUTH);
+//				eastPanel.add(lbldead, BorderLayout.SOUTH);
 			}
 
 			// if (controller.maxScenario() == true) {
