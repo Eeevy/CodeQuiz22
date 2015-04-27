@@ -41,6 +41,7 @@ public class QuizController extends Thread {
 	private File musicFilename;
 	private MainUI mainUI;
 	private QuizUI quizUI;
+	private WinUI winUI;
 	private HowToPlayUI howToUI;
 	private SortingCeremonyUI sortUI;
 	private HouseUI houseUI;
@@ -60,6 +61,7 @@ public class QuizController extends Thread {
 		musicFilename = new File("src/media/HarryPotterThemeSong.wav");
 		quizUI = new QuizUI();
 		mainUI = new MainUI();
+		winUI = new WinUI(this);
 		howToUI = new HowToPlayUI();
 		sortUI = new SortingCeremonyUI();
 		houseUI = new HouseUI();
@@ -373,6 +375,15 @@ public class QuizController extends Thread {
 		resultui = new ResultUI();
 		resultui.setController(this);
 	}
+	
+	public boolean getScenarioIndex() {
+		boolean res = false;
+		if (game.getScenario(index).equals(game.getScenarioListSize()+1)) {
+			res = true;
+		}
+		return res;
+		
+	}
 
 	/**
 	 * Ökar användarens poäng
@@ -413,6 +424,11 @@ public class QuizController extends Thread {
 	 */
 	public void decreaseLives() {
 		user.setLives(user.getLives() - 1);
+	}
+	
+	public void win() {
+		setPanel(winUI);
+		playSoundClip();
 	}
 
 	/**

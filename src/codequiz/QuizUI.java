@@ -297,7 +297,7 @@ public class QuizUI extends JPanel {
 			if (rb4.isSelected()) {
 				answer = rb4.getText();
 			}
-
+			
 			if (answer.equals(correctAnswer)) {
 				ImageIcon icon = controller.setCorrectScenario();
 				setBackground(icon);
@@ -334,6 +334,10 @@ public class QuizUI extends JPanel {
 				btnresult.setPreferredSize(new Dimension(100, 30));
 //				eastPanel.add(lbldead, BorderLayout.SOUTH);
 			}
+			if (controller.getScenarioIndex() == true) {
+				controller.win();
+			}
+			
 
 			// if (controller.maxScenario() == true) {
 			// controller.setScore(controller.getPoints());
