@@ -1,6 +1,8 @@
 package codequiz;
 
 import java.awt.*;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 
 import javax.swing.*;
 
@@ -9,12 +11,12 @@ import javax.swing.*;
  * Fönstervisning ska flyttas till QuizController, ingen mainmetod i den här
  * klassen etc. Ville bara testa.
  * 
- * @author
+ * @author Hemligt
  *
  */
 public class SortingCeremonyUI extends JPanel {
-
-//	private QuizController controller;
+	private QuizController controller;
+	private HouseUI houseUI;
 	private JFrame frame;
 
 	private JPanel northPanel;
@@ -27,6 +29,7 @@ public class SortingCeremonyUI extends JPanel {
 			"src/media/SortingCeremony.png"));
 	private JLabel lblHat = new JLabel(new ImageIcon(
 			"src/media/TryAHatHarry.jpg"));
+
 	private JLabel lblQuestion = new JLabel("Fråga");
 	private JLabel lblInfo = new JLabel(
 			"Svara på frågan för att ta reda på vilket elevhem du passar bäst in i.");
@@ -35,7 +38,7 @@ public class SortingCeremonyUI extends JPanel {
 	private JRadioButton rb2 = new JRadioButton("2");
 	private JRadioButton rb3 = new JRadioButton("3");
 	private JRadioButton rb4 = new JRadioButton("4");
-	private JButton btnSubmit = new JButton("OK");
+	private JButton btnOK = new JButton("OK");
 
 	public SortingCeremonyUI() {
 		frame = new JFrame("");
@@ -64,6 +67,10 @@ public class SortingCeremonyUI extends JPanel {
 		// add(eastPanel(), BorderLayout.EAST);
 		// add(southPanel(), BorderLayout.SOUTH);
 		// addActionListeners();
+	}
+
+	public void setController(QuizController controller) {
+		this.controller = controller;
 	}
 
 	public JPanel northPanel() {
@@ -117,10 +124,38 @@ public class SortingCeremonyUI extends JPanel {
 		southPanel.setPreferredSize(new Dimension(800, 50));
 		southPanel.setBackground(Color.BLACK);
 		southPanel.add(Box.createRigidArea(new Dimension(150, 30)));
-		southPanel.add(btnSubmit);
-		btnSubmit.setPreferredSize(new Dimension(70, 30));
+		southPanel.add(btnOK);
+		btnOK.setPreferredSize(new Dimension(70, 30));
 		return southPanel;
 	}
+
+//	private class ButtonListener implements ActionListener {
+//
+//		public void actionPerformed(ActionEvent e) {
+//			btnOK.setEnabled(false);
+//			String answer = null;
+//			String ravenclaw = controller.getRavenclawAnswer();
+//			String gryffindor = controller.getGryffindorAnswer();
+//			String slytherin = controller.getSlytherinAnswer();
+//			String hufflepuff = controller.getHufflepuffAnswer();
+//
+//			if (answer.equals(ravenclaw)) {
+//				houseUI.ravenclaw();
+//			}
+//
+//			if (answer.equals(gryffindor)) {
+//				houseUI.gryffindor();
+//			}
+//
+//			if (answer.equals(slytherin)) {
+//				houseUI.slytherin();
+//			}
+//
+//			if (answer.equals(hufflepuff)) {
+//				houseUI.hufflepuff();
+//			}
+//		}
+//	}
 
 	public static void main(String[] args) {
 		SortingCeremonyUI sortingCeremony = new SortingCeremonyUI();
