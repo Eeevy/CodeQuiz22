@@ -17,7 +17,6 @@ import javax.swing.*;
 public class SortingCeremonyUI extends JPanel {
 	private QuizController controller;
 	private HouseUI houseUI;
-	private JFrame frame;
 
 	private JPanel northPanel;
 	private JPanel westPanel;
@@ -40,33 +39,19 @@ public class SortingCeremonyUI extends JPanel {
 	private JRadioButton rb4 = new JRadioButton("4");
 	private JButton btnOK = new JButton("OK");
 
-	public SortingCeremonyUI() {
-		frame = new JFrame("");
-		frame.setBackground(Color.BLACK);
-		frame.setTitle("Code Quiz");
-		frame.setPreferredSize(new Dimension(800, 600));
-		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		frame.pack();
-		frame.setResizable(false);
-		frame.setVisible(true);
-		frame.setLayout(new BorderLayout());
+	public SortingCeremonyUI() {		
+		 setBackground(Color.BLACK);
+		 setPreferredSize(new Dimension(800, 600));
+		 setLayout(new BorderLayout());
 
-		frame.add(northPanel(), BorderLayout.NORTH);
-		frame.add(westPanel(), BorderLayout.WEST);
-		frame.add(centerPanel(), BorderLayout.CENTER);
-		frame.add(eastPanel(), BorderLayout.EAST);
-		frame.add(southPanel(), BorderLayout.SOUTH);
-
-		// setBackground(Color.BLACK);
-		// setPreferredSize(new Dimension(800, 600));
-		// setLayout(new BorderLayout());
-
-		// add(northPanel(), BorderLayout.NORTH);
-		// add(westPanel(), BorderLayout.WEST);
-		// add(centerPanel(), BorderLayout.CENTER);
-		// add(eastPanel(), BorderLayout.EAST);
-		// add(southPanel(), BorderLayout.SOUTH);
-		// addActionListeners();
+		 add(northPanel(), BorderLayout.NORTH);
+		 add(westPanel(), BorderLayout.WEST);
+		 add(centerPanel(), BorderLayout.CENTER);
+		 add(eastPanel(), BorderLayout.EAST);
+		 add(southPanel(), BorderLayout.SOUTH);
+		 
+		 ButtonListener listener = new ButtonListener();
+		 btnOK.addActionListener(listener);
 	}
 
 	public void setController(QuizController controller) {
@@ -108,6 +93,10 @@ public class SortingCeremonyUI extends JPanel {
 		centerPanel.add(rb4);
 		rb4.setForeground(Color.WHITE);
 		rb4.setBackground(Color.BLACK);
+		rb1.setOpaque(false);
+		rb2.setOpaque(false);
+		rb3.setOpaque(false);
+		rb4.setOpaque(false);
 		return centerPanel;
 	}
 
@@ -128,36 +117,67 @@ public class SortingCeremonyUI extends JPanel {
 		btnOK.setPreferredSize(new Dimension(70, 30));
 		return southPanel;
 	}
+	
+	public void setQuestion(String question) {
+		lblQuestion.setText(question);
+	}
+	
+	public void setAlternatives(String al1, String al2, String al3, String al4) {
+		rb1.setText(al1);
+		rb2.setText(al2);
+		rb3.setText(al3);
+		rb4.setText(al4);
+	}
 
-//	private class ButtonListener implements ActionListener {
-//
-//		public void actionPerformed(ActionEvent e) {
-//			btnOK.setEnabled(false);
-//			String answer = null;
-//			String ravenclaw = controller.getRavenclawAnswer();
-//			String gryffindor = controller.getGryffindorAnswer();
-//			String slytherin = controller.getSlytherinAnswer();
-//			String hufflepuff = controller.getHufflepuffAnswer();
-//
-//			if (answer.equals(ravenclaw)) {
-//				houseUI.ravenclaw();
-//			}
-//
-//			if (answer.equals(gryffindor)) {
-//				houseUI.gryffindor();
-//			}
-//
-//			if (answer.equals(slytherin)) {
-//				houseUI.slytherin();
-//			}
-//
-//			if (answer.equals(hufflepuff)) {
-//				houseUI.hufflepuff();
-//			}
-//		}
-//	}
+	private class ButtonListener implements ActionListener {
 
-	public static void main(String[] args) {
-		SortingCeremonyUI sortingCeremony = new SortingCeremonyUI();
+		public void actionPerformed(ActionEvent e) {
+			btnOK.setEnabled(false);
+			String answer = null;
+			String answerRavenclaw = controller.getAnswerRavenclaw();
+			String answerGryffindor = controller.getAnswerGryffindor();
+			String answerSlytherin = controller.getAnswerSlytherin();
+			String answerHufflepuff = controller.getAnswerHufflepuff();
+			
+			if (rb1.isSelected()) {
+				answer = rb1.getText(); 
+			}
+			
+			if (rb2.isSelected()) {
+				answer = rb2.getText();
+			}
+			
+			if (rb3.isSelected()) {
+				answer = rb3.getText();
+			}
+			
+			if (rb4.isSelected()) {
+				answer = rb4.getText();
+			}
+			
+			if (answer.equals(answerRavenclaw)) {
+				System.out.println("Ravenclaw");
+				controller.setPanel(controller.getHouseUI());
+				houseUI.ravenclaw();
+			}
+			
+			if (answer.equals(answerGryffindor)) {
+				System.out.println("Gryffindor");
+				controller.setPanel(controller.getHouseUI());
+				houseUI.gryffindor();
+			}
+			
+			if (answer.equals(answerSlytherin)) {
+				System.out.println("Slytherin");
+				controller.setPanel(controller.getHouseUI());
+				houseUI.slytherin();
+			}
+			
+			if (answer.equals(answerHufflepuff)) {
+				System.out.println("Hufflepuff");
+				controller.setPanel(controller.getHouseUI());
+				houseUI.hufflepuff();
+			}
+		}
 	}
 }

@@ -67,6 +67,7 @@ class ResultUI extends JPanel {
 	}
 
 	public ResultUI() {
+		setBackground(Color.BLACK);
 		background.setLayout(new BorderLayout());
 		add(background);
 		
