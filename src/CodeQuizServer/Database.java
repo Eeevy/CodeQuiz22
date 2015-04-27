@@ -9,7 +9,7 @@ public class Database {
 	 */
 	public static void main(String [] args) {
 		try{
-			Connection conn = DriverManager.getConnection("jdbc:mysql://192.168.0.101:3306/quizquestions", "RemoteUser", "codequiz22");
+			Connection conn = DriverManager.getConnection("jdbc:mysql://localhost:3306/quizquestions", "root", "qweasd123");
 			Statement stat = conn.createStatement();
 			ResultSet rs = stat.executeQuery("select * from Question");
 			
