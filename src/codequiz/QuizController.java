@@ -18,12 +18,12 @@ import javax.swing.SwingUtilities;
 
 import CodeQuizServer.Game;
 import CodeQuizServer.QuizScenario;
+import CodeQuizServer.SortingCeremonyGame;
 
 /**
  * Klassen hanterar programmets logik i bland annat UIs
  * 
  * @author CodeQuiz team
- * Läget?
  *
  */
 public class QuizController extends Thread {
@@ -42,9 +42,13 @@ public class QuizController extends Thread {
 	private MainUI mainUI;
 	private QuizUI quizUI;
 	private HowToPlayUI howToUI;
+	private SortingCeremonyUI sortUI;
+	private HouseUI houseUI;
 	private int i = 0;
 	private int index = -1;
 	private Hashtable logininformation = new Hashtable();
+	private SortingQuestion sortingQuestion;
+	private SortingCeremonyGame sortingCeremonyGame;
 
 	public QuizController() {
 
@@ -57,13 +61,17 @@ public class QuizController extends Thread {
 		quizUI = new QuizUI();
 		mainUI = new MainUI();
 		howToUI = new HowToPlayUI();
+		sortUI = new SortingCeremonyUI();
+		houseUI = new HouseUI();
 		panel = mainUI;
 		quizUI.setController(this);
 		mainUI.setController(this);
 		howToUI.setController(this);
+		sortUI.setController(this);
+		houseUI.setController(this);
 		showGUI();
 		playSoundClip();
-		play();//kopplar upp till servern här istället
+		play();// kopplar upp till servern här istället
 
 	}
 
@@ -142,9 +150,19 @@ public class QuizController extends Thread {
 				question.getAnswer3(), question.getAnswer4());
 		i++;
 	}
-	
+
+	public void getSortingQuestion() {
+		this.sortingQuestion = sortingCeremonyGame.getSortingQuestion(i);
+		sortUI.setQuestion(sortingQuestion.getQuestion());
+		sortUI.setAlternatives(sortingQuestion.getAnswer1(),
+				sortingQuestion.getAnswer2(), sortingQuestion.getAnswer3(),
+				sortingQuestion.getAnswer4());
+		i++;
+	}
+
 	/**
 	 * Sköter registrering av nya användare.
+	 * 
 	 * @param name
 	 * @param password
 	 * @param passConf
@@ -153,39 +171,40 @@ public class QuizController extends Thread {
 
 		if (!(password.equals(passConf))) {
 			mainUI.newUser(name, "Dina angivna lösenord matchar inte");
-			} else if(logininformation.contains(name)) {
-				mainUI.newUser(name, "Användarnamnet är upptaget");
-				} else if ((name.isEmpty()) || (password.isEmpty()) || (passConf.isEmpty())) {
-					mainUI.newUser(name, "Det saknas uppgifter");
-					} else {	
-						System.out.print(password + name);
-						setPanel(howToUI);//Emma was here
-						howToUI.setWelcome(name);/////////////////////////////////////////
-						
-						logininformation.put(name, password);
-					}
+		} else if (logininformation.contains(name)) {
+			mainUI.newUser(name, "Användarnamnet är upptaget");
+		} else if ((name.isEmpty()) || (password.isEmpty())
+				|| (passConf.isEmpty())) {
+			mainUI.newUser(name, "Det saknas uppgifter");
+		} else {
+			System.out.print(password + name);
+			setPanel(howToUI);// Emma was here
+			howToUI.setWelcome(name);// ///////////////////////////////////////
+
+			logininformation.put(name, password);
 		}
+	}
 
-
-		/**
-		 * Sköter inloggning.
-		 * @param inName
-		 * @param inPass
-		 */
-		public void login(String inName, String inPass) {
+	/**
+	 * Sköter inloggning.
+	 * 
+	 * @param inName
+	 * @param inPass
+	 */
+	public void login(String inName, String inPass) {
 
 		if (!(logininformation.containsKey(inName))) {
 			mainUI.login(inName, "Användarnamnet saknas");
-			} else if ((inName.isEmpty()) || (inPass.isEmpty())) {
-				mainUI.login(inName, "Det saknas uppgifter");
-				} else {
-					if(inPass.equals(logininformation.get(inName))) {
-						System.out.println(logininformation.get(inName));
-					} else {
-						mainUI.login(inName, "Fel lösenord");
-						}
-				}
+		} else if ((inName.isEmpty()) || (inPass.isEmpty())) {
+			mainUI.login(inName, "Det saknas uppgifter");
+		} else {
+			if (inPass.equals(logininformation.get(inName))) {
+				System.out.println(logininformation.get(inName));
+			} else {
+				mainUI.login(inName, "Fel lösenord");
+			}
 		}
+	}
 
 	/**
 	 * 
@@ -195,12 +214,28 @@ public class QuizController extends Thread {
 		return question.getCorrectanswer(); // ändrat till instansvariabeln
 	}
 
+	public String getAnswerRavenclaw() {
+		return sortingQuestion.getRavenclawAnswer();
+	}
+
+	public String getAnswerGryffindor() {
+		return sortingQuestion.getGryffindorAnswer();
+	}
+
+	public String getAnswerSlytherin() {
+		return sortingQuestion.getSlytherinAnswer();
+	}
+
+	public String getAnswerHufflepuff() {
+		return sortingQuestion.getHufflepuffAnswer();
+	}
+
 	/**
 	 * Metoden skapar ett Client-objekt som i sin tur kopplar upp med servern.
 	 */
 	public void play() {
 		System.out.println("Controller: play()");
-//		setPanel(quizUI);
+		// setPanel(quizUI);
 		enablePlayBtn(false);
 		try {
 			client = new Client("127.0.0.1", 3453, this);
@@ -271,12 +306,21 @@ public class QuizController extends Thread {
 	public JPanel getQuizUI() {
 		return quizUI;
 	}
+
 	/**
 	 * 
 	 * @return - hur spelar man-panelen
 	 */
-	public JPanel getHowToPlayUI(){
+	public JPanel getHowToPlayUI() {
 		return howToUI;
+	}
+
+	public JPanel getSortingCeremonyUI() {
+		return sortUI;
+	}
+
+	public JPanel getHouseUI() {
+		return houseUI;
 	}
 
 	/**
@@ -303,12 +347,14 @@ public class QuizController extends Thread {
 		enablePlayBtn(true);
 	}
 	
-	public void enablePlayBtn(boolean tof){
-		mainUI.enableMenu(tof);
-
+	public void setSortingCeremonyGame(SortingCeremonyGame sortingCeremonyGame) {
+		System.out.println("QuizController: setSortingCeremonyGame()");
+		this.sortingCeremonyGame = sortingCeremonyGame;
 	}
-	
-	
+
+	public void enablePlayBtn(boolean tof) {
+		mainUI.enableMenu(tof);
+	}
 
 	/**
 	 * 

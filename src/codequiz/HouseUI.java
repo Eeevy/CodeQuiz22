@@ -1,10 +1,13 @@
 package codequiz;
 
 import java.awt.*;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+
 import javax.swing.*;
 
 public class HouseUI extends JPanel {
-	private JFrame frame;
+	private QuizController controller;
 
 	private JPanel titlePanel;
 	private JPanel housePanel;
@@ -44,21 +47,28 @@ public class HouseUI extends JPanel {
 	private JLabel lblHouseCharacteristics = new JLabel(" Egenskaper: ");
 	private JLabel lblCharacteristics = new JLabel("Egenskaper...");
 
+	private JButton btnPlay = new JButton("Spela");
+	
 	public HouseUI() {
-		frame = new JFrame("");
-		frame.setBackground(Color.BLACK);
-		frame.setTitle("Code Quiz");
-		frame.setPreferredSize(new Dimension(800, 600));
-		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		frame.pack();
-		frame.setResizable(false);
-		frame.setVisible(true);
-		frame.setLayout(new BorderLayout());
+		setBackground(Color.BLACK);
+		setPreferredSize(new Dimension(800, 600));
+		setLayout(new BorderLayout());
 
-		frame.add(titlePanel(), BorderLayout.NORTH);
-		frame.add(housePanel(), BorderLayout.WEST);
-		frame.add(iconPanel(), BorderLayout.EAST);
-		ravenclaw(); // Bara ett exempel.
+		add(titlePanel(), BorderLayout.NORTH);
+		add(housePanel(), BorderLayout.WEST);
+		add(iconPanel(), BorderLayout.EAST);
+		
+//		ravenclaw(); // Bara ett exempel.
+//		gryffindor();
+		slytherin();
+//		hufflepuff();
+		
+		ButtonPlayListener listener = new ButtonPlayListener();
+		btnPlay.addActionListener(listener);
+	}
+	
+	public void setController(QuizController controller) {
+		this.controller = controller;
 	}
 
 	public JPanel titlePanel() {
@@ -97,6 +107,9 @@ public class HouseUI extends JPanel {
 		iconPanel.setPreferredSize(new Dimension(300, 450));
 		iconPanel.setBackground(Color.BLACK);
 		iconPanel.setBorder(BorderFactory.createLineBorder(Color.BLACK, 20));
+		iconPanel.add(btnPlay);
+		iconPanel.add(Box.createRigidArea(new Dimension(300, 20)));
+		btnPlay.setPreferredSize(new Dimension(70, 30));
 		return iconPanel;
 	}
 
@@ -156,8 +169,13 @@ public class HouseUI extends JPanel {
 		lblHead.setText("Pomona Sprout");
 		lblCharacteristics.setText("Tålamod, vänskap och lojalitet");
 	}
+	
+	private class ButtonPlayListener implements ActionListener {
 
-	public static void main(String[] args) {
-		HouseUI houseUI = new HouseUI();
+		public void actionPerformed(ActionEvent e) {
+			if (e.getSource() == btnPlay) {
+				controller.setPanel(controller.getQuizUI());
+			}
+		}
 	}
 }

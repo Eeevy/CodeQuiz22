@@ -57,8 +57,8 @@ public class HowToPlayUI extends JPanel {
 
 			}
 			if(e.getSource()==btnStartGame){
-				controller.setPanel(controller.getQuizUI());
-				
+				controller.setPanel(controller.getSortingCeremonyUI());	
+				controller.getSortingQuestion();
 			}
 		}
 	}
@@ -68,10 +68,6 @@ public class HowToPlayUI extends JPanel {
 		frame.add(new HowToPlayUI());
 		frame.pack();
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		frame.setVisible(true);
-		
+		frame.setVisible(true);		
 	}
 }
-
-
-
