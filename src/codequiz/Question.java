@@ -25,16 +25,16 @@ public class Question implements Serializable {
      * @param correctAnswer - rätt svar
      * @param inID - frågans ID (unikt)
      */
-    public Question(String inQuestion, String inAnswer1, String inAnswer2, String inAnswer3, String inAnswer4, 
-            String correctAnswer, int inID) {
+    public Question(int id,String inQuestion, String inAnswer1, String inAnswer2, String inAnswer3, String inAnswer4, 
+            String correctAnswer, int level) {
           
         this.question = inQuestion;
         this.answer1 = inAnswer1;
         this.answer2 = inAnswer2;
         this.answer3 = inAnswer3;
         this.answer4 = inAnswer4;
-        this.correctanswer = correctAnswer;//Emma was here
-        this.ID = inID;
+        this.correctanswer = correctAnswer;
+        this.ID = id;
     }
   /**
    * 

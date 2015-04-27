@@ -72,6 +72,7 @@ public class QuizController extends Thread {
 		showGUI();
 		playSoundClip();
 		play();// kopplar upp till servern här istället
+		
 
 	}
 
@@ -178,8 +179,8 @@ public class QuizController extends Thread {
 			mainUI.newUser(name, "Det saknas uppgifter");
 		} else {
 			System.out.print(password + name);
-			setPanel(howToUI);// Emma was here
-			howToUI.setWelcome(name);// ///////////////////////////////////////
+			setPanel(howToUI);
+			howToUI.setWelcome(name);
 
 			logininformation.put(name, password);
 		}

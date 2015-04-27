@@ -212,7 +212,7 @@ public class MainUI extends JPanel {
 //				cont.play();
 				cont.setPanel(cont.getSortingCeremonyUI());
 				cont.getSortingQuestion();
-//				cont.setPanel(cont.getQuizUI());
+				cont.setPanel(cont.getSortingCeremonyUI());
 			}
 			if (e.getSource() == btnCreateAccount) {
 				newUser(null, "Mata in namn och lösenord");

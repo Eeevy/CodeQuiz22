@@ -65,6 +65,8 @@ public class QuizServer {
 		private ObjectOutputStream oos;
 		private Game game;
 		private SortingCeremonyGame sortingCeremonyGame;
+		private Database db;
+
 
 		/**
 		 * Konstruerar socket och objektströmmar
@@ -81,6 +83,7 @@ public class QuizServer {
 			oos = new ObjectOutputStream(socket.getOutputStream());
 			ois = new ObjectInputStream(socket.getInputStream());
 			start();
+			
 		}
 
 		/**
@@ -89,6 +92,7 @@ public class QuizServer {
 		public void newGame() {
 			System.out.println("ClientHandler: newGame()");
 			game = new Game();
+			
 			sortingCeremonyGame = new SortingCeremonyGame();
 		}
 
