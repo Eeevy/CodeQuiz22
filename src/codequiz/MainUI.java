@@ -27,30 +27,24 @@ public class MainUI extends JPanel {
 	private JPanel centerPanel;
 	private JPanel eastPanel;
 
-	// Labels
 	private JLabel lblTitle = new JLabel("Code Quiz");
-	// Lite gay slogan, men har kvar den sålänge..
 	private JLabel lblSlogan = new JLabel(
 			"- Ett magiskt sätt att lära sig programmering");
 	private JLabel lblMenu = new JLabel("Meny");
-	// Några osynliga labels som inte ska finnas egentligen...
 	private JLabel lblInvisible = new JLabel();
 	private JLabel lblInvisible2 = new JLabel();
 	private JLabel lblInvisible3 = new JLabel();
 	private JLabel lblInvisible4 = new JLabel();
 	private JLabel lblInvisible5 = new JLabel();
 
-	// Knappar
 	private JButton btnPlay = new JButton("Spela");
 	private JButton btnSignIn = new JButton("Logga in");
 	private JButton btnCreateAccount = new JButton("Skapa ett nytt konto");
 	private JButton btnHowToPlay = new JButton("Om spelet");
 	private JButton btnHighScore = new JButton("High score");
 
-	// Image
 	private ImageIcon iconHogwarts;
 
-	// public MainGUI() {
 	public MainUI() {
 
 		setLayout(new BorderLayout());
@@ -67,11 +61,6 @@ public class MainUI extends JPanel {
 		btnPlay.setVisible(tof);
 	}
 
-	/**
-	 * Visar titel och slogan.
-	 * 
-	 * @return
-	 */
 	public JPanel northPanel() {
 		northPanel = new JPanel(new FlowLayout(FlowLayout.CENTER));
 		northPanel.setPreferredSize(new Dimension(100, 100));
@@ -90,11 +79,6 @@ public class MainUI extends JPanel {
 		return northPanel;
 	}
 
-	/**
-	 * Visar en bild på Hogwarts logga. Bilden finns på Dropbox.
-	 * 
-	 * @return
-	 */
 	public JPanel centerPanel() {
 		centerPanel = new JPanel(new FlowLayout());
 		centerPanel.setPreferredSize(new Dimension(400, 150));
@@ -106,11 +90,6 @@ public class MainUI extends JPanel {
 		return centerPanel;
 	}
 
-	/**
-	 * Visar menyn.
-	 * 
-	 * @return
-	 */
 	public JPanel eastPanel() {
 		eastPanel = new JPanel(new GridLayout(15, 1));
 		eastPanel.setPreferredSize(new Dimension(150, 10));
@@ -191,9 +170,6 @@ public class MainUI extends JPanel {
 		cont.newUser(name, password, passwordConf);
 	}}
 
-	/**
-	 * Metod som lägger till lyssnare till klassen
-	 */
 	public void addActionListeners() {
 		MenuListener menuListener = new MenuListener();
 		btnPlay.addActionListener(menuListener);
@@ -207,9 +183,6 @@ public class MainUI extends JPanel {
 
 		public void actionPerformed(ActionEvent e) {
 			if (e.getSource() == btnPlay) {
-//				cont.closeWindow();
-//				cont.stopMusic();
-//				cont.play();
 				cont.setPanel(cont.getSortingCeremonyUI());
 				cont.getSortingQuestion();
 				cont.setPanel(cont.getSortingCeremonyUI());

@@ -12,7 +12,7 @@ private LinkedList<Question> allQuestions = new LinkedList<Question>();
 	 * databas
 	 * @param args
 	 */
-	public void DBStart () {
+	public void startQuestionDB() {
 		System.out.println("Database: DBSTart()");
 		try{
 			Connection conn = DriverManager.getConnection("jdbc:mysql://94.254.94.236:51515/codequiz", "Bob", "bob");
@@ -29,9 +29,7 @@ private LinkedList<Question> allQuestions = new LinkedList<Question>();
 				System.out.println(question1.getCorrectanswer());
 				allQuestions.add(question1);
 				System.out.println("Fråga tillagd");
-				System.out.println("allQuestions: " + allQuestions.size());
-				
-				
+				System.out.println("allQuestions: " + allQuestions.size());			
 			}
 		}catch(Exception e){
 			e.printStackTrace();
@@ -40,7 +38,6 @@ private LinkedList<Question> allQuestions = new LinkedList<Question>();
 	
 	public LinkedList<Question> returnQuestions(){
 		System.out.println("Database: returnQuestions()" + allQuestions.size() );
-		return allQuestions;
-		
+		return allQuestions;		
 	}
 }

@@ -59,11 +59,6 @@ public class HouseUI extends JPanel {
 		add(housePanel(), BorderLayout.WEST);
 		add(iconPanel(), BorderLayout.EAST);
 		
-//		ravenclaw(); // Bara ett exempel.
-//		gryffindor();
-//		slytherin();
-//		hufflepuff();
-		
 		ButtonPlayListener listener = new ButtonPlayListener();
 		btnPlay.addActionListener(listener);
 	}
@@ -114,7 +109,7 @@ public class HouseUI extends JPanel {
 		return iconPanel;
 	}
 
-	public void ravenclaw() {///////////////////////////////////////
+	public void ravenclaw() {
 		titlePanel.add(lblRavenclaw);
 		housePanel.setBackground(Color.CYAN);
 		iconPanel.add(lblRav);

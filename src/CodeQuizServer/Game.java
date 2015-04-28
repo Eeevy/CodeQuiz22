@@ -30,7 +30,7 @@ public class Game implements Serializable {
 	public Game() {
 		System.out.println("Game: Konstruktor");
 		//createQuestions();
-		dbKlass.DBStart();
+		dbKlass.startQuestionDB();
 		createScenario();
 		setQuestion();
 	}
