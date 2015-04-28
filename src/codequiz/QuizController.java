@@ -456,11 +456,11 @@ public class QuizController extends Thread {
 		return (index + 1) == game.getScenarioListSize();
 	}
 	
-	public void changeString(String str) {
+	public String changeStringA(String str) {
 		Boolean boo = false;
 		String br = "<br>";
 		int i = 0;
-		int j = 20;
+		int j = 70;
 		String inStr = str;
 		StringBuffer newString = new StringBuffer();
 		newString.append("<html>");
@@ -469,7 +469,7 @@ public class QuizController extends Thread {
 			if (newString.length() == j) {
 				while (boo==false) {
 					if (newString.charAt(j-1) == ' ') {
-						newString.append(br);
+						newString.insert(j-1, br);
 						boo = true;
 					}
 					j--;
@@ -479,7 +479,35 @@ public class QuizController extends Thread {
 			i++;
 		}
 		newString.append("<html>");
-		System.out.println(newString);
+		String hej = newString.toString();
+		return hej;
+	}
+	
+	public String changeStringQ(String str) {
+		Boolean boo = false;
+		String br = "<br>";
+		int i = 0;
+		int j = 70;
+		String inStr = str;
+		StringBuffer newString = new StringBuffer();
+		newString.append("<html>");
+		while (i < inStr.length()) {
+			newString.append(inStr.charAt(i));
+			if (newString.length() == j) {
+				while (boo==false) {
+					if (newString.charAt(j-1) == ' ') {
+						newString.insert(j-1, br);
+						boo = true;
+					}
+					j--;
+				}
+
+			}
+			i++;
+		}
+		newString.append("<html>");
+		String hej = newString.toString();
+		return hej;
 	}
 
 	public static void main(String[] args) {

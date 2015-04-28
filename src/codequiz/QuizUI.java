@@ -295,7 +295,7 @@ public class QuizUI extends JPanel {
 		public void actionPerformed(ActionEvent e) {
 			btnSubmit.setEnabled(false);
 			String answer = null;
-			String correctAnswer = controller.getCorrectAnswer();
+			String correctAnswer = controller.changeStringA(controller.getCorrectAnswer());
 			System.out.println(controller.maxScenario());
 			System.out.println(correctAnswer);
 			if (rb1.isSelected()) {
@@ -379,9 +379,7 @@ public class QuizUI extends JPanel {
 	 *            - den fråga som skall visas för användaren
 	 */
 	public void setQuestion(String question) {
-		
-		
-		lblQuestion.setText(question);
+		lblQuestion.setText(controller.changeStringQ(question));
 	}
 
 	/**
@@ -406,9 +404,9 @@ public class QuizUI extends JPanel {
 	 *            -svarsalternativ4
 	 */
 	public void setAlternatives(String al1, String al2, String al3, String al4) {
-		rb1.setText(al1);
-		rb2.setText(al2);
-		rb3.setText(al3);
-		rb4.setText(al4);
+		rb1.setText(controller.changeStringA(al1));
+		rb2.setText(controller.changeStringA(al2));
+		rb3.setText(controller.changeStringA(al3));
+		rb4.setText(controller.changeStringA(al4));
 	}
 }
