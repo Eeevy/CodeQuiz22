@@ -91,7 +91,7 @@ public class QuizUI extends JPanel {
 	 */
 	public JPanel westPanel() {
 		westPanel = new JPanel(new FlowLayout());
-		westPanel.setPreferredSize(new Dimension(30, 20));
+		westPanel.setPreferredSize(new Dimension(10, 20));
 		westPanel.setOpaque(false);
 		return westPanel;
 	}
@@ -120,7 +120,8 @@ public class QuizUI extends JPanel {
 		// questionPanel = new JPanel(new GridLayout(8, 1));
 		// questionPanel = new JPanel(new GridBagLayout());
 
-		questionPanel = new JPanel(new GridLayout(9, 1));
+//		questionPanel = new JPanel(new GridLayout(9, 1));
+		questionPanel = new JPanel(new FlowLayout());
 		// questionPanel.setLayout(new GridBagLayout());
 		// questionPanel.setPreferredSize(new Dimension(420, 20));
 
@@ -131,7 +132,7 @@ public class QuizUI extends JPanel {
 		lblQuestion.setPreferredSize(new Dimension(300, 50));
 		lblQuestion.setOpaque(false);
 		lblQuestion.setFont((new Font("Serif", Font.BOLD, 16)));
-		lblQuestion.setForeground(Color.GRAY);
+		lblQuestion.setForeground(Color.BLACK);
 
 		// TESTA NÅGOT LIKNANDE - IGNORERA TILLS VIDARE...
 		// http://tutiez.com/multiline-text-for-swing-components-tutorial.html
@@ -191,7 +192,18 @@ public class QuizUI extends JPanel {
 		questionPanel.add(rb3);
 		questionPanel.add(rb4);
 		questionPanel.add(lblResult);
+		questionPanel.add(Box.createRigidArea(new Dimension(300, 20)));
 		questionPanel.add(btnSubmit);
+		btnSubmit.setPreferredSize(new Dimension(110, 30));
+		
+		rb1.setPreferredSize(new Dimension(365, 60));
+		rb2.setPreferredSize(new Dimension(365, 60));
+		rb3.setPreferredSize(new Dimension(365, 60));
+		rb4.setPreferredSize(new Dimension(365, 60));
+		rb1.setFont((new Font("Serif", Font.BOLD, 11)));
+		rb2.setFont((new Font("Serif", Font.BOLD, 11)));
+		rb3.setFont((new Font("Serif", Font.BOLD, 11)));
+		rb4.setFont((new Font("Serif", Font.BOLD, 11)));
 
 		btnSubmit.addActionListener(new SubmitListener());
 
@@ -222,6 +234,7 @@ public class QuizUI extends JPanel {
 		btnNewQuestion.addActionListener(new QuestionListener());
 		lblPoints.setForeground(Color.BLACK);
 		lblLives.setForeground(Color.BLACK);
+		btnNewQuestion.setPreferredSize(new Dimension(110, 30));
 
 		return southPanel;
 	}
@@ -327,7 +340,7 @@ public class QuizUI extends JPanel {
 				eastPanel.add(btnresult);
 				btnback.setVisible(true);
 				btnback.addActionListener(new ButtonBackListener());
-				btnNewQuestion.setEnabled(true);
+				btnNewQuestion.setEnabled(false);
 				btnresult.setVisible(true);
 				btnresult.addActionListener(new ButtonResultListener());
 				btnback.setPreferredSize(new Dimension(100, 30));
@@ -366,6 +379,8 @@ public class QuizUI extends JPanel {
 	 *            - den fråga som skall visas för användaren
 	 */
 	public void setQuestion(String question) {
+		
+		
 		lblQuestion.setText(question);
 	}
 

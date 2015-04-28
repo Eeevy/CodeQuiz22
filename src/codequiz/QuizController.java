@@ -456,6 +456,32 @@ public class QuizController extends Thread {
 	public boolean maxScenario() {
 		return (index + 1) == game.getScenarioListSize();
 	}
+	
+	public void changeString(String str) {
+		Boolean boo = false;
+		String br = "<br>";
+		int i = 0;
+		int j = 20;
+		String inStr = str;
+		StringBuffer newString = new StringBuffer();
+		newString.append("<html>");
+		while (i < inStr.length()) {
+			newString.append(inStr.charAt(i));
+			if (newString.length() == j) {
+				while (boo==false) {
+					if (newString.charAt(j-1) == ' ') {
+						newString.append(br);
+						boo = true;
+					}
+					j--;
+				}
+
+			}
+			i++;
+		}
+		newString.append("<html>");
+		System.out.println(newString);
+	}
 
 	public static void main(String[] args) {
 		SwingUtilities.invokeLater(new Runnable() {
