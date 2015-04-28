@@ -15,9 +15,9 @@ private LinkedList<Question> allQuestions = new LinkedList<Question>();
 	public void DBStart () {
 		System.out.println("Database: DBSTart()");
 		try{
-			Connection conn = DriverManager.getConnection("jdbc:mysql://10.1.16.206:3306/quizquestions", "RemoteUser", "codequiz22");
+			Connection conn = DriverManager.getConnection("jdbc:mysql://94.254.94.236:51515/codequiz", "Bob", "bob");
 			Statement stat = conn.createStatement();
-			ResultSet rs = stat.executeQuery("select * from Question");
+			ResultSet rs = stat.executeQuery("select * from question");
 			while(rs.next()){
 //				System.out.println(rs.getString("Question"));
 //				String question = rs.getString("Question");
