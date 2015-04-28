@@ -37,6 +37,7 @@ public class SortingCeremonyUI extends JPanel {
 	private JRadioButton rb2 = new JRadioButton("2");
 	private JRadioButton rb3 = new JRadioButton("3");
 	private JRadioButton rb4 = new JRadioButton("4");
+	private ButtonGroup btnGroup = new ButtonGroup();
 	private JButton btnOK = new JButton("OK");
 
 	public SortingCeremonyUI(HouseUI houseUI) {		
@@ -98,6 +99,12 @@ public class SortingCeremonyUI extends JPanel {
 		rb2.setOpaque(false);
 		rb3.setOpaque(false);
 		rb4.setOpaque(false);
+		btnGroup.add(rb1);
+		btnGroup.add(rb2);
+		btnGroup.add(rb3);
+		btnGroup.add(rb4);
+
+	
 		return centerPanel;
 	}
 
