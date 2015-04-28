@@ -366,6 +366,8 @@ public class QuizUI extends JPanel {
 	 *            - den fråga som skall visas för användaren
 	 */
 	public void setQuestion(String question) {
+		
+		
 		lblQuestion.setText(question);
 	}
 

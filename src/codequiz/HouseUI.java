@@ -139,7 +139,7 @@ public class HouseUI extends JPanel {
 		lblMagicalItem.setText("Svärd");
 		lblGhost.setText("Nästan Huvudlöse Nick");
 		lblHead.setText("Minerva McGonagall");
-		lblCharacteristics.setText("Mod, ridderskap och styrka");
+		lblCharacteristics.setText("Mod, riddarskap och styrka");
 	}
 
 	public void slytherin() {
