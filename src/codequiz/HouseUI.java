@@ -50,6 +50,7 @@ public class HouseUI extends JPanel {
 	private JButton btnPlay = new JButton("Spela");
 	
 	public HouseUI() {
+		System.out.println("HouseUI: Konstruktor");
 		setBackground(Color.BLACK);
 		setPreferredSize(new Dimension(800, 600));
 		setLayout(new BorderLayout());
@@ -60,7 +61,7 @@ public class HouseUI extends JPanel {
 		
 //		ravenclaw(); // Bara ett exempel.
 //		gryffindor();
-		slytherin();
+//		slytherin();
 //		hufflepuff();
 		
 		ButtonPlayListener listener = new ButtonPlayListener();
@@ -113,7 +114,7 @@ public class HouseUI extends JPanel {
 		return iconPanel;
 	}
 
-	public void ravenclaw() {
+	public void ravenclaw() {///////////////////////////////////////
 		titlePanel.add(lblRavenclaw);
 		housePanel.setBackground(Color.CYAN);
 		iconPanel.add(lblRav);
@@ -157,6 +158,7 @@ public class HouseUI extends JPanel {
 	}
 
 	public void hufflepuff() {
+		System.out.println("HouseUI: hufflepuff");
 		titlePanel.add(lblHufflepuff);
 		housePanel.setBackground(Color.YELLOW);
 		iconPanel.add(lblHuf);

@@ -39,7 +39,7 @@ public class SortingCeremonyUI extends JPanel {
 	private JRadioButton rb4 = new JRadioButton("4");
 	private JButton btnOK = new JButton("OK");
 
-	public SortingCeremonyUI() {		
+	public SortingCeremonyUI(HouseUI houseUI) {		
 		 setBackground(Color.BLACK);
 		 setPreferredSize(new Dimension(800, 600));
 		 setLayout(new BorderLayout());
@@ -49,6 +49,7 @@ public class SortingCeremonyUI extends JPanel {
 		 add(centerPanel(), BorderLayout.CENTER);
 		 add(eastPanel(), BorderLayout.EAST);
 		 add(southPanel(), BorderLayout.SOUTH);
+		 this.houseUI = houseUI;
 		 
 		 ButtonListener listener = new ButtonListener();
 		 btnOK.addActionListener(listener);
@@ -157,26 +158,27 @@ public class SortingCeremonyUI extends JPanel {
 			
 			if (answer.equals(answerRavenclaw)) {
 				System.out.println("Ravenclaw");
-				controller.setPanel(controller.getHouseUI());
 				houseUI.ravenclaw();
+				controller.setPanel(controller.getHouseUI());
+
 			}
 			
 			if (answer.equals(answerGryffindor)) {
 				System.out.println("Gryffindor");
-				controller.setPanel(controller.getHouseUI());
 				houseUI.gryffindor();
+				controller.setPanel(controller.getHouseUI());
 			}
 			
 			if (answer.equals(answerSlytherin)) {
-				System.out.println("Slytherin");
-				controller.setPanel(controller.getHouseUI());
+				System.out.println("Slytherin");				
 				houseUI.slytherin();
+				controller.setPanel(controller.getHouseUI());
 			}
 			
 			if (answer.equals(answerHufflepuff)) {
-				System.out.println("Hufflepuff");
-				controller.setPanel(controller.getHouseUI());
+				System.out.println("Hufflepuff");				
 				houseUI.hufflepuff();
+				controller.setPanel(controller.getHouseUI());
 			}
 		}
 	}

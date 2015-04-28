@@ -63,8 +63,9 @@ public class QuizController extends Thread {
 		mainUI = new MainUI();
 		winUI = new WinUI(this);
 		howToUI = new HowToPlayUI();
-		sortUI = new SortingCeremonyUI();
 		houseUI = new HouseUI();
+
+		sortUI = new SortingCeremonyUI(houseUI);
 		panel = mainUI;
 		quizUI.setController(this);
 		mainUI.setController(this);
