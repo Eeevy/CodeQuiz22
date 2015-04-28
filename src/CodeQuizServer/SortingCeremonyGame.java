@@ -24,6 +24,7 @@ public class SortingCeremonyGame implements Serializable {
 	public void createSortingQuestions() {
 		System.out.println("SortingCeremonyGame: createSortingCeremonyQuestions()");
 		sortingQuestion1 = new SortingQuestion(
+		1, 
 		"Vilken färg föredrar du?",
 		"Blå",
 		"Röd",
@@ -32,8 +33,8 @@ public class SortingCeremonyGame implements Serializable {
 		"Blå",
 		"Röd",
 		"Grön",
-		"Gul",
-		1);
+		"Gul"
+		);
 		setSortingQuestion();
 	}
 	

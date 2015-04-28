@@ -3,7 +3,7 @@ package codequiz;
 import java.io.Serializable;
 
 public class SortingQuestion implements Serializable {
-
+	private int ID;
 	private String question;
 	private String answer1;
 	private String answer2;
@@ -13,14 +13,12 @@ public class SortingQuestion implements Serializable {
 	private String answerGryffindor;
 	private String answerSlytherin;
 	private String answerHufflepuff;
-	private int ID;
 
-	public SortingQuestion(String inQuestion, String inAnswer1,
+	public SortingQuestion(int inID, String inQuestion, String inAnswer1,
 			String inAnswer2, String inAnswer3, String inAnswer4,
 			String inAnswerRavenclaw, String inAnswerGryffindor,
-			String inAnswerSlytherin, String inAnswerHufflepuff,
-			int inID) {
-
+			String inAnswerSlytherin, String inAnswerHufflepuff) {
+		this.ID = inID;
 		this.question = inQuestion;
 		this.answer1 = inAnswer1;
 		this.answer2 = inAnswer2;
@@ -30,7 +28,6 @@ public class SortingQuestion implements Serializable {
 		this.answerGryffindor = inAnswerGryffindor;
 		this.answerSlytherin = inAnswerSlytherin;
 		this.answerHufflepuff = inAnswerHufflepuff;
-		this.ID = inID;
 	}
 
 	public String getQuestion() {
