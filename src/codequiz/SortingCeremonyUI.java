@@ -37,9 +37,10 @@ public class SortingCeremonyUI extends JPanel {
 	private JRadioButton rb2 = new JRadioButton("2");
 	private JRadioButton rb3 = new JRadioButton("3");
 	private JRadioButton rb4 = new JRadioButton("4");
+	private ButtonGroup btnGroup = new ButtonGroup();
 	private JButton btnOK = new JButton("OK");
 
-	public SortingCeremonyUI() {		
+	public SortingCeremonyUI(HouseUI houseUI) {		
 		 setBackground(Color.BLACK);
 		 setPreferredSize(new Dimension(800, 600));
 		 setLayout(new BorderLayout());
@@ -49,6 +50,7 @@ public class SortingCeremonyUI extends JPanel {
 		 add(centerPanel(), BorderLayout.CENTER);
 		 add(eastPanel(), BorderLayout.EAST);
 		 add(southPanel(), BorderLayout.SOUTH);
+		 this.houseUI = houseUI;
 		 
 		 ButtonListener listener = new ButtonListener();
 		 btnOK.addActionListener(listener);
@@ -97,6 +99,12 @@ public class SortingCeremonyUI extends JPanel {
 		rb2.setOpaque(false);
 		rb3.setOpaque(false);
 		rb4.setOpaque(false);
+		btnGroup.add(rb1);
+		btnGroup.add(rb2);
+		btnGroup.add(rb3);
+		btnGroup.add(rb4);
+
+	
 		return centerPanel;
 	}
 
@@ -157,26 +165,27 @@ public class SortingCeremonyUI extends JPanel {
 			
 			if (answer.equals(answerRavenclaw)) {
 				System.out.println("Ravenclaw");
-				controller.setPanel(controller.getHouseUI());
 				houseUI.ravenclaw();
+				controller.setPanel(controller.getHouseUI());
+
 			}
 			
 			if (answer.equals(answerGryffindor)) {
 				System.out.println("Gryffindor");
-				controller.setPanel(controller.getHouseUI());
 				houseUI.gryffindor();
+				controller.setPanel(controller.getHouseUI());
 			}
 			
 			if (answer.equals(answerSlytherin)) {
-				System.out.println("Slytherin");
-				controller.setPanel(controller.getHouseUI());
+				System.out.println("Slytherin");				
 				houseUI.slytherin();
+				controller.setPanel(controller.getHouseUI());
 			}
 			
 			if (answer.equals(answerHufflepuff)) {
-				System.out.println("Hufflepuff");
-				controller.setPanel(controller.getHouseUI());
+				System.out.println("Hufflepuff");				
 				houseUI.hufflepuff();
+				controller.setPanel(controller.getHouseUI());
 			}
 		}
 	}
