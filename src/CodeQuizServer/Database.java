@@ -113,8 +113,9 @@ public class Database implements Serializable {
 	 * @param username
 	 * @param password
 	 */
-	public void setUserDB(String username, String password) {
+	public boolean setUserDB(String username, String password) {
 		System.out.println("Database: setUserDB()");
+		boolean res = false;
 		try {
 			conn = connectToDB();
 			Statement stat = conn.createStatement();
@@ -123,9 +124,11 @@ public class Database implements Serializable {
 					+ ")";
 			stat.executeUpdate(sql);
 			System.out.println("Ok! User added!");
+			return res;
 		} catch (Exception e) {
-			e.printStackTrace();
+			System.out.println("Användarnamnet upptaget, försök igen");
 		}
+		return res;
 	}
 
 	public LinkedList<Question> returnQuestions() {
