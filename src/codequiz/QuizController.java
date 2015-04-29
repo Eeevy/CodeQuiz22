@@ -16,6 +16,7 @@ import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.SwingUtilities;
 
+import CodeQuizServer.Database;
 import CodeQuizServer.Game;
 import CodeQuizServer.QuizScenario;
 import CodeQuizServer.SortingCeremonyGame;
@@ -50,6 +51,7 @@ public class QuizController extends Thread {
 	private Hashtable logininformation = new Hashtable();
 	private SortingQuestion sortingQuestion;
 	private SortingCeremonyGame sortingCeremonyGame;
+	private Database dbKlass;
 
 	public QuizController() {
 
@@ -64,7 +66,7 @@ public class QuizController extends Thread {
 		winUI = new WinUI(this);
 		howToUI = new HowToPlayUI();
 		houseUI = new HouseUI();
-
+		dbKlass = new Database();//////////////////////////////
 		sortUI = new SortingCeremonyUI(houseUI);
 		panel = mainUI;
 		quizUI.setController(this);
@@ -172,7 +174,7 @@ public class QuizController extends Thread {
 	 * @param passConf
 	 */
 	public void newUser(String name, String password, String passConf) {
-
+		
 		if (!(password.equals(passConf))) {
 			mainUI.newUser(name, "Dina angivna lösenord matchar inte");
 		} else if (logininformation.contains(name)) {
@@ -182,6 +184,9 @@ public class QuizController extends Thread {
 			mainUI.newUser(name, "Det saknas uppgifter");
 		} else {
 			System.out.print(password + name);
+			dbKlass.setUserDB(name, password);//Emma provar här
+
+
 			setPanel(howToUI);
 			howToUI.setWelcome(name);
 
@@ -197,13 +202,16 @@ public class QuizController extends Thread {
 	 */
 	public void login(String inName, String inPass) {
 
-		if (!(logininformation.containsKey(inName))) {
-			mainUI.login(inName, "Användarnamnet saknas");
+		if (!dbKlass.checkUserDB(inName, inPass)) {
+			mainUI.login(inName, "Användarnamnet saknas eller lösen är fel");
 		} else if ((inName.isEmpty()) || (inPass.isEmpty())) {
 			mainUI.login(inName, "Det saknas uppgifter");
 		} else {
-			if (inPass.equals(logininformation.get(inName))) {
-				System.out.println(logininformation.get(inName));
+//			if (inPass.equals(logininformation.get(inName))) {
+//				System.out.println(logininformation.get(inName));
+			if ((dbKlass.checkUserDB(inName, inPass)) == true) {
+				System.out.println((inName + " är inloggad"));
+				setPanel(quizUI);
 			} else {
 				mainUI.login(inName, "Fel lösenord");
 			}
