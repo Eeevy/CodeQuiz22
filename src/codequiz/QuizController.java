@@ -183,10 +183,11 @@ public class QuizController extends Thread {
 			mainUI.newUser(name, "Det saknas uppgifter");
 		} else {
 			System.out.print(password + name);
-			if(dbKlass.setUserDB(name, password)){
+			dbKlass.setUserDB(name, password);//OBS Måste läggas till att om användarnamn redan finns, 
+											//bes denne att logga in igen, i skrivande stund kommer du vidare i alla fall
 				setPanel(howToUI);
 				howToUI.setWelcome(name);
-			}mainUI.newUser(name, "Användarnamnet är upptaget.");
+			
 			logininformation.put(name, password);
 		}
 	}
