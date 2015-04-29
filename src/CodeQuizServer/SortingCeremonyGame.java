@@ -2,6 +2,7 @@ package CodeQuizServer;
 
 import java.io.Serializable;
 import java.util.LinkedList;
+import java.util.Random;
 
 import codequiz.SortingQuestion;
 
@@ -51,6 +52,8 @@ public class SortingCeremonyGame implements Serializable {
 	}
 
 	public SortingQuestion getSortingQuestion(int index) {
-		return sortingQuestionList.get(index);
+		Random rand = new Random();
+		int random = rand.nextInt(sortingQuestionList.size());
+		return sortingQuestionList.get(random);
 	}
 }
