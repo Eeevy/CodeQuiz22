@@ -22,7 +22,7 @@ import CodeQuizServer.QuizScenario;
 import CodeQuizServer.SortingCeremonyGame;
 
 /**
- * Klassen hanterar programmets logik i bland annat UIs
+ * Klassen hanterar programmets logik i bland annat UIs.
  * 
  * @author CodeQuiz team
  *
@@ -210,7 +210,8 @@ public class QuizController extends Thread {
 //				System.out.println(logininformation.get(inName));
 			if ((dbKlass.checkUserDB(inName, inPass)) == true) {
 				System.out.println((inName + " är inloggad"));
-				setPanel(quizUI);
+				getSortingQuestion();
+				setPanel(getSortingCeremonyUI());
 			} else {
 				mainUI.login(inName, "Fel lösenord");
 			}
