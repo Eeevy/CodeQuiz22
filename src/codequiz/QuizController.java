@@ -186,7 +186,7 @@ public class QuizController extends Thread {
 			if(dbKlass.setUserDB(name, password)){
 				setPanel(howToUI);
 				howToUI.setWelcome(name);
-			}mainUI.newUser(name, "Användarnamnet är upptaget.");//Emma provar här
+			}mainUI.newUser(name, "Användarnamnet är upptaget.");
 
 
 			
@@ -205,14 +205,16 @@ public class QuizController extends Thread {
 
 		if (!dbKlass.checkUserDB(inName, inPass)) {
 			mainUI.login(inName, "Användarnamnet saknas eller lösen är fel");
-		} else if ((inName.isEmpty()) || (inPass.isEmpty())) {
+		} else if ((inName.isEmpty()) || (inPass.isEmpty())) {////////funkar ej
 			mainUI.login(inName, "Det saknas uppgifter");
 		} else {
 //			if (inPass.equals(logininformation.get(inName))) {
 //				System.out.println(logininformation.get(inName));
 			if ((dbKlass.checkUserDB(inName, inPass)) == true) {
 				System.out.println((inName + " är inloggad"));
-				setPanel(quizUI);
+				getSortingQuestion();
+				setPanel(getSortingCeremonyUI());
+
 			} else {
 				mainUI.login(inName, "Fel lösenord");
 			}

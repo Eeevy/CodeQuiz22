@@ -183,7 +183,7 @@ public class MainUI extends JPanel {
 
 		public void actionPerformed(ActionEvent e) {
 			if (e.getSource() == btnPlay) {
-				cont.setPanel(cont.getSortingCeremonyUI());
+				//cont.setPanel(cont.getSortingCeremonyUI());
 				cont.getSortingQuestion();
 				cont.setPanel(cont.getSortingCeremonyUI());
 			}
