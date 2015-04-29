@@ -187,10 +187,6 @@ public class QuizController extends Thread {
 				setPanel(howToUI);
 				howToUI.setWelcome(name);
 			}mainUI.newUser(name, "Användarnamnet är upptaget.");
-
-
-			
-
 			logininformation.put(name, password);
 		}
 	}
@@ -214,10 +210,6 @@ public class QuizController extends Thread {
 				System.out.println((inName + " är inloggad"));
 				getSortingQuestion();
 				setPanel(getSortingCeremonyUI());
-<<<<<<< HEAD
-=======
-
->>>>>>> 9a32b0ba591333b43eafe7bace07cdddf4959dbb
 			} else {
 				mainUI.login(inName, "Fel lösenord");
 			}
