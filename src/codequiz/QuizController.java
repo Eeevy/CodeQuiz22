@@ -63,7 +63,6 @@ public class QuizController extends Thread {
 		musicFilename = new File("src/media/HarryPotterThemeSong.wav");
 		quizUI = new QuizUI();
 		mainUI = new MainUI();
-		winUI = new WinUI(this);
 		howToUI = new HowToPlayUI();
 		houseUI = new HouseUI();
 		dbKlass = new Database();//////////////////////////////
@@ -384,7 +383,7 @@ public class QuizController extends Thread {
 	
 	public boolean getScenarioIndex() {
 		boolean res = false;
-		if (game.getScenario(index).equals(game.getScenarioListSize()+1)) {
+		if (index == (game.getScenarioListSize()-1)) {
 			res = true;
 		}
 		return res;
@@ -433,6 +432,7 @@ public class QuizController extends Thread {
 	}
 	
 	public void win() {
+		winUI = new WinUI(this);
 		setPanel(winUI);
 		playSoundClip();
 	}

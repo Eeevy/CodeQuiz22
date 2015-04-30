@@ -248,6 +248,9 @@ public class QuizUI extends JPanel {
 			}
 			
 			if (answer.equals(correctAnswer)) {
+				if (controller.getScenarioIndex() == true) {
+					controller.win();
+				} else {
 				ImageIcon icon = controller.setCorrectScenario();
 				setBackground(icon);
 				controller.increasePoints();
@@ -255,7 +258,7 @@ public class QuizUI extends JPanel {
 				lblResult.setForeground(Color.GREEN);
 				lblPoints.setText("Poäng: " + controller.getPoints());
 				btnNewQuestion.setEnabled(true);
-
+				}
 			} else {
 				ImageIcon icon = controller.setIncorrectScenario();
 				setBackground(icon);

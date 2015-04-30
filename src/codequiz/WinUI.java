@@ -14,7 +14,6 @@ import javax.swing.JLabel;
 import javax.swing.JPanel;
 
 public class WinUI extends JPanel implements ActionListener {
-	private JFrame mainFrame;
 	private JLabel lblBackground = new JLabel(new ImageIcon(
 			"src/media/win.jpg"));
 	private JPanel panelEast = new JPanel(new FlowLayout());
@@ -32,6 +31,10 @@ public class WinUI extends JPanel implements ActionListener {
 		panelEast.add(buttonRes);
 		panelEast.setOpaque(false);
 		lblBackground.add(panelEast, BorderLayout.EAST);
+		buttonRes.addActionListener(this);
+		buttonMenu.addActionListener(this);
+		add(lblBackground);
+		
 	}
 
 	@Override
@@ -47,4 +50,15 @@ public class WinUI extends JPanel implements ActionListener {
 			controller.setScore(controller.getPoints());
 		}		
 	}
+	
+//	public static void main(String[] args) {
+//		JFrame mainFrame = new JFrame("");
+//		mainFrame.setTitle("Code Quiz");
+//		mainFrame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+//		mainFrame.add(new WinUI(new QuizController()));
+//		mainFrame.pack();
+//		mainFrame.setResizable(false);
+//		mainFrame.setLocationRelativeTo(null);
+//		mainFrame.setVisible(true);
+//	}
 }
