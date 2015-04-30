@@ -1,6 +1,7 @@
 package codequiz;
 
 import java.awt.BorderLayout;
+import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.FlowLayout;
 import java.awt.GridLayout;
@@ -22,6 +23,7 @@ public class WinUI extends JPanel implements ActionListener {
 	private QuizController controller;
 	
 	public WinUI(QuizController controller) {
+		this.setBackground(Color.BLACK);
 		this.controller = controller;
 		lblBackground.setLayout(new BorderLayout());
 		panelEast.setPreferredSize(new Dimension(130, 500));
@@ -51,14 +53,14 @@ public class WinUI extends JPanel implements ActionListener {
 		}		
 	}
 	
-//	public static void main(String[] args) {
-//		JFrame mainFrame = new JFrame("");
-//		mainFrame.setTitle("Code Quiz");
-//		mainFrame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-//		mainFrame.add(new WinUI(new QuizController()));
-//		mainFrame.pack();
-//		mainFrame.setResizable(false);
-//		mainFrame.setLocationRelativeTo(null);
-//		mainFrame.setVisible(true);
-//	}
+	public static void main(String[] args) {
+		JFrame mainFrame = new JFrame("");
+		mainFrame.setTitle("Code Quiz");
+		mainFrame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		mainFrame.add(new WinUI(new QuizController()));
+		mainFrame.pack();
+		mainFrame.setResizable(false);
+		mainFrame.setLocationRelativeTo(null);
+		mainFrame.setVisible(true);
+	}
 }
