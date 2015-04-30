@@ -155,7 +155,7 @@ public class QuizController extends Thread {
 				question.getAnswer3(), question.getAnswer4());
 		i++;
 	}
-
+	 
 	public void getSortingQuestion() {
 		this.sortingQuestion = sortingCeremonyGame.getSortingQuestion(i);
 		sortUI.setQuestion(sortingQuestion.getQuestion());
@@ -382,6 +382,10 @@ public class QuizController extends Thread {
 		resultui.setController(this);
 	}
 	
+	/**
+	 * Kontrollerar om spelet är slut
+	 * @return
+	 */
 	public boolean getScenarioIndex() {
 		boolean res = false;
 		if (index == (game.getScenarioListSize()-1)) {
@@ -463,6 +467,11 @@ public class QuizController extends Thread {
 		return (index + 1) == game.getScenarioListSize();
 	}
 	
+	/**
+	 *Lägger till funktion för radbrytning i inkommande svar. 
+	 * @param str
+	 * @return
+	 */
 	public String changeStringA(String str) {
 		Boolean boo = false;
 		String br = "<br>";
@@ -490,6 +499,11 @@ public class QuizController extends Thread {
 		return hej;
 	}
 	
+	/**
+	 * Lägger till funktion för radbrytning i inkommande frågor.
+	 * @param str
+	 * @return
+	 */
 	public String changeStringQ(String str) {
 		Boolean boo = false;
 		String br = "<br>";

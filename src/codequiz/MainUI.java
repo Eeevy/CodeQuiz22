@@ -78,6 +78,10 @@ public class MainUI extends JPanel {
 
 		return northPanel;
 	}
+	
+	
+		
+	
 
 	public JPanel centerPanel() {
 		centerPanel = new JPanel(new FlowLayout());
@@ -124,6 +128,7 @@ public class MainUI extends JPanel {
 
 		return eastPanel;
 	}
+	
 	public void login(String inName, String inText) {
 		int result = 0;
 		String name, password;

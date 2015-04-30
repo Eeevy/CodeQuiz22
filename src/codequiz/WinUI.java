@@ -53,14 +53,14 @@ public class WinUI extends JPanel implements ActionListener {
 		}		
 	}
 	
-	public static void main(String[] args) {
-		JFrame mainFrame = new JFrame("");
-		mainFrame.setTitle("Code Quiz");
-		mainFrame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		mainFrame.add(new WinUI(new QuizController()));
-		mainFrame.pack();
-		mainFrame.setResizable(false);
-		mainFrame.setLocationRelativeTo(null);
-		mainFrame.setVisible(true);
-	}
+//	public static void main(String[] args) {
+//		JFrame mainFrame = new JFrame("");
+//		mainFrame.setTitle("Code Quiz");
+//		mainFrame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+//		mainFrame.add(new WinUI(new QuizController()));
+//		mainFrame.pack();
+//		mainFrame.setResizable(false);
+//		mainFrame.setLocationRelativeTo(null);
+//		mainFrame.setVisible(true);
+//	}
 }
