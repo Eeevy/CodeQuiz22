@@ -21,7 +21,7 @@ public class Game implements Serializable {
 	private Question question1, question2, question3, question4, question5,
 			question6, question7, question8, question9;
 	private QuizScenario scenario, scenario1, scenario2, scenario3, scenario4,
-			scenario5, scenario6;
+			scenario5, scenario6, scenario7, scenario8;
 	private Database dbKlass = new Database();
 
 	/**
@@ -68,6 +68,12 @@ public class Game implements Serializable {
 				"src/media/ScenarioOakOwl.jpg"), new ImageIcon(
 				"src/media/ScenarioOwlCorrect.jpg"), new ImageIcon(
 				"src/media/ScenarioOwlIncorrect.jpg"));
+		scenario7 = new QuizScenario(new ImageIcon("src/media/Forest.jpeg"), 
+				new ImageIcon("src/media/Forestcorrect.jpeg"),
+				new ImageIcon("src/media/Foresincorrect.jpeg"));
+		scenario8 = new QuizScenario(new ImageIcon("src/media/Maze.jpeg"), 
+				new ImageIcon("src/media/Mazecorrect.jpeg"),
+				new ImageIcon("src/media/Mazeincorrect.jpeg"));
 		setScenario();
 	}
 	
@@ -106,6 +112,8 @@ public class Game implements Serializable {
 		scenariolist.add(scenario4);
 		scenariolist.add(scenario5);
 		scenariolist.add(scenario6);
+		scenariolist.add(scenario7);
+		scenariolist.add(scenario8);
 	}
 
 	/**
