@@ -16,119 +16,65 @@ import javax.swing.*;
 /**
  * Klassen består av en panel med en huvudmeny.
  * 
- * @author Evelyn Gustavsson
+ * @author Code Quiz
  *
  */
 public class MainUI extends JPanel {
 	private QuizController cont;
-
-	
-	private JPanel northPanel;
-	private JPanel centerPanel;
-	private JPanel eastPanel;
-
-	private JLabel lblTitle = new JLabel("Code Quiz");
+	private JLabel lblTitle = new JLabel(" Code Quiz");
 	private JLabel lblSlogan = new JLabel(
-			"- Ett magiskt sätt att lära sig programmering");
-	private JLabel lblMenu = new JLabel("Meny");
-	private JLabel lblInvisible = new JLabel();
-	private JLabel lblInvisible2 = new JLabel();
-	private JLabel lblInvisible3 = new JLabel();
-	private JLabel lblInvisible4 = new JLabel();
-	private JLabel lblInvisible5 = new JLabel();
-
+			"  - Ett magiskt sätt att lära sig programmering");
+	private JLabel lblIcon = new JLabel(new ImageIcon(
+			"src/media/HahaHogwarts.jpg"));
 	private JButton btnPlay = new JButton("Spela");
 	private JButton btnSignIn = new JButton("Logga in");
 	private JButton btnCreateAccount = new JButton("Skapa ett nytt konto");
 	private JButton btnHowToPlay = new JButton("Om spelet");
 	private JButton btnHighScore = new JButton("High score");
 
-	private ImageIcon iconHogwarts;
-
 	public MainUI() {
-
-		setLayout(new BorderLayout());
-		setPreferredSize(new Dimension(900, 500));
-
-		add(northPanel(), BorderLayout.NORTH);
-		add(centerPanel(), BorderLayout.CENTER);
-		add(eastPanel(), BorderLayout.EAST);
+		setBackground(Color.BLACK);
+		setPreferredSize(new Dimension(800, 600));
+		lblIcon.setLayout(new FlowLayout());
+		lblIcon.setPreferredSize(new Dimension(800, 600));
+		add(lblIcon);
+		lblIcon.add(lblTitle);
+		lblTitle.setForeground(Color.BLACK);
+		lblTitle.setFont(new Font("SansSerif", Font.BOLD, 55));
+		lblTitle.setPreferredSize(new Dimension(800, 60));
+		lblIcon.add(lblSlogan);
+		lblSlogan.setForeground(Color.BLACK);
+		lblSlogan.setFont(new Font("Serif", Font.ITALIC, 16));
+		lblSlogan.setPreferredSize(new Dimension(800, 20));
+		lblIcon.add(Box.createRigidArea(new Dimension(800, 100)));
+		lblIcon.add(Box.createRigidArea(new Dimension(630, 40)));
+		lblIcon.add(btnPlay);
+		btnPlay.setPreferredSize(new Dimension(150, 30));
+		btnPlay.setBackground(Color.white);
+		lblIcon.add(Box.createRigidArea(new Dimension(630, 40)));
+		lblIcon.add(btnSignIn);
+		btnSignIn.setPreferredSize(new Dimension(150, 30));
+		btnSignIn.setBackground(Color.white);
+		lblIcon.add(Box.createRigidArea(new Dimension(630, 40)));
+		lblIcon.add(btnCreateAccount);
+		btnCreateAccount.setPreferredSize(new Dimension(150, 30));
+		btnCreateAccount.setBackground(Color.white);
+		lblIcon.add(Box.createRigidArea(new Dimension(630, 40)));
+		lblIcon.add(btnHowToPlay);
+		btnHowToPlay.setPreferredSize(new Dimension(150, 30));
+		btnHowToPlay.setBackground(Color.white);
+		lblIcon.add(Box.createRigidArea(new Dimension(630, 40)));
+		lblIcon.add(btnHighScore);
+		btnHighScore.setPreferredSize(new Dimension(150, 30));
+		btnHighScore.setBackground(Color.white);
 		addActionListeners();
 		btnPlay.setVisible(false);
 	}
-	
-	public void enableMenu(boolean tof){
+
+	public void enableMenu(boolean tof) {
 		btnPlay.setVisible(tof);
 	}
 
-	public JPanel northPanel() {
-		northPanel = new JPanel(new FlowLayout(FlowLayout.CENTER));
-		northPanel.setPreferredSize(new Dimension(100, 100));
-		northPanel.setBackground(Color.BLACK);
-
-		northPanel.add(Box.createRigidArea(new Dimension(150, 20)));
-		northPanel.add(lblTitle);
-		lblTitle.setForeground(Color.WHITE);
-		lblTitle.setFont(new Font("SansSerif", Font.BOLD, 50));
-
-		northPanel.add(Box.createRigidArea(new Dimension(220, 20)));
-		northPanel.add(lblSlogan);
-		lblSlogan.setForeground(Color.WHITE);
-		lblSlogan.setFont(new Font("SansSerif", Font.ITALIC, 15));
-
-		return northPanel;
-	}
-	
-	
-		
-	
-
-	public JPanel centerPanel() {
-		centerPanel = new JPanel(new FlowLayout());
-		centerPanel.setPreferredSize(new Dimension(400, 150));
-		centerPanel.setBackground(Color.BLACK);
-
-		centerPanel.add(Box.createRigidArea(new Dimension(500, 25)));
-		iconHogwarts = new ImageIcon("src/media/Hogwarts.png");
-		centerPanel.add(new JLabel(iconHogwarts));
-		return centerPanel;
-	}
-
-	public JPanel eastPanel() {
-		eastPanel = new JPanel(new GridLayout(15, 1));
-		eastPanel.setPreferredSize(new Dimension(150, 10));
-		eastPanel.setBorder(BorderFactory.createLineBorder(Color.WHITE));
-		eastPanel.setBackground(Color.BLACK);
-
-		eastPanel.add(lblMenu);
-		lblMenu.setForeground(Color.WHITE);
-		lblMenu.setFont(new Font("SansSerif", Font.BOLD, 26));
-
-		eastPanel.add(lblInvisible);
-		eastPanel.add(btnPlay);
-		eastPanel.add(lblInvisible2);
-		eastPanel.add(btnSignIn);
-		eastPanel.add(lblInvisible3);
-		eastPanel.add(btnCreateAccount);
-		eastPanel.add(lblInvisible4);
-		eastPanel.add(btnHowToPlay);
-		eastPanel.add(lblInvisible5);
-		eastPanel.add(btnHighScore);
-
-		btnPlay.setBackground(Color.BLACK);
-		btnPlay.setForeground(Color.GRAY);
-		btnSignIn.setBackground(Color.BLACK);
-		btnSignIn.setForeground(Color.GRAY);
-		btnCreateAccount.setBackground(Color.BLACK);
-		btnCreateAccount.setForeground(Color.GRAY);
-		btnHowToPlay.setBackground(Color.BLACK);
-		btnHowToPlay.setForeground(Color.GRAY);
-		btnHighScore.setBackground(Color.BLACK);
-		btnHighScore.setForeground(Color.GRAY);
-
-		return eastPanel;
-	}
-	
 	public void login(String inName, String inText) {
 		int result = 0;
 		String name, password;
@@ -143,13 +89,15 @@ public class MainUI extends JPanel {
 		panel.add(new JLabel("Lösenord:"));
 		panel.add(passwordField);
 
-		result = JOptionPane.showConfirmDialog(null, panel, inText, JOptionPane.OK_CANCEL_OPTION);
-		if(result == JOptionPane.OK_OPTION) {
-		name = nameField.getText();
-		password = passwordField.getText();
-		cont.login(name, password);
-	}}
-	
+		result = JOptionPane.showConfirmDialog(null, panel, inText,
+				JOptionPane.OK_CANCEL_OPTION);
+		if (result == JOptionPane.OK_OPTION) {
+			name = nameField.getText();
+			password = passwordField.getText();
+			cont.login(name, password);
+		}
+	}
+
 	public void newUser(String inName, String inText) {
 		int result = 0;
 		String name, password, passwordConf;
@@ -167,13 +115,15 @@ public class MainUI extends JPanel {
 		panel.add(new JLabel("Upprepa lösenord:"));
 		panel.add(passwordFieldConf);
 
-		result = JOptionPane.showConfirmDialog(null, panel, inText, JOptionPane.OK_CANCEL_OPTION);
-		if(result == JOptionPane.OK_OPTION) {
-		name = nameField.getText();
-		password = passwordField.getText();
-		passwordConf = passwordFieldConf.getText();
-		cont.newUser(name, password, passwordConf);
-	}}
+		result = JOptionPane.showConfirmDialog(null, panel, inText,
+				JOptionPane.OK_CANCEL_OPTION);
+		if (result == JOptionPane.OK_OPTION) {
+			name = nameField.getText();
+			password = passwordField.getText();
+			passwordConf = passwordFieldConf.getText();
+			cont.newUser(name, password, passwordConf);
+		}
+	}
 
 	public void addActionListeners() {
 		MenuListener menuListener = new MenuListener();
@@ -188,7 +138,6 @@ public class MainUI extends JPanel {
 
 		public void actionPerformed(ActionEvent e) {
 			if (e.getSource() == btnPlay) {
-				//cont.setPanel(cont.getSortingCeremonyUI());
 				cont.getSortingQuestion();
 				cont.setPanel(cont.getSortingCeremonyUI());
 			}
@@ -198,7 +147,7 @@ public class MainUI extends JPanel {
 			if (e.getSource() == btnSignIn) {
 				login(null, "Mata in namn och lösenord");
 			}
-			if (e.getSource() == btnHowToPlay){
+			if (e.getSource() == btnHowToPlay) {
 				cont.setPanel(cont.getHowToPlayUI());
 			}
 		}
