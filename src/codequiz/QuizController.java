@@ -434,6 +434,13 @@ public class QuizController extends Thread {
 		
 		return points;
 	}
+	public void userpoints(){
+		int result = 0;
+		int userpoints = getPoints();
+		int housepoints = dbKlass.getHousePoints();
+		result = userpoints + housepoints;
+		dbKlass.setPointsDB(house,result);
+	}
 
 	/**
 	 * minskar en spelares mängd liv
@@ -446,6 +453,7 @@ public class QuizController extends Thread {
 		winUI = new WinUI(this);
 		setPanel(winUI);
 		playSoundClip();
+		userpoints();
 	}
 
 	/**
@@ -462,7 +470,18 @@ public class QuizController extends Thread {
 	 *            - poäng som skall visas
 	 */
 	public void setScore(int inScore) {
-		resultui.setSlytherin(inScore);
+		if(house.equals("Gryffindor")){
+			resultui.setGryffindor(inScore);
+		}
+		if(house.equalsIgnoreCase("Hufflepuff")){
+			resultui.setHufflepuff(inScore);
+		}
+		if(house.equals("Ravenclaw")){
+			resultui.setRavenclaw(inScore);
+		}
+		if(house.equals("Slytherin")){
+			resultui.setSlytherin(inScore);
+		}
 	}
 
 	/**

@@ -5,6 +5,8 @@ import java.awt.Dimension;
 
 import javax.swing.*;
 
+import CodeQuizServer.Database;
+
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -34,6 +36,7 @@ public class QuizUI extends JPanel {
 	private JButton btnback = new JButton("Huvudmeny");
 	private JButton btnresult = new JButton("Resultat");
 	private JLabel lblPoints;
+	private Database db;
 	private JLabel lblLives;
 	private JLabel lblResult = new JLabel("");
 	private JLabel lblBackground = new JLabel(new ImageIcon(
@@ -193,9 +196,13 @@ public class QuizUI extends JPanel {
 	 */
 	private class ButtonResultListener implements ActionListener {
 		public void actionPerformed(ActionEvent e) {
+//			controller.newResultUI();
+//			controller.setPanel(controller.getResultUI());
 			controller.newResultUI();
+			db = new Database();
+			db.getPointsDB(controller.getResultUI());
 			controller.setPanel(controller.getResultUI());
-			controller.setScore(controller.getPoints());
+			controller.userpoints();
 		}
 	}
 
