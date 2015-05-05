@@ -249,6 +249,7 @@ public class QuizUI extends JPanel {
 			
 			if (answer.equals(correctAnswer)) {
 				if (controller.getScenarioIndex() == true) {
+					controller.increasePoints();
 					controller.win();
 				} else {
 				ImageIcon icon = controller.setCorrectScenario();
@@ -260,6 +261,12 @@ public class QuizUI extends JPanel {
 				btnNewQuestion.setEnabled(true);
 				}
 			} else {
+				if (controller.getScenarioIndex() == true) {
+					controller.decreasePoints();
+					controller.win();
+				} else {
+					
+				
 				ImageIcon icon = controller.setIncorrectScenario();
 				setBackground(icon);
 				lblResult.setText("FEL!");
@@ -269,6 +276,7 @@ public class QuizUI extends JPanel {
 				lblPoints.setText(" Poäng: " + controller.getPoints());
 				lblLives.setText(" " + controller.getlives());
 				btnNewQuestion.setEnabled(true);
+				}
 			}
 
 			if (controller.getlives() == 0) {
@@ -285,9 +293,9 @@ public class QuizUI extends JPanel {
 				btnback.setPreferredSize(new Dimension(100, 30));
 				btnresult.setPreferredSize(new Dimension(100, 30));
 			}
-			if (controller.getScenarioIndex() == true) {
-				controller.win();
-			}
+//			if (controller.getScenarioIndex() == true) {
+//				controller.win();
+//			}
 		}
 	}
 
