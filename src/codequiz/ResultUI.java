@@ -5,7 +5,7 @@ import javax.swing.*;
 import java.awt.*;
 import java.awt.event.*;
 
-class ResultUI extends JPanel {
+public class ResultUI extends JPanel {
 
 	private JLabel labelImageSly = new JLabel(new ImageIcon("src/media/Slytherin1.png"));
 	private JLabel labelImageGryff = new JLabel(new ImageIcon("src/media/Gryffindor1.png"));

@@ -1,8 +1,13 @@
 package CodeQuizServer;
 
 import java.io.Serializable;
+
+import codequiz.ResultUI;
+
 import java.sql.*;
 import java.util.LinkedList;
+
+import javax.swing.JPanel;
 
 import codequiz.Question;
 import codequiz.QuizController;
@@ -19,12 +24,11 @@ public class Database implements Serializable {
 	private static final String USERNAME = "Bob";
 	private static final String PASSWORD = "bob";
 	private QuizController controller;
-	
-	
 
-	public void setController(QuizController c){
+	public void setController(QuizController c) {
 		controller = c;
 	}
+
 	/**
 	 * databas
 	 * 
@@ -140,33 +144,56 @@ public class Database implements Serializable {
 			System.out.println("Användarnamnet upptaget, försök igen");
 		}
 	}
-	
-	public void getPointsDB(String housename) {
+
+	public void getPointsDB(JPanel rUI) {
+		ResultUI r = (ResultUI) rUI;
+
 		System.out.println("Database: setPointsDB()");
 		try {
 			conn = connectToDB();
 			stat = conn.createStatement();
-			String sql = "select * from house where HouseName = " + "'" + housename+"'";
+			String sql = "select * from house";
 			rs = stat.executeQuery(sql);
-			while(rs.next()){
-				System.out.println("Poäng: " + rs.getString("HouseName") + rs.getInt("Points"));
+			while (rs.next()) {
+				System.out.println("Poäng: " + rs.getString("HouseName")
+						+ rs.getInt("Points"));
 				int housePoints = rs.getInt("Points");
+				String houseType = rs.getString("HouseName");
+				if (houseType.equals("Hufflepuff")) {
+					r.setHufflepuff(housePoints);
+					System.out.println("Det är hufflepuff!");
+				}
+				if (houseType.equalsIgnoreCase("Slytherin")) {
+					r.setSlytherin(housePoints);
+					System.out.println("Det är Slytherin!");
+
+				}
+				if (houseType.equals("Ravenclaw")) {
+					r.setRavenclaw(housePoints);
+					System.out.println("Det är Ravenclaw!");
+
+				}
+				if (houseType.equals("Gryffindor")) {
+					r.setGryffindor(housePoints);
+					System.out.println("Det är Gryffindor!");
+
+				}
 			}
-			
+
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
 	}
-
 
 	public void setPointsDB(String housename, int points) {
 		System.out.println("Database: setPointsDB()");
 		try {
 			conn = connectToDB();
 			stat = conn.createStatement();
-			String sql = "update house set Points=" + "'" + points + "'" + "where HouseName= " + "'" + housename+"'";
+			String sql = "update house set Points=" + "'" + points + "'"
+					+ "where HouseName= " + "'" + housename + "'";
 			stat.executeUpdate(sql);
-			
+
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
@@ -187,10 +214,10 @@ public class Database implements Serializable {
 		// d.getQuestionDB();
 		// d.connectToDB();
 		// d.setUserDB("Evelyn", "evelyn");
-		//d.getSortingQuestionDB();
-		//System.out.println(d.returnSortingQuestions());
+		// d.getSortingQuestionDB();
+		// System.out.println(d.returnSortingQuestions());
 		// System.out.println(d.checkUserDB("Emma", "emma"));
-		//d.setPointsDB("Slytherin", 20);
-		d.getPointsDB("Slytherin");
+		// d.setPointsDB("Slytherin", 20);
+		//d.getPointsDB();
 	}
 }
