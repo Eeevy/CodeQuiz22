@@ -348,6 +348,7 @@ public class QuizController extends Thread {
 		i = 0;
 		System.out.print(index);
 		playSoundClip();
+		user.setUserPoints(0);
 	}
 
 	/**

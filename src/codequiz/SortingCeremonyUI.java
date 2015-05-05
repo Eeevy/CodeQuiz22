@@ -140,7 +140,7 @@ public class SortingCeremonyUI extends JPanel {
 	private class ButtonListener implements ActionListener {
 
 		public void actionPerformed(ActionEvent e) {
-			btnOK.setEnabled(false);
+			btnOK.setEnabled(true);
 			String answer = null;
 			String answerRavenclaw = controller.getAnswerRavenclaw();
 			String answerGryffindor = controller.getAnswerGryffindor();
