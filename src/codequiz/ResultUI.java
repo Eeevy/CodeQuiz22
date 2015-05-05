@@ -27,6 +27,7 @@ public class ResultUI extends JPanel {
 	private JPanel pnl4 = new JPanel(new BorderLayout());
 	private JPanel mainPanel = new JPanel(new BorderLayout());
 	private JPanel gridPanel = new JPanel(new GridLayout(2, 2));
+	private JPanel southPanel = new JPanel(new FlowLayout());
 	
 	private int slytherin = 0, gryffindor = 0, hufflepuff = 0, ravenclaw = 0;
 	
@@ -122,14 +123,15 @@ public class ResultUI extends JPanel {
 		
 		mainPanel.add(lblTitle, BorderLayout.NORTH);
 		mainPanel.add(gridPanel, BorderLayout.CENTER);
-		mainPanel.add(btnMain, BorderLayout.SOUTH);
+		mainPanel.add(southPanel, BorderLayout.SOUTH);
+		
+		southPanel.add(btnMain);
+		btnMain.setPreferredSize(new Dimension(110, 30));
+		southPanel.setOpaque(false);
+
 		mainPanel.setOpaque(false);
-		
 		background.add(mainPanel);
-		
 		btnMain.addActionListener(new ButtonListener());
-		
-		
 	}
 	public void setController(QuizController controller){
 		this.controller = controller;
