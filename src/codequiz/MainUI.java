@@ -150,6 +150,10 @@ public class MainUI extends JPanel {
 			if (e.getSource() == btnHowToPlay) {
 				cont.setPanel(cont.getHowToPlayUI());
 			}
+			if(e.getSource() == btnHighScore){
+				cont.newResultUI();
+				cont.setPanel(cont.getResultUI());
+			}
 		}
 	}
 
