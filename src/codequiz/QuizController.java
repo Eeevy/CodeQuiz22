@@ -37,7 +37,7 @@ public class QuizController extends Thread {
 	private JFrame mainFrame;
 	private Clip clip;
 	private User user;
-	private HogwartsHouse house;
+	private String house;
 	private Client client;
 	private ResultUI resultui;
 	private File musicFilename;
@@ -75,6 +75,7 @@ public class QuizController extends Thread {
 		howToUI.setController(this);
 		sortUI.setController(this);
 		houseUI.setController(this);
+		dbKlass.setController(this);
 		showGUI();
 		playSoundClip();
 		play();// kopplar upp till servern här istället
@@ -163,6 +164,10 @@ public class QuizController extends Thread {
 				sortingQuestion.getAnswer2(), sortingQuestion.getAnswer3(),
 				sortingQuestion.getAnswer4());
 		i++;
+	}
+	
+	public void setHouse(String house){
+		this.house = house;
 	}
 
 	/**
@@ -426,6 +431,7 @@ public class QuizController extends Thread {
 	public int getPoints() {
 		int points = user.getUserPoints();
 		Integer.toString(points);
+		
 		return points;
 	}
 
@@ -446,7 +452,7 @@ public class QuizController extends Thread {
 	 * Återställer en spelares liv till initiell mängd
 	 */
 	public void resetLives() {
-		user.setLives(2);
+		user.setLives(3);
 	}
 
 	/**

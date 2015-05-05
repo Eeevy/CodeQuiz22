@@ -28,7 +28,7 @@ public class MainUI extends JPanel {
 			"src/media/HahaHogwarts.jpg"));
 	private JButton btnPlay = new JButton("Spela");
 	private JButton btnSignIn = new JButton("Logga in");
-	private JButton btnCreateAccount = new JButton("Skapa ett nytt konto");
+	private JButton btnCreateAccount = new JButton("Skapa konto");
 	private JButton btnHowToPlay = new JButton("Om spelet");
 	private JButton btnHighScore = new JButton("High score");
 

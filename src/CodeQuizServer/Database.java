@@ -5,6 +5,7 @@ import java.sql.*;
 import java.util.LinkedList;
 
 import codequiz.Question;
+import codequiz.QuizController;
 import codequiz.SortingQuestion;
 
 public class Database implements Serializable {
@@ -17,7 +18,13 @@ public class Database implements Serializable {
 	private static final String DATABASE_URL = "jdbc:mysql://94.254.94.236:51515/codequiz";
 	private static final String USERNAME = "Bob";
 	private static final String PASSWORD = "bob";
+	private QuizController controller;
+	
+	
 
+	public void setController(QuizController c){
+		controller = c;
+	}
 	/**
 	 * databas
 	 * 
@@ -56,7 +63,7 @@ public class Database implements Serializable {
 			e.printStackTrace();
 		}
 	}
-	
+
 	public void getSortingQuestionDB() {
 		System.out.println("Database: getSortingQuestionDB()");
 		try {
@@ -64,15 +71,20 @@ public class Database implements Serializable {
 			stat = conn.createStatement();
 			rs = stat.executeQuery("select * from sortingquestion");
 			while (rs.next()) {
-				SortingQuestion sortingQuestion = new SortingQuestion(rs.getInt("SortingQuestionID"),
+				SortingQuestion sortingQuestion = new SortingQuestion(
+						rs.getInt("SortingQuestionID"),
 						rs.getString("Question"), rs.getString("Answer1"),
 						rs.getString("Answer2"), rs.getString("Answer3"),
-						rs.getString("Answer4"), rs.getString("RavenclawAnswer"),
-						rs.getString("GryffindorAnswer"), rs.getString("SlytherinAnswer"), rs.getString("HufflepuffAnswer"));
+						rs.getString("Answer4"),
+						rs.getString("RavenclawAnswer"),
+						rs.getString("GryffindorAnswer"),
+						rs.getString("SlytherinAnswer"),
+						rs.getString("HufflepuffAnswer"));
 				System.out.println(sortingQuestion.getQuestion());
 				allSortingQuestions.add(sortingQuestion);
 				System.out.println("Fråga tillagd");
-				System.out.println("allSortingQuestions: " + allSortingQuestions.size());
+				System.out.println("allSortingQuestions: "
+						+ allSortingQuestions.size());
 			}
 		} catch (Exception e) {
 			e.printStackTrace();
@@ -123,9 +135,40 @@ public class Database implements Serializable {
 					+ ")";
 			stat.executeUpdate(sql);
 			System.out.println("Ok! User added!");
-			
+
 		} catch (Exception e) {
 			System.out.println("Användarnamnet upptaget, försök igen");
+		}
+	}
+	
+	public void getPointsDB(String housename) {
+		System.out.println("Database: setPointsDB()");
+		try {
+			conn = connectToDB();
+			stat = conn.createStatement();
+			String sql = "select * from house where HouseName = " + "'" + housename+"'";
+			rs = stat.executeQuery(sql);
+			while(rs.next()){
+				System.out.println("Poäng: " + rs.getString("HouseName") + rs.getInt("Points"));
+				int housePoints = rs.getInt("Points");
+			}
+			
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+	}
+
+
+	public void setPointsDB(String housename, int points) {
+		System.out.println("Database: setPointsDB()");
+		try {
+			conn = connectToDB();
+			stat = conn.createStatement();
+			String sql = "update house set Points=" + "'" + points + "'" + "where HouseName= " + "'" + housename+"'";
+			stat.executeUpdate(sql);
+			
+		} catch (Exception e) {
+			e.printStackTrace();
 		}
 	}
 
@@ -133,7 +176,7 @@ public class Database implements Serializable {
 		System.out.println("Database: returnQuestions()" + allQuestions.size());
 		return allQuestions;
 	}
-	
+
 	public LinkedList<SortingQuestion> returnSortingQuestions() {
 		System.out.println("Database: returnSortingQuestions()");
 		return allSortingQuestions;
@@ -141,11 +184,13 @@ public class Database implements Serializable {
 
 	public static void main(String[] args) {
 		Database d = new Database();
-		//d.getQuestionDB();
+		// d.getQuestionDB();
 		// d.connectToDB();
 		// d.setUserDB("Evelyn", "evelyn");
-		d.getSortingQuestionDB();
-		System.out.println(d.returnSortingQuestions());
-//		System.out.println(d.checkUserDB("Emma", "emma"));
+		//d.getSortingQuestionDB();
+		//System.out.println(d.returnSortingQuestions());
+		// System.out.println(d.checkUserDB("Emma", "emma"));
+		//d.setPointsDB("Slytherin", 20);
+		d.getPointsDB("Slytherin");
 	}
 }
