@@ -198,11 +198,11 @@ public class QuizUI extends JPanel {
 		public void actionPerformed(ActionEvent e) {
 //			controller.newResultUI();
 //			controller.setPanel(controller.getResultUI());
+			controller.userpoints();
 			controller.newResultUI();
 			db = new Database();
 			db.getPointsDB(controller.getResultUI());
 			controller.setPanel(controller.getResultUI());
-			controller.userpoints();
 		}
 	}
 
