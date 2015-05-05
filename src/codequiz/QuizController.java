@@ -452,7 +452,7 @@ public class QuizController extends Thread {
 	 * Återställer en spelares liv till initiell mängd
 	 */
 	public void resetLives() {
-		user.setLives(2);
+		user.setLives(3);
 	}
 
 	/**
