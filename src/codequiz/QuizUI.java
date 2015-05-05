@@ -246,7 +246,10 @@ public class QuizUI extends JPanel {
 			if (rb4.isSelected()) {
 				answer = rb4.getText();
 			}
-			
+			if (answer == null) {
+				JOptionPane.showMessageDialog(null, "Välj ett alternativ, tack");
+				btnSubmit.setEnabled(true);
+			} else {
 			if (answer.equals(correctAnswer)) {
 				if (controller.getScenarioIndex() == true) {
 					controller.increasePoints();
@@ -296,7 +299,7 @@ public class QuizUI extends JPanel {
 //			if (controller.getScenarioIndex() == true) {
 //				controller.win();
 //			}
-		}
+		}}
 	}
 
 	/**
