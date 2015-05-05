@@ -19,6 +19,8 @@ public class ResultUI extends JPanel {
 	private JLabel lblSly = new JLabel("0");
 	private JLabel lblTitle = new JLabel(" - Poängställning - ");
 	
+	private JButton btnMain = new JButton("Huvudmeny");
+	
 	private JPanel pnl1 = new JPanel(new BorderLayout());
 	private JPanel pnl2 = new JPanel(new BorderLayout());
 	private JPanel pnl3 = new JPanel(new BorderLayout());
@@ -120,15 +122,20 @@ public class ResultUI extends JPanel {
 		
 		mainPanel.add(lblTitle, BorderLayout.NORTH);
 		mainPanel.add(gridPanel, BorderLayout.CENTER);
+		mainPanel.add(btnMain, BorderLayout.SOUTH);
 		mainPanel.setOpaque(false);
 		
 		background.add(mainPanel);
+		
+		btnMain.addActionListener(new ButtonListener());
 		
 		
 	}
 	public void setController(QuizController controller){
 		this.controller = controller;
 	}
+	
+	
 	
 //	public static void main(String[] args) {
 //		JFrame frame = new JFrame();
@@ -141,4 +148,13 @@ public class ResultUI extends JPanel {
 //		frame.setVisible(true);
 //		
 //	}
+	
+	private class ButtonListener implements ActionListener {
+		public void actionPerformed(ActionEvent e) {
+			if(e.getSource()==btnMain){
+				controller.setPanel(controller.getMainUI());
+				controller.newGame();
+			}
+		}
+	}
 }
