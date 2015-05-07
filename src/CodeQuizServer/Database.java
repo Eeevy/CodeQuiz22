@@ -51,7 +51,7 @@ public class Database implements Serializable {
 		try {
 			conn = connectToDB();
 			stat = conn.createStatement();
-			rs = stat.executeQuery("select * from question");
+			rs = stat.executeQuery("select * from question order by (rand()*10)");
 			while (rs.next()) {
 				Question question1 = new Question(rs.getInt("QuestionID"),
 						rs.getString("Question"), rs.getString("Answer1"),
@@ -73,7 +73,7 @@ public class Database implements Serializable {
 		try {
 			conn = connectToDB();
 			stat = conn.createStatement();
-			rs = stat.executeQuery("select * from sortingquestion");
+			rs = stat.executeQuery("select * from sortingquestion order by rand()");
 			while (rs.next()) {
 				SortingQuestion sortingQuestion = new SortingQuestion(
 						rs.getInt("SortingQuestionID"),
@@ -250,10 +250,10 @@ public class Database implements Serializable {
 
 	public static void main(String[] args) {
 		Database d = new Database();
-		// d.getQuestionDB();
+		 d.getQuestionDB();
 		// d.connectToDB();
 		// d.setUserDB("Evelyn", "evelyn");
-		// d.getSortingQuestionDB();
+//		d.getSortingQuestionDB();
 		// System.out.println(d.returnSortingQuestions());
 		// System.out.println(d.checkUserDB("Emma", "emma"));
 		// d.setPointsDB("Slytherin", 20);

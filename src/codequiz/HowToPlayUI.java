@@ -27,14 +27,16 @@ public class HowToPlayUI extends JPanel {
 		lblBackground.setLayout(null);
 		add(lblBackground);
 		lblBackground.add(btnMain);
-		lblBackground.add(btnStartGame);
 		lblBackground.add(lblWelcomeUser);
+		lblBackground.add(btnStartGame);
 		lblWelcomeUser.setFont(new Font("Times New Roman", Font.BOLD,20));
 		lblWelcomeUser.setForeground(Color.BLACK);
 
 		btnMain.setBounds(450, 500, 100, 25);
 		btnStartGame.setBounds(620, 500, 100, 25);
 		lblWelcomeUser.setBounds(35, 40, 300, 50);
+		
+		btnStartGame.setVisible(false);
 
 		ButtonListener listener = new ButtonListener();
 		btnMain.addActionListener(listener);
@@ -47,6 +49,10 @@ public class HowToPlayUI extends JPanel {
 	
 	public void setWelcome(String user){
 		lblWelcomeUser.setText("Välkommen till Hogwarts " + user + "!");
+	}
+	
+	public void enableGamebutton(boolean state){
+		btnStartGame.setVisible(state);
 	}
 	
 	private class ButtonListener implements ActionListener {

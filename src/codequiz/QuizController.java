@@ -169,6 +169,9 @@ public class QuizController extends Thread {
 	public void setHouse(String house){
 		this.house = house;
 	}
+	public void disableGamebutton(){
+		howToUI.enableGamebutton(false);
+	}
 
 	/**
 	 * Sköter registrering av nya användare.
@@ -190,6 +193,8 @@ public class QuizController extends Thread {
 			System.out.print(password + name);
 			dbKlass.setUserDB(name, password);//OBS Måste läggas till att om användarnamn redan finns, 
 											//bes denne att logga in igen, i skrivande stund kommer du vidare i alla fall
+				
+			howToUI.enableGamebutton(true);
 				setPanel(howToUI);
 				howToUI.setWelcome(name);
 			
@@ -349,6 +354,7 @@ public class QuizController extends Thread {
 		System.out.print(index);
 		playSoundClip();
 		user.setUserPoints(0);
+		disableGamebutton();
 	}
 
 	/**
@@ -435,12 +441,15 @@ public class QuizController extends Thread {
 		
 		return points;
 	}
+	/**
+	 * Adderar anv. poäng med elevhemmets poäng.
+	 */
 	public void userpoints(){
-		int result = 0;
+		int total = 0;
 		int userpoints = getPoints();
 		int housepoints = dbKlass.getHousePoints();
-		result = userpoints + housepoints;
-		dbKlass.setPointsDB(house,result);
+		total = userpoints + housepoints;
+		dbKlass.setPointsDB(house,total);
 	}
 
 	/**
@@ -454,7 +463,7 @@ public class QuizController extends Thread {
 		winUI = new WinUI(this);
 		setPanel(winUI);
 		playSoundClip();
-		userpoints();
+		
 	}
 
 	/**
@@ -556,6 +565,7 @@ public class QuizController extends Thread {
 		String hej = newString.toString();
 		return hej;
 	}
+	
 
 	public static void main(String[] args) {
 		SwingUtilities.invokeLater(new Runnable() {
