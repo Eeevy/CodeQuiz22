@@ -451,6 +451,10 @@ public class QuizController extends Thread {
 		total = userpoints + housepoints;
 		dbKlass.setPointsDB(house,total);
 	}
+	public void fetchhousepoints(){
+		dbKlass.getPointsDB(getResultUI());
+		setPanel(getResultUI());
+	}
 
 	/**
 	 * minskar en spelares mängd liv
@@ -463,7 +467,6 @@ public class QuizController extends Thread {
 		winUI = new WinUI(this);
 		setPanel(winUI);
 		playSoundClip();
-		
 	}
 
 	/**

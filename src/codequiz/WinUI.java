@@ -14,6 +14,8 @@ import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 
+import CodeQuizServer.Database;
+
 public class WinUI extends JPanel implements ActionListener {
 	private JLabel lblBackground = new JLabel(new ImageIcon(
 			"src/media/win.jpg"));
@@ -47,9 +49,12 @@ public class WinUI extends JPanel implements ActionListener {
 		}
 		
 		if (e.getSource() == buttonRes) {
+//			controller.newResultUI();
+//			controller.setPanel(controller.getResultUI());
+//			controller.setScore(controller.getPoints());
+			controller.userpoints();
 			controller.newResultUI();
-			controller.setPanel(controller.getResultUI());
-			controller.setScore(controller.getPoints());
+			controller.fetchhousepoints();
 		}		
 	}
 	

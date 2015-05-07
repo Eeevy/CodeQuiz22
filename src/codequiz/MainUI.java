@@ -23,7 +23,6 @@ import CodeQuizServer.Database;
  */
 public class MainUI extends JPanel {
 	private QuizController cont;
-	private Database d;
 	private JLabel lblTitle = new JLabel(" Code Quiz");
 	private JLabel lblSlogan = new JLabel(
 			"  - Ett magiskt sätt att lära sig programmering");
@@ -155,9 +154,7 @@ public class MainUI extends JPanel {
 			}
 			if(e.getSource() == btnHighScore){
 				cont.newResultUI();
-				d = new Database();
-				d.getPointsDB(cont.getResultUI());
-				cont.setPanel(cont.getResultUI());
+				cont.fetchhousepoints();
 			}
 		}
 	}

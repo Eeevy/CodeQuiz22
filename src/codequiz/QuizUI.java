@@ -304,9 +304,6 @@ public class QuizUI extends JPanel {
 				btnback.setPreferredSize(new Dimension(100, 30));
 				btnresult.setPreferredSize(new Dimension(100, 30));
 			}
-//			if (controller.getScenarioIndex() == true) {
-//				controller.win();
-//			}
 		}}
 	}
 
