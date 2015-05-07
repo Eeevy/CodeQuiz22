@@ -184,22 +184,24 @@ public class QuizController extends Thread {
 		
 		if (!(password.equals(passConf))) {
 			mainUI.newUser(name, "Dina angivna lösenord matchar inte");
-		} else if (logininformation.contains(name)) {
+		} if (logininformation.contains(name)) {
 			mainUI.newUser(name, "Användarnamnet är upptaget");
-		} else if ((name.isEmpty()) || (password.isEmpty())
+		} if ((name.isEmpty()) || (password.isEmpty())
 				|| (passConf.isEmpty())) {
 			mainUI.newUser(name, "Det saknas uppgifter");
-		} else {
-			System.out.print(password + name);
-			dbKlass.setUserDB(name, password);//OBS Måste läggas till att om användarnamn redan finns, 
-											//bes denne att logga in igen, i skrivande stund kommer du vidare i alla fall
-				
-			howToUI.enableGamebutton(true);
-				setPanel(howToUI);
-				howToUI.setWelcome(name);
-			
-			logininformation.put(name, password);
+		} 
+		if(dbKlass.checkUser(name, password)==true){
+			mainUI.newUser(name, "Användaren finns redan");
 		}
+		else if(dbKlass.checkUser(name, password)==false){
+			System.out.print(password + name);
+			dbKlass.setUserDB(name, password);
+			howToUI.enableGamebutton(true);	//OBS Måste läggas till att om användarnamn redan finns, 
+										//bes denne att logga in igen, i skrivande stund kommer du vidare i alla fall
+			setPanel(howToUI);
+			howToUI.setWelcome(name);
+		}	
+		
 	}
 
 	/**
@@ -210,14 +212,14 @@ public class QuizController extends Thread {
 	 */
 	public void login(String inName, String inPass) {
 
-		if (!dbKlass.checkUserDB(inName, inPass)) {
+		if (!dbKlass.checkUserlogin(inName, inPass)) {
 			mainUI.login(inName, "Användarnamnet saknas eller lösen är fel");
 		} else if ((inName.isEmpty()) || (inPass.isEmpty())) {////////funkar ej
 			mainUI.login(inName, "Det saknas uppgifter");
 		} else {
 //			if (inPass.equals(logininformation.get(inName))) {
 //				System.out.println(logininformation.get(inName));
-			if ((dbKlass.checkUserDB(inName, inPass)) == true) {
+			if ((dbKlass.checkUserlogin(inName, inPass)) == true) {
 				System.out.println((inName + " är inloggad"));
 				getSortingQuestion();
 				setPanel(getSortingCeremonyUI());
@@ -451,6 +453,9 @@ public class QuizController extends Thread {
 		total = userpoints + housepoints;
 		dbKlass.setPointsDB(house,total);
 	}
+	/**
+	 * Hämtar elevhemmens poäng och placerar ResultUI i den aktuella panelen.
+	 */
 	public void fetchhousepoints(){
 		dbKlass.getPointsDB(getResultUI());
 		setPanel(getResultUI());

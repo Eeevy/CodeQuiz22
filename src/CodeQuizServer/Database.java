@@ -30,7 +30,7 @@ public class Database implements Serializable {
 	}
 
 	/**
-	 * databas
+	 * Startar en uppkoppling mot databasen.
 	 * 
 	 * @param args
 	 * @return
@@ -46,6 +46,9 @@ public class Database implements Serializable {
 		return conn;
 	}
 
+	/**
+	 * Metod som hämtar slumpade frågor från databasen.
+	 */
 	public void getQuestionDB() {
 		System.out.println("Database: getQuestionDB()");
 		try {
@@ -68,6 +71,9 @@ public class Database implements Serializable {
 		}
 	}
 
+	/**
+	 * Metod som hämtar slumpade sorteringsfrågor från databasen.
+	 */
 	public void getSortingQuestionDB() {
 		System.out.println("Database: getSortingQuestionDB()");
 		try {
@@ -94,6 +100,31 @@ public class Database implements Serializable {
 			e.printStackTrace();
 		}
 	}
+	/**
+	 * Metod som kontrollerar om användare finns eller ej.
+	 * @param username
+	 * @param password
+	 * @return
+	 */
+	public boolean checkUser(String username, String password) {
+		System.out.println("Database: checkUser()");
+		boolean res = false;
+		try {
+			conn = connectToDB();
+			Statement stat = conn.createStatement();
+			rs = stat.executeQuery("select * from player");
+			while (rs.next()) {
+				if (((username.equals(rs.getString("Username"))))) {
+					System.out.println("Lösen är:" + rs.getString("Password"));
+					res = true;
+				}
+			}
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		return res;
+
+	}
 
 	/**
 	 * För att kolla existerande kunders namn stämmer med lösen
@@ -102,7 +133,7 @@ public class Database implements Serializable {
 	 * @param password
 	 * @return
 	 */
-	public boolean checkUserDB(String username, String password) {
+	public boolean checkUserlogin(String username, String password) {
 		System.out.println("Database: checkUser()");
 		boolean res = false;
 		try {
@@ -110,8 +141,8 @@ public class Database implements Serializable {
 			Statement stat = conn.createStatement();
 			rs = stat.executeQuery("select * from player");
 			while (rs.next()) {
-				if ((password.equals(rs.getString("Password")))
-						&& (username.equals(rs.getString("Username")))) {
+				if (((username.equals(rs.getString("Username"))))
+						&& password.equals(rs.getString("Password"))) {
 					System.out.println("Lösen är:" + rs.getString("Password"));
 					res = true;
 				}
@@ -144,7 +175,10 @@ public class Database implements Serializable {
 			System.out.println("Användarnamnet upptaget, försök igen");
 		}
 	}
-
+/**
+ * Metod som hämtar elevhemspoäng.
+ * @param rUI
+ */
 	public void getPointsDB(JPanel rUI) {
 		ResultUI r = (ResultUI) rUI;
 
@@ -184,6 +218,10 @@ public class Database implements Serializable {
 			e.printStackTrace();
 		}
 	}
+	/**
+	 * Metod som hämtar och returnerar elevhemspoäng.
+	 * @return
+	 */
 	public int getHousePoints(){
 		int housePoints = 0;
 		System.out.println("Database: setPointsDB()");
@@ -223,7 +261,11 @@ public class Database implements Serializable {
 		}
 		return housePoints;
 	}
-
+/**
+ * Metod som placerar in den totala poängen i ett elevhem.
+ * @param housename
+ * @param points
+ */
 	public void setPointsDB(String housename, int points) {
 		System.out.println("Database: setPointsDB()");
 		try {
@@ -237,12 +279,18 @@ public class Database implements Serializable {
 			e.printStackTrace();
 		}
 	}
-
+/**
+ * Metod som placerar alla frågor i en LinkedList.
+ * @return
+ */
 	public LinkedList<Question> returnQuestions() {
 		System.out.println("Database: returnQuestions()" + allQuestions.size());
 		return allQuestions;
 	}
-
+/**
+ * Metod som placerar sorteringsfrågor i en LinkedList.
+ * @return
+ */
 	public LinkedList<SortingQuestion> returnSortingQuestions() {
 		System.out.println("Database: returnSortingQuestions()");
 		return allSortingQuestions;
@@ -250,7 +298,7 @@ public class Database implements Serializable {
 
 	public static void main(String[] args) {
 		Database d = new Database();
-		 d.getQuestionDB();
+//		 d.getQuestionDB();
 		// d.connectToDB();
 		// d.setUserDB("Evelyn", "evelyn");
 //		d.getSortingQuestionDB();

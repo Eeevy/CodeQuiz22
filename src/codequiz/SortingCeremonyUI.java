@@ -31,7 +31,7 @@ public class SortingCeremonyUI extends JPanel {
 
 	private JLabel lblQuestion = new JLabel("Fråga");
 	private JLabel lblInfo = new JLabel(
-			"Svara på frågan för att ta reda på vilket elevhem du passar bäst in i.");
+			"<html>Svara på frågan för att ta reda på vilket elevhem<br>du passar bäst in i.</html>");
 
 	private JRadioButton rb1 = new JRadioButton("1");
 	private JRadioButton rb2 = new JRadioButton("2");
