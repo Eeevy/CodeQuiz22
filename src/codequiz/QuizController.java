@@ -191,7 +191,7 @@ public class QuizController extends Thread {
 			mainUI.newUser(name, "Det saknas uppgifter");
 		} 
 		if(dbKlass.checkUser(name, password)==true){
-			mainUI.newUser(name, "Användaren finns redan");
+			mainUI.newUser(name, "En användare med det här namnet finns redan");
 		}
 		else if(dbKlass.checkUser(name, password)==false){
 			System.out.print(password + name);
