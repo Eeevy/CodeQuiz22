@@ -131,10 +131,10 @@ public class SortingCeremonyUI extends JPanel {
 	}
 	
 	public void setAlternatives(String al1, String al2, String al3, String al4) {
-		rb1.setText(al1);
-		rb2.setText(al2);
-		rb3.setText(al3);
-		rb4.setText(al4);
+		rb1.setText(controller.changeStringA(al1));
+		rb2.setText(controller.changeStringA(al2));
+		rb3.setText(controller.changeStringA(al3));
+		rb4.setText(controller.changeStringA(al4));
 	}
 
 	private class ButtonListener implements ActionListener {
@@ -142,10 +142,10 @@ public class SortingCeremonyUI extends JPanel {
 		public void actionPerformed(ActionEvent e) {
 			btnOK.setEnabled(true);
 			String answer = null;
-			String answerRavenclaw = controller.getAnswerRavenclaw();
-			String answerGryffindor = controller.getAnswerGryffindor();
-			String answerSlytherin = controller.getAnswerSlytherin();
-			String answerHufflepuff = controller.getAnswerHufflepuff();
+			String answerRavenclaw = controller.changeStringA(controller.getAnswerRavenclaw());
+			String answerGryffindor = controller.changeStringA(controller.getAnswerGryffindor());
+			String answerSlytherin = controller.changeStringA(controller.getAnswerSlytherin());
+			String answerHufflepuff = controller.changeStringA(controller.getAnswerHufflepuff());
 			
 			if (rb1.isSelected()) {
 				answer = rb1.getText(); 
