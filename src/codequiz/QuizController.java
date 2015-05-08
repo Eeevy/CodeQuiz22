@@ -496,26 +496,26 @@ public class QuizController extends Thread {
 		user.setLives(3);
 	}
 
-	/**
-	 * Visar aktuell poäng i resultatpanelen
-	 * 
-	 * @param inScore
-	 *            - poäng som skall visas
-	 */
-	public void setScore(int inScore) {
-		if(house.equals("Gryffindor")){
-			resultui.setGryffindor(inScore);
-		}
-		if(house.equalsIgnoreCase("Hufflepuff")){
-			resultui.setHufflepuff(inScore);
-		}
-		if(house.equals("Ravenclaw")){
-			resultui.setRavenclaw(inScore);
-		}
-		if(house.equals("Slytherin")){
-			resultui.setSlytherin(inScore);
-		}
-	}
+//	/**
+//	 * Visar aktuell poäng i resultatpanelen
+//	 * 
+//	 * @param inScore
+//	 *            - poäng som skall visas
+//	 */
+//	public void setScore(int inScore) {
+//		if(house.equals("Gryffindor")){
+//			resultui.setGryffindor(inScore);
+//		}
+//		if(house.equalsIgnoreCase("Hufflepuff")){
+//			resultui.setHufflepuff(inScore);
+//		}
+//		if(house.equals("Ravenclaw")){
+//			resultui.setRavenclaw(inScore);
+//		}
+//		if(house.equals("Slytherin")){
+//			resultui.setSlytherin(inScore);
+//		}
+//	}
 
 	/**
 	 * 

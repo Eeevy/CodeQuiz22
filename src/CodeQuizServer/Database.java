@@ -232,30 +232,34 @@ public class Database implements Serializable {
 			stat = conn.createStatement();
 			String sql = "select * from house WHERE HouseName=" + "'" + houseType + "'";
 			rs = stat.executeQuery(sql);
+			
 			while (rs.next()) {
-				System.out.println("Poäng: " + rs.getString("HouseName")
-						+ rs.getInt("Points"));
-				
-//				String houseType = rs.getString("HouseName");
-				if (houseType.equals("Hufflepuff")) {
-					housePoints = rs.getInt("Points");
-					System.out.println("Det är hufflepuff!");
-				}
-				if (houseType.equalsIgnoreCase("Slytherin")) {
-					housePoints = rs.getInt("Points");
-					System.out.println("Det är Slytherin!");
+			housePoints = rs.getInt("Points");
+			System.out.println(housePoints);
 
-				}
-				if (houseType.equals("Ravenclaw")) {
-					housePoints = rs.getInt("Points");
-					System.out.println("Det är Ravenclaw!");
-
-				}
-				if (houseType.equals("Gryffindor")) {
-					housePoints = rs.getInt("Points");
-					System.out.println("Det är Gryffindor!");
-
-				}
+//				System.out.println("Poäng: " + rs.getString("HouseName")
+//						+ rs.getInt("Points"));
+//				
+////				String houseType = rs.getString("HouseName");
+//				if (houseType.equals("Hufflepuff")) {
+//					housePoints = rs.getInt("Points");
+//					System.out.println("Det är hufflepuff!");
+//				}
+//				if (houseType.equalsIgnoreCase("Slytherin")) {
+//					housePoints = rs.getInt("Points");
+//					System.out.println("Det är Slytherin!");
+//
+//				}
+//				if (houseType.equals("Ravenclaw")) {
+//					housePoints = rs.getInt("Points");
+//					System.out.println("Det är Ravenclaw!");
+//
+//				}
+//				if (houseType.equals("Gryffindor")) {
+//					housePoints = rs.getInt("Points");
+//					System.out.println("Det är Gryffindor!");
+//
+//				}
 			}
 
 		} catch (Exception e) {
