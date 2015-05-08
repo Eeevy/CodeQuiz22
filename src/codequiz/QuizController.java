@@ -392,6 +392,8 @@ public class QuizController extends Thread {
 	 * logiken.
 	 */
 	public void newResultUI() {
+		System.out.println("QuizController: newResultUI()");
+
 		resultui = new ResultUI();
 		resultui.setController(this);
 	}
@@ -413,6 +415,8 @@ public class QuizController extends Thread {
 	 * Ökar användarens poäng
 	 */
 	public void increasePoints() {
+		System.out.println("QuizController: increasePoints");
+
 		user.setUserPoints(user.getUserPoints() + 10);
 	}
 
@@ -420,6 +424,8 @@ public class QuizController extends Thread {
 	 * Minskar spelares poäng
 	 */
 	public void decreasePoints() {
+		System.out.println("QuizController: decreasePoints");
+
 		user.setUserPoints(user.getUserPoints() - 10);
 	}
 
@@ -438,7 +444,10 @@ public class QuizController extends Thread {
 	 * @return - en spelares aktuella mängd poäng
 	 */
 	public int getPoints() {
+
 		int points = user.getUserPoints();
+		System.out.println("QuizController: getPoints: användarens poäng:" + points);
+
 		Integer.toString(points);
 		
 		return points;
@@ -447,9 +456,12 @@ public class QuizController extends Thread {
 	 * Adderar anv. poäng med elevhemmets poäng.
 	 */
 	public void userpoints(){
+		System.out.println("QuizController: userPoints");
 		int total = 0;
 		int userpoints = getPoints();
-		int housepoints = dbKlass.getHousePoints();
+		int housepoints = dbKlass.getHousePoints(house);
+		System.out.println("QuizController: userPoints:" + userpoints + housepoints);
+
 		total = userpoints + housepoints;
 		dbKlass.setPointsDB(house,total);
 	}
@@ -457,10 +469,13 @@ public class QuizController extends Thread {
 	 * Hämtar elevhemmens poäng och placerar ResultUI i den aktuella panelen.
 	 */
 	public void fetchhousepoints(){
+		System.out.println("QuizController: fetchhousepoints");
+
 		dbKlass.getPointsDB(getResultUI());
 		setPanel(getResultUI());
 	}
-
+	
+	
 	/**
 	 * minskar en spelares mängd liv
 	 */

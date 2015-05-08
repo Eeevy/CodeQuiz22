@@ -182,7 +182,7 @@ public class Database implements Serializable {
 	public void getPointsDB(JPanel rUI) {
 		ResultUI r = (ResultUI) rUI;
 
-		System.out.println("Database: setPointsDB()");
+		System.out.println("Database: getPointsDB()");
 		try {
 			conn = connectToDB();
 			stat = conn.createStatement();
@@ -222,19 +222,21 @@ public class Database implements Serializable {
 	 * Metod som hämtar och returnerar elevhemspoäng.
 	 * @return
 	 */
-	public int getHousePoints(){
+	public int getHousePoints(String houseType){
 		int housePoints = 0;
-		System.out.println("Database: setPointsDB()");
+
+
+		System.out.println("Database: getHousePointsDB() aktuellt hus som poäng skall slås ihop med:" + houseType);
 		try {
 			conn = connectToDB();
 			stat = conn.createStatement();
-			String sql = "select * from house";
+			String sql = "select * from house WHERE HouseName=" + "'" + houseType + "'";
 			rs = stat.executeQuery(sql);
 			while (rs.next()) {
 				System.out.println("Poäng: " + rs.getString("HouseName")
 						+ rs.getInt("Points"));
 				
-				String houseType = rs.getString("HouseName");
+//				String houseType = rs.getString("HouseName");
 				if (houseType.equals("Hufflepuff")) {
 					housePoints = rs.getInt("Points");
 					System.out.println("Det är hufflepuff!");
@@ -267,6 +269,8 @@ public class Database implements Serializable {
  * @param points
  */
 	public void setPointsDB(String housename, int points) {
+		System.out.println("Database: setpoints:"  + housename + points);
+
 		System.out.println("Database: setPointsDB()");
 		try {
 			conn = connectToDB();
@@ -306,5 +310,6 @@ public class Database implements Serializable {
 		// System.out.println(d.checkUserDB("Emma", "emma"));
 		// d.setPointsDB("Slytherin", 20);
 		//d.getPointsDB();
+		d.getHousePoints("Slytherin");
 	}
 }
