@@ -211,7 +211,7 @@ public class QuizController extends Thread {
 			setPanel(howToUI);
 			howToUI.setWelcome(name);
 			user.setName(name);
-			mainUI.setName(name);
+			mainUI.setUser(name);
 			playSoundClip(beginFilename);
 		}	
 		
