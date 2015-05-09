@@ -73,7 +73,7 @@ public class QuizController extends Thread {
 		loseFilename = new File("src/media/coming.wav");
 		beginFilename = new File("src/media/nogood.wav");
 		quizUI = new QuizUI();
-		mainUI = new MainUI();
+		mainUI = new MainUI(this);
 		howToUI = new HowToPlayUI();
 		houseUI = new HouseUI();
 		dbKlass = new Database();//////////////////////////////
@@ -81,7 +81,7 @@ public class QuizController extends Thread {
 		sortingCeremonyGame = new SortingCeremonyGame();
 		panel = mainUI;
 		quizUI.setController(this);
-		mainUI.setController(this);
+//		mainUI.setController(this);
 		howToUI.setController(this);
 		sortUI.setController(this);
 		houseUI.setController(this);
@@ -210,6 +210,8 @@ public class QuizController extends Thread {
 										//bes denne att logga in igen, i skrivande stund kommer du vidare i alla fall
 			setPanel(howToUI);
 			howToUI.setWelcome(name);
+			user.setName(name);
+			mainUI.setName(name);
 			playSoundClip(beginFilename);
 		}	
 		
@@ -232,8 +234,10 @@ public class QuizController extends Thread {
 //				System.out.println(logininformation.get(inName));
 			if ((dbKlass.checkUserlogin(inName, inPass)) == true) {
 				System.out.println((inName + " är inloggad"));
+				user.setName(inName);
+				mainUI.setUser(inName);
 				getSortingQuestion();
-				setPanel(getSortingCeremonyUI());
+//				setPanel(getSortingCeremonyUI());
 			} else {
 				mainUI.login(inName, "Fel lösenord");
 			}
@@ -517,6 +521,16 @@ public class QuizController extends Thread {
 	 */
 	public void resetLives() {
 		user.setLives(3);
+	}
+	
+	public void setUser(String name) {
+		user.setName(name);
+		mainUI.setUser("");
+	}
+	
+	public String getUser() {
+		String currentUser = user.getUser();
+		return currentUser;
 	}
 
 //	/**
