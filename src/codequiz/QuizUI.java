@@ -10,6 +10,7 @@ import CodeQuizServer.Database;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.io.IOException;
 
 /**
  * Klassen består av en panel som visar spelet och dess händelser
@@ -294,6 +295,7 @@ public class QuizUI extends JPanel {
 
 			if (controller.getlives() == 0) {
 				setBackground(new ImageIcon("src/media/dead.jpg"));
+				controller.lose();
 				eastPanel.add(Box.createRigidArea(new Dimension(20, 130)));
 				eastPanel.add(btnback);
 				eastPanel.add(Box.createRigidArea(new Dimension(10, 30)));
