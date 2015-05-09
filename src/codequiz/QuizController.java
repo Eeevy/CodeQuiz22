@@ -327,6 +327,10 @@ public class QuizController extends Thread {
 	public JPanel getQuizUI() {
 		return quizUI;
 	}
+	
+	public void nextQuestion() {
+		quizUI.nextQuestion();
+	}
 
 	/**
 	 * 

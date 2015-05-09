@@ -178,6 +178,23 @@ public class QuizUI extends JPanel {
 		btnNewQuestion.setPreferredSize(new Dimension(110, 30));
 		return southPanel;
 	}
+	
+	public void nextQuestion() {
+		lblPoints.setVisible(true);
+		lblPoints.setText("Poäng: " + controller.getPoints());
+		lblLives.setVisible(true);
+		lblLives.setText(" " + controller.getlives());
+		questionPanel.setVisible(true);
+		btnNewQuestion.setText("Nästa fråga");
+		btnNewQuestion.setEnabled(false);
+		controller.increaseIndex();
+		ImageIcon icon = controller.setQuestionScenario();
+		setBackground(icon);
+		controller.getQuestion();
+		buttonGroup.clearSelection();
+		btnSubmit.setEnabled(true);
+		lblResult.setText("");	
+	}
 
 	/**
 	 * 
@@ -211,20 +228,7 @@ public class QuizUI extends JPanel {
 	 */
 	private class QuestionListener implements ActionListener {
 		public void actionPerformed(ActionEvent e) {
-			lblPoints.setVisible(true);
-			lblPoints.setText("Poäng: " + controller.getPoints());
-			lblLives.setVisible(true);
-			lblLives.setText(" " + controller.getlives());
-			questionPanel.setVisible(true);
-			btnNewQuestion.setText("Nästa fråga");
-			btnNewQuestion.setEnabled(false);
-			controller.increaseIndex();
-			ImageIcon icon = controller.setQuestionScenario();
-			setBackground(icon);
-			controller.getQuestion();
-			buttonGroup.clearSelection();
-			btnSubmit.setEnabled(true);
-			lblResult.setText("");
+			nextQuestion();
 		}
 	}
 

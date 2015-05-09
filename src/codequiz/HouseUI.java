@@ -172,6 +172,7 @@ public class HouseUI extends JPanel {
 		public void actionPerformed(ActionEvent e) {
 			if (e.getSource() == btnPlay) {
 				controller.setPanel(controller.getQuizUI());
+				controller.nextQuestion();
 			}
 		}
 	}
