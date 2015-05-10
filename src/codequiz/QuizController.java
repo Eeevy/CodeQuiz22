@@ -505,6 +505,9 @@ public class QuizController extends Thread {
 		user.setLives(user.getLives() - 1);
 	}
 	
+	/**
+	 * Metod som aktiveras vid vinst.
+	 */
 	public void win() {
 		winUI = new WinUI(this);
 		setPanel(winUI);
@@ -512,6 +515,9 @@ public class QuizController extends Thread {
 		playSoundClip(musicFilename);
 	}
 	
+	/**
+	 * Metod som aktiveras vid förlust.
+	 */
 	public void lose() {
 		playSoundClip(loseFilename);
 	}
@@ -523,11 +529,19 @@ public class QuizController extends Thread {
 		user.setLives(3);
 	}
 	
+	/**
+	 * Sätter användare som är inloggad.
+	 * @param name
+	 */
 	public void setUser(String name) {
 		user.setName(name);
 		mainUI.setUser("");
 	}
 	
+	/**
+	 * Returnerar vilken användare som är inloggad.
+	 * @return
+	 */
 	public String getUser() {
 		String currentUser = user.getUser();
 		return currentUser;
