@@ -3,7 +3,7 @@ package codequiz;
 public class User {
 	
 	private int lives;
-	private String name;
+	private String name = "Ingen inloggad";
 	private String password;
 	private int userID;
 	private int userPoints;
@@ -14,7 +14,6 @@ public class User {
 	
 	public User() {
 		System.out.println("User: newUser()");
-
 		this.lives = 5;
 		this.userPoints = 0;
 	}
@@ -44,6 +43,11 @@ public class User {
 	
 	public int getUserPoints() {
 		return userPoints;
+	}
+	
+	public String getUser() {
+		return name;
+		
 	}
 	
 	public void removeUserPoints(long userPoints) {

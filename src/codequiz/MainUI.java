@@ -33,8 +33,12 @@ public class MainUI extends JPanel {
 	private JButton btnCreateAccount = new JButton("Skapa konto");
 	private JButton btnHowToPlay = new JButton("Om spelet");
 	private JButton btnHighScore = new JButton("High score");
+	private JButton btnLogout = new JButton("Logga ut");
+	private JLabel labelName = new JLabel("Inloggad: ");
+	private String user = "";
 
-	public MainUI() {
+	public MainUI(QuizController inCont) {
+		setController(inCont);
 		setBackground(Color.BLACK);
 		setPreferredSize(new Dimension(800, 600));
 		lblIcon.setLayout(new FlowLayout());
@@ -69,12 +73,27 @@ public class MainUI extends JPanel {
 		lblIcon.add(btnHighScore);
 		btnHighScore.setPreferredSize(new Dimension(150, 30));
 		btnHighScore.setBackground(Color.white);
+		lblIcon.add(Box.createRigidArea(new Dimension(630, 40)));
+//		lblIcon.add(Box.createRigidArea(new Dimension(630, 40)));
+		lblIcon.add(btnLogout);
+		btnLogout.setPreferredSize(new Dimension(150, 30));
+		btnLogout.setBackground(Color.white);
+		lblIcon.add(Box.createRigidArea(new Dimension(630, 40)));
+		lblIcon.add(labelName);
+		user = cont.getUser();
+		setUser(user);
+		
 		addActionListeners();
 		btnPlay.setVisible(false);
 	}
 
 	public void enableMenu(boolean tof) {
 		btnPlay.setVisible(tof);
+	}
+	
+	public void setUser(String inName) {
+		user = inName;
+		labelName.setText("Inloggad: " + user);
 	}
 
 	public void login(String inName, String inText) {
@@ -134,14 +153,19 @@ public class MainUI extends JPanel {
 		btnCreateAccount.addActionListener(menuListener);
 		btnHowToPlay.addActionListener(menuListener);
 		btnHighScore.addActionListener(menuListener);
+		btnLogout.addActionListener(menuListener);
 	}
 
 	public class MenuListener implements ActionListener {
 
 		public void actionPerformed(ActionEvent e) {
 			if (e.getSource() == btnPlay) {
+				if (labelName.getText().equals("Inloggad: Ingen inloggad")) {
+					JOptionPane.showMessageDialog(null, "Du måste logga in för att spela!");
+				} else {
 				cont.getSortingQuestion();
 				cont.setPanel(cont.getSortingCeremonyUI());
+				}
 			}
 			if (e.getSource() == btnCreateAccount) {
 				newUser(null, "Mata in namn och lösenord");
@@ -155,6 +179,10 @@ public class MainUI extends JPanel {
 			if(e.getSource() == btnHighScore){
 				cont.newResultUI();
 				cont.fetchhousepoints();
+			}
+			if (e.getSource() == btnLogout) {
+				cont.setUser("Ingen inloggad");
+				setUser(cont.getUser());
 			}
 		}
 	}
