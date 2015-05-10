@@ -41,6 +41,11 @@ public class QuizController extends Thread {
 	private Client client;
 	private ResultUI resultui;
 	private File musicFilename;
+	private File correctFilename;
+	private File inCorrectFilename;
+	private File winFilename;
+	private File loseFilename;
+	private File beginFilename;
 	private MainUI mainUI;
 	private QuizUI quizUI;
 	private WinUI winUI;
@@ -62,8 +67,13 @@ public class QuizController extends Thread {
 		// System.out.println("" + getlives());
 		System.out.println("QuizController: Konstruktor");
 		musicFilename = new File("src/media/HarryPotterThemeSong.wav");
+		correctFilename = new File("src/media/brilliant.wav");
+		inCorrectFilename = new File("src/media/avadakedavra.wav");
+		winFilename = new File("src/media/chosenone.wav");
+		loseFilename = new File("src/media/coming.wav");
+		beginFilename = new File("src/media/nogood.wav");
 		quizUI = new QuizUI();
-		mainUI = new MainUI();
+		mainUI = new MainUI(this);
 		howToUI = new HowToPlayUI();
 		houseUI = new HouseUI();
 		dbKlass = new Database();//////////////////////////////
@@ -71,13 +81,13 @@ public class QuizController extends Thread {
 		sortingCeremonyGame = new SortingCeremonyGame();
 		panel = mainUI;
 		quizUI.setController(this);
-		mainUI.setController(this);
+//		mainUI.setController(this);
 		howToUI.setController(this);
 		sortUI.setController(this);
 		houseUI.setController(this);
 		dbKlass.setController(this);
 		showGUI();
-		playSoundClip();
+		playSoundClip(musicFilename);
 		play();// kopplar upp till servern här istället
 	}
 
@@ -125,13 +135,13 @@ public class QuizController extends Thread {
 	/**
 	 * Spelar upp en ljudfil.
 	 */
-	public void playSoundClip() {
+	public void playSoundClip(File inFilename) {
 		try {
 			AudioInputStream audioInputStream;
 			AudioFormat audioFormat;
 			DataLine.Info info;
 
-			audioInputStream = AudioSystem.getAudioInputStream(musicFilename);
+			audioInputStream = AudioSystem.getAudioInputStream(inFilename);
 			audioFormat = audioInputStream.getFormat();
 			info = new DataLine.Info(Clip.class, audioFormat);
 			clip = (Clip) AudioSystem.getLine(info);
@@ -200,6 +210,9 @@ public class QuizController extends Thread {
 										//bes denne att logga in igen, i skrivande stund kommer du vidare i alla fall
 			setPanel(howToUI);
 			howToUI.setWelcome(name);
+			user.setName(name);
+			mainUI.setUser(name);
+			playSoundClip(beginFilename);
 		}	
 		
 	}
@@ -221,8 +234,10 @@ public class QuizController extends Thread {
 //				System.out.println(logininformation.get(inName));
 			if ((dbKlass.checkUserlogin(inName, inPass)) == true) {
 				System.out.println((inName + " är inloggad"));
+				user.setName(inName);
+				mainUI.setUser(inName);
 				getSortingQuestion();
-				setPanel(getSortingCeremonyUI());
+//				setPanel(getSortingCeremonyUI());
 			} else {
 				mainUI.login(inName, "Fel lösenord");
 			}
@@ -327,6 +342,10 @@ public class QuizController extends Thread {
 	public JPanel getQuizUI() {
 		return quizUI;
 	}
+	
+	public void nextQuestion() {
+		quizUI.nextQuestion();
+	}
 
 	/**
 	 * 
@@ -354,7 +373,7 @@ public class QuizController extends Thread {
 		index = -1;
 		i = 0;
 		System.out.print(index);
-		playSoundClip();
+		playSoundClip(musicFilename);
 		user.setUserPoints(0);
 		disableGamebutton();
 	}
@@ -418,15 +437,18 @@ public class QuizController extends Thread {
 		System.out.println("QuizController: increasePoints");
 
 		user.setUserPoints(user.getUserPoints() + 10);
+		playSoundClip(correctFilename);
 	}
 
 	/**
 	 * Minskar spelares poäng
+	 * @throws IOException 
 	 */
 	public void decreasePoints() {
 		System.out.println("QuizController: decreasePoints");
 
 		user.setUserPoints(user.getUserPoints() - 10);
+		playSoundClip(inCorrectFilename);
 	}
 
 	/**
@@ -486,7 +508,12 @@ public class QuizController extends Thread {
 	public void win() {
 		winUI = new WinUI(this);
 		setPanel(winUI);
-		playSoundClip();
+		playSoundClip(winFilename);
+		playSoundClip(musicFilename);
+	}
+	
+	public void lose() {
+		playSoundClip(loseFilename);
 	}
 
 	/**
@@ -494,6 +521,16 @@ public class QuizController extends Thread {
 	 */
 	public void resetLives() {
 		user.setLives(3);
+	}
+	
+	public void setUser(String name) {
+		user.setName(name);
+		mainUI.setUser("");
+	}
+	
+	public String getUser() {
+		String currentUser = user.getUser();
+		return currentUser;
 	}
 
 	/**

@@ -10,6 +10,7 @@ import CodeQuizServer.Database;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.io.IOException;
 
 /**
  * Klassen består av en panel som visar spelet och dess händelser
@@ -178,6 +179,23 @@ public class QuizUI extends JPanel {
 		btnNewQuestion.setPreferredSize(new Dimension(110, 30));
 		return southPanel;
 	}
+	
+	public void nextQuestion() {
+		lblPoints.setVisible(true);
+		lblPoints.setText("Poäng: " + controller.getPoints());
+		lblLives.setVisible(true);
+		lblLives.setText(" " + controller.getlives());
+		questionPanel.setVisible(true);
+		btnNewQuestion.setText("Nästa fråga");
+		btnNewQuestion.setEnabled(false);
+		controller.increaseIndex();
+		ImageIcon icon = controller.setQuestionScenario();
+		setBackground(icon);
+		controller.getQuestion();
+		buttonGroup.clearSelection();
+		btnSubmit.setEnabled(true);
+		lblResult.setText("");	
+	}
 
 	/**
 	 * 
@@ -201,9 +219,7 @@ public class QuizUI extends JPanel {
 //			controller.setPanel(controller.getResultUI());
 			controller.userpoints();
 			controller.newResultUI();
-			db = new Database();
-			db.getPointsDB(controller.getResultUI());
-			controller.setPanel(controller.getResultUI());
+			controller.fetchhousepoints();
 		}
 	}
 
@@ -213,20 +229,7 @@ public class QuizUI extends JPanel {
 	 */
 	private class QuestionListener implements ActionListener {
 		public void actionPerformed(ActionEvent e) {
-			lblPoints.setVisible(true);
-			lblPoints.setText("Poäng: " + controller.getPoints());
-			lblLives.setVisible(true);
-			lblLives.setText(" " + controller.getlives());
-			questionPanel.setVisible(true);
-			btnNewQuestion.setText("Nästa fråga");
-			btnNewQuestion.setEnabled(false);
-			controller.increaseIndex();
-			ImageIcon icon = controller.setQuestionScenario();
-			setBackground(icon);
-			controller.getQuestion();
-			buttonGroup.clearSelection();
-			btnSubmit.setEnabled(true);
-			lblResult.setText("");
+			nextQuestion();
 		}
 	}
 
@@ -292,6 +295,7 @@ public class QuizUI extends JPanel {
 
 			if (controller.getlives() == 0) {
 				setBackground(new ImageIcon("src/media/dead.jpg"));
+				controller.lose();
 				eastPanel.add(Box.createRigidArea(new Dimension(20, 130)));
 				eastPanel.add(btnback);
 				eastPanel.add(Box.createRigidArea(new Dimension(10, 30)));
