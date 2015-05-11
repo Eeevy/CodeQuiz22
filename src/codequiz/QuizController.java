@@ -75,7 +75,7 @@ public class QuizController extends Thread {
 		quizUI = new QuizUI();
 		mainUI = new MainUI(this);
 		howToUI = new HowToPlayUI();
-		houseUI = new HouseUI();
+		createHouseUI();
 		dbKlass = new Database();//////////////////////////////
 		sortUI = new SortingCeremonyUI(houseUI);
 		sortingCeremonyGame = new SortingCeremonyGame();
@@ -89,6 +89,11 @@ public class QuizController extends Thread {
 		showGUI();
 		playSoundClip(musicFilename);
 		play();// kopplar upp till servern här istället
+	}
+	
+	public void createHouseUI() {
+		houseUI = new HouseUI();
+		houseUI.setController(this);
 	}
 
 	/**

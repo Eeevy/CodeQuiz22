@@ -103,8 +103,7 @@ public class SortingCeremonyUI extends JPanel {
 		btnGroup.add(rb2);
 		btnGroup.add(rb3);
 		btnGroup.add(rb4);
-
-	
+		
 		return centerPanel;
 	}
 
@@ -165,33 +164,37 @@ public class SortingCeremonyUI extends JPanel {
 			
 			if (answer.equals(answerRavenclaw)) {
 				System.out.println("Ravenclaw");
-				houseUI.ravenclaw();
+				((HouseUI) controller.getHouseUI()).ravenclaw();
 				controller.setPanel(controller.getHouseUI());
 				controller.setHouse("Ravenclaw");
+				controller.createHouseUI();
 
 			}
 			
 			if (answer.equals(answerGryffindor)) {
 				System.out.println("Gryffindor");
-				houseUI.gryffindor();
+				((HouseUI) controller.getHouseUI()).gryffindor();
 				controller.setPanel(controller.getHouseUI());
 				controller.setHouse("Gryffindor");
+				controller.createHouseUI();
 
 			}
 			
 			if (answer.equals(answerSlytherin)) {
 				System.out.println("Slytherin");				
-				houseUI.slytherin();
+				((HouseUI) controller.getHouseUI()).slytherin();
 				controller.setPanel(controller.getHouseUI());
 				controller.setHouse("Slytherin");
+				controller.createHouseUI();
 
 			}
 			
 			if (answer.equals(answerHufflepuff)) {
 				System.out.println("Hufflepuff");				
-				houseUI.hufflepuff();
+				((HouseUI) controller.getHouseUI()).hufflepuff();
 				controller.setPanel(controller.getHouseUI());
 				controller.setHouse("Hufflepuff");
+				controller.createHouseUI();
 
 			}
 		}

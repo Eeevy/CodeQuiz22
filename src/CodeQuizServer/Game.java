@@ -18,8 +18,6 @@ public class Game implements Serializable {
 
 	private LinkedList<Question> questionlist = new LinkedList<Question>();
 	private LinkedList<QuizScenario> scenariolist = new LinkedList<QuizScenario>();
-	private Question question1, question2, question3, question4, question5,
-			question6, question7, question8, question9;
 	private QuizScenario scenario, scenario1, scenario2, scenario3, scenario4,
 			scenario5, scenario6, scenario7, scenario8;
 	private Database dbKlass = new Database();
