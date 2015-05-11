@@ -179,7 +179,9 @@ public class QuizUI extends JPanel {
 		btnNewQuestion.setPreferredSize(new Dimension(110, 30));
 		return southPanel;
 	}
-	
+	/**
+	 * Tar fram nästa fråga/scenario.
+	 */
 	public void nextQuestion() {
 		lblPoints.setVisible(true);
 		lblPoints.setText("Poäng: " + controller.getPoints());

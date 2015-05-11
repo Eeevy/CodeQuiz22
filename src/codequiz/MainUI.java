@@ -91,11 +91,19 @@ public class MainUI extends JPanel {
 		btnPlay.setVisible(tof);
 	}
 	
+	/**
+	 * Visar vem som är inloggad.
+	 * @param inName
+	 */
 	public void setUser(String inName) {
 		user = inName;
 		labelName.setText("Inloggad: " + user);
 	}
-
+	/**
+	 * Sköter inloggning.
+	 * @param inName
+	 * @param inText
+	 */
 	public void login(String inName, String inText) {
 		int result = 0;
 		String name, password;
