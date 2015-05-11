@@ -57,7 +57,31 @@ public class Database implements Serializable {
 		try {
 			conn = connectToDB();
 			stat = conn.createStatement();
-			rs = stat.executeQuery("select * from question order by (rand()*10)");
+			rs = stat.executeQuery("select * from question where Level=1 order by rand() limit 3");
+			while (rs.next()) {
+				Question question1 = new Question(rs.getInt("QuestionID"),
+						rs.getString("Question"), rs.getString("Answer1"),
+						rs.getString("Answer2"), rs.getString("Answer3"),
+						rs.getString("Answer4"), rs.getString("CorrectAnswer"),
+						rs.getInt("Level"));
+				System.out.println(question1.getCorrectanswer());
+				allQuestions.add(question1);
+				System.out.println("Fråga tillagd");
+				System.out.println("allQuestions: " + allQuestions.size());
+			}
+			rs = stat.executeQuery("select * from question where Level=2 order by rand() limit 3");
+			while (rs.next()) {
+				Question question1 = new Question(rs.getInt("QuestionID"),
+						rs.getString("Question"), rs.getString("Answer1"),
+						rs.getString("Answer2"), rs.getString("Answer3"),
+						rs.getString("Answer4"), rs.getString("CorrectAnswer"),
+						rs.getInt("Level"));
+				System.out.println(question1.getCorrectanswer());
+				allQuestions.add(question1);
+				System.out.println("Fråga tillagd");
+				System.out.println("allQuestions: " + allQuestions.size());
+			}
+			rs = stat.executeQuery("select * from question where Level=3 order by rand() limit 3");
 			while (rs.next()) {
 				Question question1 = new Question(rs.getInt("QuestionID"),
 						rs.getString("Question"), rs.getString("Answer1"),
@@ -286,7 +310,7 @@ public class Database implements Serializable {
 
 	public static void main(String[] args) {
 		Database d = new Database();
-//		 d.getQuestionDB();
+		 d.getQuestionDB();
 		// d.connectToDB();
 		// d.setUserDB("Evelyn", "evelyn");
 //		d.getSortingQuestionDB();
@@ -294,6 +318,6 @@ public class Database implements Serializable {
 		// System.out.println(d.checkUserDB("Emma", "emma"));
 		// d.setPointsDB("Slytherin", 20);
 		//d.getPointsDB();
-		d.getHousePoints("Slytherin");
+//		d.getHousePoints("Slytherin");
 	}
 }
