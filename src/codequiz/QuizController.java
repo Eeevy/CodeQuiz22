@@ -76,7 +76,7 @@ public class QuizController extends Thread {
 		mainUI = new MainUI(this);
 		howToUI = new HowToPlayUI();
 		createHouseUI();
-		dbKlass = new Database();//////////////////////////////
+		dbKlass = new Database();
 		sortUI = new SortingCeremonyUI(houseUI);
 		sortingCeremonyGame = new SortingCeremonyGame();
 		panel = mainUI;
