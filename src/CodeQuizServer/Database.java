@@ -14,6 +14,9 @@ import codequiz.QuizController;
 import codequiz.SortingQuestion;
 
 public class Database implements Serializable {
+	/**
+	 * a
+	 */
 	private LinkedList<Question> allQuestions = new LinkedList<Question>();
 	private LinkedList<SortingQuestion> allSortingQuestions = new LinkedList<SortingQuestion>();
 
