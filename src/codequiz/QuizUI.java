@@ -120,7 +120,7 @@ public class QuizUI extends JPanel {
 		questionPanel.setPreferredSize(new Dimension(420, 400));
 		questionPanel.setOpaque(false);
 		questionPanel.add(lblQuestion);
-		lblQuestion.setPreferredSize(new Dimension(300, 50));
+		lblQuestion.setPreferredSize(new Dimension(300, 100));
 		lblQuestion.setOpaque(false);
 		lblQuestion.setFont((new Font("Serif", Font.BOLD, 16)));
 		lblQuestion.setForeground(Color.BLACK);
