@@ -199,13 +199,13 @@ public class QuizController extends Thread {
 		
 		if (!(password.equals(passConf))) {
 			mainUI.newUser(name, "Dina angivna lösenord matchar inte");
-		} if (logininformation.contains(name)) {
+		} else if (logininformation.contains(name)) {
 			mainUI.newUser(name, "Användarnamnet är upptaget");
-		} if ((name.isEmpty()) || (password.isEmpty())
+		} else if ((name.isEmpty()) || (password.isEmpty())
 				|| (passConf.isEmpty())) {
 			mainUI.newUser(name, "Det saknas uppgifter");
 		} 
-		if(dbKlass.checkUser(name, password)==true){
+		else if(dbKlass.checkUser(name, password)==true){
 			mainUI.newUser(name, "En användare med det här namnet finns redan");
 		}
 		else if(dbKlass.checkUser(name, password)==false){
