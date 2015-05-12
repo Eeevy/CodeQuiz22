@@ -61,6 +61,8 @@ public class BossUI extends JPanel {
 	}
 	
 	public JPanel getEastPanel() {
+		labelCode.setOpaque(true);
+		labelCode.setBackground(Color.DARK_GRAY);
 		listener = new Listener();
 		buttonOK.setPreferredSize(new Dimension(150, 30));
 		labelTitle.setFont(new Font("Serif", Font.ITALIC, 18));
