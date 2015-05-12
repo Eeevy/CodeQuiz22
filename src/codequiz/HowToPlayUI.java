@@ -48,7 +48,7 @@ public class HowToPlayUI extends JPanel {
 	}
 	
 	public void setWelcome(String user){
-		lblWelcomeUser.setText(controller.changeStringQ("Välkommen till Hogwarts " + user + "!"));
+		lblWelcomeUser.setText(controller.changeStringB("Välkommen till Hogwarts " + user + "!"));
 	}
 	
 	public void enableGamebutton(boolean state){

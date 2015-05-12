@@ -114,6 +114,10 @@ public class SortingCeremonyUI extends JPanel {
 		eastPanel.add(lblHat);
 		return eastPanel;
 	}
+	
+	public void clearButtons() {
+		btnGroup.clearSelection();
+	}
 
 	public JPanel southPanel() {
 		southPanel = new JPanel(new FlowLayout(FlowLayout.LEFT));
@@ -130,10 +134,10 @@ public class SortingCeremonyUI extends JPanel {
 	}
 	
 	public void setAlternatives(String al1, String al2, String al3, String al4) {
-		rb1.setText(controller.changeStringA(al1));
-		rb2.setText(controller.changeStringA(al2));
-		rb3.setText(controller.changeStringA(al3));
-		rb4.setText(controller.changeStringA(al4));
+		rb1.setText(controller.changeStringB(al1));
+		rb2.setText(controller.changeStringB(al2));
+		rb3.setText(controller.changeStringB(al3));
+		rb4.setText(controller.changeStringB(al4));
 	}
 
 	private class ButtonListener implements ActionListener {
@@ -141,10 +145,10 @@ public class SortingCeremonyUI extends JPanel {
 		public void actionPerformed(ActionEvent e) {
 			btnOK.setEnabled(true);
 			String answer = null;
-			String answerRavenclaw = controller.changeStringA(controller.getAnswerRavenclaw());
-			String answerGryffindor = controller.changeStringA(controller.getAnswerGryffindor());
-			String answerSlytherin = controller.changeStringA(controller.getAnswerSlytherin());
-			String answerHufflepuff = controller.changeStringA(controller.getAnswerHufflepuff());
+			String answerRavenclaw = controller.changeStringB(controller.getAnswerRavenclaw());
+			String answerGryffindor = controller.changeStringB(controller.getAnswerGryffindor());
+			String answerSlytherin = controller.changeStringB(controller.getAnswerSlytherin());
+			String answerHufflepuff = controller.changeStringB(controller.getAnswerHufflepuff());
 			
 			if (rb1.isSelected()) {
 				answer = rb1.getText(); 

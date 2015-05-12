@@ -184,6 +184,10 @@ public class QuizUI extends JPanel {
 	 */
 	public void nextQuestion() {
 		lblPoints.setVisible(true);
+		rb1.setEnabled(true);
+		rb2.setEnabled(true);
+		rb3.setEnabled(true);
+		rb4.setEnabled(true);
 		lblPoints.setText("Poäng: " + controller.getPoints());
 		lblLives.setVisible(true);
 		lblLives.setText(" " + controller.getlives());
@@ -244,7 +248,7 @@ public class QuizUI extends JPanel {
 		public void actionPerformed(ActionEvent e) {
 			btnSubmit.setEnabled(false);
 			String answer = null;
-			String correctAnswer = controller.changeStringA(controller.getCorrectAnswer());
+			String correctAnswer = controller.changeStringB(controller.getCorrectAnswer());
 			System.out.println(controller.maxScenario());
 			System.out.println(correctAnswer);
 			if (rb1.isSelected()) {
@@ -310,7 +314,12 @@ public class QuizUI extends JPanel {
 				btnback.setPreferredSize(new Dimension(100, 30));
 				btnresult.setPreferredSize(new Dimension(100, 30));
 			}
-		}}
+		} buttonGroup.clearSelection();
+			rb1.setEnabled(false);
+			rb2.setEnabled(false);
+			rb3.setEnabled(false);
+			rb4.setEnabled(false);
+			}
 	}
 
 	/**
@@ -319,7 +328,7 @@ public class QuizUI extends JPanel {
 	 *            - den fråga som skall visas för användaren
 	 */
 	public void setQuestion(String question) {
-		lblQuestion.setText(controller.changeStringQ(question));
+		lblQuestion.setText(controller.changeStringB(question));
 	}
 
 	/**
@@ -344,9 +353,13 @@ public class QuizUI extends JPanel {
 	 *            -svarsalternativ4
 	 */
 	public void setAlternatives(String al1, String al2, String al3, String al4) {
-		rb1.setText(controller.changeStringA(al1));
-		rb2.setText(controller.changeStringA(al2));
-		rb3.setText(controller.changeStringA(al3));
-		rb4.setText(controller.changeStringA(al4));
+		rb1.setText(controller.changeStringB(al1));
+		System.out.println(rb1.getText());
+		rb2.setText(controller.changeStringB(al2));
+		System.out.println(rb2.getText());
+		rb3.setText(controller.changeStringB(al3));
+		System.out.println(rb3.getText());
+		rb4.setText(controller.changeStringB(al4));
+		System.out.println(rb4.getText());
 	}
 }

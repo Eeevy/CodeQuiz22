@@ -164,7 +164,6 @@ public class QuizController extends Thread {
 	 * svarsalternativ till quizUI där de visas för användaren
 	 */
 	public void getQuestion() {
-		// game = new Game();//ta bort
 		this.question = game.getQuestion(i);
 		quizUI.setQuestion(question.getQuestion());
 		quizUI.setAlternatives(question.getAnswer1(), question.getAnswer2(),
@@ -174,6 +173,7 @@ public class QuizController extends Thread {
 	 
 	public void getSortingQuestion() {
 		this.sortingQuestion = sortingCeremonyGame.getSortingQuestion(i);
+		sortUI.clearButtons();
 		sortUI.setQuestion(sortingQuestion.getQuestion());
 		sortUI.setAlternatives(sortingQuestion.getAnswer1(),
 				sortingQuestion.getAnswer2(), sortingQuestion.getAnswer3(),
@@ -392,6 +392,7 @@ public class QuizController extends Thread {
 		System.out.println("QuizController: setGame()");
 		this.game = game;
 		enablePlayBtn(true);
+		mainUI.setBtnPlay();
 	}
 	
 	public void setSortingCeremonyGame(SortingCeremonyGame sortingCeremonyGame) {
@@ -561,65 +562,20 @@ public class QuizController extends Thread {
 	}
 	
 	/**
-	 *Lägger till funktion för radbrytning i inkommande svar. 
+	 * Sköter radbrytning.
 	 * @param str
 	 * @return
 	 */
-	public String changeStringA(String str) {
-		Boolean boo = false;
-		String br = "<br>";
+	public String changeStringB(String str) {
 		int i = 0;
-		int j = 70;
 		String inStr = str;
 		StringBuffer newString = new StringBuffer();
 		newString.append("<html>");
 		while (i < inStr.length()) {
 			newString.append(inStr.charAt(i));
-			if (newString.length() == j) {
-				while (boo==false) {
-					if (newString.charAt(j-1) == ' ') {
-						newString.insert(j-1, br);
-						boo = true;
-					}
-					j--;
-				}
-
-			}
 			i++;
 		}
-		newString.append("<html>");
-		String hej = newString.toString();
-		return hej;
-	}
-	
-	/**
-	 * Lägger till funktion för radbrytning i inkommande frågor.
-	 * @param str
-	 * @return
-	 */
-	public String changeStringQ(String str) {
-		Boolean boo = false;
-		String br = "<br>";
-		int i = 0;
-		int j = 70;
-		String inStr = str;
-		StringBuffer newString = new StringBuffer();
-		newString.append("<html>");
-		while (i < inStr.length()) {
-			newString.append(inStr.charAt(i));
-			if (newString.length() == j) {
-				while (boo==false) {
-					if (newString.charAt(j-1) == ' ') {
-						newString.insert(j-1, br);
-						boo = true;
-					}
-					j--;
-				}
-
-			}
-			i++;
-		}
-		newString.append("<html>");
+		newString.append("</html>");
 		String hej = newString.toString();
 		return hej;
 	}

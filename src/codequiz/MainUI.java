@@ -25,10 +25,10 @@ public class MainUI extends JPanel {
 	private QuizController cont;
 	private JLabel lblTitle = new JLabel(" Code Quiz");
 	private JLabel lblSlogan = new JLabel(
-			"  - Ett magiskt sätt att lära sig programmering");
+			"<html><pre>    - Ett magiskt sätt att lära sig programmering</html></pre>");
 	private JLabel lblIcon = new JLabel(new ImageIcon(
 			"src/media/HahaHogwarts.jpg"));
-	private JButton btnPlay = new JButton("Spela");
+	private JButton btnPlay = new JButton("Laddar...");
 	private JButton btnSignIn = new JButton("Logga in");
 	private JButton btnCreateAccount = new JButton("Skapa konto");
 	private JButton btnHowToPlay = new JButton("Om spelet");
@@ -50,7 +50,7 @@ public class MainUI extends JPanel {
 		lblTitle.setPreferredSize(new Dimension(800, 60));
 		lblIcon.add(lblSlogan);
 		lblSlogan.setForeground(Color.BLACK);
-		lblSlogan.setFont(new Font("Serif", Font.ITALIC, 16));
+		lblSlogan.setFont(new Font("Serif", Font.ITALIC, 10));
 		lblSlogan.setPreferredSize(new Dimension(800, 20));
 		lblIcon.add(Box.createRigidArea(new Dimension(800, 100)));
 		lblIcon.add(Box.createRigidArea(new Dimension(630, 40)));
@@ -74,7 +74,6 @@ public class MainUI extends JPanel {
 		btnHighScore.setPreferredSize(new Dimension(150, 30));
 		btnHighScore.setBackground(Color.white);
 		lblIcon.add(Box.createRigidArea(new Dimension(630, 40)));
-//		lblIcon.add(Box.createRigidArea(new Dimension(630, 40)));
 		lblIcon.add(btnLogout);
 		btnLogout.setPreferredSize(new Dimension(150, 30));
 		btnLogout.setBackground(Color.white);
@@ -84,11 +83,15 @@ public class MainUI extends JPanel {
 		setUser(user);
 		
 		addActionListeners();
-		btnPlay.setVisible(false);
+		btnPlay.setEnabled(false);
 	}
 
 	public void enableMenu(boolean tof) {
-		btnPlay.setVisible(tof);
+		btnPlay.setEnabled(tof);
+	}
+	
+	public void setBtnPlay() {
+		btnPlay.setText("Spela");
 	}
 	
 	/**
@@ -172,6 +175,7 @@ public class MainUI extends JPanel {
 					JOptionPane.showMessageDialog(null, "Du måste logga in för att spela!");
 				} else {
 				cont.getSortingQuestion();
+				
 				cont.setPanel(cont.getSortingCeremonyUI());
 				}
 			}
