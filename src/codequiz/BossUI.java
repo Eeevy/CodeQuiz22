@@ -22,14 +22,18 @@ public class BossUI extends JPanel {
 	private JLabel labelCode = new JLabel("", SwingConstants.CENTER);
 	private JPanel emptyPanel = new JPanel();
 	private JPanel southPanel = new JPanel(new GridLayout(1, 4));
+	private JPanel deadPanel = new JPanel();
+	private JLabel labelDead = new JLabel("<html><Font Color=white>Du är död.</Font><html>");
 	private JButton buttonOK = new JButton("Ok");
 	private JButton buttonBack = new JButton("Huvudmeny");
 	private JButton buttonResult = new JButton("Resultat");
+	private JButton buttonNext = new JButton("Nästa Fråga");
 	private JRadioButton rb1 = new JRadioButton("<html><Font color=white> GustavEmmaJohan</font><html>");
 	private JRadioButton rb2 = new JRadioButton("<html><Font color=white> Gustav Emma Johan</font><html>");
 	private JRadioButton rb3 = new JRadioButton("<html><Font color=white> Gustav Emma</font><html>");
 	private JRadioButton rb4 = new JRadioButton("<html><Font color=white> Emma Johan</font><html>");
 	private ButtonGroup buttonGroup = new ButtonGroup();
+	private Listener listener;
 	
 	private String code = "<html><pre><Font Color=white>String[] namn = { \"Gustav\", \"Emma\", \"Johan\" } "
 			+ "<br>     for(int i=0; i < namn.length(); i++) {<br>     "
@@ -48,6 +52,8 @@ public class BossUI extends JPanel {
 		labelBack.add(getEastPanel());
 		this.controller = inController;
 		gridPanel.setOpaque(false);
+		labelDead.setOpaque(false);
+		deadPanel.setOpaque(false);
 	}
 	
 	public void setCode(String inCode) {
@@ -55,6 +61,7 @@ public class BossUI extends JPanel {
 	}
 	
 	public JPanel getEastPanel() {
+		listener = new Listener();
 		buttonOK.setPreferredSize(new Dimension(150, 30));
 		labelTitle.setFont(new Font("Serif", Font.ITALIC, 18));
 		labelSubTitle.setFont(new Font("Serif", Font.ITALIC, 18));
@@ -83,17 +90,38 @@ public class BossUI extends JPanel {
 		gridPanel.add(rb2);
 		gridPanel.add(rb3);
 		gridPanel.add(rb4);
-		panelEast.add(gridPanel);
+		buttonOK.addActionListener(listener);
+		buttonBack.addActionListener(listener);
+		buttonResult.addActionListener(listener);
+		panelEast.add(gridPanel, BorderLayout.CENTER);
 		southPanel.setOpaque(false);
 		southPanel.add(buttonOK);
+		southPanel.add(buttonNext);
 		southPanel.add(buttonResult);
 		southPanel.add(buttonBack);
+		buttonNext.setEnabled(false);
 		buttonResult.setEnabled(false);
 		buttonBack.setEnabled(false);
 		panelEast.add(southPanel, BorderLayout.SOUTH);
 		
 		return panelEast;
 		
+	}
+	
+	private JPanel getDeadPanel() {
+		labelDead.setFont(new Font("Serif", Font.ITALIC, 22));
+		deadPanel.add(labelDead);
+		return deadPanel;
+		
+	}
+	
+	private void die() {
+		panelEast.add(getDeadPanel(), BorderLayout.CENTER);
+		labelCode.setVisible(false);
+		labelTitle.setVisible(false);
+		buttonBack.setEnabled(true);
+		buttonResult.setEnabled(true);
+		gridPanel.setVisible(false);
 	}
 	
 	public void setAnswers(String a1, String a2, String a3, String a4) {
@@ -106,6 +134,21 @@ public class BossUI extends JPanel {
 	private class Listener implements ActionListener {
 
 		public void actionPerformed(ActionEvent e) {
+			if (e.getSource() == buttonOK) {
+				die();
+			}
+			
+			if (e.getSource() == buttonBack) {
+				
+			}
+			
+			if (e.getSource() == buttonResult) {
+				
+			}
+			
+			if (e.getSource() == buttonNext) {
+				
+			}
 			
 		}
 		
