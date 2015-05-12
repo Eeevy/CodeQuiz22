@@ -7,7 +7,6 @@ public class User {
 	private String password;
 	private int userID;
 	private int userPoints;
-	private HogwartsHouse house;
 	
 	public User(String name, String password, int userID) {
 		}
