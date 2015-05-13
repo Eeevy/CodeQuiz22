@@ -36,6 +36,7 @@ public class MainUI extends JPanel {
 	private JButton btnLogout = new JButton("Logga ut");
 	private JLabel labelName = new JLabel("Inloggad: ");
 	private String user = "";
+	private File beginFilename;
 
 	public MainUI(QuizController inCont) {
 		setController(inCont);
@@ -84,6 +85,7 @@ public class MainUI extends JPanel {
 		
 		addActionListeners();
 		btnPlay.setEnabled(false);
+		beginFilename = new File("src/media/creak.wav");
 	}
 
 	public void enableMenu(boolean tof) {
@@ -188,6 +190,7 @@ public class MainUI extends JPanel {
 			}
 			if (e.getSource() == btnHowToPlay) {
 				cont.setPanel(cont.getHowToPlayUI());
+				cont.playSoundClip(beginFilename);
 			}
 			if(e.getSource() == btnHighScore){
 				cont.newResultUI();

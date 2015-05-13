@@ -67,11 +67,10 @@ public class QuizController extends Thread {
 		// System.out.println("" + getlives());
 		System.out.println("QuizController: Konstruktor");
 		musicFilename = new File("src/media/HarryPotterThemeSong.wav");
-		correctFilename = new File("src/media/brilliant.wav");
-		inCorrectFilename = new File("src/media/avadakedavra.wav");
-		winFilename = new File("src/media/chosenone.wav");
+		correctFilename = new File("src/media/Chime.wav");
+		inCorrectFilename = new File("src/media/gasp.wav");
+		winFilename = new File("src/media/fanfare3.wav");
 		loseFilename = new File("src/media/coming.wav");
-		beginFilename = new File("src/media/nogood.wav");
 		quizUI = new QuizUI();
 		mainUI = new MainUI(this);
 		howToUI = new HowToPlayUI();
