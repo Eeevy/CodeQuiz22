@@ -24,6 +24,7 @@ public class BossUI extends JPanel {
 	private JLabel labelCode = new JLabel("", SwingConstants.CENTER);
 	private JLabel lblLives = new JLabel();
 	private JLabel lblPoints = new JLabel();
+	private JLabel lblResult = new JLabel("Hej");
 	private JPanel emptyPanel = new JPanel();
 	private JPanel panelSouth = new JPanel();
 	private JPanel southPanel = new JPanel(new GridLayout(1, 4));
@@ -101,6 +102,7 @@ public class BossUI extends JPanel {
 		buttonOK.addActionListener(listener);
 		buttonBack.addActionListener(listener);
 		buttonResult.addActionListener(listener);
+		buttonNext.addActionListener(listener);
 		panelEast.add(gridPanel, BorderLayout.CENTER);
 		southPanel.setOpaque(false);
 		southPanel.add(buttonOK);
@@ -132,6 +134,7 @@ public class BossUI extends JPanel {
 		panelSouth.add(Box.createRigidArea(new Dimension(20, 20)));
 		panelSouth.add(lblLives = new JLabel(new ImageIcon(
 				"src/media/heartSml.png")));
+		panelSouth.add(lblResult);
 		lblLives.setVisible(true);
 		panelSouth.add(Box.createRigidArea(new Dimension(10, 20)));
 		panelSouth.setOpaque(false);
@@ -151,7 +154,8 @@ public class BossUI extends JPanel {
 		gridPanel.setVisible(false);
 	}
 	
-	public void setAnswers(String a1, String a2, String a3, String a4) {
+	public void setQuestion(String picUrl,String a1, String a2, String a3, String a4) {
+		labelCode = new JLabel(new ImageIcon(picUrl));
 		rb1.setText(a1);
 		rb2.setText(a2);
 		rb3.setText(a3);
@@ -161,9 +165,10 @@ public class BossUI extends JPanel {
 	private class Listener implements ActionListener {
 
 		public void actionPerformed(ActionEvent e) {
+			
 			if (e.getSource() == buttonOK) {
-				buttonOK.setEnabled(false);
 				String answer = null;
+				String cAnswer = controller.getCorrectBossAnswer();
 				if (rb1.isSelected()) {
 					answer = rb1.getText();
 				}
@@ -179,7 +184,20 @@ public class BossUI extends JPanel {
 				if (answer == null) {
 					JOptionPane.showMessageDialog(null, "Välj ett alternativ, tack");
 					buttonOK.setEnabled(true);
-				} else {}
+				}
+				if(answer.equals(cAnswer)){
+					lblResult.setText("RÄTT");
+					lblResult.setForeground(Color.GREEN);
+					buttonNext.setEnabled(true);
+
+				
+				}
+				else{
+					lblResult.setText("FEL!");
+					lblResult.setForeground(Color.RED);
+					buttonNext.setEnabled(true);
+
+				}
 			}
 			
 			if (e.getSource() == buttonBack) {
@@ -195,7 +213,8 @@ public class BossUI extends JPanel {
 			}
 			
 			if (e.getSource() == buttonNext) {
-				
+				controller.getBossQuestion();
+
 			}
 			
 		}

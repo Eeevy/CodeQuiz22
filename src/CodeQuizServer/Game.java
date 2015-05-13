@@ -6,6 +6,7 @@ import java.util.List;
 
 import javax.swing.ImageIcon;
 
+import codequiz.BossQuestion;
 import codequiz.Question;
 
 /**
@@ -18,6 +19,7 @@ public class Game implements Serializable {
 
 	private LinkedList<Question> questionlist = new LinkedList<Question>();
 	private LinkedList<QuizScenario> scenariolist = new LinkedList<QuizScenario>();
+	private LinkedList<BossQuestion> bossList = new LinkedList<BossQuestion>();
 	private QuizScenario scenario, scenario1, scenario2, scenario3, scenario4,
 			scenario5, scenario6, scenario7, scenario8;
 	private Database dbKlass = new Database();
@@ -29,8 +31,11 @@ public class Game implements Serializable {
 		System.out.println("Game: Konstruktor");
 		//createQuestions();
 		dbKlass.getQuestionDB();
+		dbKlass.getBossQuestionDB();
 		createScenario();
 		setQuestion();
+		setBossQuestion();
+
 	}
 
 	/**
@@ -76,6 +81,16 @@ public class Game implements Serializable {
 		setScenario();
 	}
 	
+	public void setBossQuestion() {
+		System.out.println("Game: setBossQuestions");
+		LinkedList<BossQuestion> list = new LinkedList<BossQuestion>(dbKlass.returnBQuestions());
+		System.out.println(list.size()+ "storlek");
+		for(int i = 0; i < list.size();i++){
+		bossList.add((BossQuestion) list.get(i));
+		}
+		
+	}
+	
 	/**
 	 * Metoden lägger till Question objekten till LinkedList (questionList)
 	 * FRÅN DATABASEN
@@ -98,6 +113,10 @@ public class Game implements Serializable {
 	 */
 	public Question getQuestion(int index) {
 		return questionlist.get(index);
+	}
+	
+	public BossQuestion getBossQuestion(int index){
+		return bossList.get(index);
 	}
 
 	/**

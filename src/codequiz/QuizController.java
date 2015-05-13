@@ -52,8 +52,11 @@ public class QuizController extends Thread {
 	private HowToPlayUI howToUI;
 	private SortingCeremonyUI sortUI;
 	private HouseUI houseUI;
+	private BossUI bossUI;
+	private BossQuestion bQuestion;
 	private int i = 0;
 	private int index = -1;
+	private int bossIndex = 0;
 	private Hashtable logininformation = new Hashtable();
 	private SortingQuestion sortingQuestion;
 	private SortingCeremonyGame sortingCeremonyGame;
@@ -74,6 +77,7 @@ public class QuizController extends Thread {
 		quizUI = new QuizUI();
 		mainUI = new MainUI(this);
 		howToUI = new HowToPlayUI();
+		bossUI = new BossUI(this);
 		createHouseUI();
 		dbKlass = new Database();
 		sortUI = new SortingCeremonyUI(houseUI);
@@ -180,6 +184,16 @@ public class QuizController extends Thread {
 		i++;
 	}
 	
+	public void getBossQuestion() {
+		System.out.println("Controller: getBossQuestion");
+		this.bQuestion = game.getBossQuestion(bossIndex);
+		bossUI.setQuestion(bQuestion.getCodeEx(), bQuestion.getAnswer1(), 
+				bQuestion.getAnswer2(), bQuestion.getAnswer3(), bQuestion.getAnswer4());
+		System.out.println("pic: " + bQuestion.getCodeEx());
+		System.out.println(bQuestion.getCodeEx().equals("src/media/Boss1.png"));
+		bossIndex++;
+	}
+	
 	public void setHouse(String house){
 		this.house = house;
 	}
@@ -246,6 +260,10 @@ public class QuizController extends Thread {
 				mainUI.login(inName, "Fel lösenord");
 			}
 		}
+	}
+	
+	public String getCorrectBossAnswer(){
+		return bQuestion.getCorrectAnswer();
 	}
 
 	/**
@@ -345,6 +363,10 @@ public class QuizController extends Thread {
 	 */
 	public JPanel getQuizUI() {
 		return quizUI;
+	}
+	
+	public JPanel getBossUI(){
+		return bossUI;
 	}
 	
 	public void nextQuestion() {

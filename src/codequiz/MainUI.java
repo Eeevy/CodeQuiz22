@@ -37,6 +37,8 @@ public class MainUI extends JPanel {
 	private JLabel labelName = new JLabel("Inloggad: ");
 	private String user = "";
 	private File beginFilename;
+	
+	private JButton btnBoss = new JButton("Voldemort");
 
 	public MainUI(QuizController inCont) {
 		setController(inCont);
@@ -80,6 +82,7 @@ public class MainUI extends JPanel {
 		btnLogout.setBackground(Color.white);
 		lblIcon.add(Box.createRigidArea(new Dimension(630, 40)));
 		lblIcon.add(labelName);
+		lblIcon.add(btnBoss);
 		user = cont.getUser();
 		setUser(user);
 		
@@ -167,6 +170,7 @@ public class MainUI extends JPanel {
 		btnHowToPlay.addActionListener(menuListener);
 		btnHighScore.addActionListener(menuListener);
 		btnLogout.addActionListener(menuListener);
+		btnBoss.addActionListener(menuListener);
 	}
 
 	public class MenuListener implements ActionListener {
@@ -191,6 +195,7 @@ public class MainUI extends JPanel {
 			if (e.getSource() == btnHowToPlay) {
 				cont.setPanel(cont.getHowToPlayUI());
 				cont.playSoundClip(beginFilename);
+				
 			}
 			if(e.getSource() == btnHighScore){
 				cont.newResultUI();
@@ -199,6 +204,11 @@ public class MainUI extends JPanel {
 			if (e.getSource() == btnLogout) {
 				cont.setUser("Ingen inloggad");
 				setUser(cont.getUser());
+			}
+			if(e.getSource()==btnBoss){//*	*	*	* skall tas bort!!!!!
+				cont.setPanel(cont.getBossUI());
+				cont.getBossQuestion();
+
 			}
 		}
 	}

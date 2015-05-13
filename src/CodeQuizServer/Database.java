@@ -9,6 +9,7 @@ import java.util.LinkedList;
 
 import javax.swing.JPanel;
 
+import codequiz.BossQuestion;
 import codequiz.Question;
 import codequiz.QuizController;
 import codequiz.SortingQuestion;
@@ -19,7 +20,9 @@ public class Database implements Serializable {
 	 */
 	private LinkedList<Question> allQuestions = new LinkedList<Question>();
 	private LinkedList<SortingQuestion> allSortingQuestions = new LinkedList<SortingQuestion>();
+	private LinkedList<BossQuestion> allBossQuestions = new LinkedList<BossQuestion>();
 
+	
 	private static Connection conn;
 	private static Statement stat;
 	private static ResultSet rs;
@@ -81,7 +84,7 @@ public class Database implements Serializable {
 				System.out.println("Fråga tillagd");
 				System.out.println("allQuestions: " + allQuestions.size());
 			}
-			rs = stat.executeQuery("select * from question where Level=3 order by rand() limit 5");
+			rs = stat.executeQuery("select * from question where Level=3 order by rand() limit 3");
 			while (rs.next()) {
 				Question question1 = new Question(rs.getInt("QuestionID"),
 						rs.getString("Question"), rs.getString("Answer1"),
@@ -93,6 +96,28 @@ public class Database implements Serializable {
 				System.out.println("Fråga tillagd");
 				System.out.println("allQuestions: " + allQuestions.size());
 			}
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+	}
+	
+	public void getBossQuestionDB() {
+		System.out.println("Database: getBossQuestionDB()");
+		try {
+			conn = connectToDB();
+			stat = conn.createStatement();
+			rs = stat.executeQuery("select * from bossquestion");
+			while (rs.next()) {
+				
+				BossQuestion question = new BossQuestion(rs.getString("CodeQuestion"), 
+						rs.getString(3), rs.getString(4), rs.getString(5), rs.getString(6), rs.getString(7));
+				System.out.println(question.getAnswer1());
+				allBossQuestions.add(question);
+				System.out.println("Fråga tillagd");
+				System.out.println("allBossQuestions: " + allBossQuestions.size());
+			}
+			
+		
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
@@ -298,6 +323,10 @@ public class Database implements Serializable {
 	public LinkedList<Question> returnQuestions() {
 		System.out.println("Database: returnQuestions()" + allQuestions.size());
 		return allQuestions;
+	}
+	
+	public LinkedList<BossQuestion> returnBQuestions(){
+		return allBossQuestions;
 	}
 /**
  * Metod som placerar sorteringsfrågor i en LinkedList.
