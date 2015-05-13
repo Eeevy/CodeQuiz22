@@ -81,7 +81,7 @@ public class Database implements Serializable {
 				System.out.println("Fråga tillagd");
 				System.out.println("allQuestions: " + allQuestions.size());
 			}
-			rs = stat.executeQuery("select * from question where Level=3 order by rand() limit 3");
+			rs = stat.executeQuery("select * from question where Level=3 order by rand() limit 5");
 			while (rs.next()) {
 				Question question1 = new Question(rs.getInt("QuestionID"),
 						rs.getString("Question"), rs.getString("Answer1"),
