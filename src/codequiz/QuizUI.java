@@ -354,12 +354,12 @@ public class QuizUI extends JPanel {
 	 */
 	public void setAlternatives(String al1, String al2, String al3, String al4) {
 		rb1.setText(controller.changeStringB(al1));
-		System.out.println(rb1.getText());
+		
 		rb2.setText(controller.changeStringB(al2));
-		System.out.println(rb2.getText());
+		
 		rb3.setText(controller.changeStringB(al3));
-		System.out.println(rb3.getText());
+	
 		rb4.setText(controller.changeStringB(al4));
-		System.out.println(rb4.getText());
+	
 	}
 }
