@@ -85,6 +85,7 @@ public class MainUI extends JPanel {
 		lblIcon.add(btnBoss);
 		user = cont.getUser();
 		setUser(user);
+		btnLogout.setEnabled(false);
 		
 		addActionListeners();
 		btnPlay.setEnabled(false);
@@ -97,6 +98,10 @@ public class MainUI extends JPanel {
 	
 	public void setBtnPlay() {
 		btnPlay.setText("Spela");
+	}
+	
+	public void setBtnLogout(Boolean hej) {
+		btnLogout.setEnabled(hej);
 	}
 	
 	/**
@@ -133,6 +138,10 @@ public class MainUI extends JPanel {
 			password = passwordField.getText();
 			cont.login(name, password);
 		}
+	}
+	
+	public void setLoginBtn(Boolean hej) {
+		btnSignIn.setEnabled(hej);
 	}
 
 	public void newUser(String inName, String inText) {
@@ -204,6 +213,8 @@ public class MainUI extends JPanel {
 			if (e.getSource() == btnLogout) {
 				cont.setUser("Ingen inloggad");
 				setUser(cont.getUser());
+				setLoginBtn(true);
+				btnLogout.setEnabled(false);
 			}
 			if(e.getSource()==btnBoss){//*	*	*	* skall tas bort!!!!!
 				cont.setPanel(cont.getBossUI());
