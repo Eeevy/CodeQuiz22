@@ -403,6 +403,10 @@ public class QuizController extends Thread {
 	public void enablePlayBtn(boolean tof) {
 		mainUI.enableMenu(tof);
 	}
+	
+	public void setBtnPlay() {
+		mainUI.setBtnPlay();
+	}
 
 	/**
 	 * 

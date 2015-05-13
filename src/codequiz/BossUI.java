@@ -3,12 +3,14 @@ package codequiz;
 import java.awt.BorderLayout;
 import java.awt.Color;
 import java.awt.Dimension;
+import java.awt.FlowLayout;
 import java.awt.Font;
 import java.awt.GridLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
 import javax.swing.*;
+
 
 public class BossUI extends JPanel {
 	private QuizController controller;
@@ -20,7 +22,10 @@ public class BossUI extends JPanel {
 	private JLabel labelTitle = new JLabel("", SwingConstants.CENTER);
 	private JLabel labelSubTitle = new JLabel("", SwingConstants.CENTER);
 	private JLabel labelCode = new JLabel("", SwingConstants.CENTER);
+	private JLabel lblLives = new JLabel();
+	private JLabel lblPoints = new JLabel();
 	private JPanel emptyPanel = new JPanel();
+	private JPanel panelSouth = new JPanel();
 	private JPanel southPanel = new JPanel(new GridLayout(1, 4));
 	private JPanel deadPanel = new JPanel();
 	private JLabel labelDead = new JLabel("<html><Font Color=white>Du är död.</Font><html>");
@@ -41,16 +46,18 @@ public class BossUI extends JPanel {
 	
 	
 	public BossUI(QuizController inController) {
+		this.controller = inController;
 		setBackground(Color.BLACK);
 		setPreferredSize(new Dimension(800, 600));
 		labelBack.setIcon(icon);
 		setCode(code);
 		labelBack.setLayout(new GridLayout(1,2));
 		add(labelBack);
+		emptyPanel.setLayout(new BorderLayout());
 		emptyPanel.setOpaque(false);
+		emptyPanel.add(getPanelSouth(), BorderLayout.SOUTH);
 		labelBack.add(emptyPanel);
 		labelBack.add(getEastPanel());
-		this.controller = inController;
 		gridPanel.setOpaque(false);
 		labelDead.setOpaque(false);
 		deadPanel.setOpaque(false);
@@ -114,7 +121,26 @@ public class BossUI extends JPanel {
 		labelDead.setFont(new Font("Serif", Font.ITALIC, 22));
 		deadPanel.add(labelDead);
 		return deadPanel;
-		
+	}
+	
+	public JPanel getPanelSouth() {
+		panelSouth = new JPanel(new FlowLayout(FlowLayout.LEFT));
+		panelSouth.setPreferredSize(new Dimension(100, 80));
+		panelSouth.add(Box.createRigidArea(new Dimension(20, 20)));
+		panelSouth.add(lblPoints = new JLabel(new ImageIcon(
+				"src/media/EmblemSml.png")));
+		panelSouth.setVisible(true);
+		panelSouth.add(Box.createRigidArea(new Dimension(20, 20)));
+		panelSouth.add(lblLives = new JLabel(new ImageIcon(
+				"src/media/heartSml.png")));
+		lblLives.setVisible(true);
+		panelSouth.add(Box.createRigidArea(new Dimension(10, 20)));
+		panelSouth.setOpaque(false);
+		lblPoints.setForeground(Color.WHITE);
+		lblLives.setForeground(Color.WHITE);
+		lblPoints.setText("Poäng: " + controller.getPoints());
+		lblLives.setText(" " + controller.getlives());
+		return panelSouth;
 	}
 	
 	private void die() {
@@ -137,7 +163,24 @@ public class BossUI extends JPanel {
 
 		public void actionPerformed(ActionEvent e) {
 			if (e.getSource() == buttonOK) {
-				die();
+				buttonOK.setEnabled(false);
+				String answer = null;
+				if (rb1.isSelected()) {
+					answer = rb1.getText();
+				}
+				if (rb2.isSelected()) {
+					answer = rb2.getText();
+				}
+				if (rb3.isSelected()) {
+					answer = rb3.getText();
+				}
+				if (rb4.isSelected()) {
+					answer = rb4.getText();
+				}
+				if (answer == null) {
+					JOptionPane.showMessageDialog(null, "Välj ett alternativ, tack");
+					buttonOK.setEnabled(true);
+				} else {}
 			}
 			
 			if (e.getSource() == buttonBack) {

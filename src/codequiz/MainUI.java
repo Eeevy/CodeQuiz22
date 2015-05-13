@@ -175,12 +175,13 @@ public class MainUI extends JPanel {
 					JOptionPane.showMessageDialog(null, "Du måste logga in för att spela!");
 				} else {
 				cont.getSortingQuestion();
-				
 				cont.setPanel(cont.getSortingCeremonyUI());
+				btnPlay.setText("Laddar...");
 				}
 			}
 			if (e.getSource() == btnCreateAccount) {
 				newUser(null, "Mata in namn och lösenord");
+				btnPlay.setText("Laddar...");
 			}
 			if (e.getSource() == btnSignIn) {
 				login(null, "Mata in namn och lösenord");
