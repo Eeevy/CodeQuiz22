@@ -95,6 +95,10 @@ public class BossUI extends JPanel {
 		rb2.setFont((new Font("Serif", Font.BOLD, 12)));
 		rb3.setFont((new Font("Serif", Font.BOLD, 12)));
 		rb4.setFont((new Font("Serif", Font.BOLD, 12)));
+		rb1.setForeground(Color.WHITE);
+		rb2.setForeground(Color.WHITE);
+		rb3.setForeground(Color.WHITE);
+		rb4.setForeground(Color.WHITE);
 		gridPanel.add(rb1);
 		gridPanel.add(rb2);
 		gridPanel.add(rb3);
