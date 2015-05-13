@@ -3,8 +3,6 @@ package codequiz;
 import java.awt.Color;
 import java.io.*;
 import java.net.Socket;
-import java.util.ArrayList;
-import java.util.Hashtable;
 import java.util.LinkedList;
 
 import javax.sound.sampled.AudioFormat;
@@ -57,7 +55,6 @@ public class QuizController extends Thread {
 	private int i = 0;
 	private int index = -1;
 	private int bossIndex = 0;
-	private Hashtable logininformation = new Hashtable();
 	private SortingQuestion sortingQuestion;
 	private SortingCeremonyGame sortingCeremonyGame;
 	private Database dbKlass;
@@ -212,8 +209,6 @@ public class QuizController extends Thread {
 		
 		if (!(password.equals(passConf))) {
 			mainUI.newUser(name, "Dina angivna lösenord matchar inte");
-		} else if (logininformation.contains(name)) {
-			mainUI.newUser(name, "Användarnamnet är upptaget");
 		} else if ((name.isEmpty()) || (password.isEmpty())
 				|| (passConf.isEmpty())) {
 			mainUI.newUser(name, "Det saknas uppgifter");
