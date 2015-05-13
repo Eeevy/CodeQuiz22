@@ -44,7 +44,6 @@ public class BossUI extends JPanel {
 			+ "<br>     for(int i=0; i < namn.length(); i++) {<br>     "
 			+ "    System.out.print(namn[i])<br>           }</pre></Font></html>";
 	
-	
 	public BossUI(QuizController inController) {
 		this.controller = inController;
 		setBackground(Color.BLACK);
@@ -138,8 +137,8 @@ public class BossUI extends JPanel {
 		panelSouth.setOpaque(false);
 		lblPoints.setForeground(Color.WHITE);
 		lblLives.setForeground(Color.WHITE);
-		lblPoints.setText("Poäng: " + controller.getPoints());
-		lblLives.setText(" " + controller.getlives());
+		lblPoints.setText("   Poäng: " + controller.getPoints());
+		lblLives.setText("   " + controller.getlives());
 		return panelSouth;
 	}
 	
@@ -184,11 +183,15 @@ public class BossUI extends JPanel {
 			}
 			
 			if (e.getSource() == buttonBack) {
-				
+				controller.setPanel(controller.getMainUI());
+				controller.newGame();
+				controller.disableGamebutton();
 			}
 			
 			if (e.getSource() == buttonResult) {
-				
+				controller.userpoints();
+				controller.newResultUI();
+				controller.fetchhousepoints();
 			}
 			
 			if (e.getSource() == buttonNext) {
