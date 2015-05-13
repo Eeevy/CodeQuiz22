@@ -521,7 +521,6 @@ public class QuizController extends Thread {
 		winUI = new WinUI(this);
 		setPanel(winUI);
 		playSoundClip(winFilename);
-		playSoundClip(musicFilename);
 	}
 	
 	/**
