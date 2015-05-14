@@ -189,6 +189,7 @@ public class QuizController extends Thread {
 		System.out.println("pic: " + bQuestion.getCodeEx());
 		System.out.println(bQuestion.getCodeEx().equals("src/media/Boss1.png"));
 		bossIndex++;
+		System.out.println(bossIndex);
 	}
 	
 	public void setHouse(String house){

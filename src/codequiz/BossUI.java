@@ -18,13 +18,13 @@ public class BossUI extends JPanel {
 	private ImageIcon icon = new ImageIcon("src/media/vold12.jpg");
 	private ImageIcon iconCode = new ImageIcon("src/media/fråga1.png");
 	private JPanel panelEast = new JPanel();
-	private JPanel gridPanel = new JPanel(new GridLayout(5, 1));
+	private JPanel gridPanel = new JPanel(new GridLayout(4, 1));
 	private JLabel labelTitle = new JLabel("", SwingConstants.CENTER);
 	private JLabel labelSubTitle = new JLabel("", SwingConstants.CENTER);
 	private JLabel labelCode = new JLabel("", SwingConstants.CENTER);
 	private JLabel lblLives = new JLabel();
 	private JLabel lblPoints = new JLabel();
-	private JLabel lblResult = new JLabel("Hej");
+	private JLabel lblResult = new JLabel("");
 	private JPanel emptyPanel = new JPanel();
 	private JPanel panelSouth = new JPanel();
 	private JPanel southPanel = new JPanel(new GridLayout(1, 4));
@@ -41,30 +41,29 @@ public class BossUI extends JPanel {
 	private ButtonGroup buttonGroup = new ButtonGroup();
 	private Listener listener;
 	
-	private String code = "<html><pre><Font Color=white>String[] namn = { \"Gustav\", \"Emma\", \"Johan\" } "
-			+ "<br>     for(int i=0; i < namn.length(); i++) {<br>     "
-			+ "    System.out.print(namn[i])<br>           }</pre></Font></html>";
-	
+//	private String code = "<html><pre><Font Color=white>String[] namn = { \"Gustav\", \"Emma\", \"Johan\" } "
+//			+ "<br>     for(int i=0; i < namn.length(); i++) {<br>     "
+//			+ "    System.out.print(namn[i])<br>           }</pre></Font></html>";
+//	
 	public BossUI(QuizController inController) {
 		this.controller = inController;
 		setBackground(Color.BLACK);
 		setPreferredSize(new Dimension(800, 600));
 		labelBack.setIcon(icon);
-		setCode(code);
 		labelBack.setLayout(new GridLayout(1,2));
 		add(labelBack);
 		emptyPanel.setLayout(new BorderLayout());
 		emptyPanel.setOpaque(false);
 		emptyPanel.add(getPanelSouth(), BorderLayout.SOUTH);
 		labelBack.add(emptyPanel);
-		labelBack.add(getEastPanel());
+		//labelBack.add(getEastPanel());
 		gridPanel.setOpaque(false);
 		labelDead.setOpaque(false);
 		deadPanel.setOpaque(false);
 	}
 	
-	public void setCode(String inCode) {
-		labelCode.setText(inCode);	
+	public void setCode() {
+		labelBack.add(labelCode);
 	}
 	
 	public JPanel getEastPanel() {
@@ -74,15 +73,17 @@ public class BossUI extends JPanel {
 		buttonOK.setPreferredSize(new Dimension(150, 30));
 		labelTitle.setFont(new Font("Serif", Font.ITALIC, 18));
 		labelSubTitle.setFont(new Font("Serif", Font.ITALIC, 18));
-		panelEast.setLayout(new BorderLayout());
+		panelEast.setLayout(new FlowLayout());
 		panelEast.setOpaque(false);
 		panelEast.setAlignmentX(CENTER_ALIGNMENT);
 		labelTitle.setHorizontalTextPosition(JLabel.CENTER);
 		labelTitle.setText("<HTML><Font color=white><center>Du möter Lord Voldemort. <br><b> Kämpa!</b><br>"
 				+ "Vad blir utskriften?</center></b></Font></HTML>");
+		labelTitle.setPreferredSize(new Dimension(400, 100));
 		labelSubTitle.setText("<HTML><Font color=white><center>Vad blir utskriften?</center></b></Font></HTML>");
-		panelEast.add(labelTitle, BorderLayout.NORTH);
-		gridPanel.add(labelCode);
+		panelEast.add(labelTitle);
+		labelCode.setPreferredSize(new Dimension(300, 220));
+		panelEast.add(labelCode);
 		buttonGroup.add(rb1);
 		buttonGroup.add(rb2);
 		buttonGroup.add(rb3);
@@ -99,24 +100,27 @@ public class BossUI extends JPanel {
 		rb2.setForeground(Color.WHITE);
 		rb3.setForeground(Color.WHITE);
 		rb4.setForeground(Color.WHITE);
+		gridPanel.setPreferredSize(new Dimension(400, 180));
 		gridPanel.add(rb1);
 		gridPanel.add(rb2);
 		gridPanel.add(rb3);
 		gridPanel.add(rb4);
+		gridPanel.setLocation(200, 300);
 		buttonOK.addActionListener(listener);
 		buttonBack.addActionListener(listener);
 		buttonResult.addActionListener(listener);
 		buttonNext.addActionListener(listener);
-		panelEast.add(gridPanel, BorderLayout.CENTER);
+		panelEast.add(gridPanel);
 		southPanel.setOpaque(false);
 		southPanel.add(buttonOK);
 		southPanel.add(buttonNext);
 		southPanel.add(buttonResult);
 		southPanel.add(buttonBack);
+		southPanel.setPreferredSize(new Dimension(400, 30));
 		buttonNext.setEnabled(false);
 		buttonResult.setEnabled(false);
 		buttonBack.setEnabled(false);
-		panelEast.add(southPanel, BorderLayout.SOUTH);
+		panelEast.add(southPanel);
 		
 		return panelEast;
 		
@@ -159,16 +163,28 @@ public class BossUI extends JPanel {
 	}
 	
 	public void setQuestion(String picUrl,String a1, String a2, String a3, String a4) {
+		System.out.println("BossUI.setQuestion()");
 		labelCode = new JLabel(new ImageIcon(picUrl));
+		labelCode.setPreferredSize(new Dimension(300, 258));
 		rb1.setText(a1);
 		rb2.setText(a2);
 		rb3.setText(a3);
 		rb4.setText(a4);
+		panelEast.removeAll();
+		labelBack.add(getEastPanel());
+
+
 	}
 	
 	private class Listener implements ActionListener {
 
 		public void actionPerformed(ActionEvent e) {
+			
+			if (e.getSource() == buttonNext) {
+				controller.getBossQuestion();
+				buttonNext.setEnabled(false);
+
+			}
 			
 			if (e.getSource() == buttonOK) {
 				String answer = null;
@@ -216,10 +232,7 @@ public class BossUI extends JPanel {
 				controller.fetchhousepoints();
 			}
 			
-			if (e.getSource() == buttonNext) {
-				controller.getBossQuestion();
-
-			}
+			
 			
 		}
 		
@@ -230,7 +243,7 @@ public class BossUI extends JPanel {
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		frame.add(new BossUI(new QuizController()));
 		frame.pack();
-		frame.setResizable(false);
+		frame.setResizable(true);
 		frame.setLocationRelativeTo(null);
 		frame.setVisible(true);
 	}
