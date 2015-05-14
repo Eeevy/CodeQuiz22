@@ -187,7 +187,6 @@ public class QuizController extends Thread {
 		bossUI.setQuestion(bQuestion.getCodeEx(), bQuestion.getAnswer1(), 
 				bQuestion.getAnswer2(), bQuestion.getAnswer3(), bQuestion.getAnswer4());
 		System.out.println("pic: " + bQuestion.getCodeEx());
-		System.out.println(bQuestion.getCodeEx().equals("src/media/Boss1.png"));
 		bossIndex++;
 		System.out.println(bossIndex);
 	}
