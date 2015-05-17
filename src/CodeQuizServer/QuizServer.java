@@ -64,7 +64,6 @@ public class QuizServer {
 		private ObjectInputStream ois;
 		private ObjectOutputStream oos;
 		private Game game;
-		private SortingCeremonyGame sortingCeremonyGame;
 		private Database db;
 
 
@@ -93,7 +92,7 @@ public class QuizServer {
 			System.out.println("ClientHandler: newGame()");
 			game = new Game();
 			
-			sortingCeremonyGame = new SortingCeremonyGame();
+//			sortingCeremonyGame = new SortingCeremonyGame();
 		}
 
 		/**
@@ -109,8 +108,6 @@ public class QuizServer {
 					newGame();
 					System.out.println("Nu skickar vi objekt!");
 					oos.writeObject(game);
-					oos.flush();
-					oos.writeObject(sortingCeremonyGame);
 					oos.flush();
 				} catch (Exception ioe) {
 					System.out.println(ioe);

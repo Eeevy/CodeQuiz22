@@ -4,7 +4,7 @@ import java.net.*;
 import java.io.*;
 
 import CodeQuizServer.Game;
-import CodeQuizServer.SortingCeremonyGame;
+//import CodeQuizServer.SortingCeremonyGame;
 /**
  * Klassen hanterar kommunikation med servern. 
  *
@@ -58,7 +58,7 @@ public class Client {
 		public void run() {
 			System.out.println("Listener: run()");
 			Game game;
-			SortingCeremonyGame sGame;
+//			SortingCeremonyGame sGame;
 			try {
 				oos.writeUTF("Welcome");//onödig?
 				oos.flush();//onödig?
@@ -68,8 +68,8 @@ public class Client {
 					System.out.print("klientObj");
 					controller.setGame(game);
 					oos.flush();
-					sGame = (SortingCeremonyGame)ois.readObject();
-					controller.setSortingCeremonyGame(sGame);
+//					sGame = (SortingCeremonyGame)ois.readObject();
+//					controller.setSortingCeremonyGame(sGame);
 
 			} catch (IOException e) {
 				System.out.println("Clienten kunde inte ta emot objektet");

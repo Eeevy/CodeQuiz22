@@ -18,7 +18,6 @@ import javax.swing.SwingUtilities;
 import CodeQuizServer.Database;
 import CodeQuizServer.Game;
 import CodeQuizServer.QuizScenario;
-import CodeQuizServer.SortingCeremonyGame;
 
 /**
  * Klassen hanterar programmets logik i bland annat UIs.
@@ -56,7 +55,6 @@ public class QuizController extends Thread {
 	private int index = -1;
 	private int bossIndex = 0;
 	private SortingQuestion sortingQuestion;
-	private SortingCeremonyGame sortingCeremonyGame;
 	private Database dbKlass;
 
 	public QuizController() {
@@ -78,7 +76,7 @@ public class QuizController extends Thread {
 		createHouseUI();
 		dbKlass = new Database();
 		sortUI = new SortingCeremonyUI(houseUI);
-		sortingCeremonyGame = new SortingCeremonyGame();
+//		sortingCeremonyGame = new SortingCeremonyGame();
 		panel = mainUI;
 		quizUI.setController(this);
 //		mainUI.setController(this);
@@ -172,7 +170,8 @@ public class QuizController extends Thread {
 	}
 	 
 	public void getSortingQuestion() {
-		this.sortingQuestion = sortingCeremonyGame.getSortingQuestion(i);
+		System.out.println("Controller: getSortingQuestion");
+		this.sortingQuestion = game.getSortingQuestion(i);
 		sortUI.clearButtons();
 		sortUI.setQuestion(sortingQuestion.getQuestion());
 		sortUI.setAlternatives(sortingQuestion.getAnswer1(),
@@ -228,8 +227,7 @@ public class QuizController extends Thread {
 			playSoundClip(beginFilename);
 			mainUI.setLoginBtn(false);
 			mainUI.setBtnLogout(true);
-		}	
-		
+		}			
 	}
 
 	/**
@@ -254,7 +252,6 @@ public class QuizController extends Thread {
 				getSortingQuestion();
 				mainUI.setLoginBtn(false);
 				mainUI.setBtnLogout(true);
-//				setPanel(getSortingCeremonyUI());
 			} else {
 				mainUI.login(inName, "Fel lösenord");
 			}
@@ -270,7 +267,7 @@ public class QuizController extends Thread {
 	 * @return - rätt svar på aktuell fråga
 	 */
 	public String getCorrectAnswer() {
-		return question.getCorrectanswer(); // ändrat till instansvariabeln
+		return question.getCorrectanswer();
 	}
 
 	public String getAnswerRavenclaw() {
@@ -294,7 +291,6 @@ public class QuizController extends Thread {
 	 */
 	public void play() {
 		System.out.println("Controller: play()");
-		// setPanel(quizUI);
 		enablePlayBtn(false);
 		try {
 			client = new Client("127.0.0.1", 3453, this);
@@ -320,8 +316,6 @@ public class QuizController extends Thread {
 		scenario = game.getScenario(index);
 		ImageIcon QPic = scenario.getStoryPic();
 		return QPic;
-		// ImageIcon QPic = new ImageIcon("src/media/diary.jpg");//fusk
-		// return QPic;
 	}
 
 	/**
@@ -333,8 +327,6 @@ public class QuizController extends Thread {
 		scenario = game.getScenario(index);
 		ImageIcon CPic = scenario.getCorrectPic();
 		return CPic;
-		// ImageIcon CPic = new ImageIcon("src/media/Correct.jpg");
-		// return CPic;
 	}
 
 	/**
@@ -374,7 +366,7 @@ public class QuizController extends Thread {
 
 	/**
 	 * 
-	 * @return - hur spelar man-panelen
+	 * @return - hur man spelar-panelen
 	 */
 	public JPanel getHowToPlayUI() {
 		return howToUI;
@@ -413,11 +405,6 @@ public class QuizController extends Thread {
 		this.game = game;
 		enablePlayBtn(true);
 		mainUI.setBtnPlay();
-	}
-	
-	public void setSortingCeremonyGame(SortingCeremonyGame sortingCeremonyGame) {
-		System.out.println("QuizController: setSortingCeremonyGame()");
-		this.sortingCeremonyGame = sortingCeremonyGame;
 	}
 
 	public void enablePlayBtn(boolean tof) {
@@ -529,7 +516,7 @@ public class QuizController extends Thread {
 	
 	
 	/**
-	 * minskar en spelares mängd liv
+	 * Minskar en spelares mängd liv
 	 */
 	public void decreaseLives() {
 		user.setLives(user.getLives() - 1);
