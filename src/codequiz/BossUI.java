@@ -31,10 +31,10 @@ public class BossUI extends JPanel {
 	private JPanel deadPanel = new JPanel();
 	private JLabel labelDead = new JLabel(
 			"<html><Font Color=white>Du är död.</Font><html>");
-	private JButton buttonOK = new JButton("Ok");
+	private JButton buttonOK = new JButton("OK");
 	private JButton buttonBack = new JButton("Huvudmeny");
 	private JButton buttonResult = new JButton("Resultat");
-	private JButton buttonNext = new JButton("Nästa Fråga");
+	private JButton buttonNext = new JButton("Ny fråga");
 	private JRadioButton rb1 = new JRadioButton(
 			"<html><Font color=white> GustavEmmaJohan</font><html>");
 	private JRadioButton rb2 = new JRadioButton(
@@ -152,6 +152,7 @@ public class BossUI extends JPanel {
 		panelSouth.add(Box.createRigidArea(new Dimension(20, 20)));
 		panelSouth.add(lblLives = new JLabel(new ImageIcon(
 				"src/media/heartSml.png")));
+		panelSouth.add(Box.createRigidArea(new Dimension(20, 20)));
 		panelSouth.add(lblResult);
 		lblLives.setVisible(true);
 		panelSouth.add(Box.createRigidArea(new Dimension(10, 20)));
@@ -264,7 +265,6 @@ public class BossUI extends JPanel {
 						die();
 					}
 				}
-
 			}
 		}
 	}
