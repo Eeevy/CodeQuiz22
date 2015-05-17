@@ -41,7 +41,7 @@ public class QuizUI extends JPanel {
 	private JLabel lblLives;
 	private JLabel lblResult = new JLabel("");
 	private JLabel lblBackground = new JLabel(new ImageIcon(
-			"src/media/background.jpg"));	// Bör ej vara denna bild
+			"src/media/background.jpg")); // Bör ej vara denna bild
 
 	/**
 	 * Konstruerar en bakgrund
@@ -179,28 +179,34 @@ public class QuizUI extends JPanel {
 		btnNewQuestion.setPreferredSize(new Dimension(110, 30));
 		return southPanel;
 	}
+
 	/**
 	 * Tar fram nästa fråga/scenario.
 	 */
 	public void nextQuestion() {
-		lblPoints.setVisible(true);
-		rb1.setEnabled(true);
-		rb2.setEnabled(true);
-		rb3.setEnabled(true);
-		rb4.setEnabled(true);
-		lblPoints.setText("Poäng: " + controller.getPoints());
-		lblLives.setVisible(true);
-		lblLives.setText(" " + controller.getlives());
-		questionPanel.setVisible(true);
-		btnNewQuestion.setText("Nästa fråga");
-		btnNewQuestion.setEnabled(false);
-		controller.increaseIndex();
-		ImageIcon icon = controller.setQuestionScenario();
-		setBackground(icon);
-		controller.getQuestion();
-		buttonGroup.clearSelection();
-		btnSubmit.setEnabled(true);
-		lblResult.setText("");	
+		if (controller.getScenarioIndex()) {
+			controller.setPanel(controller.getBossUI());
+			controller.getBossQuestion();
+		} else {
+			lblPoints.setVisible(true);
+			rb1.setEnabled(true);
+			rb2.setEnabled(true);
+			rb3.setEnabled(true);
+			rb4.setEnabled(true);
+			lblPoints.setText("Poäng: " + controller.getPoints());
+			lblLives.setVisible(true);
+			lblLives.setText(" " + controller.getlives());
+			questionPanel.setVisible(true);
+			btnNewQuestion.setText("Nästa fråga");
+			btnNewQuestion.setEnabled(false);
+			controller.increaseIndex();
+			ImageIcon icon = controller.setQuestionScenario();
+			setBackground(icon);
+			controller.getQuestion();
+			buttonGroup.clearSelection();
+			btnSubmit.setEnabled(true);
+			lblResult.setText("");
+		}
 	}
 
 	/**
@@ -221,8 +227,8 @@ public class QuizUI extends JPanel {
 	 */
 	private class ButtonResultListener implements ActionListener {
 		public void actionPerformed(ActionEvent e) {
-//			controller.newResultUI();
-//			controller.setPanel(controller.getResultUI());
+			// controller.newResultUI();
+			// controller.setPanel(controller.getResultUI());
 			controller.userpoints();
 			controller.newResultUI();
 			controller.fetchhousepoints();
@@ -235,7 +241,7 @@ public class QuizUI extends JPanel {
 	 */
 	private class QuestionListener implements ActionListener {
 		public void actionPerformed(ActionEvent e) {
-			nextQuestion();
+			controller.nextQuestion();
 		}
 	}
 
@@ -248,9 +254,10 @@ public class QuizUI extends JPanel {
 		public void actionPerformed(ActionEvent e) {
 			btnSubmit.setEnabled(false);
 			String answer = null;
-			String correctAnswer = controller.changeStringB(controller.getCorrectAnswer());
+			String correctAnswer = controller.changeStringB(controller
+					.getCorrectAnswer());
 			System.out.println(controller.maxScenario());
-			System.out.println(correctAnswer);
+			System.out.println("RÄTT SVAR:" + correctAnswer);
 			if (rb1.isSelected()) {
 				answer = rb1.getText();
 			}
@@ -264,62 +271,69 @@ public class QuizUI extends JPanel {
 				answer = rb4.getText();
 			}
 			if (answer == null) {
-				JOptionPane.showMessageDialog(null, "Välj ett alternativ, tack");
+				JOptionPane
+						.showMessageDialog(null, "Välj ett alternativ, tack");
 				btnSubmit.setEnabled(true);
 			} else {
-			if (answer.equals(correctAnswer)) {
-				if (controller.getScenarioIndex() == true) {
-					controller.increasePoints();
-					controller.win();
-				} else {
-				ImageIcon icon = controller.setCorrectScenario();
-				setBackground(icon);
-				controller.increasePoints();
-				lblResult.setText("RÄTT!");
-				lblResult.setForeground(Color.GREEN);
-				lblPoints.setText("Poäng: " + controller.getPoints());
-				btnNewQuestion.setEnabled(true);
-				}
-			} else {
-				if (controller.getScenarioIndex() == true) {
-					controller.decreasePoints();
-					controller.win();
-				} else {
-					
-				
-				ImageIcon icon = controller.setIncorrectScenario();
-				setBackground(icon);
-				lblResult.setText("FEL!");
-				lblResult.setForeground(Color.RED);
-				controller.decreasePoints();
-				controller.decreaseLives();
-				lblPoints.setText(" Poäng: " + controller.getPoints());
-				lblLives.setText(" " + controller.getlives());
-				btnNewQuestion.setEnabled(true);
-				}
-			}
+				if (answer.equals(correctAnswer)) {
+//					if (controller.getScenarioIndex() == true) {
+//						controller.increasePoints();
+//						// controller.win();
+//						controller.setPanel(controller.getBossUI());
+//						controller.getBossQuestion();
+//					} else {
+						ImageIcon icon = controller.setCorrectScenario();
+						setBackground(icon);
+						controller.increasePoints();
+						lblResult.setText("RÄTT!");
+						lblResult.setForeground(Color.GREEN);
+						lblPoints.setText("Poäng: " + controller.getPoints());
+						btnNewQuestion.setEnabled(true);
+					}
+	//			}
+			else {
+//					if (controller.getScenarioIndex() == true) {
+//						controller.decreasePoints();
+//						// controller.win();
+//						controller.setPanel(controller.getBossUI());
+//						controller.getBossQuestion();
+//
+//					} else {
 
-			if (controller.getlives() == 0) {
-				setBackground(new ImageIcon("src/media/dead.jpg"));
-				controller.lose();
-				eastPanel.add(Box.createRigidArea(new Dimension(20, 130)));
-				eastPanel.add(btnback);
-				eastPanel.add(Box.createRigidArea(new Dimension(10, 30)));
-				eastPanel.add(btnresult);
-				btnback.setVisible(true);
-				btnback.addActionListener(new ButtonBackListener());
-				btnNewQuestion.setEnabled(false);
-				btnresult.setVisible(true);
-				btnresult.addActionListener(new ButtonResultListener());
-				btnback.setPreferredSize(new Dimension(100, 30));
-				btnresult.setPreferredSize(new Dimension(100, 30));
-			}
-		} buttonGroup.clearSelection();
+						ImageIcon icon = controller.setIncorrectScenario();
+						setBackground(icon);
+						lblResult.setText("FEL!");
+						lblResult.setForeground(Color.RED);
+						controller.decreasePoints();
+						controller.decreaseLives();
+						lblPoints.setText(" Poäng: " + controller.getPoints());
+						lblLives.setText(" " + controller.getlives());
+						btnNewQuestion.setEnabled(true);
+					}
+				}
+
+				if (controller.getlives() == 0) {
+					setBackground(new ImageIcon("src/media/dead.jpg"));
+					controller.lose();
+					eastPanel.add(Box.createRigidArea(new Dimension(20, 130)));
+					eastPanel.add(btnback);
+					eastPanel.add(Box.createRigidArea(new Dimension(10, 30)));
+					eastPanel.add(btnresult);
+					btnback.setVisible(true);
+					btnback.addActionListener(new ButtonBackListener());
+					btnNewQuestion.setEnabled(false);
+					btnresult.setVisible(true);
+					btnresult.addActionListener(new ButtonResultListener());
+					btnback.setPreferredSize(new Dimension(100, 30));
+					btnresult.setPreferredSize(new Dimension(100, 30));
+				}
+//			}
+			buttonGroup.clearSelection();
 			rb1.setEnabled(false);
 			rb2.setEnabled(false);
 			rb3.setEnabled(false);
 			rb4.setEnabled(false);
-			}
+		}
 	}
 
 	/**
@@ -353,13 +367,15 @@ public class QuizUI extends JPanel {
 	 *            -svarsalternativ4
 	 */
 	public void setAlternatives(String al1, String al2, String al3, String al4) {
+		System.out.println("RÄTT SVAR:" + controller.getCorrectAnswer());
+
 		rb1.setText(controller.changeStringB(al1));
-		
+
 		rb2.setText(controller.changeStringB(al2));
-		
+
 		rb3.setText(controller.changeStringB(al3));
-	
+
 		rb4.setText(controller.changeStringB(al4));
-	
+
 	}
 }

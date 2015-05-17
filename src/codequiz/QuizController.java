@@ -4,6 +4,7 @@ import java.awt.Color;
 import java.io.*;
 import java.net.Socket;
 import java.util.LinkedList;
+import java.util.Random;
 
 import javax.sound.sampled.AudioFormat;
 import javax.sound.sampled.AudioInputStream;
@@ -52,7 +53,7 @@ public class QuizController extends Thread {
 	private HouseUI houseUI;
 	private BossUI bossUI;
 	private BossQuestion bQuestion;
-	private int i = 0;
+	private int qIndex = 0;
 	private int index = -1;
 	private int bossIndex = 0;
 	private SortingQuestion sortingQuestion;
@@ -164,21 +165,21 @@ public class QuizController extends Thread {
 	 * svarsalternativ till quizUI där de visas för användaren
 	 */
 	public void getQuestion() {
-		this.question = game.getQuestion(i);
+		this.question = game.getQuestion(qIndex);
 		quizUI.setQuestion(question.getQuestion());
 		quizUI.setAlternatives(question.getAnswer1(), question.getAnswer2(),
 				question.getAnswer3(), question.getAnswer4());
-		i++;
+		qIndex++;
 	}
 	 
 	public void getSortingQuestion() {
-		this.sortingQuestion = sortingCeremonyGame.getSortingQuestion(i);
+		Random rand = new Random();
+		this.sortingQuestion = sortingCeremonyGame.getSortingQuestion(rand.nextInt(5));
 		sortUI.clearButtons();
 		sortUI.setQuestion(sortingQuestion.getQuestion());
 		sortUI.setAlternatives(sortingQuestion.getAnswer1(),
 				sortingQuestion.getAnswer2(), sortingQuestion.getAnswer3(),
 				sortingQuestion.getAnswer4());
-		i++;
 	}
 	
 	public void getBossQuestion() {
@@ -370,6 +371,7 @@ public class QuizController extends Thread {
 	
 	public void nextQuestion() {
 		quizUI.nextQuestion();
+		System.out.println("INDEX: "+ qIndex);
 	}
 
 	/**
@@ -396,7 +398,7 @@ public class QuizController extends Thread {
 		quizUI = new QuizUI();
 		quizUI.setController(this);
 		index = -1;
-		i = 0;
+		qIndex = 0;
 		System.out.print(index);
 		playSoundClip(musicFilename);
 		user.setUserPoints(0);
