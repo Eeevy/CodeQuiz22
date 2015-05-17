@@ -106,7 +106,7 @@ public class Database implements Serializable {
 		try {
 			conn = connectToDB();
 			stat = conn.createStatement();
-			rs = stat.executeQuery("select * from bossquestion");
+			rs = stat.executeQuery("select * from bossquestion order by rand()");
 			while (rs.next()) {
 				
 				BossQuestion question = new BossQuestion(rs.getString("CodeQuestion"), 
