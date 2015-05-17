@@ -2,6 +2,7 @@ package codequiz;
 
 import java.awt.BorderLayout;
 import java.awt.Color;
+import java.awt.Component;
 import java.awt.Dimension;
 import java.awt.FlowLayout;
 import java.awt.Font;
@@ -61,7 +62,7 @@ public class BossUI extends JPanel {
 		emptyPanel.setOpaque(false);
 		emptyPanel.add(getPanelSouth(), BorderLayout.SOUTH);
 		labelBack.add(emptyPanel);
-		// labelBack.add(getEastPanel());
+		labelBack.add(getEastPanel());
 		gridPanel.setOpaque(false);
 		labelDead.setOpaque(false);
 		deadPanel.setOpaque(false);
@@ -71,9 +72,13 @@ public class BossUI extends JPanel {
 		labelBack.add(labelCode);
 	}
 
+	// public JPanel getNorthPanel(){
+	//
+	// }
+
 	public JPanel getEastPanel() {
-		labelCode.setOpaque(true);
-		labelCode.setBackground(Color.DARK_GRAY);
+		// labelCode.setOpaque(true);
+		// labelCode.setBackground(Color.DARK_GRAY);
 		listener = new Listener();
 		buttonOK.setPreferredSize(new Dimension(150, 30));
 		labelTitle.setFont(new Font("Serif", Font.ITALIC, 18));
@@ -164,25 +169,36 @@ public class BossUI extends JPanel {
 		labelTitle.setVisible(false);
 		buttonBack.setEnabled(true);
 		buttonResult.setEnabled(true);
+		buttonNext.setEnabled(false);
 		gridPanel.setVisible(false);
 	}
 
 	public void setQuestion(String picUrl, String a1, String a2, String a3,
 			String a4) {
-		System.out.println("BossUI.setQuestion()");
-		labelCode = new JLabel(new ImageIcon(picUrl));
-		labelCode.setPreferredSize(new Dimension(300, 258));
+		ImageIcon i = new ImageIcon(picUrl);
+		labelCode.setIcon(i);
 		rb1.setText(a1);
 		rb2.setText(a2);
 		rb3.setText(a3);
 		rb4.setText(a4);
-		panelEast.removeAll();
-		labelBack.add(getEastPanel());
+
 	}
 
 	private class Listener implements ActionListener {
 
 		public void actionPerformed(ActionEvent e) {
+
+			if (e.getSource() == buttonBack) {
+				controller.setPanel(controller.getMainUI());
+				controller.newGame();
+				controller.disableGamebutton();
+			}
+
+			if (e.getSource() == buttonResult) {
+				controller.userpoints();
+				controller.newResultUI();
+				controller.fetchhousepoints();
+			}
 
 			if (e.getSource() == buttonNext) {
 				controller.getBossQuestion();
@@ -209,29 +225,46 @@ public class BossUI extends JPanel {
 					JOptionPane.showMessageDialog(null,
 							"Välj ett alternativ, tack");
 					buttonOK.setEnabled(true);
-				}
-				if (answer.equals(cAnswer)) {
-					lblResult.setText("RÄTT");
-					lblResult.setForeground(Color.GREEN);
-					buttonNext.setEnabled(true);
-
 				} else {
-					lblResult.setText("FEL!");
-					lblResult.setForeground(Color.RED);
-					buttonNext.setEnabled(true);
+					if (answer.equals(cAnswer)) {
+						if (controller.getbossIndex() == 5) {// om rätt svar och
+																// boss är
+																// besegrad
+							controller.increasePoints();
+							controller.win();
+						} else {
+							lblResult.setText("RÄTT");
+							lblResult.setForeground(Color.GREEN);
+							controller.increasePoints();
+							lblPoints.setText("Poäng: "
+									+ controller.getPoints());
+							buttonNext.setEnabled(true);
+						}
+
+					} else {
+						if (controller.getbossIndex() == 5) {// om fel svar men
+																// liv finns
+																// kvar och boss
+																// är besegrad
+							controller.decreasePoints();
+							controller.win();
+						} else {
+							lblResult.setText("FEL!");
+							lblResult.setForeground(Color.RED);
+							controller.decreasePoints();
+							controller.decreaseLives();
+							lblPoints.setText(" Poäng: "
+									+ controller.getPoints());
+							lblLives.setText(" " + controller.getlives());
+							buttonNext.setEnabled(true);
+						}
+
+					}
+					if (controller.getlives() == 0) {
+						die();
+					}
 				}
-			}
 
-			if (e.getSource() == buttonBack) {
-				controller.setPanel(controller.getMainUI());
-				controller.newGame();
-				controller.disableGamebutton();
-			}
-
-			if (e.getSource() == buttonResult) {
-				controller.userpoints();
-				controller.newResultUI();
-				controller.fetchhousepoints();
 			}
 		}
 	}

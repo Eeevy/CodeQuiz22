@@ -477,6 +477,10 @@ public class QuizController extends Thread {
 		Integer.toString(lives);
 		return lives;
 	}
+	
+	public int getbossIndex(){
+		return bossIndex;
+	}
 
 	/**
 	 * 
