@@ -13,7 +13,7 @@ public class User {
 	
 	public User() {
 		System.out.println("User: newUser()");
-		this.lives = 5;
+		this.lives = 3;
 		this.userPoints = 0;
 	}
 	
