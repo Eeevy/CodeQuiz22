@@ -106,7 +106,7 @@ public class Database implements Serializable {
 		try {
 			conn = connectToDB();
 			stat = conn.createStatement();
-			rs = stat.executeQuery("select * from bossquestion order by rand()");
+			rs = stat.executeQuery("select * from bossquestion order by rand() limit 5");
 			while (rs.next()) {
 				
 				BossQuestion question = new BossQuestion(rs.getString("CodeQuestion"), 
@@ -131,7 +131,7 @@ public class Database implements Serializable {
 		try {
 			conn = connectToDB();
 			stat = conn.createStatement();
-			rs = stat.executeQuery("select * from sortingquestion order by rand()");
+			rs = stat.executeQuery("select * from sortingquestion order by rand() limit 1");
 			while (rs.next()) {
 				SortingQuestion sortingQuestion = new SortingQuestion(
 						rs.getInt("SortingQuestionID"),

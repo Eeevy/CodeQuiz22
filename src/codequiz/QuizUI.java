@@ -227,8 +227,7 @@ public class QuizUI extends JPanel {
 	 */
 	private class ButtonResultListener implements ActionListener {
 		public void actionPerformed(ActionEvent e) {
-			// controller.newResultUI();
-			// controller.setPanel(controller.getResultUI());
+			
 			controller.userpoints();
 			controller.newResultUI();
 			controller.fetchhousepoints();
@@ -352,8 +351,6 @@ public class QuizUI extends JPanel {
 	 *            -svarsalternativ4
 	 */
 	public void setAlternatives(String al1, String al2, String al3, String al4) {
-		System.out.println("RÄTT SVAR:" + controller.getCorrectAnswer());
-
 		rb1.setText(controller.changeStringB(al1));
 
 		rb2.setText(controller.changeStringB(al2));

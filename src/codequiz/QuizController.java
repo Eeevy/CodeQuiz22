@@ -171,8 +171,8 @@ public class QuizController extends Thread {
 	}
 	 
 	public void getSortingQuestion() {
-		Random rand = new Random();
-		this.sortingQuestion = game.getSortingQuestion(rand.nextInt(5));
+		//Random rand = new Random();
+		this.sortingQuestion = game.getSortingQuestion(0);
 		System.out.println("Controller: getSortingQuestion");
 		sortUI.clearButtons();
 		sortUI.setQuestion(sortingQuestion.getQuestion());
@@ -363,7 +363,6 @@ public class QuizController extends Thread {
 	
 	public void nextQuestion() {
 		quizUI.nextQuestion();
-		System.out.println("INDEX: "+ qIndex);
 	}
 
 	/**
@@ -453,7 +452,6 @@ public class QuizController extends Thread {
 	 * Ökar användarens poäng
 	 */
 	public void increasePoints() {
-		System.out.println("QuizController: increasePoints");
 
 		user.setUserPoints(user.getUserPoints() + 10);
 		playSoundClip(correctFilename);
@@ -464,7 +462,6 @@ public class QuizController extends Thread {
 	 * @throws IOException 
 	 */
 	public void decreasePoints() {
-		System.out.println("QuizController: decreasePoints");
 
 		user.setUserPoints(user.getUserPoints() - 10);
 		playSoundClip(inCorrectFilename);
@@ -491,7 +488,6 @@ public class QuizController extends Thread {
 	public int getPoints() {
 
 		int points = user.getUserPoints();
-		System.out.println("QuizController: getPoints: användarens poäng:" + points);
 
 		Integer.toString(points);
 		
@@ -501,11 +497,9 @@ public class QuizController extends Thread {
 	 * Adderar anv. poäng med elevhemmets poäng.
 	 */
 	public void userpoints(){
-		System.out.println("QuizController: userPoints");
 		int total = 0;
 		int userpoints = getPoints();
 		int housepoints = dbKlass.getHousePoints(house);
-		System.out.println("QuizController: userPoints:" + userpoints + housepoints);
 
 		total = userpoints + housepoints;
 		dbKlass.setPointsDB(house,total);
@@ -514,7 +508,6 @@ public class QuizController extends Thread {
 	 * Hämtar elevhemmens poäng och placerar ResultUI i den aktuella panelen.
 	 */
 	public void fetchhousepoints(){
-		System.out.println("QuizController: fetchhousepoints");
 
 		dbKlass.getPointsDB(getResultUI());
 		setPanel(getResultUI());

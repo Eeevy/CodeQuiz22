@@ -38,7 +38,7 @@ public class MainUI extends JPanel {
 	private String user = "";
 	private File beginFilename;
 	
-	private JButton btnBoss = new JButton("Voldemort");
+//	private JButton btnBoss = new JButton("Voldemort");
 
 	public MainUI(QuizController inCont) {
 		setController(inCont);
@@ -82,7 +82,7 @@ public class MainUI extends JPanel {
 		btnLogout.setBackground(Color.white);
 		lblIcon.add(Box.createRigidArea(new Dimension(630, 40)));
 		lblIcon.add(labelName);
-		lblIcon.add(btnBoss);
+//		lblIcon.add(btnBoss);
 		user = cont.getUser();
 		setUser(user);
 		btnLogout.setEnabled(false);
@@ -179,7 +179,7 @@ public class MainUI extends JPanel {
 		btnHowToPlay.addActionListener(menuListener);
 		btnHighScore.addActionListener(menuListener);
 		btnLogout.addActionListener(menuListener);
-		btnBoss.addActionListener(menuListener);
+//		btnBoss.addActionListener(menuListener);
 	}
 
 	public class MenuListener implements ActionListener {
@@ -216,11 +216,11 @@ public class MainUI extends JPanel {
 				setLoginBtn(true);
 				btnLogout.setEnabled(false);
 			}
-			if(e.getSource()==btnBoss){//*	*	*	* skall tas bort!!!!!
-				cont.setPanel(cont.getBossUI());
-				cont.getBossQuestion();
-
-			}
+//			if(e.getSource()==btnBoss){//*	*	*	* skall tas bort!!!!!
+//				cont.setPanel(cont.getBossUI());
+//				cont.getBossQuestion();
+//
+//			}
 		}
 	}
 
