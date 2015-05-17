@@ -128,8 +128,6 @@ public class Game implements Serializable {
 	}
 
 	public SortingQuestion getSortingQuestion(int index) {
-		// Random rand = new Random();
-		// int random = rand.nextInt(sortingQuestionList.size());
 		return sortingQuestionList.get(index);
 	}
 
