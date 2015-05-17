@@ -8,17 +8,20 @@ import javax.swing.ImageIcon;
 
 import codequiz.BossQuestion;
 import codequiz.Question;
+import codequiz.SortingQuestion;
 
 /**
  * Klassen består av ett objekt som innehåller samtliga frågor och scenarion för
  * ett spel som sedan skickas från server till klient vid spelets start.
- * Frågorna skall i en senare version hämtas från databasen och ett 30 tal slumpas innan
- * de skickas till klient. (I den ordningen om dessa inte kan slumpas från databasen)
+ * Frågorna skall i en senare version hämtas från databasen och ett 30 tal
+ * slumpas innan de skickas till klient. (I den ordningen om dessa inte kan
+ * slumpas från databasen)
  */
 public class Game implements Serializable {
 
 	private LinkedList<Question> questionlist = new LinkedList<Question>();
 	private LinkedList<QuizScenario> scenariolist = new LinkedList<QuizScenario>();
+	private LinkedList<SortingQuestion> sortingQuestionList = new LinkedList<SortingQuestion>();
 	private LinkedList<BossQuestion> bossList = new LinkedList<BossQuestion>();
 	private QuizScenario scenario, scenario1, scenario2, scenario3, scenario4,
 			scenario5, scenario6, scenario7, scenario8;
@@ -29,13 +32,14 @@ public class Game implements Serializable {
 	 */
 	public Game() {
 		System.out.println("Game: Konstruktor");
-		//createQuestions();
+		// createQuestions();
 		dbKlass.getQuestionDB();
+		dbKlass.getSortingQuestionDB();
 		dbKlass.getBossQuestionDB();
 		createScenario();
 		setQuestion();
+		setSortingQuestion();
 		setBossQuestion();
-
 	}
 
 	/**
@@ -71,38 +75,46 @@ public class Game implements Serializable {
 				"src/media/ScenarioOakOwl.jpg"), new ImageIcon(
 				"src/media/ScenarioOwlCorrect.jpg"), new ImageIcon(
 				"src/media/ScenarioOwlIncorrect.jpg"));
-		scenario7 = new QuizScenario(new ImageIcon("src/media/Forest.jpeg"), 
-				new ImageIcon("src/media/Forestcorrect.jpeg"),
-				new ImageIcon("src/media/Forestincorrect.jpeg"));
-		scenario8 = new QuizScenario(new ImageIcon("src/media/Maze.jpeg"), 
-				new ImageIcon("src/media/Mazecorrect.jpeg"),
-				new ImageIcon("src/media/Mazeincorrect.jpeg"));
-		
+		scenario7 = new QuizScenario(new ImageIcon("src/media/Forest.jpeg"),
+				new ImageIcon("src/media/Forestcorrect.jpeg"), new ImageIcon(
+						"src/media/Forestincorrect.jpeg"));
+		scenario8 = new QuizScenario(new ImageIcon("src/media/Maze.jpeg"),
+				new ImageIcon("src/media/Mazecorrect.jpeg"), new ImageIcon(
+						"src/media/Mazeincorrect.jpeg"));
 		setScenario();
 	}
-	
-	public void setBossQuestion() {
-		System.out.println("Game: setBossQuestions");
-		LinkedList<BossQuestion> list = new LinkedList<BossQuestion>(dbKlass.returnBQuestions());
-		System.out.println(list.size()+ "storlek");
-		for(int i = 0; i < list.size();i++){
-		bossList.add((BossQuestion) list.get(i));
-		}
-		
-	}
-	
+
 	/**
-	 * Metoden lägger till Question objekten till LinkedList (questionList)
-	 * FRÅN DATABASEN
+	 * Metoden lägger till Question objekten till LinkedList (questionList) FRÅN
+	 * DATABASEN
 	 */
 	public void setQuestion() {
 		System.out.println("Game: setQuestions");
-		LinkedList<Question> list = new LinkedList<Question>(dbKlass.returnQuestions());
-		System.out.println(list.size()+ "storlek");
-		for(int i = 0; i < list.size();i++){
-		questionlist.add((Question) list.get(i));
+		LinkedList<Question> list = new LinkedList<Question>(
+				dbKlass.returnQuestions());
+		System.out.println(list.size() + "storlek");
+		for (int i = 0; i < list.size(); i++) {
+			questionlist.add((Question) list.get(i));
 		}
-		
+	}
+
+	public void setSortingQuestion() {
+		LinkedList<SortingQuestion> sortingList = new LinkedList<SortingQuestion>(
+				dbKlass.returnSortingQuestions());
+		System.out.println(sortingList.size() + "storlek");
+		for (int i = 0; i < sortingList.size(); i++) {
+			sortingQuestionList.add(sortingList.get(i));
+		}
+	}
+
+	public void setBossQuestion() {
+		System.out.println("Game: setBossQuestions");
+		LinkedList<BossQuestion> list = new LinkedList<BossQuestion>(
+				dbKlass.returnBQuestions());
+		System.out.println(list.size() + "storlek");
+		for (int i = 0; i < list.size(); i++) {
+			bossList.add((BossQuestion) list.get(i));
+		}
 	}
 
 	/**
@@ -114,8 +126,12 @@ public class Game implements Serializable {
 	public Question getQuestion(int index) {
 		return questionlist.get(index);
 	}
-	
-	public BossQuestion getBossQuestion(int index){
+
+	public SortingQuestion getSortingQuestion(int index) {
+		return sortingQuestionList.get(index);
+	}
+
+	public BossQuestion getBossQuestion(int index) {
 		return bossList.get(index);
 	}
 
