@@ -11,7 +11,11 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
 import javax.swing.*;
-
+/**
+ * Klassen är ett GUI som används när spelaren möter bossen.
+ * @author gustavbodestad
+ *
+ */
 public class BossUI extends JPanel {
 	private QuizController controller;
 	private JLabel labelBack = new JLabel();
@@ -46,11 +50,6 @@ public class BossUI extends JPanel {
 	private ButtonGroup buttonGroup = new ButtonGroup();
 	private Listener listener;
 
-	// private String code =
-	// "<html><pre><Font Color=white>String[] namn = { \"Gustav\", \"Emma\", \"Johan\" } "
-	// + "<br>     for(int i=0; i < namn.length(); i++) {<br>     "
-	// + "    System.out.print(namn[i])<br>           }</pre></Font></html>";
-	//
 	public BossUI(QuizController inController) {
 		this.controller = inController;
 		setBackground(Color.BLACK);
@@ -67,7 +66,10 @@ public class BossUI extends JPanel {
 		labelDead.setOpaque(false);
 		deadPanel.setOpaque(false);
 	}
-
+	
+	/**
+	 * Sätter en bild(fråga) på plats.
+	 */
 	public void setCode() {
 		labelBack.add(labelCode);
 	}
@@ -163,7 +165,9 @@ public class BossUI extends JPanel {
 		lblLives.setText("   " + controller.getlives());
 		return panelSouth;
 	}
-
+	/**
+	 * Hanterar funktioner för hur UI förändras när man dör.
+	 */
 	private void die() {
 		panelEast.add(getDeadPanel(), BorderLayout.CENTER);
 		labelCode.setVisible(false);
@@ -173,7 +177,15 @@ public class BossUI extends JPanel {
 		buttonNext.setEnabled(false);
 		gridPanel.setVisible(false);
 	}
-
+	
+	/**
+	 * Placerar en fråga i UI't.
+	 * @param picUrl
+	 * @param a1
+	 * @param a2
+	 * @param a3
+	 * @param a4
+	 */
 	public void setQuestion(String picUrl, String a1, String a2, String a3,
 			String a4) {
 		ImageIcon i = new ImageIcon(picUrl);
@@ -184,7 +196,11 @@ public class BossUI extends JPanel {
 		rb4.setText(a4);
 
 	}
-
+	/**
+	 * Klassen innehåller en lyssnare.
+	 * @author gustavbodestad
+	 *
+	 */
 	private class Listener implements ActionListener {
 
 		public void actionPerformed(ActionEvent e) {

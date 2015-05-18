@@ -91,15 +91,24 @@ public class MainUI extends JPanel {
 		btnPlay.setEnabled(false);
 		beginFilename = new File("src/media/creak.wav");
 	}
-
+	
+	/**
+	 * Bestämmer om "Play"-knappen ska synas.
+	 * @param tof
+	 */
 	public void enableMenu(boolean tof) {
 		btnPlay.setEnabled(tof);
 	}
-	
+	/**
+	 * Sätter texten "Spela" på "Play"-knappen
+	 */
 	public void setBtnPlay() {
 		btnPlay.setText("Spela");
 	}
-	
+	/**
+	 * Bestämmer om "Logga ut"-knappen ska synas.
+	 * @param hej
+	 */
 	public void setBtnLogout(Boolean hej) {
 		btnLogout.setEnabled(hej);
 	}
@@ -140,10 +149,19 @@ public class MainUI extends JPanel {
 		}
 	}
 	
+	/**
+	 * Bestämmer om "Logga in"-knappen ska synas.
+	 * @param hej
+	 */
 	public void setLoginBtn(Boolean hej) {
 		btnSignIn.setEnabled(hej);
 	}
-
+	
+	/**
+	 * Sköter skapandet av nya användare
+	 * @param inName
+	 * @param inText
+	 */
 	public void newUser(String inName, String inText) {
 		int result = 0;
 		String name, password, passwordConf;
@@ -170,7 +188,9 @@ public class MainUI extends JPanel {
 			cont.newUser(name, password, passwordConf);
 		}
 	}
-
+	/**
+	 * Förser knapparna med lyssnare.
+	 */
 	public void addActionListeners() {
 		MenuListener menuListener = new MenuListener();
 		btnPlay.addActionListener(menuListener);
@@ -181,7 +201,11 @@ public class MainUI extends JPanel {
 		btnLogout.addActionListener(menuListener);
 //		btnBoss.addActionListener(menuListener);
 	}
-
+	/**
+	 * Klassen innehåller en lyssnare för menyn.
+	 * @author gustavbodestad
+	 *
+	 */
 	public class MenuListener implements ActionListener {
 
 		public void actionPerformed(ActionEvent e) {

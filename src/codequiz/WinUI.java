@@ -15,7 +15,12 @@ import javax.swing.JLabel;
 import javax.swing.JPanel;
 
 import CodeQuizServer.Database;
-
+/**
+ * Klassen är ett UI som används när man vinner.
+ * Innehåller lyssnare.
+ * @author gustavbodestad
+ *
+ */
 public class WinUI extends JPanel implements ActionListener {
 	private JLabel lblBackground = new JLabel(new ImageIcon(
 			"src/media/win.jpg"));
@@ -49,23 +54,9 @@ public class WinUI extends JPanel implements ActionListener {
 		}
 		
 		if (e.getSource() == buttonRes) {
-//			controller.newResultUI();
-//			controller.setPanel(controller.getResultUI());
-//			controller.setScore(controller.getPoints());
 			controller.userpoints();
 			controller.newResultUI();
 			controller.fetchhousepoints();
 		}		
 	}
-	
-//	public static void main(String[] args) {
-//		JFrame mainFrame = new JFrame("");
-//		mainFrame.setTitle("Code Quiz");
-//		mainFrame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-//		mainFrame.add(new WinUI(new QuizController()));
-//		mainFrame.pack();
-//		mainFrame.setResizable(false);
-//		mainFrame.setLocationRelativeTo(null);
-//		mainFrame.setVisible(true);
-//	}
 }

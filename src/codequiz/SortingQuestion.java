@@ -1,7 +1,11 @@
 package codequiz;
 
 import java.io.Serializable;
-
+/**
+ * Klassen lagrar en sorteringsfråga.
+ * @author gustavbodestad
+ *
+ */
 public class SortingQuestion implements Serializable {
 	private int ID;
 	private String question;

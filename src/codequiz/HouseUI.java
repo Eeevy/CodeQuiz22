@@ -6,6 +6,11 @@ import java.awt.event.ActionListener;
 
 import javax.swing.*;
 
+/**
+ * Klassen är ett GUI som används för att visa information om ett elevhem.
+ * @author gustavbodestad
+ *
+ */
 public class HouseUI extends JPanel {
 	private QuizController controller;
 
@@ -108,7 +113,10 @@ public class HouseUI extends JPanel {
 		btnPlay.setPreferredSize(new Dimension(70, 30));
 		return iconPanel;
 	}
-
+	
+	/**
+	 * Metod som lägger till information om Ravenclaw i UI't.
+	 */
 	public void ravenclaw() {
 		titlePanel.add(lblRavenclaw);
 		housePanel.setBackground(Color.CYAN);
@@ -166,7 +174,11 @@ public class HouseUI extends JPanel {
 		lblHead.setText("Pomona Sprout");
 		lblCharacteristics.setText("Tålamod, vänskap och lojalitet");
 	}
-	
+	/**
+	 * Klassen innehåller en lyssnare.
+	 * @author gustavbodestad
+	 *
+	 */
 	private class ButtonPlayListener implements ActionListener {
 
 		public void actionPerformed(ActionEvent e) {

@@ -3,7 +3,11 @@ package codequiz;
 import java.io.Serializable;
 
 import javax.swing.*;
-
+/**
+ * Klassen lagrar en bossfråga. 
+ * @author gustavbodestad
+ *
+ */
 public class BossQuestion implements Serializable {
 	private String codeEx;
 	private String answer1, answer2, answer3, answer4, correctAnswer;
