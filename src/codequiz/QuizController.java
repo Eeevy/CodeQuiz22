@@ -38,12 +38,8 @@ public class QuizController extends Thread {
 	private String house;
 	private Client client;
 	private ResultUI resultui;
-	private File musicFilename;
-	private File correctFilename;
-	private File inCorrectFilename;
-	private File winFilename;
-	private File loseFilename;
-	private File beginFilename;
+	private File musicFilename,correctFilename,inCorrectFilename,winFilename,
+	loseFilename,beginFilename;
 	private MainUI mainUI;
 	private QuizUI quizUI;
 	private WinUI winUI;
@@ -62,9 +58,6 @@ public class QuizController extends Thread {
 
 		user = new User();
 		int temp = getlives();
-		System.out.println(temp);
-		// System.out.println("" + getlives());
-		System.out.println("QuizController: Konstruktor");
 		musicFilename = new File("src/media/HarryPotterThemeSong.wav");
 		correctFilename = new File("src/media/Chime.wav");
 		inCorrectFilename = new File("src/media/gasp.wav");
@@ -77,10 +70,8 @@ public class QuizController extends Thread {
 		createHouseUI();
 		dbKlass = new Database();
 		sortUI = new SortingCeremonyUI(houseUI);
-//		sortingCeremonyGame = new SortingCeremonyGame();
 		panel = mainUI;
 		quizUI.setController(this);
-//		mainUI.setController(this);
 		howToUI.setController(this);
 		sortUI.setController(this);
 		houseUI.setController(this);
@@ -89,7 +80,9 @@ public class QuizController extends Thread {
 		playSoundClip(musicFilename);
 		play();// kopplar upp till servern här istället
 	}
-	
+	/**
+	 * 
+	 */
 	public void createHouseUI() {
 		houseUI = new HouseUI();
 		houseUI.setController(this);
@@ -169,9 +162,11 @@ public class QuizController extends Thread {
 				question.getAnswer3(), question.getAnswer4());
 		qIndex++;
 	}
-	 
+	/**
+	 * Metod som hämtar en fråga ur ett game objekt, skickar denna samt
+	 * svarsalternativ till sortUI där de visas för användaren 
+	 */
 	public void getSortingQuestion() {
-		//Random rand = new Random();
 		this.sortingQuestion = game.getSortingQuestion(0);
 		System.out.println("Controller: getSortingQuestion");
 		sortUI.clearButtons();
@@ -180,7 +175,10 @@ public class QuizController extends Thread {
 				sortingQuestion.getAnswer2(), sortingQuestion.getAnswer3(),
 				sortingQuestion.getAnswer4());
 	}
-	
+	/**
+	 * Metod som hämtar en fråga ur ett game objekt, skickar denna samt
+	 * svarsalternativ till bossUI där de visas för användaren 
+	 */
 	public void getBossQuestion() {
 		System.out.println("Controller: getBossQuestion");
 		this.bQuestion = game.getBossQuestion(bossIndex);
@@ -244,8 +242,6 @@ public class QuizController extends Thread {
 		} else if ((inName.isEmpty()) || (inPass.isEmpty())) {////////funkar ej
 			mainUI.login(inName, "Det saknas uppgifter");
 		} else {
-//			if (inPass.equals(logininformation.get(inName))) {
-//				System.out.println(logininformation.get(inName));
 			if ((dbKlass.checkUserlogin(inName, inPass)) == true) {
 				System.out.println((inName + " är inloggad"));
 				user.setName(inName);
@@ -258,7 +254,10 @@ public class QuizController extends Thread {
 			}
 		}
 	}
-	
+	/**
+	 * 
+	 * @return - rätt svar på aktuell bossfråga
+	 */
 	public String getCorrectBossAnswer(){
 		return bQuestion.getCorrectAnswer();
 	}
@@ -270,19 +269,31 @@ public class QuizController extends Thread {
 	public String getCorrectAnswer() {
 		return question.getCorrectanswer();
 	}
-
+	/**
+	 * 
+	 * @return - rätt svar på aktuell fråga
+	 */
 	public String getAnswerRavenclaw() {
 		return sortingQuestion.getRavenclawAnswer();
 	}
-
+	/**
+	 * 
+	 * @return - rätt svar på aktuell fråga
+	 */
 	public String getAnswerGryffindor() {
 		return sortingQuestion.getGryffindorAnswer();
 	}
-
+	/**
+	 * 
+	 * @return - rätt svar på aktuell fråga
+	 */
 	public String getAnswerSlytherin() {
 		return sortingQuestion.getSlytherinAnswer();
 	}
-
+	/**
+	 * 
+	 * @return - rätt svar på aktuell fråga
+	 */
 	public String getAnswerHufflepuff() {
 		return sortingQuestion.getHufflepuffAnswer();
 	}
@@ -356,11 +367,16 @@ public class QuizController extends Thread {
 	public JPanel getQuizUI() {
 		return quizUI;
 	}
-	
+	/**
+	 * 
+	 * @return- BossUI
+	 */
 	public JPanel getBossUI(){
 		return bossUI;
 	}
-	
+	/**
+	 * Tar fram nästa fråga
+	 */
 	public void nextQuestion() {
 		quizUI.nextQuestion();
 	}
@@ -372,11 +388,17 @@ public class QuizController extends Thread {
 	public JPanel getHowToPlayUI() {
 		return howToUI;
 	}
-
+	/**
+	 * 
+	 * @return - sorteringscermoniUI
+	 */
 	public JPanel getSortingCeremonyUI() {
 		return sortUI;
 	}
-
+	/**
+	 * 
+	 * @return - ElevhemsUI
+	 */
 	public JPanel getHouseUI() {
 		return houseUI;
 	}
@@ -407,11 +429,16 @@ public class QuizController extends Thread {
 		enablePlayBtn(true);
 		mainUI.setBtnPlay();
 	}
-
+	/**
+	 * Aktiverar spela knappen
+	 * @param tof
+	 */
 	public void enablePlayBtn(boolean tof) {
 		mainUI.enableMenu(tof);
 	}
-	
+	/**
+	 * Lägger till text till knappen
+	 */
 	public void setBtnPlay() {
 		mainUI.setBtnPlay();
 	}
@@ -476,7 +503,10 @@ public class QuizController extends Thread {
 		Integer.toString(lives);
 		return lives;
 	}
-	
+	/**
+	 * Ökar index för bossscenario
+	 * @return
+	 */
 	public int getbossIndex(){
 		return bossIndex;
 	}

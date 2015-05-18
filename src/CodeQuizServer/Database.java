@@ -14,10 +14,13 @@ import codequiz.Question;
 import codequiz.QuizController;
 import codequiz.SortingQuestion;
 
+/**
+ * En klass som hämtar och placerar data i databasen.
+ * @author Johan
+ *
+ */
 public class Database implements Serializable {
-	/**
-	 * a
-	 */
+	
 	private LinkedList<Question> allQuestions = new LinkedList<Question>();
 	private LinkedList<SortingQuestion> allSortingQuestions = new LinkedList<SortingQuestion>();
 	private LinkedList<BossQuestion> allBossQuestions = new LinkedList<BossQuestion>();
@@ -100,7 +103,9 @@ public class Database implements Serializable {
 			e.printStackTrace();
 		}
 	}
-	
+	/**
+	 * En metod som hämtar bossfrågor från databasen.
+	 */
 	public void getBossQuestionDB() {
 		System.out.println("Database: getBossQuestionDB()");
 		try {

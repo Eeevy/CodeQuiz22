@@ -92,7 +92,7 @@ public class QuizServer {
 			System.out.println("ClientHandler: newGame()");
 			game = new Game();
 			
-//			sortingCeremonyGame = new SortingCeremonyGame();
+
 		}
 
 		/**

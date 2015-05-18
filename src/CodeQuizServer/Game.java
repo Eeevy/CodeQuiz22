@@ -97,7 +97,9 @@ public class Game implements Serializable {
 			questionlist.add((Question) list.get(i));
 		}
 	}
-
+	/**
+	 * Metoden lägger till SortingQuestion objekt i LinkedList (sortingQuestionList)
+	 */
 	public void setSortingQuestion() {
 		LinkedList<SortingQuestion> sortingList = new LinkedList<SortingQuestion>(
 				dbKlass.returnSortingQuestions());
@@ -106,7 +108,9 @@ public class Game implements Serializable {
 			sortingQuestionList.add(sortingList.get(i));
 		}
 	}
-
+	/**
+	 * Metoden lägger till BossQuestion objekt i LinkedList (bossList)
+	 */
 	public void setBossQuestion() {
 		System.out.println("Game: setBossQuestions");
 		LinkedList<BossQuestion> list = new LinkedList<BossQuestion>(
@@ -126,11 +130,21 @@ public class Game implements Serializable {
 	public Question getQuestion(int index) {
 		return questionlist.get(index);
 	}
-
+	/**
+	 * 
+	 * @param index
+	 * 			postition vars fråga skall hämtas 
+	 * @return	det SortingQuestion objekt vars position efterfrågas
+	 */
 	public SortingQuestion getSortingQuestion(int index) {
 		return sortingQuestionList.get(index);
 	}
-
+	/**
+	 * 
+	 * @param index
+	 * 			position vars fråga skall hämtas
+	 * @return	det BossQuestion objekt vars position efterfrågas
+	 */
 	public BossQuestion getBossQuestion(int index) {
 		return bossList.get(index);
 	}
