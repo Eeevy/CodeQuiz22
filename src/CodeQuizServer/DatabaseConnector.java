@@ -19,7 +19,7 @@ import codequiz.SortingQuestion;
  * @author Johan
  *
  */
-public class Database implements Serializable {
+public class DatabaseConnector implements Serializable {
 	
 	private LinkedList<Question> allQuestions = new LinkedList<Question>();
 	private LinkedList<SortingQuestion> allSortingQuestions = new LinkedList<SortingQuestion>();
@@ -343,7 +343,7 @@ public class Database implements Serializable {
 	}
 
 	public static void main(String[] args) {
-		Database d = new Database();
+		DatabaseConnector d = new DatabaseConnector();
 		 d.getQuestionDB();
 		// d.connectToDB();
 		// d.setUserDB("Evelyn", "evelyn");

@@ -5,7 +5,7 @@ import java.awt.Dimension;
 
 import javax.swing.*;
 
-import CodeQuizServer.Database;
+import CodeQuizServer.DatabaseConnector;
 
 import java.awt.*;
 import java.awt.event.ActionEvent;
@@ -37,7 +37,7 @@ public class QuizUI extends JPanel {
 	private JButton btnback = new JButton("Huvudmeny");
 	private JButton btnresult = new JButton("Resultat");
 	private JLabel lblPoints;
-	private Database db;
+	private DatabaseConnector db;
 	private JLabel lblLives;
 	private JLabel lblResult = new JLabel("");
 	private JLabel lblBackground = new JLabel(new ImageIcon(

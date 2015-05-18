@@ -13,7 +13,7 @@ import javax.sound.sampled.Clip;
 import javax.sound.sampled.DataLine;
 import javax.swing.*;
 
-import CodeQuizServer.Database;
+import CodeQuizServer.DatabaseConnector;
 
 /**
  * Klassen består av en panel med en huvudmeny.

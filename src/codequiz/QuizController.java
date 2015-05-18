@@ -16,7 +16,7 @@ import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.SwingUtilities;
 
-import CodeQuizServer.Database;
+import CodeQuizServer.DatabaseConnector;
 import CodeQuizServer.Game;
 import CodeQuizServer.QuizScenario;
 
@@ -52,7 +52,7 @@ public class QuizController extends Thread {
 	private int index = -1;
 	private int bossIndex = 0;
 	private SortingQuestion sortingQuestion;
-	private Database dbKlass;
+	private DatabaseConnector dbKlass;
 
 	public QuizController() {
 
@@ -68,7 +68,7 @@ public class QuizController extends Thread {
 		howToUI = new HowToPlayUI();
 		bossUI = new BossUI(this);
 		createHouseUI();
-		dbKlass = new Database();
+		dbKlass = new DatabaseConnector();
 		sortUI = new SortingCeremonyUI(houseUI);
 		panel = mainUI;
 		quizUI.setController(this);

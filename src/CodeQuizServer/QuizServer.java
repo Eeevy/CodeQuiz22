@@ -64,7 +64,7 @@ public class QuizServer {
 		private ObjectInputStream ois;
 		private ObjectOutputStream oos;
 		private Game game;
-		private Database db;
+		private DatabaseConnector db;
 
 
 		/**

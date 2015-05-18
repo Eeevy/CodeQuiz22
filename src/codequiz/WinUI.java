@@ -14,7 +14,7 @@ import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 
-import CodeQuizServer.Database;
+import CodeQuizServer.DatabaseConnector;
 /**
  * Klassen är ett UI som används när man vinner.
  * Innehåller lyssnare.

@@ -25,7 +25,7 @@ public class Game implements Serializable {
 	private LinkedList<BossQuestion> bossList = new LinkedList<BossQuestion>();
 	private QuizScenario scenario, scenario1, scenario2, scenario3, scenario4,
 			scenario5, scenario6, scenario7, scenario8;
-	private Database dbKlass = new Database();
+	private DatabaseConnector dbKlass = new DatabaseConnector();
 
 	/**
 	 * Konstruerar frågor och scenarion
