@@ -7,11 +7,8 @@ import java.awt.event.ActionListener;
 import javax.swing.*;
 
 /**
- * Såhär ska det absolut inte vara egentligen, bara ett första utkast.
- * Fönstervisning ska flyttas till QuizController, ingen mainmetod i den här
- * klassen etc. Ville bara testa.
- * 
- * @author Hemligt
+ * Klassen är ett UI som hanterar sorteringsscermonin.
+ * @author gustavbodestad
  *
  */
 public class SortingCeremonyUI extends JPanel {
@@ -114,7 +111,9 @@ public class SortingCeremonyUI extends JPanel {
 		eastPanel.add(lblHat);
 		return eastPanel;
 	}
-
+	/**
+	 * Sert till att ingen knapp är markerad.
+	 */
 	public void clearButtons() {
 		btnGroup.clearSelection();
 	}
@@ -128,18 +127,31 @@ public class SortingCeremonyUI extends JPanel {
 		btnOK.setPreferredSize(new Dimension(70, 30));
 		return southPanel;
 	}
-
+	/**
+	 * Placerar en fråga i UI't
+	 * @param question
+	 */
 	public void setQuestion(String question) {
 		lblQuestion.setText(question);
 	}
-
+	/**
+	 * Sätter alternativ i UI't.
+	 * @param al1
+	 * @param al2
+	 * @param al3
+	 * @param al4
+	 */
 	public void setAlternatives(String al1, String al2, String al3, String al4) {
 		rb1.setText(controller.changeStringB(al1));
 		rb2.setText(controller.changeStringB(al2));
 		rb3.setText(controller.changeStringB(al3));
 		rb4.setText(controller.changeStringB(al4));
 	}
-
+	/**
+	 * Klassen innehåller en lyssnare.
+	 * @author gustavbodestad
+	 *
+	 */
 	private class ButtonListener implements ActionListener {
 
 		public void actionPerformed(ActionEvent e) {

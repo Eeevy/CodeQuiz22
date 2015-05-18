@@ -4,7 +4,11 @@ import javax.swing.*;
 
 import java.awt.*;
 import java.awt.event.*;
-
+/**
+ * Ett UI som används för att visa Resultat.
+ * @author gustavbodestad
+ *
+ */
 public class ResultUI extends JPanel {
 
 	private JLabel labelImageSly = new JLabel(new ImageIcon("src/media/Slytherin1.png"));
@@ -137,20 +141,11 @@ public class ResultUI extends JPanel {
 		this.controller = controller;
 	}
 	
-	
-	
-//	public static void main(String[] args) {
-//		JFrame frame = new JFrame();
-//		frame.setTitle("Background Color for JFrame");
-//		frame.setSize(400, 400);
-//		frame.setLocationRelativeTo(null);
-//		frame.add(new ResultUI());
-//		frame.pack();
-//		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-//		frame.setVisible(true);
-//		
-//	}
-	
+	/**
+	 * Klassen innehåller en lyssnare.
+	 * @author gustavbodestad
+	 *
+	 */
 	private class ButtonListener implements ActionListener {
 		public void actionPerformed(ActionEvent e) {
 			if(e.getSource()==btnMain){

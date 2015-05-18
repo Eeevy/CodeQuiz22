@@ -1,5 +1,10 @@
 package codequiz;
 
+/**
+ * Klassen lagrar information om användaren.
+ * @author gustavbodestad
+ *
+ */
 public class User {
 	
 	private int lives;

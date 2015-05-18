@@ -12,7 +12,11 @@ import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
-
+/**
+ * Klasen består av ett UI som används till att visa instruktioner. 
+ * @author gustavbodestad
+ *
+ */
 public class HowToPlayUI extends JPanel {
 	private QuizController controller;
 	
@@ -46,7 +50,10 @@ public class HowToPlayUI extends JPanel {
 	public void setController(QuizController controller){
 		this.controller = controller;
 	}
-	
+	/**
+	 * Visar vem som har loggat in.
+	 * @param user
+	 */
 	public void setWelcome(String user){
 		lblWelcomeUser.setText(controller.changeStringB("Välkommen till Hogwarts " + user + "!"));
 	}
@@ -54,7 +61,11 @@ public class HowToPlayUI extends JPanel {
 	public void enableGamebutton(boolean state){
 		btnStartGame.setVisible(state);
 	}
-	
+	/**
+	 * Klassen innehåller en lyssnare.
+	 * @author gustavbodestad
+	 *
+	 */
 	private class ButtonListener implements ActionListener {
 		public void actionPerformed(ActionEvent e) {
 			if(e.getSource()==btnMain){
