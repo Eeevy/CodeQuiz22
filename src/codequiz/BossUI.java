@@ -220,6 +220,10 @@ public class BossUI extends JPanel {
 			if (e.getSource() == buttonNext) {
 				controller.getBossQuestion();
 				buttonNext.setEnabled(false);
+				rb1.setEnabled(true);
+				rb2.setEnabled(true);
+				rb3.setEnabled(true);
+				rb4.setEnabled(true);
 				buttonGroup.clearSelection();
 			}
 
@@ -238,6 +242,11 @@ public class BossUI extends JPanel {
 				if (rb4.isSelected()) {
 					answer = rb4.getText();
 				}
+				rb1.setEnabled(false);
+				rb2.setEnabled(false);
+				rb3.setEnabled(false);
+				rb4.setEnabled(false);
+				buttonGroup.clearSelection();
 				if (answer == null) {
 					JOptionPane.showMessageDialog(null,
 							"Välj ett alternativ, tack");
