@@ -24,7 +24,7 @@ import CodeQuizServer.QuizScenario;
  * Klassen hanterar programmets logik i bland annat UIs.
  * 
  * @author CodeQuiz team
- *
+ *a
  */
 public class QuizController extends Thread {
 
