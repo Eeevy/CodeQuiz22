@@ -62,11 +62,11 @@ public class QuizController extends Thread {
 		correctFilename = new File("src/media/Chime.wav");
 		inCorrectFilename = new File("src/media/gasp.wav");
 		winFilename = new File("src/media/fanfare3.wav");
-		loseFilename = new File("src/media/coming.wav");
+		loseFilename = new File("src/media/scream_male.wav");
 		quizUI = new QuizUI();
 		mainUI = new MainUI(this);
 		howToUI = new HowToPlayUI();
-		bossUI = new BossUI(this);
+//		bossUI = new BossUI(this);
 		createHouseUI();
 		dbKlass = new DatabaseConnector();
 		sortUI = new SortingCeremonyUI(houseUI);
@@ -372,6 +372,7 @@ public class QuizController extends Thread {
 	 * @return- BossUI
 	 */
 	public JPanel getBossUI(){
+		bossUI = new BossUI(this);
 		return bossUI;
 	}
 	/**
