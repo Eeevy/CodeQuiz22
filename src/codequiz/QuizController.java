@@ -226,6 +226,7 @@ public class QuizController extends Thread {
 			playSoundClip(beginFilename);
 			mainUI.setLoginBtn(false);
 			mainUI.setBtnLogout(true);
+			mainUI.setBtnNewUser(false);
 		}			
 	}
 
@@ -249,6 +250,7 @@ public class QuizController extends Thread {
 				getSortingQuestion();
 				mainUI.setLoginBtn(false);
 				mainUI.setBtnLogout(true);
+				mainUI.setBtnNewUser(false);
 			} else {
 				mainUI.login(inName, "Fel lösenord");
 			}

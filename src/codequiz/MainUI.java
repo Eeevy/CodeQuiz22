@@ -32,7 +32,7 @@ public class MainUI extends JPanel {
 	private JButton btnSignIn = new JButton("Logga in");
 	private JButton btnCreateAccount = new JButton("Skapa konto");
 	private JButton btnHowToPlay = new JButton("Om spelet");
-	private JButton btnHighScore = new JButton("High score");
+	private JButton btnHighScore = new JButton("Resultat");
 	private JButton btnLogout = new JButton("Logga ut");
 	private JLabel labelName = new JLabel("Inloggad: ");
 	private String user = "";
@@ -111,6 +111,13 @@ public class MainUI extends JPanel {
 	 */
 	public void setBtnLogout(Boolean hej) {
 		btnLogout.setEnabled(hej);
+	}
+	/**
+	 * Bestämmer om "Skapa konto"-knappen ska synas
+	 * @param hej
+	 */
+	public void setBtnNewUser(Boolean hej) {
+		btnCreateAccount.setEnabled(hej);
 	}
 	
 	/**
@@ -239,12 +246,8 @@ public class MainUI extends JPanel {
 				setUser(cont.getUser());
 				setLoginBtn(true);
 				btnLogout.setEnabled(false);
+				setBtnNewUser(true);
 			}
-//			if(e.getSource()==btnBoss){//*	*	*	* skall tas bort!!!!!
-//				cont.setPanel(cont.getBossUI());
-//				cont.getBossQuestion();
-//
-//			}
 		}
 	}
 

@@ -29,9 +29,9 @@ public class DatabaseConnector implements Serializable {
 	private static Connection conn;
 	private static Statement stat;
 	private static ResultSet rs;
-	private static final String DATABASE_URL = "jdbc:mysql://94.254.94.236:51515/codequiz";
-	private static final String USERNAME = "Bob";
-	private static final String PASSWORD = "bob";
+	private static final String DATABASE_URL = "jdbc:mysql://81.170.228.242:41414/codequiz";
+	private static final String USERNAME = "Evelyn";
+	private static final String PASSWORD = "emma";
 	private QuizController controller;
 
 	public void setController(QuizController c) {

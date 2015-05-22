@@ -28,7 +28,7 @@ public class QuizUI extends JPanel {
 	private JLabel lblQuestion = new JLabel();
 
 	private JButton btnSubmit = new JButton("OK");
-	private JButton btnNewQuestion = new JButton("Starta spelet");
+	private JButton btnNewQuestion = new JButton("Ny fråga");
 	private ButtonGroup buttonGroup = new ButtonGroup();
 	private JRadioButton rb1 = new JRadioButton(" Alternativ 1");
 	private JRadioButton rb2 = new JRadioButton(" Alternativ 2");
@@ -197,7 +197,7 @@ public class QuizUI extends JPanel {
 			lblLives.setVisible(true);
 			lblLives.setText(" " + controller.getlives());
 			questionPanel.setVisible(true);
-			btnNewQuestion.setText("Nästa fråga");
+//			btnNewQuestion.setText("Nästa fråga");
 			btnNewQuestion.setEnabled(false);
 			controller.increaseIndex();
 			ImageIcon icon = controller.setQuestionScenario();
