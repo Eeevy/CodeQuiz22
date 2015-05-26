@@ -185,6 +185,7 @@ public class HouseUI extends JPanel {
 			if (e.getSource() == btnPlay) {
 				controller.setPanel(controller.getQuizUI());
 				controller.nextQuestion();
+				controller.stopMusic();
 			}
 		}
 	}

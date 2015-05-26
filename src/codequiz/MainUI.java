@@ -246,6 +246,7 @@ public class MainUI extends JPanel {
 			}
 			if (e.getSource() == btnHowToPlay) {
 				cont.setPanel(cont.getHowToPlayUI());
+				cont.stopMusic();
 				cont.playSoundClip(beginFilename);
 
 			}

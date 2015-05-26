@@ -9,6 +9,7 @@ import java.awt.Font;
 import java.awt.GridLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.io.File;
 
 import javax.swing.*;
 /**
@@ -251,6 +252,10 @@ public class BossUI extends JPanel {
 					JOptionPane.showMessageDialog(null,
 							"Välj ett alternativ, tack");
 					buttonOK.setEnabled(true);
+					rb1.setEnabled(true);
+					rb2.setEnabled(true);
+					rb3.setEnabled(true);
+					rb4.setEnabled(true);
 				} else {
 					if (answer.equals(cAnswer)) {
 						if (controller.getbossIndex() == 5) {// om rätt svar och
@@ -288,6 +293,9 @@ public class BossUI extends JPanel {
 					}
 					if (controller.getlives() == 0) {
 						die();
+						File evil = new File("src/media/evil-laugh.wav");
+						controller.playSoundClip(evil);
+						buttonOK.setEnabled(false);
 					}
 				}
 			}

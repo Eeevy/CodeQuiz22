@@ -112,7 +112,6 @@ public class QuizController extends Thread {
 	public void setPanel(JPanel panel) {
 		closeWindow();
 		this.panel = panel;
-		clip.stop();
 		showGUI();
 		resetLives();
 	}
@@ -162,6 +161,7 @@ public class QuizController extends Thread {
 		quizUI.setQuestion(question.getQuestion());
 		quizUI.setAlternatives(question.getAnswer1(), question.getAnswer2(),
 				question.getAnswer3(), question.getAnswer4());
+		System.out.println("RÄTT SVAR:" + question.getCorrectanswer());
 		qIndex++;
 	}
 	/**
@@ -225,6 +225,7 @@ public class QuizController extends Thread {
 			howToUI.setWelcome(name);
 			user.setName(name);
 			mainUI.setUser(name);
+			stopMusic();
 			playSoundClip(beginFilename);
 			mainUI.setLoginBtn(false);
 			mainUI.setBtnLogout(true);

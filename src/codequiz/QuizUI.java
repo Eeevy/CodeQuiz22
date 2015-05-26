@@ -10,6 +10,7 @@ import CodeQuizServer.DatabaseConnector;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.io.File;
 import java.io.IOException;
 
 /**
@@ -58,6 +59,7 @@ public class QuizUI extends JPanel {
 		lblBackground.add(southPanel(), BorderLayout.SOUTH);
 		lblBackground.add(northPanel(), BorderLayout.NORTH);
 		questionPanel.setVisible(false);
+		
 	}
 
 	/**
@@ -187,6 +189,8 @@ public class QuizUI extends JPanel {
 		if (controller.getScenarioIndex()) {
 			controller.setPanel(controller.getBossUI());
 			controller.getBossQuestion();
+			File evil = new File("src/media/death-1.wav");
+			controller.playSoundClip(evil);
 		} else {
 			lblPoints.setVisible(true);
 			rb1.setEnabled(true);
