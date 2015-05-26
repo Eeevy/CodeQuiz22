@@ -273,7 +273,15 @@ public class QuizUI extends JPanel {
 				JOptionPane
 						.showMessageDialog(null, "Välj ett alternativ, tack");
 				btnSubmit.setEnabled(true);
+				rb1.setEnabled(true);
+				rb2.setEnabled(true);
+				rb3.setEnabled(true);
+				rb4.setEnabled(true);
 			} else {
+				rb1.setEnabled(false);
+				rb2.setEnabled(false);
+				rb3.setEnabled(false);
+				rb4.setEnabled(false);
 				if (answer.equals(correctAnswer)) {
 
 					ImageIcon icon = controller.setCorrectScenario();
@@ -313,10 +321,7 @@ public class QuizUI extends JPanel {
 				btnresult.setPreferredSize(new Dimension(100, 30));
 			}
 			buttonGroup.clearSelection();
-			rb1.setEnabled(false);
-			rb2.setEnabled(false);
-			rb3.setEnabled(false);
-			rb4.setEnabled(false);
+
 		}
 	}
 

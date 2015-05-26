@@ -63,6 +63,8 @@ public class QuizController extends Thread {
 		inCorrectFilename = new File("src/media/gasp.wav");
 		winFilename = new File("src/media/fanfare3.wav");
 		loseFilename = new File("src/media/scream_male.wav");
+		beginFilename = new File("src/media/creak.wav");
+
 		quizUI = new QuizUI();
 		mainUI = new MainUI(this);
 		howToUI = new HowToPlayUI();

@@ -37,8 +37,7 @@ public class MainUI extends JPanel {
 	private JLabel labelName = new JLabel("Inloggad: ");
 	private String user = "";
 	private File beginFilename;
-	
-//	private JButton btnBoss = new JButton("Voldemort");
+
 
 	public MainUI(QuizController inCont) {
 		setController(inCont);
@@ -82,54 +81,62 @@ public class MainUI extends JPanel {
 		btnLogout.setBackground(Color.white);
 		lblIcon.add(Box.createRigidArea(new Dimension(630, 40)));
 		lblIcon.add(labelName);
-//		lblIcon.add(btnBoss);
 		user = cont.getUser();
 		setUser(user);
 		btnLogout.setEnabled(false);
-		
+
 		addActionListeners();
 		btnPlay.setEnabled(false);
 		beginFilename = new File("src/media/creak.wav");
 	}
-	
+
 	/**
 	 * Bestämmer om "Play"-knappen ska synas.
+	 * 
 	 * @param tof
 	 */
 	public void enableMenu(boolean tof) {
 		btnPlay.setEnabled(tof);
 	}
+
 	/**
 	 * Sätter texten "Spela" på "Play"-knappen
 	 */
 	public void setBtnPlay() {
 		btnPlay.setText("Spela");
 	}
+
 	/**
 	 * Bestämmer om "Logga ut"-knappen ska synas.
+	 * 
 	 * @param hej
 	 */
 	public void setBtnLogout(Boolean hej) {
 		btnLogout.setEnabled(hej);
 	}
+
 	/**
 	 * Bestämmer om "Skapa konto"-knappen ska synas
+	 * 
 	 * @param hej
 	 */
 	public void setBtnNewUser(Boolean hej) {
 		btnCreateAccount.setEnabled(hej);
 	}
-	
+
 	/**
 	 * Visar vem som är inloggad.
+	 * 
 	 * @param inName
 	 */
 	public void setUser(String inName) {
 		user = inName;
 		labelName.setText("Inloggad: " + user);
 	}
+
 	/**
 	 * Sköter inloggning.
+	 * 
 	 * @param inName
 	 * @param inText
 	 */
@@ -155,17 +162,19 @@ public class MainUI extends JPanel {
 			cont.login(name, password);
 		}
 	}
-	
+
 	/**
 	 * Bestämmer om "Logga in"-knappen ska synas.
+	 * 
 	 * @param hej
 	 */
 	public void setLoginBtn(Boolean hej) {
 		btnSignIn.setEnabled(hej);
 	}
-	
+
 	/**
 	 * Sköter skapandet av nya användare
+	 * 
 	 * @param inName
 	 * @param inText
 	 */
@@ -195,6 +204,7 @@ public class MainUI extends JPanel {
 			cont.newUser(name, password, passwordConf);
 		}
 	}
+
 	/**
 	 * Förser knapparna med lyssnare.
 	 */
@@ -206,10 +216,11 @@ public class MainUI extends JPanel {
 		btnHowToPlay.addActionListener(menuListener);
 		btnHighScore.addActionListener(menuListener);
 		btnLogout.addActionListener(menuListener);
-//		btnBoss.addActionListener(menuListener);
 	}
+
 	/**
 	 * Klassen innehåller en lyssnare för menyn.
+	 * 
 	 * @author gustavbodestad
 	 *
 	 */
@@ -218,11 +229,12 @@ public class MainUI extends JPanel {
 		public void actionPerformed(ActionEvent e) {
 			if (e.getSource() == btnPlay) {
 				if (labelName.getText().equals("Inloggad: Ingen inloggad")) {
-					JOptionPane.showMessageDialog(null, "Du måste logga in för att spela!");
+					JOptionPane.showMessageDialog(null,
+							"Du måste logga in för att spela!");
 				} else {
-				cont.getSortingQuestion();
-				cont.setPanel(cont.getSortingCeremonyUI());
-				btnPlay.setText("Laddar...");
+					cont.getSortingQuestion();
+					cont.setPanel(cont.getSortingCeremonyUI());
+					btnPlay.setText("Laddar...");
 				}
 			}
 			if (e.getSource() == btnCreateAccount) {
@@ -235,12 +247,13 @@ public class MainUI extends JPanel {
 			if (e.getSource() == btnHowToPlay) {
 				cont.setPanel(cont.getHowToPlayUI());
 				cont.playSoundClip(beginFilename);
-				
+
 			}
-			if(e.getSource() == btnHighScore){
+			if (e.getSource() == btnHighScore) {
 				cont.newResultUI();
 				cont.fetchhousepoints();
 			}
+
 			if (e.getSource() == btnLogout) {
 				cont.setUser("Ingen inloggad");
 				setUser(cont.getUser());
